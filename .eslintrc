@@ -1,0 +1,45 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:vue/vue3-essential",
+		"@vue/eslint-config-airbnb",
+		"@nuxtjs/eslint-config-typescript"
+	],
+	"parser": "vue-eslint-parser",
+	"parserOptions": {
+		"parser": "@typescript-eslint/parser",
+		"requireConfigFile": false
+	},
+	"plugins": ["vue"],
+	"rules": {
+		"indent": ["error", "tab"],
+		"no-tabs": 0,
+		"vue/html-indent": [
+			"error",
+			"tab",
+			{
+				"attribute": 1,
+				"baseIndent": 1,
+				"closeBracket": 0,
+				"alignAttributesVertically": true,
+				"ignores": []
+			}
+		],
+		"semi": "off",
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never"
+			}
+		]
+	}
+}
