@@ -4,14 +4,14 @@
 	"type": "module",
 	"scripts": {
 		"build": "nuxt build",
-		"dev": "nuxt dev",
+		"dev": "set \"VITE_CJS_TRACE=true\" && nuxt dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore ."
 	},
 	"devDependencies": {
-		"@nuxt/devtools": "1.0.6",
+		"@nuxt/devtools": "1.0.8",
 		"@nuxtjs/eslint-config-typescript": "^12.1.0",
 		"@nuxtjs/eslint-module": "^4.1.0",
 		"@nuxtjs/tailwindcss": "^6.10.4",
@@ -19,12 +19,15 @@
 		"@vue/eslint-config-airbnb": "^8.0.0",
 		"eslint": "^8.56.0",
 		"nuxt": "^3.9.1",
+		"nuxt-svgo": "^4.0.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-tailwindcss": "^0.5.11",
-		"vue": "^3.4.9",
+		"sass": "^1.69.7",
+		"vue": "^3.4.10",
 		"vue-router": "^4.2.5"
 	},
 	"dependencies": {
-		"@pinia/nuxt": "^0.5.1"
+		"@pinia/nuxt": "^0.5.1",
+		"vue3-click-away": "^1.2.4"
 	}
 }

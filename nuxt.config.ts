@@ -1,5 +1,11 @@
+import { resolve } from 'node:path';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	vite: {
+		resolve: {
+			alias: [{ find: '@', replacement: resolve(__dirname, './') }]
+		}
+	},
 	dir: {
 		layouts: 'app/layouts'
 	},
@@ -8,7 +14,11 @@ export default defineNuxtConfig({
 		// Simple usage
 		'@nuxtjs/eslint-module',
 		'@nuxtjs/tailwindcss',
-		'@pinia/nuxt'
+		'@pinia/nuxt',
+		'nuxt-svgo'
+	],
+	plugins: [
+		'~/shared/lib/plugins/clickAway'
 	],
 	eslint: {
 		/* module options */
@@ -21,5 +31,9 @@ export default defineNuxtConfig({
 		config: {},
 		injectPosition: 'first',
 		viewer: true
+	},
+	svgo: {
+		autoImportPath: '~/app/assets/images/icons/',
+		componentPrefix: 'i'
 	}
 })
