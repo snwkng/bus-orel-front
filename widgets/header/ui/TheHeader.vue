@@ -30,7 +30,7 @@ const close = (closeNav) => {
 			</router-link>
 		</div>
 		<div v-if="scroll" class="text-white">
-			test text
+			text
 		</div>
 		<div class="relative">
 			<button type="button" class="btn-hover" @click="toggle = !toggle">

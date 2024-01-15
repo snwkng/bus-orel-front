@@ -2,7 +2,7 @@
 const fullYear: number = new Date().getFullYear();
 </script>
 <template>
-	<div class="flex min-h-screen w-full items-end bg-white">
+	<div class="flex w-full items-end bg-white">
 		<footer class="body-font w-full bg-gray-100 text-gray-700">
 			<div
 				class="md:flex-no-wrap mx-auto flex flex-col flex-wrap px-5 py-24 md:flex-row md:items-center lg:items-start"

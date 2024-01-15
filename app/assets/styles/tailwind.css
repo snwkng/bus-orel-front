@@ -11,7 +11,7 @@
 }
 
 .px-base {
-  @apply lg:px-12 px-6;
+  @apply px-6 md:px-10 lg:px-20;
 }
 
 /* .title-strong {
