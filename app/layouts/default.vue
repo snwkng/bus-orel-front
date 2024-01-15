@@ -5,8 +5,9 @@ import TheHeader from '@/widgets/header';
 <template>
 	<div>
 		<the-header />
-		<p>Some default layout content shared across all pages</p>
-		<slot />
+		<div class="pt-14">
+			<slot />
+		</div>
 		<the-footer />
 	</div>
 </template>

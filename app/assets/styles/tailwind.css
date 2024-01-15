@@ -26,6 +26,10 @@
   @apply text-ellipsis overflow-hidden text-sm text-gray-400;
 }
 
+.card-content {
+  @apply grid gap-2 leading-4
+}
+
 .rotate-Y-180 {
   transform: rotateY(180deg);
 }
