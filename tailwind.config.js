@@ -16,8 +16,8 @@ module.exports = {
 				'deep-orange': '#FF5722',
 				'deep-pink': '#FF2061',
 				'deep-brown': '#55433C',
-				'lite-brown': '#BDA69F',
-				'lite-blue': '#009EFF',
+				'ligth-brown': '#BDA69F',
+				'ligth-blue': '#009EFF',
 				'deep-blue': '#006DF0'
 			},
 			height: {
