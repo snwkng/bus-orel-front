@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import TheInput from '@/shared/ui/form/TheInput.vue'
-import TheSelect from '~/shared/ui/form/TheSelect.vue';
+import TheInput from '@/shared/ui/forms/TheInput.vue'
+import TheSelect from '~/shared/ui/forms/TheSelect.vue';
 import { EBorderRadius } from '~/shared/lib/types';
+import TheButton from '~/shared/ui/buttons/TheButton.vue';
 
 const seaType: SelectItem[] = [
 	{ id: 1, name: 'Черное море' },
@@ -18,10 +19,10 @@ const place: SelectItem[] = [
 ]
 </script>
 <template>
-	<form class="flex flex-row items-center justify-start gap-x-[2px] flex-wrap">
+	<form class="flex flex-row items-center justify-center gap-x-[2px] flex-wrap">
 		<the-input
 			disabled="true"
-			class="w-52"
+			class="w-52 input:rounded-l-none"
 			input-id="откуда"
 			type="text"
 			label="Откуда"
@@ -30,5 +31,6 @@ const place: SelectItem[] = [
 		/>
 		<the-select class="w-52" select-id="море" label="Море" :list="seaType" />
 		<the-select class="w-52" select-id="куда" label="Куда" :list="place" :radius="EBorderRadius.right" />
+		<the-button class="w-52 ml-5" btn-title="Найти" />
 	</form>
 </template>

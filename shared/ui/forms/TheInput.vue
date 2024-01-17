@@ -23,14 +23,14 @@ const inputFocus = ref(false)
 <template>
 	<div class="relative min-w-40">
 		<Transition name="label-fade">
-			<label v-show="inputFocus || disabled" :for="inputId" class="block absolute top-[-24px] ml-3 text-sm font-normal text-white">{{ label }}</label>
+			<label v-if="inputFocus || disabled && label" :for="inputId" class="block absolute top-[-24px] ml-3 text-sm font-normal text-white">{{ label }}</label>
 		</Transition>
 		<input
 			:id="inputId"
 			:disabled="Boolean(disabled)"
 			:aria-label="inputId"
 			:type="type"
-			class="px-4 py-2 text-black min-h-14 w-full disabled:placeholder:text-gray-200"
+			class="px-4 py-2 text-black min-h-14 w-full disabled:placeholder:text-gray-200 focus:ring ring-deep-orange"
 			:class="radius ?? ''"
 			:placeholder="inputFocus ? '' : placeholder ?? label"
 			@focus="inputFocus = true"
