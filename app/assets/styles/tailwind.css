@@ -14,10 +14,6 @@
   @apply px-6 md:px-10 lg:px-20;
 }
 
-/* .title-strong {
-  @apply
-} */
-
 .subtitle {
   @apply text-ellipsis overflow-hidden text-sm text-gray-400;
 }
