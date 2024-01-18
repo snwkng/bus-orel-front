@@ -15,7 +15,7 @@ const toggle = ref(false)
 const scroll = ref(false)
 
 const handleScroll = () => {
-	scroll.value = window.scrollY > 500
+	scroll.value = window.scrollY > 400
 }
 const close = (closeNav) => {
 	toggle.value = closeNav

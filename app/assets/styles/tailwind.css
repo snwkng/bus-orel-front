@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn-hover {
-  @apply p-1 rounded-xl hover:bg-slate-200 hover:bg-opacity-10 focus:bg-slate-200 focus:bg-opacity-10;
+  @apply p-1 rounded-xl hover:bg-slate-200/10 focus:bg-slate-200/10;
 }
 
 .list-item {

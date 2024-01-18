@@ -22,6 +22,7 @@ export default defineNuxtConfig({
 	],
 	eslint: {
 		/* module options */
+		lintOnStart: false
 	},
 	tailwindcss: {
 		cssPath: '~/app/assets/styles/tailwind.css',
