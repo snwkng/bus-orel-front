@@ -54,13 +54,13 @@ const fullYear: number = new Date().getFullYear();
 							<ul>
 								<li class="mt-3">
 									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 										target="_blank"
 									>О нас</a>
 								</li>
 								<li class="mt-3">
 									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 										target="_blank"
 									>Памятка туристу</a>
 								</li>
@@ -71,25 +71,25 @@ const fullYear: number = new Date().getFullYear();
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-gray-900"
 						>
-							Помощь
+							Информация
 						</h2>
-						<nav class="mb-10 list-none" aria-label="Support">
+						<nav class="mb-10 list-none" aria-label="Information">
 							<ul>
 								<li class="mt-3">
 									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 										target="_blank"
 									>Соглашения</a>
 								</li>
 								<li class="mt-3">
 									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 										target="_blank"
 									>Конфеденциальность</a>
 								</li>
 								<li class="mt-3">
 									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 										target="_blank"
 									>Карта сайта</a>
 								</li>
@@ -105,26 +105,32 @@ const fullYear: number = new Date().getFullYear();
 						<nav class="mb-10 list-none" aria-label="Service">
 							<ul>
 								<li class="mt-3">
-									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
-										target="_blank"
-									>Автобусные туры к морю из Орла</a>
+									<router-link
+										to="/bus-tours"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
+									>
+										Автобусные туры к морю из Орла
+									</router-link>
+								</li>
+								<li class="mt-3">
+									<router-link
+										to="/excursions"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
+									>
+										Экскурсионные туры из Орла
+									</router-link>
+								</li>
+								<li class="mt-3">
+									<router-link
+										:to="{ name: 'home', hash: '#bus-rent' }"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
+									>
+										Аренда микроавтобусов
+									</router-link>
 								</li>
 								<li class="mt-3">
 									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
-										target="_blank"
-									>Экскурсионные туры из Орла</a>
-								</li>
-								<li class="mt-3">
-									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
-										target="_blank"
-									>Аренда микроавтобусов</a>
-								</li>
-								<li class="mt-3">
-									<a
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 										target="_blank"
 									>Подбор туров</a>
 								</li>
@@ -142,7 +148,7 @@ const fullYear: number = new Date().getFullYear();
 								<li class="mt-3">
 									<a
 										href="mailto:avtobus-orel.petlaj@yandex.ru"
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 									>
 										avtobus-orel.petlaj@yandex.ru
 									</a>
@@ -150,7 +156,7 @@ const fullYear: number = new Date().getFullYear();
 								<li class="mt-3">
 									<a
 										href="tel:+74862780958"
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 									>
 										+7(4862)78-09-58
 									</a>
@@ -158,7 +164,7 @@ const fullYear: number = new Date().getFullYear();
 								<li class="mt-3 flex flex-wrap">
 									<a
 										href="https://yandex.ru/maps/org/turisticheskoye_agentstvo_galatur/1067897790/?ll=36.060826%2C52.953087&z=14.36"
-										class="cursor-pointer text-gray-500 hover:text-gray-900"
+										class="cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
 										target="_blank"
 										rel="noopener noreferrer"
 									>
