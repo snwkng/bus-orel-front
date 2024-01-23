@@ -23,7 +23,7 @@ const close = (closeNav) => {
 </script>
 
 <template>
-	<header :class="['z-10 flex items-center justify-between w-full bg-deep-blue px-base h-14 font-large fixed', { 'shadow-lg': scroll }]">
+	<header :class="['z-20 flex items-center justify-between w-full bg-deep-blue px-base h-14 font-large fixed', { 'shadow-lg': scroll }]">
 		<div class="text-white">
 			<router-link :to="{ name: 'home' }">
 				<strong class="text-deep-orange">G</strong>alatour

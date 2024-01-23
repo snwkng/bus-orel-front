@@ -13,7 +13,7 @@ watch(
 </script>
 
 <template>
-	<nav v-click-away="close" class="bg-white p-6 absolute top-10 right-0 rounded-xl w-80 shadow-lg z-50">
+	<nav v-click-away="close" class="bg-white p-6 absolute top-10 right-0 rounded-xl w-80 shadow-lg">
 		<ul class="list-none text-base">
 			<li class="list-item">
 				<router-link to="/bus-tours">
