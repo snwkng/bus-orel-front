@@ -10,6 +10,11 @@ export default defineNuxtConfig({
 		layouts: 'app/layouts'
 	},
 	devtools: { enabled: true },
+	runtimeConfig: {
+		public: {
+			BASE_URL: process.env.BASE_URL ?? '/'
+		}
+	},
 	modules: [
 		// Simple usage
 		'@nuxtjs/eslint-module',
@@ -20,6 +25,10 @@ export default defineNuxtConfig({
 	plugins: [
 		'~/shared/lib/plugins/clickAway'
 	],
+	pinia: {
+		storesDirs: ['./entities/**/model/**',
+			'./features/**/model/**', './widgets/**/model/**']
+	},
 	eslint: {
 		/* module options */
 		lintOnStart: false
