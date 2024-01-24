@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SearchToursForm from '@/features/searchToursForm';
-import SearchExcursionsForm from '@/features/SearchExcursionsForm';
+import SearchExcursionsForm from '@/features/searchExcursionsForm';
 
 type goToSearch = 'busTours' | 'excursions';
 

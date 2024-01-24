@@ -9,12 +9,16 @@ export interface Props {
 withDefaults(defineProps<Props>(), {
 	title: ''
 })
+
+const excursions = useExcursionsStore();
+await callOnce(excursions.getExcursions)
 </script>
 <template>
 	<section>
 		<h2 v-if="title" class="font-bold text-2xl mb-6">
 			{{ title }}
 		</h2>
+		{{ excursions.excursions }}
 		<the-grid>
 			<the-card v-for="item in [1, 2, 3, 4, 5]" :key="item" card-type="excursion" />
 		</the-grid>
