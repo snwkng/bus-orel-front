@@ -14,7 +14,7 @@
 		"@nuxt/devtools": "^1.0.8",
 		"@nuxtjs/eslint-config-typescript": "^12.1.0",
 		"@nuxtjs/eslint-module": "^4.1.0",
-		"@nuxtjs/tailwindcss": "^6.11.0",
+		"@nuxtjs/tailwindcss": "^6.11.1",
 		"@typescript-eslint/parser": "^6.19.1",
 		"@vue/eslint-config-airbnb": "^8.0.0",
 		"eslint": "^8.56.0",

@@ -1,7 +1,21 @@
+import type { ICard } from '@/entities/card/model/types';
+import type { IExcursion } from './types';
+
 export const useExcursionsStore = defineStore('useExcursionsStore', {
 	state: () => ({
-		excursions: null
+		excursions: []
 	}),
+	getters: {
+		cardMapped (state): ICard[] {
+			return state.excursions.map((excursion: IExcursion) => ({
+				id: excursion.id,
+				title: excursion.name,
+				subtitle: excursion.city,
+				price: excursion.price,
+				images: excursion.images
+			}))
+		}
+	},
 	actions: {
 		async getExcursions (): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;

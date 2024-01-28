@@ -1,21 +1,41 @@
 <script setup lang="ts">
-defineProps({
-	cardType: { type: String, default: 'tour' }
-})
+import type { ICard } from '../model/types';
+
+export interface Props extends ICard {
+	type: string;
+	imagePath: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+	type: 'tour',
+	imagePath: 'hotels',
+	title: 'Отель Атлас',
+	subtitle: 'Краснодарский край, Геленджик',
+	price: 14000,
+	images: () => []
+});
 </script>
 <template>
 	<router-link to="#" rel="noopener noreferrer nofollow">
 		<div class="w-full">
-			<img class="rounded-xl mb-3 bg-cover w-full brightness-100" :class="[cardType === 'tour' ? 'h-72' : 'h-96']" src="https://images.unsplash.com/photo-1701743805444-d51a3636a03f?q=80&w=386&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="pic" title="pic" />
+			<img
+				class="mb-3 w-full rounded-xl bg-cover brightness-100"
+				:class="[type === 'tour' ? 'h-72' : 'h-96']"
+				:src="`http://localhost:3001/images/${imagePath}/${props?.images[0]?.name ?? ''}`"
+				:alt="props.subtitle"
+				:title="props.title"
+			/>
 			<div class="card-content">
 				<h3 class="font-semibold">
-					Отель Атлас
+					{{ title }}
 				</h3>
-				<div class=" text-gray-500 font-normal">
-					Краснодарский край, Геленджик
+				<div class="font-normal text-gray-500">
+					{{ subtitle }}
 				</div>
-				<div class="text-gray-500 font-normal">
-					от <strong class="text-black font-semibold">14000 &#8381;</strong> за поездку
+				<div class="font-normal text-gray-500">
+					от
+					<strong class="font-semibold text-black">{{ price }} &#8381;</strong>
+					за поездку
 				</div>
 			</div>
 		</div>

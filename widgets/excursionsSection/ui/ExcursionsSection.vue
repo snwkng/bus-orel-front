@@ -18,9 +18,18 @@ await callOnce(excursions.getExcursions)
 		<h2 v-if="title" class="font-bold text-2xl mb-6">
 			{{ title }}
 		</h2>
-		{{ excursions.excursions }}
 		<the-grid>
-			<the-card v-for="item in [1, 2, 3, 4, 5]" :key="item" card-type="excursion" />
+			<the-card
+				v-for="item in excursions.cardMapped"
+				:id="item.id"
+				:key="item.id"
+				:title="item.title"
+				:subtitle="item.subtitle"
+				:price="item.price"
+				:images="item.images"
+				type="excursion"
+				image-path="excursions"
+			/>
 		</the-grid>
 	</section>
 </template>
