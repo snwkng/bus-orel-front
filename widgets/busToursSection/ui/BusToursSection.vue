@@ -9,6 +9,9 @@ export interface Props {
 withDefaults(defineProps<Props>(), {
 	title: ''
 })
+
+const tours = useToursStore();
+await callOnce(tours.getTours)
 </script>
 <template>
 	<section>
@@ -16,7 +19,17 @@ withDefaults(defineProps<Props>(), {
 			{{ title }}
 		</h2>
 		<the-grid>
-			<the-card v-for="item in [1, 2, 3, 4, 5]" :key="item" />
+			<the-card
+				v-for="item in new Array(5).fill(tours?.cardMapped[0], 0, 5)"
+				:id="item.id"
+				:key="item.id"
+				:title="item.title"
+				:subtitle="item.subtitle"
+				:price="item.price"
+				:images="item.images"
+				type="tour"
+				image-path="hotels"
+			/>
 		</the-grid>
 	</section>
 </template>
