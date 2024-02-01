@@ -14,9 +14,11 @@ const props = withDefaults(defineProps<Props>(), {
 	price: 14000,
 	images: () => []
 });
+
+const link = computed(() => (props.type === 'excursion' ? { name: 'excursions/excursion', params: { id: props.id } } : { name: 'bus-tours/bus-tour', params: { id: props.id } }))
 </script>
 <template>
-	<router-link to="#" rel="noopener noreferrer nofollow">
+	<router-link :to="link" rel="noopener noreferrer nofollow">
 		<div class="w-full">
 			<img
 				class="mb-3 w-full rounded-xl bg-cover brightness-100"

@@ -14,11 +14,11 @@
 		"@nuxt/devtools": "^1.0.8",
 		"@nuxtjs/eslint-config-typescript": "^12.1.0",
 		"@nuxtjs/eslint-module": "^4.1.0",
-		"@nuxtjs/tailwindcss": "^6.11.1",
+		"@nuxtjs/tailwindcss": "^6.11.2",
 		"@typescript-eslint/parser": "^6.19.1",
 		"@vue/eslint-config-airbnb": "^8.0.0",
 		"eslint": "^8.56.0",
-		"nuxt": "^3.9.3",
+		"nuxt": "^3.10.0",
 		"nuxt-svgo": "^4.0.0",
 		"prettier": "^3.2.4",
 		"prettier-plugin-tailwindcss": "^0.5.11",
@@ -28,6 +28,7 @@
 	},
 	"dependencies": {
 		"@pinia/nuxt": "^0.5.1",
+		"nuxt-swiper": "^1.2.2",
 		"vue3-click-away": "^1.2.4"
 	}
 }

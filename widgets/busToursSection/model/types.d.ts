@@ -1,7 +1,7 @@
 import { ObjectId } from 'bson';
 
 export interface ITour {
-  id: ObjectId,
+  _id: ObjectId,
   name: string,
   type: string,
   locationDescription: string,

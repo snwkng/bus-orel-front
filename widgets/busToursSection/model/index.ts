@@ -8,7 +8,8 @@ export const useToursStore = defineStore('useToursStore', {
 	getters: {
 		cardMapped (state): ICard[] {
 			return state.tours.map((tour: ITour) => ({
-				id: tour.id,
+				// eslint-disable-next-line no-underscore-dangle
+				id: tour._id,
 				title: tour.name,
 				subtitle: tour.city,
 				price: tour.fare,

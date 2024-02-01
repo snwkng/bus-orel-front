@@ -8,9 +8,9 @@ const cookie = useCookie('cookie_agree');
 <template>
 	<div>
 		<the-header />
-		<div class="pt-14">
+		<main class="pt-14">
 			<slot />
-		</div>
+		</main>
 		<the-footer />
 		<the-cookie v-if="!cookie" />
 	</div>
