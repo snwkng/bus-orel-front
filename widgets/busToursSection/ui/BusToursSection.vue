@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
 	title: ''
 })
 
-const tours = useToursStore();
+const tours = useTourStore();
 await callOnce(tours.getTours)
 </script>
 <template>
