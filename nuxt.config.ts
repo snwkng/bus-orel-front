@@ -20,7 +20,8 @@ export default defineNuxtConfig({
 		'@nuxtjs/eslint-module',
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
-		'nuxt-svgo'
+		'nuxt-svgo',
+		'nuxt-swiper'
 	],
 	plugins: [
 		'~/shared/lib/plugins/clickAway'

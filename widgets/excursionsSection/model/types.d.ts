@@ -1,7 +1,7 @@
 import { ObjectId } from 'bson';
 
 export interface IExcursion {
-  id: ObjectId,
+  _id: ObjectId,
   name: string,
   description: string,
   images: {name: string}[],

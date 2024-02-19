@@ -12,12 +12,26 @@ export default <RouterConfig>{
 		{
 			name: 'bus-tours',
 			path: '/bus-tours',
-			component: () => import('~/pages/bus-tours/ui/BusTours.vue').then(r => r.default || r)
+			component: () => import('~/pages/bus-tours/ui/BusTours.vue').then(r => r.default || r),
+			props: true
+		},
+		{
+			name: 'bus-tours/bus-tour',
+			path: '/bus-tours/:id',
+			component: () => import('~/pages/bus-tour/ui/BusTour.vue').then(r => r.default || r),
+			props: true
 		},
 		{
 			name: 'excursions',
 			path: '/excursions',
-			component: () => import('~/pages/excursions/ui/TheExcursions.vue').then(r => r.default || r)
+			component: () => import('~/pages/excursions/ui/TheExcursions.vue').then(r => r.default || r),
+			props: true
+		},
+		{
+			name: 'excursions/excursion',
+			path: '/excursions/:id',
+			component: () => import('~/pages/excursion/ui/TheExcursion.vue').then(r => r.default || r),
+			props: true
 		}
 	],
 	scrollBehavior (to: RouteLocationNormalized, _from: RouteLocationNormalized, savedPosition: any) {
