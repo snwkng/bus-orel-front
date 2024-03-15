@@ -14,7 +14,16 @@ export interface ITour {
   address: string,
   fare: number,
   thePriceIncludes: string,
-  tours: {startDate: Date, endDate: Date, rooms: {room: string, price: number}}[],
+  tours: ITourTable[],
   city: string,
   region: string
+}
+
+export interface ITourTable {
+  startDate: Date,
+  endDate: Date,
+  rooms: {
+    room: string,
+    price: number,
+  }[]
 }
