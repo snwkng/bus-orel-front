@@ -1,6 +1,6 @@
 <script setup lang="ts">
-
+import ExcursionDetails from '@/widgets/ExcursionDetails';
 </script>
 <template>
-	<div>excursion page</div>
+	<excursion-details />
 </template>

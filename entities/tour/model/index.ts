@@ -4,7 +4,9 @@ import type { ITour } from './types';
 export const useTourStore = defineStore('useTourStore', {
 	state: () => ({
 		tours: [],
-		tour: {} as ITour
+		tour: {} as ITour,
+		seaList: [] as SelectItem[],
+		cityList: [] as SelectItem[]
 	}),
 	getters: {
 		cardMapped (state): ICard[] {
@@ -27,6 +29,11 @@ export const useTourStore = defineStore('useTourStore', {
 		async getTour (id: string): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
 			this.tour = await $fetch(`${BASE_URL}/hotels/${id}`)
+		},
+
+		async getSeaList (): Promise<void> {
+			const { BASE_URL } = useRuntimeConfig().public;
+			this.seaList = await $fetch(`${BASE_URL}/hotels/`)
 		}
 	}
 })

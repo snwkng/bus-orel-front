@@ -20,10 +20,18 @@ export interface ITour {
 }
 
 export interface ITourTable {
-  startDate: Date,
-  endDate: Date,
-  rooms: {
-    room: string,
-    price: number,
-  }[]
+    roomName: string,
+    type: string,
+    numberOfSeats: number,
+    inRoom: string,
+    datesAndPrices: {
+      startDate: Date,
+      endDate: Date,
+      price: number,
+    }[];
+}
+
+export interface ISeaList {
+  id: number,
+  name: string
 }

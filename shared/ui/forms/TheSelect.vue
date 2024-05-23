@@ -1,30 +1,51 @@
 <script setup lang="ts">
-import { EBorderRadius } from '@/shared/lib/types'
+import { EBorderRadius } from '@/shared/lib/types';
 
 export interface Props {
-	selectId: string,
-	label: string,
-	radius?: EBorderRadius | null,
-	list?: SelectItem[],
+	selectId: string;
+	label: string;
+	radius?: EBorderRadius | null;
+	list?: SelectItem[];
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
 	selectId: '',
 	label: '',
 	radius: null,
 	list: () => []
-})
+});
 
+const emit = defineEmits<(e: 'change', value: SelectItem) => void>()
+
+const value = ref<SelectItem>({});
+
+watch(
+	() => value.value,
+	() => {
+		emit('change', value.value)
+	}
+)
+
+onMounted(() => {
+	if (props.list.length) {
+		const firstItem: SelectItem = props.list[0];
+		value.value = firstItem;
+	}
+})
 </script>
 <template>
 	<div class="relative min-w-40">
-		<label :for="selectId" class="block absolute top-[-24px] ml-3 text-sm font-normal text-white">{{ label }}</label>
+		<label
+			:for="selectId"
+			class="absolute top-[-24px] ml-3 block text-sm font-normal text-white"
+		>{{ label }}</label>
 		<select
 			:id="selectId"
-			class="px-2 py-2 text-gray-500 min-h-14 w-full focus:ring ring-deep-orange"
+			v-model="value"
+			class="min-h-14 w-full px-2 py-2 text-gray-500 ring-deep-orange focus:ring"
 			:class="radius ?? ''"
 		>
-			<option v-for="item in list" :key="item?.id">
+			<option v-for="item in list" :key="item?.id" :value="item">
 				{{ item.name }}
 			</option>
 		</select>
