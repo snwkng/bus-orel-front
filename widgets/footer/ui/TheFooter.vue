@@ -1,11 +1,20 @@
 <script setup lang="ts">
+
+export interface Props {
+	isSingle?: boolean,
+}
+
+withDefaults(defineProps<Props>(), {
+	isSingle: false
+})
+
 const fullYear: number = new Date().getFullYear();
 </script>
 <template>
 	<div class="flex w-full items-end bg-white">
 		<footer class="body-font w-full bg-gray-100 text-gray-700">
 			<div
-				class="md:flex-no-wrap mx-auto flex flex-col flex-wrap px-5 py-24 md:flex-row md:items-center lg:items-start"
+				:class="['md:flex-no-wrap mx-auto flex flex-col flex-wrap px-5 py-24 md:flex-row md:items-center lg:items-start w-full', { 'xl:w-[1280px] px-base': isSingle }]"
 			>
 				<div
 					class="mx-auto w-64 flex-shrink-0 text-center md:mx-0 md:text-left"

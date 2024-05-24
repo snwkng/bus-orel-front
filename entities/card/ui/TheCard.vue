@@ -21,7 +21,7 @@ const link = computed(() => (props.type === 'excursion' ? { name: 'excursions/ex
 	<router-link :to="link" rel="noopener noreferrer nofollow">
 		<div class="w-full">
 			<img
-				class="mb-3 w-full rounded-xl bg-cover brightness-100"
+				class="mb-3 w-full rounded-xl bg-cover brightness-100 object-cover"
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
 				:src="`http://localhost:3001/images/${imagePath}/${props?.images[0]?.name ?? ''}`"
 				:alt="props.subtitle"

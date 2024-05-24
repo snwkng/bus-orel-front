@@ -1,3 +1,3 @@
-import Excursions from './ui/Excursions.vue';
+import TheExcursions from './ui/TheExcursions.vue';
 
-export default Excursions;
+export default TheExcursions;

@@ -18,6 +18,9 @@ export default <RouterConfig>{
 		{
 			name: 'bus-tours/bus-tour',
 			path: '/bus-tours/:id',
+			meta: {
+				layout: 'single'
+			},
 			component: () => import('~/pages/bus-tour/ui/BusTour.vue').then(r => r.default || r),
 			props: true
 		},
@@ -30,6 +33,9 @@ export default <RouterConfig>{
 		{
 			name: 'excursions/excursion',
 			path: '/excursions/:id',
+			meta: {
+				layout: 'single'
+			},
 			component: () => import('~/pages/excursion/ui/TheExcursion.vue').then(r => r.default || r),
 			props: true
 		}
