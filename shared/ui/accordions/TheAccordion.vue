@@ -1,43 +1,44 @@
 <script setup lang="ts">
-
-export interface Props {
-	items: string[],
+export interface IProps {
+	items: { title: string; content: string }[];
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<IProps>(), {
 	items: () => []
 });
 
-const activeItem = ref(null as any)
-
-const accordionItems = computed(() => props.items.map((x: string, index: number) => ({
-	title: `День ${index + 1}`,
-	content: x
-})))
+const activeItem = ref<null | { title: string; content: string }>(null);
 
 const toggleItem = (title: string) => {
+	if (title === activeItem.value?.title) {
+		activeItem.value = null
+		return
+	}
 	activeItem.value =
-  accordionItems.value.find((x: {title: string, content: string}) => title === x.title) ||
-  null
-}
+		props.items.find(
+			(x: { title: string; content: string }) => title === x.title
+		) || null;
+};
 </script>
 <template>
 	<div>
 		<div
-			v-for="item in accordionItems"
+			v-for="item in props.items"
 			:key="item.title"
-			class="border-b border-solid border-gray-200 pb-4"
+			class="border-b border-solid border-slate-200 pb-4 pt-2"
 		>
 			<button
 				type="button"
-				class="inline-flex w-full items-center justify-between leading-8 text-gray-900 transition duration-500 hover:text-indigo-600"
+				class="group inline-flex w-full items-center justify-between leading-8 transition duration-500 hover:text-deep-orange pb-3"
+				:class="activeItem?.title === item.title ? 'text-deep-orange' : 'text-slate-900'"
 				@click="toggleItem(item.title)"
 			>
 				<h5 class="font-semibold">
 					{{ item.title }}
 				</h5>
 				<svg
-					class="accordion-active:text-indigo-600 accordion-active:rotate-180 text-gray-900 transition duration-500 group-hover:text-indigo-600"
+					class="transition duration-500 group-hover:text-deep-orange"
+					:class="activeItem?.title === item.title ? 'text-deep-orange rotate-180' : 'text-slate-900'"
 					width="22"
 					height="22"
 					viewBox="0 0 22 22"
@@ -64,11 +65,3 @@ const toggleItem = (title: string) => {
 		</div>
 	</div>
 </template>
-<style lang="scss">
-.accordion-active {
-  @apply overflow-auto
-}
-.accordion-item {
-  @apply overflow-hidden
-}
-</style>

@@ -11,5 +11,6 @@ export interface IExcursion {
   checkInConditions: string,
   excursionStart: Date,
   city: string,
+  hotelName: string,
   thePriceIncludes: string[],
 }

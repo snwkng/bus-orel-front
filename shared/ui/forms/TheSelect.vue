@@ -42,7 +42,7 @@ onMounted(() => {
 		<select
 			:id="selectId"
 			v-model="value"
-			class="min-h-14 w-full px-2 py-2 text-gray-500 ring-deep-orange focus:ring"
+			class="min-h-14 w-full px-2 py-2 text-slate-500 ring-deep-orange focus:ring"
 			:class="radius ?? ''"
 		>
 			<option v-for="item in list" :key="item?.id" :value="item">

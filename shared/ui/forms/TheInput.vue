@@ -30,7 +30,7 @@ const inputFocus = ref(false)
 			:disabled="Boolean(disabled)"
 			:aria-label="inputId"
 			:type="type"
-			class="px-4 py-2 text-black min-h-14 w-full disabled:placeholder:text-gray-200 focus:ring ring-deep-orange"
+			class="px-4 py-2 text-black min-h-14 w-full disabled:placeholder:text-slate-200 focus:ring ring-deep-orange"
 			:class="radius ?? ''"
 			:placeholder="inputFocus ? '' : placeholder ?? label"
 			@focus="inputFocus = true"

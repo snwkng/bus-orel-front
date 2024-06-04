@@ -7,12 +7,12 @@ export default <RouterConfig>{
 		{
 			name: 'home',
 			path: '/',
-			component: () => import('~/pages/home/ui/MainPage.vue').then(r => r.default || r)
+			component: () => import('~/pages/home/').then(r => r.default || r)
 		},
 		{
 			name: 'bus-tours',
 			path: '/bus-tours',
-			component: () => import('~/pages/bus-tours/ui/BusTours.vue').then(r => r.default || r),
+			component: () => import('~/pages/bus-tours/').then(r => r.default || r),
 			props: true
 		},
 		{
@@ -21,13 +21,13 @@ export default <RouterConfig>{
 			meta: {
 				layout: 'single'
 			},
-			component: () => import('~/pages/bus-tour/ui/BusTour.vue').then(r => r.default || r),
+			component: () => import('~/pages/bus-tour/').then(r => r.default || r),
 			props: true
 		},
 		{
 			name: 'excursions',
 			path: '/excursions',
-			component: () => import('~/pages/excursions/ui/TheExcursions.vue').then(r => r.default || r),
+			component: () => import('~/pages/excursions/').then(r => r.default || r),
 			props: true
 		},
 		{
@@ -36,8 +36,24 @@ export default <RouterConfig>{
 			meta: {
 				layout: 'single'
 			},
-			component: () => import('~/pages/excursion/ui/TheExcursion.vue').then(r => r.default || r),
+			component: () => import('~/pages/excursion/').then(r => r.default || r),
 			props: true
+		},
+		{
+			name: 'about',
+			path: '/about',
+			meta: {
+				layout: 'single'
+			},
+			component: () => import('~/pages/about-us/').then(r => r.default || r)
+		},
+		{
+			name: 'tourist-reminder',
+			path: '/tourist-reminder',
+			meta: {
+				layout: 'single'
+			},
+			component: () => import('~/pages/tourist-reminder/').then(r => r.default || r)
 		}
 	],
 	scrollBehavior (to: RouteLocationNormalized, _from: RouteLocationNormalized, savedPosition: any) {

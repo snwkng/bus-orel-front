@@ -31,10 +31,10 @@ const link = computed(() => (props.type === 'excursion' ? { name: 'excursions/ex
 				<h3 class="font-semibold">
 					{{ title }}
 				</h3>
-				<div class="font-normal text-gray-500">
+				<div class="font-normal text-slate-500">
 					{{ subtitle }}
 				</div>
-				<div class="font-normal text-gray-500">
+				<div class="font-normal text-slate-500">
 					от
 					<strong class="font-semibold text-black">{{ price }} &#8381;</strong>
 					за поездку
