@@ -15,11 +15,11 @@
 }
 
 .subtitle {
-  @apply text-ellipsis overflow-hidden text-sm text-gray-400;
+  @apply text-ellipsis overflow-hidden text-sm text-slate-400;
 }
 
 .price {
-  @apply text-ellipsis overflow-hidden text-sm text-gray-400;
+  @apply text-ellipsis overflow-hidden text-sm text-slate-400;
 }
 
 .card-content {

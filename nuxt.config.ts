@@ -21,7 +21,8 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
 		'nuxt-svgo',
-		'nuxt-swiper'
+		'nuxt-swiper',
+		'dayjs-nuxt'
 	],
 	plugins: [
 		'~/shared/lib/plugins/clickAway'

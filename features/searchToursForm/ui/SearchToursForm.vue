@@ -17,6 +17,9 @@ const place: SelectItem[] = [
 	{ id: 2, name: 'Адлер' },
 	{ id: 2, name: 'Лоо' }
 ]
+
+const selectedSea = ref<SelectItem>({});
+const selectedPlace = ref<SelectItem>({});
 </script>
 <template>
 	<form class="flex flex-row items-center justify-center gap-x-[2px] flex-wrap">
@@ -29,8 +32,22 @@ const place: SelectItem[] = [
 			placeholder="Орёл"
 			:radius="EBorderRadius.left"
 		/>
-		<the-select class="w-52" select-id="море" label="Море" :list="seaType" />
-		<the-select class="w-52" select-id="куда" label="Куда" :list="place" :radius="EBorderRadius.right" />
+		<the-select
+			v-model="selectedSea"
+			class="w-52"
+			select-id="море"
+			label="Море"
+			:list="seaType"
+			@change="selectedSea = $event"
+		/>
+		<the-select
+			class="w-52"
+			select-id="куда"
+			label="Куда"
+			:list="place"
+			:radius="EBorderRadius.right"
+			@change="selectedPlace = $event"
+		/>
 		<the-button class="w-52 ml-5" btn-title="Найти" />
 	</form>
 </template>

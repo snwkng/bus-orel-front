@@ -21,7 +21,7 @@ const link = computed(() => (props.type === 'excursion' ? { name: 'excursions/ex
 	<router-link :to="link" rel="noopener noreferrer nofollow">
 		<div class="w-full">
 			<img
-				class="mb-3 w-full rounded-xl bg-cover brightness-100"
+				class="mb-3 w-full rounded-xl bg-cover brightness-100 object-cover"
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
 				:src="`http://localhost:3001/images/${imagePath}/${props?.images[0]?.name ?? ''}`"
 				:alt="props.subtitle"
@@ -31,10 +31,10 @@ const link = computed(() => (props.type === 'excursion' ? { name: 'excursions/ex
 				<h3 class="font-semibold">
 					{{ title }}
 				</h3>
-				<div class="font-normal text-gray-500">
+				<div class="font-normal text-slate-500">
 					{{ subtitle }}
 				</div>
-				<div class="font-normal text-gray-500">
+				<div class="font-normal text-slate-500">
 					от
 					<strong class="font-semibold text-black">{{ price }} &#8381;</strong>
 					за поездку

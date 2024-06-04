@@ -1,4 +1,1 @@
-export {};
-declare global {
-  type SelectItem = {name?: string, id?: string | number};
-}
+declare type SelectItem = {name?: string, id?: string | number};

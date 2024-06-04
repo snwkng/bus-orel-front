@@ -1,10 +1,12 @@
 <script setup lang="ts">
 export interface Props {
 	images: {name: string}[],
+	path: string,
 }
 
 const props = withDefaults(defineProps<Props>(), {
-	images: () => []
+	images: () => [],
+	path: 'hotels'
 });
 
 const thumbsSwiper = ref(null);
@@ -25,17 +27,17 @@ const setThumbsSwiper = (swiper: any) => {
 		>
 			<SwiperSlide v-for="(slide, index) in props.images" :key="index">
 				<img
-					class="w-full max-h-[500px] object-contain"
+					class="w-full max-h-[300px] object-none"
 					alt="pic"
-					:src="`http://localhost:3001/images/hotels/${slide.name}`"
+					:src="`http://localhost:3001/images/${path}/${slide.name}`"
 				/>
 			</SwiperSlide>
 		</Swiper>
 		<Swiper
-			class="rounded max-h-56"
+			class="rounded max-h-40"
 			:modules="[SwiperThumbs, SwiperFreeMode, SwiperNavigation]"
 			:loop="true"
-			:slides-per-view="4"
+			:slides-per-view="3"
 			:free-mode="true"
 			:watch-slides-progress="true"
 			:center-insufficient-slides="true"
@@ -44,9 +46,9 @@ const setThumbsSwiper = (swiper: any) => {
 		>
 			<SwiperSlide v-for="(slide, index) in props.images" :key="index">
 				<img
-					class="w-full min-h-[200px] object-fill"
+					class="w-full min-h-[100px] object-fill"
 					alt="pic"
-					:src="`http://localhost:3001/images/hotels/${slide.name}`"
+					:src="`http://localhost:3001/images/${path}/${slide.name}`"
 				/>
 			</SwiperSlide>
 		</Swiper>

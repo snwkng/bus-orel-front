@@ -26,7 +26,7 @@ watch(
 				</router-link>
 			</li>
 			<li>
-				<router-link to="#" class="list-item">
+				<router-link :to="{ name: 'home', hash: '#tour-selection' }" class="list-item">
 					Подбор тура
 				</router-link>
 			</li>
