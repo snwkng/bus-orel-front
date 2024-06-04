@@ -26,7 +26,7 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 
 		async getExcursion (id: string): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
-			this.excursions = await $fetch(`${BASE_URL}/excursions/${id}`)
+			this.excursion = await $fetch(`${BASE_URL}/excursions/${id}`)
 		}
 	}
 })

@@ -21,7 +21,7 @@ await useAsyncData(() => store.getTour(tourId).then(() => true))
 					</button>
 				</div>
 			</div>
-			<the-gallery :images="store.tour.images" />
+			<the-gallery :images="store.tour.images" path="hotels" />
 			<div class="">
 				<h3 class="text-xl font-semibold mb-2">
 					Расположение

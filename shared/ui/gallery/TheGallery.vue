@@ -1,10 +1,12 @@
 <script setup lang="ts">
 export interface Props {
 	images: {name: string}[],
+	path: string,
 }
 
 const props = withDefaults(defineProps<Props>(), {
-	images: () => []
+	images: () => [],
+	path: 'hotels'
 });
 
 const thumbsSwiper = ref(null);
@@ -27,7 +29,7 @@ const setThumbsSwiper = (swiper: any) => {
 				<img
 					class="w-full max-h-[300px] object-none"
 					alt="pic"
-					:src="`http://localhost:3001/images/hotels/${slide.name}`"
+					:src="`http://localhost:3001/images/${path}/${slide.name}`"
 				/>
 			</SwiperSlide>
 		</Swiper>
@@ -46,7 +48,7 @@ const setThumbsSwiper = (swiper: any) => {
 				<img
 					class="w-full min-h-[100px] object-fill"
 					alt="pic"
-					:src="`http://localhost:3001/images/hotels/${slide.name}`"
+					:src="`http://localhost:3001/images/${path}/${slide.name}`"
 				/>
 			</SwiperSlide>
 		</Swiper>
