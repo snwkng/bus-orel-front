@@ -54,6 +54,22 @@ export default <RouterConfig>{
 				layout: 'single'
 			},
 			component: () => import('~/pages/tourist-reminder/').then(r => r.default || r)
+		},
+		{
+			name: 'agreement',
+			path: '/agreement',
+			meta: {
+				layout: 'single'
+			},
+			component: () => import('~/pages/agreement/').then(r => r.default || r)
+		},
+		{
+			name: 'privacy-policy',
+			path: '/privacy-policy',
+			meta: {
+				layout: 'single'
+			},
+			component: () => import('~/pages/privacy-policy/').then(r => r.default || r)
 		}
 	],
 	scrollBehavior (to: RouteLocationNormalized, _from: RouteLocationNormalized, savedPosition: any) {

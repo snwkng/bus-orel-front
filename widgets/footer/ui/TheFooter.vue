@@ -103,16 +103,20 @@ const fullYear: number = new Date().getFullYear();
 						<nav class="mb-10 list-none" aria-label="Information">
 							<ul>
 								<li class="mt-3">
-									<a
+									<router-link
+										:to="{ name: 'agreement' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900"
-										target="_blank"
-									>Соглашения</a>
+									>
+										Соглашения
+									</router-link>
 								</li>
 								<li class="mt-3">
-									<a
+									<router-link
+										:to="{ name: 'privacy-policy' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900"
-										target="_blank"
-									>Конфеденциальность</a>
+									>
+										Конфеденциальность
+									</router-link>
 								</li>
 								<li class="mt-3">
 									<a
@@ -166,7 +170,7 @@ const fullYear: number = new Date().getFullYear();
 							</ul>
 						</nav>
 					</div>
-					<div class="w-full px-4 md:w-1/2 lg:w-1/4">
+					<div id="contacts" class="w-full px-4 md:w-1/2 lg:w-1/4">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900"
 						>
