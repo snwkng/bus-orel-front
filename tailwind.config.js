@@ -30,6 +30,9 @@ module.exports = {
 			},
 			rotate: {
 				270: '270deg'
+			},
+			boxShadow: {
+				form: '0 2px 6px 0 rgba(0, 0, 0, .15);'
 			}
 		}
 	},

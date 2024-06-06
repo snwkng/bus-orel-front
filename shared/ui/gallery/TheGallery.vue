@@ -18,7 +18,7 @@ const setThumbsSwiper = (swiper: any) => {
 <template>
 	<div class="pt-5">
 		<Swiper
-			class="rounded w-full"
+			class="rounded-t-xl w-full"
 			:modules="[SwiperThumbs, SwiperFreeMode, SwiperNavigation]"
 			:loop="true"
 			:space-between="10"
@@ -27,14 +27,14 @@ const setThumbsSwiper = (swiper: any) => {
 		>
 			<SwiperSlide v-for="(slide, index) in props.images" :key="index">
 				<img
-					class="w-full max-h-[300px] object-none"
+					class="w-full max-h-[300px] object-cover"
 					alt="pic"
 					:src="`http://localhost:3001/images/${path}/${slide.name}`"
 				/>
 			</SwiperSlide>
 		</Swiper>
 		<Swiper
-			class="rounded max-h-40"
+			class="rounded-b-xl max-h-40"
 			:modules="[SwiperThumbs, SwiperFreeMode, SwiperNavigation]"
 			:loop="true"
 			:slides-per-view="3"

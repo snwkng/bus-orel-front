@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TheInput from '@/shared/ui/forms/TheInput.vue';
-import TheSelect from '@/shared/ui/forms/TheSelect.vue';
+import TheSelect from '@/shared/ui/forms/select/TheSelect.vue';
 import { EBorderRadius } from '@/shared/lib/types';
 import TheButton from '@/shared/ui/buttons/TheButton.vue';
 

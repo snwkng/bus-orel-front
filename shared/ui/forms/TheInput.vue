@@ -21,7 +21,7 @@ withDefaults(defineProps<Props>(), {
 const inputFocus = ref(false)
 </script>
 <template>
-	<div class="relative min-w-40">
+	<div class="relative min-w-40" :class="radius ?? ''">
 		<Transition name="label-fade">
 			<label v-if="inputFocus || disabled && label" :for="inputId" class="block absolute top-[-24px] ml-3 text-sm font-normal text-white">{{ label }}</label>
 		</Transition>
@@ -30,7 +30,7 @@ const inputFocus = ref(false)
 			:disabled="Boolean(disabled)"
 			:aria-label="inputId"
 			:type="type"
-			class="px-4 py-2 text-black min-h-14 w-full disabled:placeholder:text-slate-200 focus:ring ring-deep-orange"
+			class="px-4 py-2 text-black min-h-14 w-full disabled:placeholder:text-slate-200 focus:ring ring-deep-orange shadow-form"
 			:class="radius ?? ''"
 			:placeholder="inputFocus ? '' : placeholder ?? label"
 			@focus="inputFocus = true"

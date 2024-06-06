@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import TheInput from '@/shared/ui/forms/TheInput.vue'
-import TheSelect from '~/shared/ui/forms/TheSelect.vue';
-import TheNewSelect from '~/shared/ui/forms/select/TheSelect.vue';
+import TheSelect from '~/shared/ui/forms/select/TheSelect.vue';
 import { EBorderRadius } from '~/shared/lib/types';
 import TheButton from '~/shared/ui/buttons/TheButton.vue';
 
@@ -34,24 +33,17 @@ const selectedPlace = ref<SelectItem>({});
 			:radius="EBorderRadius.left"
 		/>
 		<the-select
-			v-model="selectedSea"
-			class="w-52"
 			select-id="море"
 			label="Море"
 			:list="seaType"
 			@change="selectedSea = $event"
 		/>
 		<the-select
-			class="w-52"
 			select-id="куда"
-			label="Куда"
 			:list="place"
+			label="Куда"
 			:radius="EBorderRadius.right"
 			@change="selectedPlace = $event"
-		/>
-		<the-new-select
-			:list="place"
-			label="Куда"
 		/>
 		<the-button class="w-52 ml-5" btn-title="Найти" />
 	</form>
