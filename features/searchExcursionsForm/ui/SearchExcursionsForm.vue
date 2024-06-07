@@ -4,14 +4,20 @@ import TheSelect from '@/shared/ui/forms/select/TheSelect.vue';
 import { EBorderRadius } from '@/shared/lib/types';
 import TheButton from '@/shared/ui/buttons/TheButton.vue';
 
-const place: SelectItem[] = [
-	{ id: 1, name: 'Москва' },
-	{ id: 2, name: 'Дагестан' },
-	{ id: 3, name: 'Анапа' },
-	{ id: 4, name: 'Сочи' },
-	{ id: 5, name: 'Адлер' },
-	{ id: 6, name: 'Лоо' }
-];
+const router = useRouter();
+
+const store = useExcursionStore();
+
+const { getCityList } = store;
+const { cityList } = storeToRefs(store);
+
+const selectedCity = ref<SelectItem>({});
+
+const getExcursions = () => {
+	router.push({ name: 'excursions', query: { city: selectedCity.value.name } })
+}
+
+await callOnce(getCityList);
 </script>
 <template>
 	<form
@@ -30,9 +36,10 @@ const place: SelectItem[] = [
 			class="w-64"
 			select-id="куда"
 			label="Куда"
-			:list="place"
+			:list="cityList"
 			:radius="EBorderRadius.right"
+			@change="selectedCity = $event"
 		/>
-		<the-button class="ml-5 w-52" btn-title="Найти" />
+		<the-button class="ml-5 w-52" btn-title="Найти" @click="getExcursions" />
 	</form>
 </template>

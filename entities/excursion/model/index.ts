@@ -4,7 +4,8 @@ import type { IExcursion } from './types';
 export const useExcursionStore = defineStore('useExcursionStore', {
 	state: () => ({
 		excursions: [],
-		excursion: {} as IExcursion
+		excursion: {} as IExcursion,
+		cityList: [] as SelectItem[]
 	}),
 	getters: {
 		cardMapped (state): ICard[] {
@@ -19,14 +20,21 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 		}
 	},
 	actions: {
-		async getExcursions (): Promise<void> {
+		async getExcursions (params?: any): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
-			this.excursions = await $fetch(`${BASE_URL}/excursions`);
+			this.excursions = await $fetch(`${BASE_URL}/excursions`, {
+				params
+			});
 		},
 
 		async getExcursion (id: string): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
 			this.excursion = await $fetch(`${BASE_URL}/excursions/${id}`)
+		},
+
+		async getCityList (): Promise<void> {
+			const { BASE_URL } = useRuntimeConfig().public;
+			this.cityList = await $fetch(`${BASE_URL}/excursions/city-list`)
 		}
 	}
 })
