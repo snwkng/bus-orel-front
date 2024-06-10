@@ -29,3 +29,18 @@
 .rotate-Y-180 {
   transform: rotateY(180deg);
 }
+
+/* animations */
+.label-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.label-fade-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.label-fade-enter-from,
+.label-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}

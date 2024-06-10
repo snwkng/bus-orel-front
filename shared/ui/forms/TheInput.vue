@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { EBorderRadius } from '@/shared/lib/types'
 
 export interface Props {
 	inputId: string,
 	label: string,
 	type: string,
 	placeholder: string,
-	radius: EBorderRadius | null,
-	disabled: string | boolean
+	disabled: string | boolean,
+	classes?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -15,15 +14,15 @@ withDefaults(defineProps<Props>(), {
 	label: '',
 	type: 'text',
 	placeholder: '',
-	radius: null,
-	disabled: false
+	disabled: false,
+	classes: ''
 })
 const inputFocus = ref(false)
 </script>
 <template>
-	<div class="relative min-w-40" :class="radius ?? ''">
+	<div class="relative min-w-40 w-full md:w-auto">
 		<Transition name="label-fade">
-			<label v-if="inputFocus || disabled && label" :for="inputId" class="block absolute top-[-24px] ml-3 text-sm font-normal text-white">{{ label }}</label>
+			<label v-if="inputFocus || disabled && label" :for="inputId" class="absolute top-[-24px] px-4 text-sm font-normal text-white hidden md:block">{{ label }}</label>
 		</Transition>
 		<input
 			:id="inputId"
@@ -31,25 +30,10 @@ const inputFocus = ref(false)
 			:aria-label="inputId"
 			:type="type"
 			class="px-4 py-2 text-black min-h-14 w-full disabled:placeholder:text-slate-200 focus:ring ring-deep-orange shadow-form"
-			:class="radius ?? ''"
+			:class="classes"
 			:placeholder="inputFocus ? '' : placeholder ?? label"
 			@focus="inputFocus = true"
 			@blur="inputFocus = false"
 		>
 	</div>
 </template>
-<style scoped>
-.label-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.label-fade-leave-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.label-fade-enter-from,
-.label-fade-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
-}
-</style>

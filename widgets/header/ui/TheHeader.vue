@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TheNavbar from '@/features/navbar';
+import MainBtnGroup from '@/features/mainBtnGroup/ui/MainBtnGroup.vue';
 
 export interface Props {
 	isSingle?: boolean,
@@ -11,11 +12,14 @@ withDefaults(defineProps<Props>(), {
 
 onMounted(() => {
 	window.addEventListener('scroll', handleScroll);
+	handleScroll();
 })
 
 onUnmounted(() => {
 	window.removeEventListener('scroll', handleScroll);
 })
+
+const route = useRoute();
 
 const toggle = ref(false)
 const scroll = ref(false)
@@ -36,8 +40,8 @@ const close = (closeNav: boolean) => {
 					<strong class="text-deep-orange">G</strong>alatour
 				</router-link>
 			</div>
-			<div v-if="scroll" class="text-white">
-				text
+			<div v-if="scroll">
+				<main-btn-group v-if="route.name === 'home'" />
 			</div>
 			<div class="relative">
 				<button type="button" class="btn-hover" @click="toggle = !toggle">

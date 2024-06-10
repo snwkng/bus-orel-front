@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import TheInput from '@/shared/ui/forms/TheInput.vue';
 import TheSelect from '@/shared/ui/forms/select/TheSelect.vue';
-import { EBorderRadius } from '@/shared/lib/types';
 import TheButton from '@/shared/ui/buttons/TheButton.vue';
 
 const router = useRouter();
@@ -30,16 +29,17 @@ await callOnce(getCityList);
 			type="text"
 			label="Откуда"
 			placeholder="Орёл"
-			:radius="EBorderRadius.left"
+			classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl"
 		/>
 		<the-select
 			class="w-64"
 			select-id="куда"
 			label="Куда"
 			:list="cityList"
-			:radius="EBorderRadius.right"
+			classes="md:rounded-r-xl"
+			query-name="city"
 			@change="selectedCity = $event"
 		/>
-		<the-button class="ml-5 w-52" btn-title="Найти" @click="getExcursions" />
+		<the-button class="w-full md:w-52 md:ml-5 rounded-t-none md:rounded-t-xl" btn-title="Найти" @click="getExcursions" />
 	</form>
 </template>

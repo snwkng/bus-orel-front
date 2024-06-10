@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import TheInput from '@/shared/ui/forms/TheInput.vue'
 import TheSelect from '~/shared/ui/forms/select/TheSelect.vue';
-import { EBorderRadius } from '~/shared/lib/types';
 import TheButton from '~/shared/ui/buttons/TheButton.vue';
 
 const router = useRouter();
@@ -30,19 +29,19 @@ await callOnce(getCityList);
 
 </script>
 <template>
-	<form class="flex flex-row items-center justify-center gap-x-[2px] flex-wrap">
+	<form class="flex flex-col md:flex-row items-center md:justify-center gap-x-[2px] w-full">
 		<the-input
 			disabled="true"
-			class="w-52 input:rounded-l-none"
 			input-id="откуда"
 			type="text"
 			label="Откуда"
 			placeholder="Орёл"
-			:radius="EBorderRadius.left"
+			classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl md:rounded-tl-xl"
 		/>
 		<the-select
 			select-id="море"
 			label="Море"
+			query-name="seaType"
 			:list="seaList"
 			@change="selectedSea = $event"
 		/>
@@ -50,9 +49,10 @@ await callOnce(getCityList);
 			select-id="куда"
 			:list="cityList"
 			label="Куда"
-			:radius="EBorderRadius.right"
+			query-name="city"
+			classes="md:rounded-r-xl"
 			@change="selectedPlace = $event"
 		/>
-		<the-button class="w-52 ml-5" btn-title="Найти" @click="getTours" />
+		<the-button class="w-full md:w-52 md:ml-5 rounded-t-none md:rounded-t-xl" btn-title="Найти" @click="getTours" />
 	</form>
 </template>
