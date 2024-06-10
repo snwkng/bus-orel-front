@@ -10,8 +10,22 @@ withDefaults(defineProps<Props>(), {
 	title: ''
 })
 
-const tours = useTourStore();
-await callOnce(tours.getTours)
+const route = useRoute();
+
+const store = useTourStore();
+const { getTours } = store;
+const { cardMapped } = storeToRefs(store);
+
+await callOnce(async () => {
+	await getTours(route.query);
+})
+watch(
+	() => route.query,
+	async () => {
+		await getTours(route.query);
+	}
+)
+
 </script>
 <template>
 	<section>
@@ -20,7 +34,7 @@ await callOnce(tours.getTours)
 		</h2>
 		<the-grid>
 			<the-card
-				v-for="item in new Array(5).fill(tours?.cardMapped[0], 0, 5)"
+				v-for="item in cardMapped"
 				:id="item.id"
 				:key="item.id"
 				:title="item.title"

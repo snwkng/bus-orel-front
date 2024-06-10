@@ -10,8 +10,21 @@ withDefaults(defineProps<Props>(), {
 	title: ''
 })
 
-const excursions = useExcursionsStore();
-await callOnce(excursions.getExcursions)
+const route = useRoute();
+
+const store = useExcursionStore();
+
+const { getExcursions } = store;
+const { cardMapped } = storeToRefs(store);
+await callOnce(async () => {
+	await getExcursions(route.query);
+})
+watch(
+	() => route.query,
+	async () => {
+		await getExcursions(route.query);
+	}
+)
 </script>
 <template>
 	<section>
@@ -20,7 +33,7 @@ await callOnce(excursions.getExcursions)
 		</h2>
 		<the-grid>
 			<the-card
-				v-for="item in excursions.cardMapped"
+				v-for="item in cardMapped"
 				:id="item.id"
 				:key="item.id"
 				:title="item.title"

@@ -10,7 +10,7 @@ export const useTourStore = defineStore('useTourStore', {
 	}),
 	getters: {
 		cardMapped (state): ICard[] {
-			return state.tours.map((tour: ITour) => ({
+			return state.tours?.map((tour: ITour) => ({
 				// eslint-disable-next-line no-underscore-dangle
 				id: tour._id,
 				title: tour.name,
@@ -21,9 +21,11 @@ export const useTourStore = defineStore('useTourStore', {
 		}
 	},
 	actions: {
-		async getTours (): Promise<void> {
+		async getTours (params?: any): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
-			this.tours = await $fetch(`${BASE_URL}/hotels`);
+			this.tours = await $fetch(`${BASE_URL}/hotels`, {
+				params
+			});
 		},
 
 		async getTour (id: string): Promise<void> {
@@ -33,7 +35,16 @@ export const useTourStore = defineStore('useTourStore', {
 
 		async getSeaList (): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
-			this.seaList = await $fetch(`${BASE_URL}/hotels/`)
+			this.seaList = await $fetch(`${BASE_URL}/hotels/sea-list`)
+		},
+
+		async getCityList (seaType?: string): Promise<void> {
+			const { BASE_URL } = useRuntimeConfig().public;
+			this.cityList = await $fetch(`${BASE_URL}/hotels/city-list`, {
+				params: {
+					seaType
+				}
+			})
 		}
 	}
 })

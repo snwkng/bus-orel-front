@@ -30,6 +30,11 @@ watch(
 					Подбор тура
 				</router-link>
 			</li>
+			<li>
+				<router-link :to="{ hash: '#contacts' }" class="list-item">
+					Контакты
+				</router-link>
+			</li>
 		</ul>
 	</nav>
 </template>

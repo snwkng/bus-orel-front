@@ -31,7 +31,7 @@ const accordionItems = computed(
 				</h1>
 			</div>
 			<the-gallery :images="store.excursion.images" path="excursions" />
-			<div class="w-full px-5 py-6 bg-slate-100 text-slate-600 rounded-xl flex flex-row flex-wrap items-center gap-x-8 gap-y-4">
+			<div class="w-full px-5 py-6 bg-slate-100 text-slate-600 rounded-xl flex flex-row flex-wrap items-center justify-between gap-x-8 gap-y-4">
 				<div class="flex gap-x-1 items-center">
 					<div><location-icon width="32px" height="32px" /></div>
 					{{ store.excursion.city }}

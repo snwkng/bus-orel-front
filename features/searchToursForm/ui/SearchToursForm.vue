@@ -1,53 +1,58 @@
 <script setup lang="ts">
 import TheInput from '@/shared/ui/forms/TheInput.vue'
-import TheSelect from '~/shared/ui/forms/TheSelect.vue';
-import { EBorderRadius } from '~/shared/lib/types';
+import TheSelect from '~/shared/ui/forms/select/TheSelect.vue';
 import TheButton from '~/shared/ui/buttons/TheButton.vue';
 
-const seaType: SelectItem[] = [
-	{ id: 1, name: 'Черное море' },
-	{ id: 2, name: 'Азовское море' }
-]
+const router = useRouter();
 
-const place: SelectItem[] = [
-	{ id: 1, name: 'Геленджик' },
-	{ id: 2, name: 'Джугба' },
-	{ id: 2, name: 'Анапа' },
-	{ id: 2, name: 'Сочи' },
-	{ id: 2, name: 'Адлер' },
-	{ id: 2, name: 'Лоо' }
-]
+const store = useTourStore();
+
+const { getSeaList, getCityList } = store;
+const { seaList, cityList } = storeToRefs(store);
 
 const selectedSea = ref<SelectItem>({});
 const selectedPlace = ref<SelectItem>({});
+
+watch(
+	() => selectedSea.value,
+	() => {
+		getCityList(selectedSea.value.name)
+	}
+)
+
+const getTours = () => {
+	router.push({ name: 'bus-tours', query: { seaType: selectedSea.value.name, city: selectedPlace.value.name } })
+}
+
+await callOnce(getSeaList);
+await callOnce(getCityList);
+
 </script>
 <template>
-	<form class="flex flex-row items-center justify-center gap-x-[2px] flex-wrap">
+	<form class="flex flex-col md:flex-row items-center md:justify-center gap-x-[2px] w-full">
 		<the-input
 			disabled="true"
-			class="w-52 input:rounded-l-none"
 			input-id="откуда"
 			type="text"
 			label="Откуда"
 			placeholder="Орёл"
-			:radius="EBorderRadius.left"
+			classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl md:rounded-tl-xl"
 		/>
 		<the-select
-			v-model="selectedSea"
-			class="w-52"
 			select-id="море"
 			label="Море"
-			:list="seaType"
+			query-name="seaType"
+			:list="seaList"
 			@change="selectedSea = $event"
 		/>
 		<the-select
-			class="w-52"
 			select-id="куда"
+			:list="cityList"
 			label="Куда"
-			:list="place"
-			:radius="EBorderRadius.right"
+			query-name="city"
+			classes="md:rounded-r-xl"
 			@change="selectedPlace = $event"
 		/>
-		<the-button class="w-52 ml-5" btn-title="Найти" />
+		<the-button class="w-full md:w-52 md:ml-5 rounded-t-none md:rounded-t-xl" btn-title="Найти" @click="getTours" />
 	</form>
 </template>
