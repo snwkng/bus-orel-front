@@ -7,7 +7,7 @@ const props = withDefaults(defineProps<IProps>(), {
 	items: () => []
 });
 
-const activeItem = ref<null | { title: string; content: string }>(null);
+const activeItem = ref<null | { title: string; content: string }>(props.items[0]);
 
 const toggleItem = (title: string) => {
 	if (title === activeItem.value?.title) {

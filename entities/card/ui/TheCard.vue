@@ -23,7 +23,7 @@ const link = computed(() => (props.type === 'excursion' ? { name: 'excursions/ex
 			<img
 				class="mb-3 w-full rounded-xl bg-cover brightness-100 object-cover"
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
-				:src="`http://localhost:3001/images/${imagePath}/${props?.images[0]?.name ?? ''}`"
+				:src="`http://localhost:3001/public/images/${imagePath}/${props?.images[0]?.name ?? ''}`"
 				:alt="props.subtitle"
 				:title="props.title"
 			/>
