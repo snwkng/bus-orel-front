@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TheGallery from '@/shared/ui/gallery/TheGallery.vue';
+import BusTourTable from '@/shared/ui/table/BusTourTable.vue';
 
 const route = useRoute();
 const tourId = route.params.id as string;
@@ -15,7 +16,7 @@ await useAsyncData(() => store.getTour(tourId).then(() => true))
 					{{ store.tour.type }} {{ store.tour.name }}
 				</h1>
 				<div class="flex gap-x-1">
-					<span>от {{ store.tour.fare }}</span>
+					<span>от {{ store.tour.price }}</span>
 					<button type="button">
 						Скачать прайс
 					</button>
@@ -66,8 +67,10 @@ await useAsyncData(() => store.getTour(tourId).then(() => true))
 				<h3 class="text-xl font-semibold mb-2">
 					В стоимость включено
 				</h3>
-				<div>{{ store.tour.thePriceIncludes }}</div>
+				<div>{{ store.tour.thePriceIncludes.join(', ') }}</div>
 			</div>
 		</div>
+
+		<BusTourTable :tours="store.tour.tours" />
 	</div>
 </template>

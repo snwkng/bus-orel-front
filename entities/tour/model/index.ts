@@ -15,7 +15,7 @@ export const useTourStore = defineStore('useTourStore', {
 				id: tour._id,
 				title: tour.name,
 				subtitle: tour.city,
-				price: tour.fare,
+				price: tour.price,
 				images: tour.images
 			}))
 		}

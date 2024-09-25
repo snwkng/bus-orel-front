@@ -12,8 +12,8 @@ export interface ITour {
   distanceToBeach: string,
   checkInConditions: string,
   address: string,
-  fare: number,
-  thePriceIncludes: string,
+  price: number,
+  thePriceIncludes: string[],
   tours: ITourTable[],
   city: string,
   region: string
