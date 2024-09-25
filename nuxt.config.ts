@@ -1,6 +1,9 @@
-import { resolve } from 'node:path';
+import { resolve } from 'node:path'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	nitro: {
+		preset: 'node-server'
+	},
 	routeRules: {
 		'/api/**': { proxy: import.meta.env.BASE_URL }
 	},
@@ -52,4 +55,4 @@ export default defineNuxtConfig({
 		autoImportPath: '~/app/assets/images/icons/',
 		componentPrefix: 'i'
 	}
-});
+})
