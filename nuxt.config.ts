@@ -4,23 +4,29 @@ export default defineNuxtConfig({
 	nitro: {
 		preset: 'node-server'
 	},
+
 	routeRules: {
 		'/api/**': { proxy: import.meta.env.BASE_URL }
 	},
+
 	vite: {
 		resolve: {
 			alias: [{ find: '@', replacement: resolve(__dirname, './') }]
 		}
 	},
+
 	dir: {
 		layouts: 'app/layouts'
 	},
+
 	devtools: { enabled: true },
+
 	runtimeConfig: {
 		public: {
 			BASE_URL: process.env.BASE_URL ?? '/'
 		}
 	},
+
 	modules: [
 		// Simple usage
 		'@nuxtjs/eslint-module',
@@ -30,7 +36,9 @@ export default defineNuxtConfig({
 		'nuxt-swiper',
 		'dayjs-nuxt'
 	],
+
 	plugins: ['~/shared/lib/plugins/clickAway'],
+
 	pinia: {
 		storesDirs: [
 			'./entities/**/model/**',
@@ -38,21 +46,26 @@ export default defineNuxtConfig({
 			'./widgets/**/model/**'
 		]
 	},
+
 	eslint: {
 		/* module options */
 		lintOnStart: false
 	},
+
 	tailwindcss: {
 		cssPath: ["~/app/assets/styles/tailwind.css", { injectPosition: "first" }],
 		configPath: 'tailwind.config',
 		exposeConfig: {
-      level: 2
-    },
+			level: 2
+		},
 		config: {},
 		viewer: true
 	},
+
 	svgo: {
 		autoImportPath: '~/app/assets/images/icons/',
 		componentPrefix: 'i'
-	}
+	},
+
+	compatibilityDate: '2024-09-25'
 })
