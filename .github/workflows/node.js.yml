@@ -16,7 +16,7 @@ jobs:
         node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     env:
-      BASE_URL: ${{secrets.VPS_FRONTEND}} 
+      BASE_URL: ${{secrets.BASE_URL}} 
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
