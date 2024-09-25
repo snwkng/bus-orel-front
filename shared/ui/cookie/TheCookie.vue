@@ -2,14 +2,23 @@
 const cookie = useCookie('cookie_agree');
 </script>
 <template>
-	<div class="flex flex-row items-center justify-between px-base py-4 min-h-10 w-full border-t border-slate-400 fixed bottom-0 bg-white z-10">
+	<div
+		class="px-base fixed bottom-0 z-10 flex min-h-10 w-full flex-row items-center justify-between border-t border-slate-400 bg-white py-4"
+	>
 		<div class="text-slate-500">
 			Мы используем cookie и аналогичные технологии.
-			<router-link to="#" class="text-deep-blue hover:text-ligth-blue transition-colors">
+			<router-link
+				to="#"
+				class="text-deep-blue transition-colors hover:text-ligth-blue"
+			>
 				Узнайте подробнее
 			</router-link>
 		</div>
-		<button type="button" class="px-3 py-1 text-white bg-deep-blue hover:bg-ligth-blue transition-colors rounded-xl" @click="cookie = true">
+		<button
+			type="button"
+			class="rounded-xl bg-deep-blue px-3 py-1 text-white transition-colors hover:bg-ligth-blue"
+			@click="cookie = true"
+		>
 			Хорошо
 		</button>
 	</div>

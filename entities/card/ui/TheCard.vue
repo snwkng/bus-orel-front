@@ -15,13 +15,17 @@ const props = withDefaults(defineProps<Props>(), {
 	images: () => []
 });
 
-const link = computed(() => (props.type === 'excursion' ? { name: 'excursions/excursion', params: { id: props.id } } : { name: 'bus-tours/bus-tour', params: { id: props.id } }))
+const link = computed(() =>
+	props.type === 'excursion'
+		? { name: 'excursions/excursion', params: { id: props.id } }
+		: { name: 'bus-tours/bus-tour', params: { id: props.id } }
+);
 </script>
 <template>
 	<router-link :to="link" rel="noopener noreferrer nofollow">
 		<div class="w-full">
 			<img
-				class="mb-3 w-full rounded-xl bg-cover brightness-100 object-cover"
+				class="mb-3 w-full rounded-xl bg-cover object-cover brightness-100"
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
 				:src="`http://localhost:3001/public/images/${imagePath}/${props?.images[0]?.name ?? ''}`"
 				:alt="props.subtitle"

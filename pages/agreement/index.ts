@@ -1,3 +1,3 @@
-import TheAgreement from './ui/TheAgreement.vue'
+import TheAgreement from './ui/TheAgreement.vue';
 
-export default TheAgreement
+export default TheAgreement;

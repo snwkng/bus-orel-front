@@ -1,3 +1,3 @@
-import ExcursionDetails from './ui/TheDetails.vue'
+import ExcursionDetails from './ui/TheDetails.vue';
 
 export default ExcursionDetails;

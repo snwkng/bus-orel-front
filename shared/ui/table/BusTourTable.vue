@@ -15,13 +15,19 @@ const props = withDefaults(defineProps<Props>(), {
 			<div class="grid grid-cols-3">
 				<div>{{ tour.roomName }}</div>
 				<div>{{ tour.type }}</div>
-				<div>мест в номере: <strong>{{ tour.numberOfSeats }}</strong></div>
+				<div>
+					мест в номере: <strong>{{ tour.numberOfSeats }}</strong>
+				</div>
 			</div>
 			<div class="grid grid-cols-2">
 				<div>Даты заезда</div>
 				<div>Цена</div>
 			</div>
-			<div v-for="(datesAndPrices, index) in tour.datesAndPrices" :key="index" class="grid grid-cols-2">
+			<div
+				v-for="(datesAndPrices, index) in tour.datesAndPrices"
+				:key="index"
+				class="grid grid-cols-2"
+			>
 				<div>{{ datesAndPrices.startDate }} - {{ datesAndPrices.endDate }}</div>
 				<div>{{ datesAndPrices.price }}</div>
 			</div>

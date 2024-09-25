@@ -66,7 +66,7 @@ onMounted(() => {
 <template>
 	<div
 		v-click-away="close"
-		class="relative min-w-[200px] w-full md:w-auto"
+		class="relative w-full min-w-[200px] md:w-auto"
 		@click="toggle"
 		@keydown.enter="toggle"
 	>
@@ -74,17 +74,14 @@ onMounted(() => {
 			<div
 				v-if="showSelect"
 				:for="selectId"
-				class="absolute top-[-24px] ml-3 text-sm font-normal text-white hidden md:block"
+				class="absolute top-[-24px] ml-3 hidden text-sm font-normal text-white md:block"
 			>
 				{{ label }}
 			</div>
 		</Transition>
 		<div
-			class="shadow-form relative flex min-h-14 w-full items-center bg-white px-4 py-2 text-slate-800 focus:ring"
-			:class="[
-				classes,
-				{ 'ring-deep-orange ring-2': showSelect },
-			]"
+			class="relative flex min-h-14 w-full items-center bg-white px-4 py-2 text-slate-800 shadow-form focus:ring"
+			:class="[classes, { 'ring-2 ring-deep-orange': showSelect }]"
 		>
 			<span v-if="value.name">{{ value.name }}</span>
 			<span v-else-if="!showSelect" class="text-slate-400">{{ label }}</span>
@@ -94,7 +91,7 @@ onMounted(() => {
 				color="stroke-slate-500"
 				:class="[
 					'absolute right-2 transition-all',
-					{ 'rotate-180': showSelect },
+					{ 'rotate-180': showSelect }
 				]"
 			/>
 			<div

@@ -3,12 +3,12 @@ import TheCard from '@/entities/card';
 import TheGrid from '@/shared/ui/TheGrid.vue';
 
 export interface Props {
-	title?: string,
+	title?: string;
 }
 
 withDefaults(defineProps<Props>(), {
 	title: ''
-})
+});
 
 const route = useRoute();
 
@@ -16,22 +16,18 @@ const store = useTourStore();
 const { getTours } = store;
 const { cardMapped } = storeToRefs(store);
 
-await useAsyncData(
-	'tours',
-	(): Promise<void> => store.getTours(route?.query)
-);
+await useAsyncData('tours', (): Promise<void> => store.getTours(route?.query));
 
 watch(
 	() => route.query,
 	async () => {
 		await getTours(route.query);
 	}
-)
-
+);
 </script>
 <template>
 	<section>
-		<h2 v-if="title" class="font-bold text-2xl mb-6">
+		<h2 v-if="title" class="mb-6 text-2xl font-bold">
 			{{ title }}
 		</h2>
 		<the-grid>

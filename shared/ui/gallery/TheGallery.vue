@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export interface Props {
-	images: {name: string}[],
-	path: string,
+	images: { name: string }[];
+	path: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -18,7 +18,7 @@ const setThumbsSwiper = (swiper: any) => {
 <template>
 	<div class="pt-5">
 		<Swiper
-			class="rounded-t-xl w-full"
+			class="w-full rounded-t-xl"
 			:modules="[SwiperThumbs, SwiperFreeMode, SwiperNavigation]"
 			:loop="true"
 			:space-between="10"
@@ -27,14 +27,14 @@ const setThumbsSwiper = (swiper: any) => {
 		>
 			<SwiperSlide v-for="(slide, index) in props.images" :key="index">
 				<img
-					class="w-full max-h-[300px] object-cover"
+					class="max-h-[300px] w-full object-cover"
 					alt="pic"
 					:src="`http://localhost:3001/public/images/${path}/${slide.name}`"
 				/>
 			</SwiperSlide>
 		</Swiper>
 		<Swiper
-			class="rounded-b-xl max-h-40"
+			class="max-h-40 rounded-b-xl"
 			:modules="[SwiperThumbs, SwiperFreeMode, SwiperNavigation]"
 			:loop="true"
 			:slides-per-view="3"
@@ -46,7 +46,7 @@ const setThumbsSwiper = (swiper: any) => {
 		>
 			<SwiperSlide v-for="(slide, index) in props.images" :key="index">
 				<img
-					class="w-full min-h-[100px] object-fill"
+					class="min-h-[100px] w-full object-fill"
 					alt="pic"
 					:src="`http://localhost:3001/public/images/${path}/${slide.name}`"
 				/>

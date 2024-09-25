@@ -27,12 +27,13 @@ export default defineNuxtConfig({
 		'nuxt-swiper',
 		'dayjs-nuxt'
 	],
-	plugins: [
-		'~/shared/lib/plugins/clickAway'
-	],
+	plugins: ['~/shared/lib/plugins/clickAway'],
 	pinia: {
-		storesDirs: ['./entities/**/model/**',
-			'./features/**/model/**', './widgets/**/model/**']
+		storesDirs: [
+			'./entities/**/model/**',
+			'./features/**/model/**',
+			'./widgets/**/model/**'
+		]
 	},
 	eslint: {
 		/* module options */
@@ -51,4 +52,4 @@ export default defineNuxtConfig({
 		autoImportPath: '~/app/assets/images/icons/',
 		componentPrefix: 'i'
 	}
-})
+});

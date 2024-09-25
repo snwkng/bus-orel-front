@@ -7,12 +7,14 @@ const props = withDefaults(defineProps<IProps>(), {
 	items: () => []
 });
 
-const activeItem = ref<null | { title: string; content: string }>(props.items[0]);
+const activeItem = ref<null | { title: string; content: string }>(
+	props.items[0]
+);
 
 const toggleItem = (title: string) => {
 	if (title === activeItem.value?.title) {
-		activeItem.value = null
-		return
+		activeItem.value = null;
+		return;
 	}
 	activeItem.value =
 		props.items.find(
@@ -29,8 +31,12 @@ const toggleItem = (title: string) => {
 		>
 			<button
 				type="button"
-				class="group inline-flex w-full items-center justify-between leading-8 transition duration-500 hover:text-deep-orange pb-3"
-				:class="activeItem?.title === item.title ? 'text-deep-orange' : 'text-slate-900'"
+				class="group inline-flex w-full items-center justify-between pb-3 leading-8 transition duration-500 hover:text-deep-orange"
+				:class="
+					activeItem?.title === item.title
+						? 'text-deep-orange'
+						: 'text-slate-900'
+				"
 				@click="toggleItem(item.title)"
 			>
 				<h5 class="font-semibold">
@@ -38,7 +44,11 @@ const toggleItem = (title: string) => {
 				</h5>
 				<svg
 					class="transition duration-500 group-hover:text-deep-orange"
-					:class="activeItem?.title === item.title ? 'text-deep-orange rotate-180' : 'text-slate-900'"
+					:class="
+						activeItem?.title === item.title
+							? 'rotate-180 text-deep-orange'
+							: 'text-slate-900'
+					"
 					width="22"
 					height="22"
 					viewBox="0 0 22 22"

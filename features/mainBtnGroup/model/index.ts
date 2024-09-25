@@ -8,8 +8,8 @@ export const useMainBtnGroupStore = defineStore('useMainBtnGroupStore', {
 		//
 	},
 	actions: {
-		toggleSearch (val: goToSearch): void {
+		toggleSearch(val: goToSearch): void {
 			this.searchSection = val;
 		}
 	}
-})
+});

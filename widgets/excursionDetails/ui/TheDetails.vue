@@ -15,8 +15,8 @@ const store = useExcursionStore();
 
 await useAsyncData(() => store.getExcursion(excursionId).then(() => true));
 
-const accordionItems = computed(
-	() => store.excursion.description.map((x: string, index: number) => ({
+const accordionItems = computed(() =>
+	store.excursion.description.map((x: string, index: number) => ({
 		title: `День ${index + 1}`,
 		content: x
 	}))
@@ -31,42 +31,40 @@ const accordionItems = computed(
 				</h1>
 			</div>
 			<the-gallery :images="store.excursion.images" path="excursions" />
-			<div class="w-full px-5 py-6 bg-slate-100 text-slate-600 rounded-xl flex flex-row flex-wrap items-center justify-between gap-x-8 gap-y-4">
-				<div class="flex gap-x-1 items-center">
+			<div
+				class="flex w-full flex-row flex-wrap items-center justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-100 px-5 py-6 text-slate-600"
+			>
+				<div class="flex items-center gap-x-1">
 					<div><location-icon width="32px" height="32px" /></div>
 					{{ store.excursion.city }}
 				</div>
-				<div class="flex gap-x-1 items-center">
+				<div class="flex items-center gap-x-1">
 					<div><time-icon width="32px" height="32px" /></div>
 					{{ store.excursion.duration }}
 				</div>
-				<div class="flex gap-x-1 items-center">
+				<div class="flex items-center gap-x-1">
 					<div><date-icon width="32px" height="32px" /></div>
 					{{ $dayjs(store.excursion.excursionStart).format('DD.MM.YYYY') }}
 				</div>
-				<div class="flex gap-x-1 items-center" title="Стоимость">
+				<div class="flex items-center gap-x-1" title="Стоимость">
 					<div><money-icon width="32px" height="32px" /></div>
 					от {{ store.excursion.price }} ₽
 				</div>
-				<div class="flex gap-x-1 items-center">
+				<div class="flex items-center gap-x-1">
 					<div><city-icon width="32px" height="32px" /></div>
 					{{ store.excursion.hotelName }}
 				</div>
-				<div class="flex gap-x-1 items-center" title="Скачать прайс">
+				<div class="flex items-center gap-x-1" title="Скачать прайс">
 					<div><file-icon width="32px" height="32px" /></div>
 					{{ store.excursion.documentName }}
 				</div>
 			</div>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">
-					Программа тура
-				</h3>
+				<h3 class="mb-2 text-xl font-semibold">Программа тура</h3>
 				<the-accordion :items="accordionItems" />
 			</div>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">
-					В стоимость входит
-				</h3>
+				<h3 class="mb-2 text-xl font-semibold">В стоимость входит</h3>
 				<div class="flex flex-col gap-y-3">
 					<div
 						v-for="item in store.excursion.thePriceIncludes"

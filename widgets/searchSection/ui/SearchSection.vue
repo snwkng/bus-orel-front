@@ -18,12 +18,13 @@ watch(
 			title.value = 'Поиск автобусных туров к морю из Орла';
 		}
 	}
-)
-
+);
 </script>
 <template>
-	<div class="px-base w-full h-full py-5 lg:h-96 bg-deep-blue flex flex-col items-center justify-center gap-y-6 text-white">
-		<h1 class=" font-bold text-4xl mb-2">
+	<div
+		class="px-base flex h-full w-full flex-col items-center justify-center gap-y-6 bg-deep-blue py-5 text-white lg:h-96"
+	>
+		<h1 class="mb-2 text-4xl font-bold">
 			{{ title }}
 		</h1>
 		<main-btn-group />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheCookie from '@/shared/ui/cookie/TheCookie.vue'
+import TheCookie from '@/shared/ui/cookie/TheCookie.vue';
 
 const cookie = useCookie('cookie_agree');
 </script>

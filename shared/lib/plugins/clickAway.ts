@@ -5,7 +5,7 @@ export default defineNuxtPlugin({
 	enforce: 'pre', // or 'post'
 	hooks: {
 		// You can directly register Nuxt app runtime hooks here
-		'app:created' () {
+		'app:created'() {
 			const nuxtApp = useNuxtApp();
 			nuxtApp.vueApp.use(VueClickAway);
 			// do something in the hook
@@ -14,4 +14,4 @@ export default defineNuxtPlugin({
 	env: {
 		islands: true
 	}
-})
+});

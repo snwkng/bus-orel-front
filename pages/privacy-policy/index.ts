@@ -1,3 +1,3 @@
-import PrivacyPolicy from './ui/PrivacyPolicy.vue'
+import PrivacyPolicy from './ui/PrivacyPolicy.vue';
 
-export default PrivacyPolicy
+export default PrivacyPolicy;

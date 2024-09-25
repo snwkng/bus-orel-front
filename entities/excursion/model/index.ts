@@ -8,7 +8,7 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 		cityList: [] as SelectItem[]
 	}),
 	getters: {
-		cardMapped (state): ICard[] {
+		cardMapped(state): ICard[] {
 			return state.excursions.map((ex: IExcursion) => ({
 				// eslint-disable-next-line no-underscore-dangle
 				id: ex._id,
@@ -16,25 +16,25 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 				subtitle: ex.city,
 				price: ex.price,
 				images: ex.images
-			}))
+			}));
 		}
 	},
 	actions: {
-		async getExcursions (params?: any): Promise<void> {
+		async getExcursions(params?: any): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
 			this.excursions = await $fetch(`${BASE_URL}/excursions`, {
 				params
 			});
 		},
 
-		async getExcursion (id: string): Promise<void> {
+		async getExcursion(id: string): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
-			this.excursion = await $fetch(`${BASE_URL}/excursions/${id}`)
+			this.excursion = await $fetch(`${BASE_URL}/excursions/${id}`);
 		},
 
-		async getCityList (): Promise<void> {
+		async getCityList(): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
-			this.cityList = await $fetch(`${BASE_URL}/excursions/city-list`)
+			this.cityList = await $fetch(`${BASE_URL}/excursions/city-list`);
 		}
 	}
-})
+});

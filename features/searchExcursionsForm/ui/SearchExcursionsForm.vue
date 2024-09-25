@@ -13,8 +13,8 @@ const { cityList } = storeToRefs(store);
 const selectedCity = ref<SelectItem>({});
 
 const getExcursions = () => {
-	router.push({ name: 'excursions', query: { city: selectedCity.value.name } })
-}
+	router.push({ name: 'excursions', query: { city: selectedCity.value.name } });
+};
 
 await callOnce(getCityList);
 </script>
@@ -40,6 +40,10 @@ await callOnce(getCityList);
 			query-name="city"
 			@change="selectedCity = $event"
 		/>
-		<the-button class="w-full md:w-52 md:ml-5 rounded-t-none md:rounded-t-xl" btn-title="Найти" @click="getExcursions" />
+		<the-button
+			class="w-full rounded-t-none md:ml-5 md:w-52 md:rounded-t-xl"
+			btn-title="Найти"
+			@click="getExcursions"
+		/>
 	</form>
 </template>

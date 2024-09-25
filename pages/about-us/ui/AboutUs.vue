@@ -1,8 +1,11 @@
 <script setup lang="ts"></script>
 <template>
-	<section class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px] min-h-[calc(100vh-(56px+514px+52px))]">
-		<h1 class="text-3xl text-slate-900 font-bold">
-			<strong class="text-deep-orange">Г</strong>алаТур Орёл - ваш проводник в мир увлекательных путешествий!
+	<section
+		class="px-base m-auto flex min-h-[calc(100vh-(56px+514px+52px))] w-full flex-col gap-5 py-10 xl:w-[1280px]"
+	>
+		<h1 class="text-3xl font-bold text-slate-900">
+			<strong class="text-deep-orange">Г</strong>алаТур Орёл - ваш проводник в
+			мир увлекательных путешествий!
 		</h1>
 		<p class="leading-7">
 			Мы предлагаем широкий выбор экскурсионных туров, отдыха на море,
@@ -13,8 +16,9 @@
 		<p class="leading-7">
 			Забронировать тур стало легко и удобно благодаря нашей команде
 			профессионалов, которые создают для вас максимально комфортные и
-			прозрачные условия. Откройте для себя новые уголки мира с <strong class="text-deep-orange">Г</strong>алаТур и
-			наслаждайтесь незабываемым отдыхом!
+			прозрачные условия. Откройте для себя новые уголки мира с
+			<strong class="text-deep-orange">Г</strong>алаТур и наслаждайтесь
+			незабываемым отдыхом!
 		</p>
 	</section>
 </template>

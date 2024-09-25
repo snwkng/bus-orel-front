@@ -3,17 +3,20 @@ const emit = defineEmits(['closeNav']);
 const route = useRoute();
 const close = () => {
 	emit('closeNav', false);
-}
+};
 watch(
 	() => route.name,
 	() => {
 		close();
 	}
-)
+);
 </script>
 
 <template>
-	<nav v-click-away="close" class="bg-white p-6 absolute top-10 right-0 rounded-xl w-80 shadow-lg">
+	<nav
+		v-click-away="close"
+		class="absolute right-0 top-10 w-80 rounded-xl bg-white p-6 shadow-lg"
+	>
 		<ul class="list-none text-base">
 			<li>
 				<router-link to="/bus-tours" class="list-item">
@@ -26,7 +29,10 @@ watch(
 				</router-link>
 			</li>
 			<li>
-				<router-link :to="{ name: 'home', hash: '#tour-selection' }" class="list-item">
+				<router-link
+					:to="{ name: 'home', hash: '#tour-selection' }"
+					class="list-item"
+				>
 					Подбор тура
 				</router-link>
 			</li>

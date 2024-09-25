@@ -1,3 +1,3 @@
-import TouristReminder from './ui/TouristReminder.vue'
+import TouristReminder from './ui/TouristReminder.vue';
 
-export default TouristReminder
+export default TouristReminder;

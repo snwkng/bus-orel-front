@@ -9,7 +9,7 @@ export const useTourStore = defineStore('useTourStore', {
 		cityList: [] as SelectItem[]
 	}),
 	getters: {
-		cardMapped (state): ICard[] {
+		cardMapped(state): ICard[] {
 			return state.tours?.map((tour: ITour) => ({
 				// eslint-disable-next-line no-underscore-dangle
 				id: tour._id,
@@ -17,34 +17,34 @@ export const useTourStore = defineStore('useTourStore', {
 				subtitle: tour.city,
 				price: tour.price,
 				images: tour.images
-			}))
+			}));
 		}
 	},
 	actions: {
-		async getTours (params?: any): Promise<void> {
+		async getTours(params?: any): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
 			this.tours = await $fetch(`${BASE_URL}/hotels`, {
 				params
 			});
 		},
 
-		async getTour (id: string): Promise<void> {
+		async getTour(id: string): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
-			this.tour = await $fetch(`${BASE_URL}/hotels/${id}`)
+			this.tour = await $fetch(`${BASE_URL}/hotels/${id}`);
 		},
 
-		async getSeaList (): Promise<void> {
+		async getSeaList(): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
-			this.seaList = await $fetch(`${BASE_URL}/hotels/sea-list`)
+			this.seaList = await $fetch(`${BASE_URL}/hotels/sea-list`);
 		},
 
-		async getCityList (seaType?: string): Promise<void> {
+		async getCityList(seaType?: string): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public;
 			this.cityList = await $fetch(`${BASE_URL}/hotels/city-list`, {
 				params: {
 					seaType
 				}
-			})
+			});
 		}
 	}
-})
+});

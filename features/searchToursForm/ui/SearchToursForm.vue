@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheInput from '@/shared/ui/forms/TheInput.vue'
+import TheInput from '@/shared/ui/forms/TheInput.vue';
 import TheSelect from '~/shared/ui/forms/select/TheSelect.vue';
 import TheButton from '~/shared/ui/buttons/TheButton.vue';
 
@@ -16,20 +16,24 @@ const selectedPlace = ref<SelectItem>({});
 watch(
 	() => selectedSea.value,
 	() => {
-		getCityList(selectedSea.value.name)
+		getCityList(selectedSea.value.name);
 	}
-)
+);
 
 const getTours = () => {
-	router.push({ name: 'bus-tours', query: { seaType: selectedSea.value.name, city: selectedPlace.value.name } })
-}
+	router.push({
+		name: 'bus-tours',
+		query: { seaType: selectedSea.value.name, city: selectedPlace.value.name }
+	});
+};
 
 await callOnce(getSeaList);
 await callOnce(getCityList);
-
 </script>
 <template>
-	<form class="flex flex-col md:flex-row items-center md:justify-center gap-x-[2px] w-full">
+	<form
+		class="flex w-full flex-col items-center gap-x-[2px] md:flex-row md:justify-center"
+	>
 		<the-input
 			disabled="true"
 			input-id="откуда"
@@ -53,6 +57,10 @@ await callOnce(getCityList);
 			classes="md:rounded-r-xl"
 			@change="selectedPlace = $event"
 		/>
-		<the-button class="w-full md:w-52 md:ml-5 rounded-t-none md:rounded-t-xl" btn-title="Найти" @click="getTours" />
+		<the-button
+			class="w-full rounded-t-none md:ml-5 md:w-52 md:rounded-t-xl"
+			btn-title="Найти"
+			@click="getTours"
+		/>
 	</form>
 </template>
