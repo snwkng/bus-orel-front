@@ -25,8 +25,9 @@ const inputFocus = ref(false);
 				v-if="inputFocus || (disabled && label)"
 				:for="inputId"
 				class="absolute top-[-24px] hidden px-4 text-sm font-normal text-white md:block"
-				>{{ label }}</label
 			>
+				{{ label }}
+			</label>
 		</Transition>
 		<input
 			:id="inputId"

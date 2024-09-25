@@ -24,7 +24,7 @@ const showSearch = (search: goToSearch) => {
 			:class="[
 				searchSection === 'busTours'
 					? 'bg-white text-slate-900'
-					: 'bg-blue-900/20 text-white hover:bg-blue-900/35'
+					: 'bg-blue-900/20 text-white hover:bg-blue-900/35',
 			]"
 			@click="showSearch('busTours')"
 		>
@@ -36,7 +36,7 @@ const showSearch = (search: goToSearch) => {
 			:class="[
 				searchSection === 'excursions'
 					? 'bg-white text-slate-900'
-					: 'bg-blue-900/20 text-white hover:bg-blue-900/35'
+					: 'bg-blue-900/20 text-white hover:bg-blue-900/35',
 			]"
 			@click="showSearch('excursions')"
 		>

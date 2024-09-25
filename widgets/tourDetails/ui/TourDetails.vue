@@ -17,17 +17,23 @@ await useAsyncData(() => store.getTour(tourId).then(() => true));
 				</h1>
 				<div class="flex gap-x-1">
 					<span>от {{ store.tour.price }}</span>
-					<button type="button">Скачать прайс</button>
+					<button type="button">
+						Скачать прайс
+					</button>
 				</div>
 			</div>
 			<the-gallery :images="store.tour.images" path="hotels" />
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">Расположение</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					Расположение
+				</h3>
 				<div>{{ store.tour.locationDescription }}</div>
 			</div>
 			<hr />
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">Размещение</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					Размещение
+				</h3>
 				<div v-for="(room, roomIndex) in store.tour.tours" :key="roomIndex">
 					<div class="py-2">
 						<strong>{{ room.type }}, мест: {{ room.numberOfSeats }}:</strong>
@@ -37,24 +43,32 @@ await useAsyncData(() => store.getTour(tourId).then(() => true));
 			</div>
 			<hr />
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">Питание</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					Питание
+				</h3>
 				<div>{{ store.tour.food }}</div>
 			</div>
 			<hr />
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">Пляж</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					Пляж
+				</h3>
 				<div>
 					{{ store.tour.beach }}. до пляжа {{ store.tour.distanceToBeach }}.
 				</div>
 			</div>
 			<hr />
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">Заселение</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					Заселение
+				</h3>
 				<div>{{ store.tour.checkInConditions }}</div>
 			</div>
 			<hr />
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">В стоимость включено</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					В стоимость включено
+				</h3>
 				<div>{{ store.tour.thePriceIncludes.join(', ') }}</div>
 			</div>
 		</div>

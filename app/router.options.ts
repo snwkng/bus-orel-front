@@ -7,12 +7,12 @@ export default <RouterConfig>{
 		{
 			name: 'home',
 			path: '/',
-			component: () => import('~/pages/home/').then((r) => r.default || r)
+			component: () => import('~/pages/home/').then(r => r.default || r)
 		},
 		{
 			name: 'bus-tours',
 			path: '/bus-tours',
-			component: () => import('~/pages/bus-tours/').then((r) => r.default || r),
+			component: () => import('~/pages/bus-tours/').then(r => r.default || r),
 			props: true
 		},
 		{
@@ -21,14 +21,13 @@ export default <RouterConfig>{
 			meta: {
 				layout: 'single'
 			},
-			component: () => import('~/pages/bus-tour/').then((r) => r.default || r),
+			component: () => import('~/pages/bus-tour/').then(r => r.default || r),
 			props: true
 		},
 		{
 			name: 'excursions',
 			path: '/excursions',
-			component: () =>
-				import('~/pages/excursions/').then((r) => r.default || r),
+			component: () => import('~/pages/excursions/').then(r => r.default || r),
 			props: true
 		},
 		{
@@ -37,7 +36,7 @@ export default <RouterConfig>{
 			meta: {
 				layout: 'single'
 			},
-			component: () => import('~/pages/excursion/').then((r) => r.default || r),
+			component: () => import('~/pages/excursion/').then(r => r.default || r),
 			props: true
 		},
 		{
@@ -46,7 +45,7 @@ export default <RouterConfig>{
 			meta: {
 				layout: 'single'
 			},
-			component: () => import('~/pages/about-us/').then((r) => r.default || r)
+			component: () => import('~/pages/about-us/').then(r => r.default || r)
 		},
 		{
 			name: 'tourist-reminder',
@@ -54,8 +53,7 @@ export default <RouterConfig>{
 			meta: {
 				layout: 'single'
 			},
-			component: () =>
-				import('~/pages/tourist-reminder/').then((r) => r.default || r)
+			component: () => import('~/pages/tourist-reminder/').then(r => r.default || r)
 		},
 		{
 			name: 'agreement',
@@ -63,7 +61,7 @@ export default <RouterConfig>{
 			meta: {
 				layout: 'single'
 			},
-			component: () => import('~/pages/agreement/').then((r) => r.default || r)
+			component: () => import('~/pages/agreement/').then(r => r.default || r)
 		},
 		{
 			name: 'privacy-policy',
@@ -71,11 +69,10 @@ export default <RouterConfig>{
 			meta: {
 				layout: 'single'
 			},
-			component: () =>
-				import('~/pages/privacy-policy/').then((r) => r.default || r)
+			component: () => import('~/pages/privacy-policy/').then(r => r.default || r)
 		}
 	],
-	scrollBehavior(
+	scrollBehavior (
 		to: RouteLocationNormalized,
 		_from: RouteLocationNormalized,
 		savedPosition: any

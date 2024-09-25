@@ -10,10 +10,10 @@ import TheButton from '~/shared/ui/buttons/TheButton.vue';
 			class="min-h-40 w-full bg-sprinter bg-contain bg-center bg-no-repeat sm:min-h-60"
 		/>
 		<div class="flex w-full flex-col items-center gap-y-5 sm:items-start">
-			<span class="text-xl md:text-2xl"
-				>Арендуйте микроавтобусы в Орле с опытными водителями и комфортабельными
-				салонами для приятного путешествия</span
-			>
+			<span class="text-xl md:text-2xl">
+				Арендуйте микроавтобусы в Орле с опытными водителями и комфортабельными
+				салонами для приятного путешествия
+			</span>
 			<the-button btn-title="Арендовать" class="w-7" />
 		</div>
 	</section>

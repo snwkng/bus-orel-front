@@ -91,7 +91,7 @@ onMounted(() => {
 				color="stroke-slate-500"
 				:class="[
 					'absolute right-2 transition-all',
-					{ 'rotate-180': showSelect }
+					{ 'rotate-180': showSelect },
 				]"
 			/>
 			<div

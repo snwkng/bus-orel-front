@@ -15,12 +15,12 @@ const store = useExcursionStore();
 
 await useAsyncData(() => store.getExcursion(excursionId).then(() => true));
 
-const accordionItems = computed(() =>
-	store.excursion.description.map((x: string, index: number) => ({
+const accordionItems = computed(() => store.excursion.description.map(
+	(x: string, index: number) => ({
 		title: `День ${index + 1}`,
 		content: x
-	}))
-);
+	})
+));
 </script>
 <template>
 	<div class="w-full">
@@ -60,11 +60,15 @@ const accordionItems = computed(() =>
 				</div>
 			</div>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">Программа тура</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					Программа тура
+				</h3>
 				<the-accordion :items="accordionItems" />
 			</div>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">В стоимость входит</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					В стоимость входит
+				</h3>
 				<div class="flex flex-col gap-y-3">
 					<div
 						v-for="item in store.excursion.thePriceIncludes"

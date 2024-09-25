@@ -15,15 +15,14 @@ const fullYear: number = new Date().getFullYear();
 			<div
 				:class="[
 					'md:flex-no-wrap px-base mx-auto flex w-full flex-col flex-wrap px-5 py-24 md:flex-row md:items-center lg:items-start',
-					{ 'px-base xl:w-[1280px]': isSingle }
+					{ 'px-base xl:w-[1280px]': isSingle },
 				]"
 			>
 				<div
 					class="mx-auto w-64 flex-shrink-0 text-center md:mx-0 md:text-left"
 				>
 					<router-link :to="{ name: 'home' }">
-						<strong class="text-deep-orange">G</strong
-						><span class="h-5 w-auto fill-current text-slate-900">alatour</span>
+						<strong class="text-deep-orange">G</strong><span class="h-5 w-auto fill-current text-slate-900">alatour</span>
 					</router-link>
 					<p class="mt-2 text-sm text-slate-500">
 						Туристическое агентство в Орле!
@@ -123,8 +122,7 @@ const fullYear: number = new Date().getFullYear();
 									<a
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900"
 										target="_blank"
-										>Карта сайта</a
-									>
+									>Карта сайта</a>
 								</li>
 							</ul>
 						</nav>
@@ -207,10 +205,8 @@ const fullYear: number = new Date().getFullYear();
 									</a>
 								</li>
 								<li>
-									<span
-										>(Внимание! Офис работает только по предварительной
-										записи)</span
-									>
+									<span>(Внимание! Офис работает только по предварительной
+										записи)</span>
 								</li>
 							</ul>
 						</nav>

@@ -40,7 +40,7 @@ export default defineNuxtConfig({
 		lintOnStart: false
 	},
 	tailwindcss: {
-		cssPath: '~/app/assets/styles/tailwind.css',
+		cssPath: ['~/app/assets/styles/tailwind.css', { injectPosition: 'first' }],
 		configPath: 'tailwind.config',
 		exposeConfig: false,
 		exposeLevel: 2,

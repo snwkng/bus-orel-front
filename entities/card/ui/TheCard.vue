@@ -15,11 +15,10 @@ const props = withDefaults(defineProps<Props>(), {
 	images: () => []
 });
 
-const link = computed(() =>
-	props.type === 'excursion'
-		? { name: 'excursions/excursion', params: { id: props.id } }
-		: { name: 'bus-tours/bus-tour', params: { id: props.id } }
-);
+const link = computed(() => (props.type === 'excursion'
+	? { name: 'excursions/excursion', params: { id: props.id } }
+	: { name: 'bus-tours/bus-tour', params: { id: props.id } }
+));
 </script>
 <template>
 	<router-link :to="link" rel="noopener noreferrer nofollow">

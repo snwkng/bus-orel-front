@@ -36,13 +36,13 @@ const close = (closeNav: boolean) => {
 	<header
 		:class="[
 			'font-large fixed z-20 h-14 w-full bg-deep-blue',
-			{ 'shadow-lg': scroll }
+			{ 'shadow-lg': scroll },
 		]"
 	>
 		<div
 			:class="[
 				'px-base mx-auto flex h-14 w-full items-center justify-between bg-transparent',
-				{ 'xl:w-[1280px]': isSingle }
+				{ 'xl:w-[1280px]': isSingle },
 			]"
 		>
 			<div class="text-white">

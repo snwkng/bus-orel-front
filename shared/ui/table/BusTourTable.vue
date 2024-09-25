@@ -24,8 +24,8 @@ const props = withDefaults(defineProps<Props>(), {
 				<div>Цена</div>
 			</div>
 			<div
-				v-for="(datesAndPrices, index) in tour.datesAndPrices"
-				:key="index"
+				v-for="(datesAndPrices, dataIndex) in tour.datesAndPrices"
+				:key="dataIndex"
 				class="grid grid-cols-2"
 			>
 				<div>{{ datesAndPrices.startDate }} - {{ datesAndPrices.endDate }}</div>
