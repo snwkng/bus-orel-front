@@ -24,7 +24,7 @@ watch(
 	<div
 		class="px-base flex h-full w-full flex-col items-center justify-center gap-y-6 bg-deep-blue py-5 text-white lg:h-96"
 	>
-		<h1 class="mb-2 text-4xl font-bold">
+		<h1 class="mb-2 text-3xl sm:text-4xl font-bold">
 			{{ title }}
 		</h1>
 		<main-btn-group />

@@ -13,7 +13,7 @@ const route = useRoute();
 const excursionId = route.params.id as string;
 const store = useExcursionStore();
 
-await useAsyncData(() => store.getExcursion(excursionId).then(() => true));
+await useAsyncData('excursion', (): Promise<boolean> => store.getExcursion(excursionId).then(() => true));
 
 const accordionItems = computed(() => store.excursion.description.map(
 	(x: string, index: number) => ({

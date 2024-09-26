@@ -11,22 +11,32 @@ withDefaults(defineProps<Props>(), {
 });
 
 onMounted(() => {
+	mediaQuery.value = window.matchMedia('(min-width: 992px)');
+	mediaQuery.value.addEventListener('change', onChange);
+
 	window.addEventListener('scroll', handleScroll);
 	handleScroll();
 });
 
 onUnmounted(() => {
 	window.removeEventListener('scroll', handleScroll);
+	mediaQuery.value?.removeEventListener('change', onChange)
 });
 
 const route = useRoute();
 
 const toggle = ref(false);
 const scroll = ref(false);
+const mediaQuery = ref<MediaQueryList>();
+const isDesktop = ref(false);
 
 const handleScroll = () => {
 	scroll.value = window.scrollY > 400;
 };
+
+const onChange = () => {
+	isDesktop.value = mediaQuery.value?.matches ?? false;
+}
 const close = (closeNav: boolean) => {
 	toggle.value = closeNav;
 };
@@ -50,7 +60,7 @@ const close = (closeNav: boolean) => {
 					<strong class="text-deep-orange">G</strong>alatour
 				</router-link>
 			</div>
-			<div v-if="scroll">
+			<div v-if="scroll && isDesktop">
 				<main-btn-group v-if="route.name === 'home'" />
 			</div>
 			<div class="relative">

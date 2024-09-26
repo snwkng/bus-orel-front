@@ -24,12 +24,11 @@ await callOnce(getCityList);
 	>
 		<the-input
 			disabled="true"
-			class="input:rounded-l-none w-64"
 			input-id="откуда"
 			type="text"
 			label="Откуда"
 			placeholder="Орёл"
-			classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl"
+			classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl md:rounded-tl-xl"
 		/>
 		<the-select
 			class="w-64"

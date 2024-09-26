@@ -1,6 +1,14 @@
 import { resolve } from 'node:path'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	app: {
+		head: {
+			charset: 'utf-8',
+			viewport: 'width=device-width, initial-scale=1',
+			title: 'Туристическое агентство "ГалаТур" Орёл'
+		}
+	},
+
 	nitro: {
 		preset: 'node-server'
 	},

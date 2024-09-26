@@ -19,7 +19,7 @@ const { cardMapped } = storeToRefs(store);
 
 await useAsyncData(
 	'excursions',
-	(): Promise<void> => store.getExcursions(route?.query)
+	(): Promise<boolean> => store.getExcursions(route?.query).then(() => true)
 );
 
 watch(

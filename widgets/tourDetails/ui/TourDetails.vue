@@ -6,7 +6,7 @@ const route = useRoute();
 const tourId = route.params.id as string;
 const store = useTourStore();
 
-await useAsyncData(() => store.getTour(tourId).then(() => true));
+await useAsyncData('tour', (): Promise<boolean> => store.getTour(tourId).then(() => true));
 </script>
 <template>
 	<div class="w-full">

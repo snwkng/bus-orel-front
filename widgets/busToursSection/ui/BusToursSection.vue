@@ -16,7 +16,7 @@ const store = useTourStore();
 const { getTours } = store;
 const { cardMapped } = storeToRefs(store);
 
-await useAsyncData('tours', (): Promise<void> => store.getTours(route?.query));
+await useAsyncData('tours', (): Promise<boolean> => store.getTours(route?.query).then(() => true));
 
 watch(
 	() => route.query,

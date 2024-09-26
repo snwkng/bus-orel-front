@@ -35,16 +35,18 @@ export const useTourStore = defineStore('useTourStore', {
 
 		async getSeaList (): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public
-			this.seaList = await $fetch(`${BASE_URL}/hotels/sea-list`)
+			const sea: SelectItem[] = await $fetch(`${BASE_URL}/hotels/sea-list`)
+			this.seaList = sea.filter((s: SelectItem) => s.name)
 		},
 
 		async getCityList (seaType?: string): Promise<void> {
 			const { BASE_URL } = useRuntimeConfig().public
-			this.cityList = await $fetch(`${BASE_URL}/hotels/city-list`, {
+			const city: SelectItem[] = await $fetch(`${BASE_URL}/hotels/city-list`, {
 				params: {
 					seaType
 				}
 			})
+			this.cityList = city.filter((c: SelectItem) => c.name)
 		}
 	}
 })
