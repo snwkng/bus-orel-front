@@ -17,7 +17,7 @@ const cookie = useCookie('cookie_agree');
 		<button
 			type="button"
 			class="rounded-xl bg-deep-blue px-3 py-1 text-white transition-colors hover:bg-ligth-blue"
-			@click="cookie = true"
+			@click="cookie = 'true'"
 		>
 			Хорошо
 		</button>

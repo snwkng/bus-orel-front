@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import TheCard from '@/entities/card';
-import TheGrid from '@/shared/ui/TheGrid.vue';
 
 export interface Props {
 	title?: string;
@@ -16,7 +14,10 @@ const store = useTourStore();
 const { getTours } = store;
 const { cardMapped } = storeToRefs(store);
 
-await useAsyncData('tours', (): Promise<boolean> => store.getTours(route?.query).then(() => true));
+await useAsyncData(
+	'tours',
+	(): Promise<boolean> => store.getTours(route?.query).then(() => true)
+);
 
 watch(
 	() => route.query,
@@ -30,8 +31,8 @@ watch(
 		<h2 v-if="title" class="mb-6 text-2xl font-bold">
 			{{ title }}
 		</h2>
-		<the-grid>
-			<the-card
+		<SharedUiTheGrid>
+			<EntitiesCard
 				v-for="item in cardMapped"
 				:id="item.id"
 				:key="item.id"
@@ -42,6 +43,6 @@ watch(
 				type="tour"
 				image-path="hotels"
 			/>
-		</the-grid>
+		</SharedUiTheGrid>
 	</section>
 </template>

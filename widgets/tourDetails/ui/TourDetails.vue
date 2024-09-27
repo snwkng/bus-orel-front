@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import TheGallery from '@/shared/ui/gallery/TheGallery.vue';
-import BusTourTable from '@/shared/ui/table/BusTourTable.vue';
 
 const route = useRoute();
 const tourId = route.params.id as string;
@@ -22,7 +20,7 @@ await useAsyncData('tour', (): Promise<boolean> => store.getTour(tourId).then(()
 					</button>
 				</div>
 			</div>
-			<the-gallery :images="store.tour.images" path="hotels" />
+			<SharedUiGalleryTheGallery :images="store.tour.images" path="hotels" />
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold">
 					Расположение
@@ -73,6 +71,6 @@ await useAsyncData('tour', (): Promise<boolean> => store.getTour(tourId).then(()
 			</div>
 		</div>
 
-		<BusTourTable :tours="store.tour.tours" />
+		<SharedUiTableBusTourTable :tours="store.tour.tours" />
 	</div>
 </template>

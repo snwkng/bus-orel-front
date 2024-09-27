@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheAccordion from '@/shared/ui/accordions/TheAccordion.vue';
 
 const accordionItems = ref([
 	{
@@ -57,6 +56,6 @@ const accordionItems = ref([
 	<section
 		class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
 	>
-		<the-accordion :items="accordionItems" />
+		<SharedUiAccordionsTheAccordion :items="accordionItems" />
 	</section>
 </template>

@@ -28,13 +28,13 @@
 		"prettier": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.8",
 		"sass": "^1.79.3",
-		"vue": "^3.5.8",
+		"vue": "^3.5.10",
 		"vue-router": "^4.4.5"
 	},
 	"dependencies": {
 		"@pinia/nuxt": "^0.5.4",
 		"nuxt-swiper": "^1.2.2",
-		"pinia": "^2.2.2",
+		"pinia": "^2.1.7",
 		"vue3-click-away": "^1.2.4"
 	}
 }

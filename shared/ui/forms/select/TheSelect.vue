@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ArrowButton from '@/shared/ui/icons/ArrowButton.vue';
 
 export interface Props {
 	selectId: string;
@@ -85,7 +84,7 @@ onMounted(() => {
 		>
 			<span v-if="value.name">{{ value.name }}</span>
 			<span v-else-if="!showSelect" class="text-slate-400">{{ label }}</span>
-			<arrow-button
+			<SharedUiIconsArrowButton
 				width="24px"
 				height="24px"
 				color="stroke-slate-500"

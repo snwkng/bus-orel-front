@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import TheNavbar from '@/features/navbar';
-import MainBtnGroup from '@/features/mainBtnGroup/ui/MainBtnGroup.vue';
 
 export interface Props {
 	isSingle?: boolean;
@@ -61,7 +59,7 @@ const close = (closeNav: boolean) => {
 				</router-link>
 			</div>
 			<div v-if="scroll && isDesktop">
-				<main-btn-group v-if="route.name === 'home'" />
+				<FeaturesMainBtnGroup v-if="route.name === 'home'" />
 			</div>
 			<div class="relative">
 				<button type="button" class="btn-hover" @click="toggle = !toggle">
@@ -73,7 +71,7 @@ const close = (closeNav: boolean) => {
 					/>
 				</button>
 				<Transition name="dropdown-fade">
-					<the-navbar v-if="toggle" @close-nav="close" />
+					<FeaturesNavbar v-if="toggle" @close-nav="close" />
 				</Transition>
 			</div>
 		</div>

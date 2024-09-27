@@ -23,7 +23,7 @@ const link = computed(() => (props.type === 'excursion'
 ));
 </script>
 <template>
-	<router-link :to="link" rel="noopener noreferrer nofollow">
+	<RouterLink :to="link" rel="noopener noreferrer nofollow">
 		<div class="w-full">
 			<img
 				class="mb-3 w-full rounded-xl bg-cover object-cover brightness-100"
@@ -46,5 +46,5 @@ const link = computed(() => (props.type === 'excursion'
 				</div>
 			</div>
 		</div>
-	</router-link>
+	</RouterLink>
 </template>

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import TheInput from '@/shared/ui/forms/TheInput.vue';
-import TheSelect from '~/shared/ui/forms/select/TheSelect.vue';
-import TheButton from '~/shared/ui/buttons/TheButton.vue';
 
 const router = useRouter();
 
@@ -34,7 +31,7 @@ await callOnce(getCityList);
 	<form
 		class="flex w-full flex-col items-center gap-x-[2px] md:flex-row md:justify-center"
 	>
-		<the-input
+		<SharedUiFormsTheInput
 			disabled="true"
 			input-id="откуда"
 			type="text"
@@ -42,14 +39,14 @@ await callOnce(getCityList);
 			placeholder="Орёл"
 			classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl md:rounded-tl-xl"
 		/>
-		<the-select
+		<SharedUiFormsSelectTheSelect
 			select-id="море"
 			label="Море"
 			query-name="seaType"
 			:list="seaList"
 			@change="selectedSea = $event"
 		/>
-		<the-select
+		<SharedUiFormsSelectTheSelect
 			select-id="куда"
 			:list="cityList"
 			label="Куда"
@@ -57,7 +54,7 @@ await callOnce(getCityList);
 			classes="md:rounded-r-xl"
 			@change="selectedPlace = $event"
 		/>
-		<the-button
+		<SharedUiButtonsTheButton
 			class="w-full rounded-t-none md:ml-5 md:w-52 md:rounded-t-xl"
 			btn-title="Найти"
 			@click="getTours"

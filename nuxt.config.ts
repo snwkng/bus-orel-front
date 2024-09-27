@@ -23,8 +23,36 @@ export default defineNuxtConfig({
 		}
 	},
 
+	components: [
+		{
+			path: '~/entities',
+			prefix: 'Entities'
+		},
+		{
+			path: '~/features',
+			prefix: 'Features'
+		},
+		{
+			path: '~/widgets',
+			prefix: 'Widgets'
+		},
+		{
+			path: '~/shared',
+			prefix: 'Shared'
+		}
+	],
+	imports: {
+		dirs: [
+			'shared/**/*.ts',
+			'features/**/*.ts',
+			'widgets/**/*.ts',
+			'entities/**/*.ts'
+		]
+	},
 	dir: {
-		layouts: 'app/layouts'
+		layouts: 'app/layouts',
+		assets: 'app/assets',
+		plugins: 'shared/lib/plugins'
 	},
 
 	devtools: { enabled: true },
@@ -44,8 +72,6 @@ export default defineNuxtConfig({
 		'nuxt-swiper',
 		'dayjs-nuxt'
 	],
-
-	plugins: ['~/shared/lib/plugins/clickAway'],
 
 	pinia: {
 		storesDirs: [

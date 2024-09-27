@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import searchSection from '@/widgets/searchSection';
-import BusRentSection from '@/widgets/busRentSection';
-import BusToursSection from '@/widgets/busToursSection';
-import ExcursionsSection from '@/widgets/excursionsSection';
-
 definePageMeta({
 	layout: 'default'
 });
@@ -39,13 +34,13 @@ onMounted(() => {
 </script>
 <template>
 	<div>
-		<search-section />
+		<WidgetsSearchSection />
 		<div class="px-base py-8">
-			<bus-tours-section title="Автобусные туры к морю из Орла" class="pb-11" />
-			<excursions-section title="Экскурсионные туры из Орла" class="pb-11" />
+			<WidgetsBusToursSection title="Автобусные туры к морю из Орла" class="pb-11" />
+			<WidgetsExcursionsSection title="Экскурсионные туры из Орла" class="pb-11" />
 		</div>
 		<div class="px-0 py-0 lg:px-20 lg:py-8">
-			<bus-rent-section />
+			<WidgetsBusRentSection />
 		</div>
 		<section id="tour-selection" class="px-base py-8">
 			<h2 class="mb-6 text-2xl font-bold">

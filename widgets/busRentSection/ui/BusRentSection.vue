@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheButton from '~/shared/ui/buttons/TheButton.vue';
 </script>
 <template>
 	<section
@@ -14,7 +13,7 @@ import TheButton from '~/shared/ui/buttons/TheButton.vue';
 				Арендуйте микроавтобусы в Орле с опытными водителями и комфортабельными
 				салонами для приятного путешествия
 			</span>
-			<the-button btn-title="Арендовать" class="w-7" />
+			<SharedUiButtonsTheButton btn-title="Арендовать" class="w-7" />
 		</div>
 	</section>
 </template>

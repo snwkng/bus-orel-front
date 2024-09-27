@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import SearchExcursionsForm from '@/features/searchExcursionsForm';
 
 onMounted(() => {
 	window.addEventListener('scroll', handleScroll);
@@ -26,6 +25,6 @@ const handleScroll = () => {
 			Экскурсионные туры из Орла
 		</h1>
 
-		<search-excursions-form />
+		<FeaturesSearchExcursionsForm />
 	</div>
 </template>

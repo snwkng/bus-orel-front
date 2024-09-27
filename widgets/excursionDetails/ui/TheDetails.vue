@@ -1,13 +1,4 @@
 <script setup lang="ts">
-import TheGallery from '@/shared/ui/gallery/TheGallery.vue';
-import TheAccordion from '@/shared/ui/accordions/TheAccordion.vue';
-import CheckIcon from '@/shared/ui/icons/CheckIcon.vue';
-import FileIcon from '@/shared/ui/icons/FileIcon.vue';
-import MoneyIcon from '@/shared/ui/icons/MoneyIcon.vue';
-import LocationIcon from '@/shared/ui/icons/LocationIcon.vue';
-import TimeIcon from '@/shared/ui/icons/TimeIcon.vue';
-import CityIcon from '@/shared/ui/icons/CityIcon.vue';
-import DateIcon from '@/shared/ui/icons/DateIcon.vue';
 
 const route = useRoute();
 const excursionId = route.params.id as string;
@@ -30,32 +21,32 @@ const accordionItems = computed(() => store.excursion.description.map(
 					{{ store.excursion.name }}
 				</h1>
 			</div>
-			<the-gallery :images="store.excursion.images" path="excursions" />
+			<SharedUiGalleryTheGallery :images="store.excursion.images" path="excursions" />
 			<div
 				class="flex w-full flex-row flex-wrap items-center justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-100 px-5 py-6 text-slate-600"
 			>
 				<div class="flex items-center gap-x-1">
-					<div><location-icon width="32px" height="32px" /></div>
+					<div><SharedUiIconsLocationIcon width="32px" height="32px" /></div>
 					{{ store.excursion.city }}
 				</div>
 				<div class="flex items-center gap-x-1">
-					<div><time-icon width="32px" height="32px" /></div>
+					<div><SharedUiIconsTimeIcon width="32px" height="32px" /></div>
 					{{ store.excursion.duration }}
 				</div>
 				<div class="flex items-center gap-x-1">
-					<div><date-icon width="32px" height="32px" /></div>
+					<div><SharedUiIconsDateIcon width="32px" height="32px" /></div>
 					{{ $dayjs(store.excursion.excursionStart).format('DD.MM.YYYY') }}
 				</div>
 				<div class="flex items-center gap-x-1" title="Стоимость">
-					<div><money-icon width="32px" height="32px" /></div>
+					<div><SharedUiIconsMoneyIcon width="32px" height="32px" /></div>
 					от {{ store.excursion.price }} ₽
 				</div>
 				<div class="flex items-center gap-x-1">
-					<div><city-icon width="32px" height="32px" /></div>
+					<div><SharedUiIconsCityIcon width="32px" height="32px" /></div>
 					{{ store.excursion.hotelName }}
 				</div>
 				<div class="flex items-center gap-x-1" title="Скачать прайс">
-					<div><file-icon width="32px" height="32px" /></div>
+					<div><SharedUiIconsFileIcon width="32px" height="32px" /></div>
 					{{ store.excursion.documentName }}
 				</div>
 			</div>
@@ -63,7 +54,7 @@ const accordionItems = computed(() => store.excursion.description.map(
 				<h3 class="mb-2 text-xl font-semibold">
 					Программа тура
 				</h3>
-				<the-accordion :items="accordionItems" />
+				<SharedUiAccordionsTheAccordion :items="accordionItems" />
 			</div>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold">
@@ -76,7 +67,7 @@ const accordionItems = computed(() => store.excursion.description.map(
 						class="flex w-full flex-row items-start gap-x-2"
 					>
 						<div>
-							<check-icon width="24px" height="24px" />
+							<SharedCheckIcon width="24px" height="24px" />
 						</div>
 						{{ item }}
 					</div>

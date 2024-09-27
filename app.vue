@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import TheCookie from '@/shared/ui/cookie/TheCookie.vue';
-
 const cookie = useCookie('cookie_agree');
 </script>
 <template>
@@ -8,6 +6,6 @@ const cookie = useCookie('cookie_agree');
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>
-		<the-cookie v-if="!cookie" />
+		<SharedUiCookieTheCookie v-if="!cookie" />
 	</div>
 </template>

@@ -1,17 +1,5 @@
-import VueClickAway from 'vue3-click-away';
+import { directive } from 'vue3-click-away';
 
-export default defineNuxtPlugin({
-	name: 'clickAway',
-	enforce: 'pre', // or 'post'
-	hooks: {
-		// You can directly register Nuxt app runtime hooks here
-		'app:created' () {
-			const nuxtApp = useNuxtApp();
-			nuxtApp.vueApp.use(VueClickAway);
-			// do something in the hook
-		}
-	},
-	env: {
-		islands: true
-	}
-});
+export default defineNuxtPlugin((nuxtApp) => {
+	nuxtApp.vueApp.directive('click-away', directive)
+})
