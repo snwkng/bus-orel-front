@@ -5,7 +5,6 @@
 	"version": "0.0.1",
 	"scripts": {
 		"build": "nuxt build",
-		"start": "node .output/server/index.mjs",
 		"dev": "set \"VITE_CJS_TRACE=true\" && nuxt dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
