@@ -6,6 +6,7 @@
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "set \"VITE_CJS_TRACE=true\" && nuxt dev",
+		"start": "node .output/server/index.mjs",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
