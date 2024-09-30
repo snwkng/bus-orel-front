@@ -22,6 +22,7 @@
 		"import/prefer-default-export": "off",
 		"indent": ["error", "tab"],
 		"no-tabs": 0,
+		"vue/no-multiple-template-roots": 0,
 		"vue/html-indent": [
 			"error",
 			"tab",

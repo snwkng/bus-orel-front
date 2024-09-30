@@ -8,7 +8,7 @@ const cookie = useCookie('cookie_agree');
 		<div class="text-slate-500">
 			Мы используем cookie и аналогичные технологии.
 			<router-link
-				to="#"
+				to="/privacy-policy"
 				class="text-deep-blue transition-colors hover:text-ligth-blue"
 			>
 				Узнайте подробнее

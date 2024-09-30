@@ -22,7 +22,7 @@ const fullYear: number = new Date().getFullYear();
 					class="mx-auto w-64 flex-shrink-0 text-center md:mx-0 md:text-left"
 				>
 					<router-link :to="{ name: 'home' }">
-						<strong class="text-deep-orange">G</strong><span class="h-5 w-auto fill-current text-slate-900">alatour</span>
+						<strong class="text-deep-orange">Г</strong><span class="h-5 w-auto fill-current text-slate-900">алатур</span>
 					</router-link>
 					<p class="mt-2 text-sm text-slate-500">
 						Туристическое агентство в Орле!
@@ -194,7 +194,7 @@ const fullYear: number = new Date().getFullYear();
 										+7(4862)78-09-58
 									</a>
 								</li>
-								<li class="mt-3 flex flex-wrap">
+								<li class="mt-3 md:flex md:flex-wrap">
 									<a
 										href="https://yandex.ru/maps/org/turisticheskoye_agentstvo_galatur/1067897790/?ll=36.060826%2C52.953087&z=14.36"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900"

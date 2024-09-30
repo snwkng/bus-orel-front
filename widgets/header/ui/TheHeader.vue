@@ -55,7 +55,7 @@ const close = (closeNav: boolean) => {
 		>
 			<div class="text-white">
 				<router-link :to="{ name: 'home' }">
-					<strong class="text-deep-orange">G</strong>alatour
+					<strong class="text-deep-orange">Г</strong>алатур
 				</router-link>
 			</div>
 			<div v-if="scroll && isDesktop">
