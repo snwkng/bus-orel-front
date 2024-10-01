@@ -3,8 +3,8 @@
 	<section
 		class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
 	>
-		<div class="flex items-center justify-between">
-			<h1 class="text-3xl font-bold text-slate-900">
+		<div class="flex flex-col sm:flex-row gap-y-1 sm:gap-y-0 items-startsm:items-center justify-start sm:justify-between">
+			<h1 class="text-2xl sm:text-3xl font-bold text-slate-900">
 				Политика конфиденциальности
 			</h1>
 			<span class="text-slate-300">05.06.2024</span>

@@ -3,7 +3,7 @@
 	<section
 		class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
 	>
-		<h1 class="text-3xl font-bold text-slate-900">
+		<h1 class="text-2xl sm:text-3xl font-bold text-slate-900">
 			Политика обработки персональных данных
 		</h1>
 		<p class="leading-7">
