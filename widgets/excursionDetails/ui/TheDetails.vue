@@ -1,17 +1,18 @@
 <script setup lang="ts">
-
 const route = useRoute();
 const excursionId = route.params.id as string;
 const store = useExcursionStore();
 
-await useAsyncData('excursion', (): Promise<boolean> => store.getExcursion(excursionId).then(() => true));
+await useAsyncData(
+	'excursion',
+	(): Promise<boolean> => store.getExcursion(excursionId).then(() => true)
+);
 
-const accordionItems = computed(() => store.excursion.description.map(
-	(x: string, index: number) => ({
-		title: `День ${index + 1}`,
-		content: x
-	})
-));
+// eslint-disable-next-line vue/max-len
+const accordionItems = computed(() => store.excursion.description.map((x: string, index: number) => ({
+	title: `День ${index + 1}`,
+	content: x
+})));
 </script>
 <template>
 	<div class="w-full">
@@ -21,9 +22,12 @@ const accordionItems = computed(() => store.excursion.description.map(
 					{{ store.excursion.name }}
 				</h1>
 			</div>
-			<SharedUiGalleryTheGallery :images="store.excursion.images" path="excursions" />
+			<SharedUiGalleryTheGallery
+				:images="store.excursion.images"
+				path="excursions"
+			/>
 			<div
-				class="flex w-full flex-row flex-wrap items-center justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-100 px-5 py-6 text-slate-600"
+				class="flex w-full flex-col flex-wrap justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-100 px-5 py-6 text-slate-600 sm:flex-row sm:items-center"
 			>
 				<div class="flex items-center gap-x-1">
 					<div><SharedUiIconsLocationIcon width="32px" height="32px" /></div>
@@ -67,7 +71,7 @@ const accordionItems = computed(() => store.excursion.description.map(
 						class="flex w-full flex-row items-start gap-x-2"
 					>
 						<div>
-							<SharedCheckIcon width="24px" height="24px" />
+							<SharedUiIconsCheckIcon width="24px" height="24px" />
 						</div>
 						{{ item }}
 					</div>

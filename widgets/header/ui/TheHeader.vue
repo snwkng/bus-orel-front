@@ -11,7 +11,7 @@ withDefaults(defineProps<Props>(), {
 onMounted(() => {
 	mediaQuery.value = window.matchMedia('(min-width: 992px)');
 	mediaQuery.value.addEventListener('change', onChange);
-
+	onChange();
 	window.addEventListener('scroll', handleScroll);
 	handleScroll();
 });
