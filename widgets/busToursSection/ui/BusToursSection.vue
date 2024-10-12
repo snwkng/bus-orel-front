@@ -1,11 +1,12 @@
 <script setup lang="ts">
-
 export interface Props {
 	title?: string;
+	emptyText?: string;
 }
 
 withDefaults(defineProps<Props>(), {
-	title: ''
+	title: '',
+	emptyText: ''
 });
 
 const route = useRoute();
@@ -28,10 +29,13 @@ watch(
 </script>
 <template>
 	<section>
-		<h2 v-if="title" class="mb-6 text-2xl font-bold">
+		<h2 v-if="title && cardMapped.length" class="mb-6 text-2xl font-bold">
 			{{ title }}
 		</h2>
-		<SharedUiTheGrid>
+		<h2 v-else-if="emptyText" class="text-2xl font-bold text-center">
+			{{ emptyText }}
+		</h2>
+		<SharedUiTheGrid v-if="cardMapped.length">
 			<EntitiesCard
 				v-for="item in cardMapped"
 				:id="item.id"

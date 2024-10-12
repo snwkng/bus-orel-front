@@ -1,6 +1,7 @@
 import type { ICard } from '@/entities/card/model/types'
 import type { ITour } from './types'
 
+const { BASE_URL } = useRuntimeConfig().public
 export const useTourStore = defineStore('useTourStore', {
 	state: () => ({
 		tours: [],
@@ -22,25 +23,21 @@ export const useTourStore = defineStore('useTourStore', {
 	},
 	actions: {
 		async getTours (params?: any): Promise<void> {
-			const { BASE_URL } = useRuntimeConfig().public
 			this.tours = await $fetch(`${BASE_URL}/hotels`, {
 				params
 			})
 		},
 
 		async getTour (id: string): Promise<void> {
-			const { BASE_URL } = useRuntimeConfig().public
 			this.tour = await $fetch(`${BASE_URL}/hotels/${id}`)
 		},
 
 		async getSeaList (): Promise<void> {
-			const { BASE_URL } = useRuntimeConfig().public
 			const sea: SelectItem[] = await $fetch(`${BASE_URL}/hotels/sea-list`)
 			this.seaList = sea.filter((s: SelectItem) => s.name)
 		},
 
 		async getCityList (seaType?: string): Promise<void> {
-			const { BASE_URL } = useRuntimeConfig().public
 			const city: SelectItem[] = await $fetch(`${BASE_URL}/hotels/city-list`, {
 				params: {
 					seaType
