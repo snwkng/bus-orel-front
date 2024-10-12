@@ -15,8 +15,6 @@ const props = withDefaults(defineProps<Props>(), {
 	images: () => []
 });
 
-const runtimeConfig = useRuntimeConfig()
-
 const link = computed(() => (props.type === 'excursion'
 	? { name: 'excursions/excursion', params: { id: props.id } }
 	: { name: 'bus-tours/bus-tour', params: { id: props.id } }
@@ -28,7 +26,7 @@ const link = computed(() => (props.type === 'excursion'
 			<img
 				class="mb-3 w-full rounded-xl bg-cover object-cover brightness-100"
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
-				:src="`${runtimeConfig.public.BASE_URL}/public/images/${imagePath}/${props?.images[0]?.name ?? ''}`"
+				:src="`/public/images/${imagePath}/${props?.images[0]?.name ?? ''}`"
 				:alt="props.subtitle"
 				:title="props.title"
 			/>

@@ -1,7 +1,6 @@
 import type { ICard } from '@/entities/card/model/types';
 import type { IExcursion } from './types';
 
-const { BASE_URL } = useRuntimeConfig().public;
 export const useExcursionStore = defineStore('useExcursionStore', {
 	state: () => ({
 		excursions: [],
@@ -22,17 +21,17 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 	},
 	actions: {
 		async getExcursions (params?: any): Promise<void> {
-			this.excursions = await $fetch(`${BASE_URL}/excursions`, {
+			this.excursions = await $fetch('/api/excursions', {
 				params
 			});
 		},
 
 		async getExcursion (id: string): Promise<void> {
-			this.excursion = await $fetch(`${BASE_URL}/excursions/${id}`);
+			this.excursion = await $fetch(`/api/excursions/${id}`);
 		},
 
 		async getCityList (): Promise<void> {
-			this.cityList = await $fetch(`${BASE_URL}/excursions/city-list`);
+			this.cityList = await $fetch('/api/excursions/city-list');
 		}
 	}
 });

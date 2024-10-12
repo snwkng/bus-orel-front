@@ -11,8 +11,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const thumbsSwiper = ref(null);
 
-const runtimeConfig = useRuntimeConfig()
-
 const setThumbsSwiper = (swiper: any) => {
 	thumbsSwiper.value = swiper;
 };
@@ -31,7 +29,7 @@ const setThumbsSwiper = (swiper: any) => {
 				<img
 					class="max-h-[300px] w-full object-cover"
 					alt="pic"
-					:src="`${runtimeConfig.public.BASE_URL}/public/images/${path}/${slide.name}`"
+					:src="`/public/images/${path}/${slide.name}`"
 				/>
 			</SwiperSlide>
 		</Swiper>
@@ -50,7 +48,7 @@ const setThumbsSwiper = (swiper: any) => {
 				<img
 					class="min-h-[100px] w-full object-fill"
 					alt="pic"
-					:src="`${runtimeConfig.public.BASE_URL}/public/images/${path}/${slide.name}`"
+					:src="`/public/images/${path}/${slide.name}`"
 				/>
 			</SwiperSlide>
 		</Swiper>
