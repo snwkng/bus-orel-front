@@ -12,15 +12,16 @@ export default defineNuxtConfig({
 	nitro: {
 		preset: 'node-server',
 		devProxy: {
-			// '/': 'http://localhost:3000',
-			'/api': { target: import.meta.env.BASE_URL, changeOrigin: true }
+			'/api/*': {
+				target: import.meta.env.BASE_URL,
+				changeOrigin: true
+			}
 		}
 	},
 
-	// routeRules: {
-	// 	'/': { proxy: 'localhost:3000' },
-	// 	'/api/**': { proxy: import.meta.env.BASE_URL }
-	// },
+	routeRules: {
+		'/api/**': { proxy: import.meta.env.BASE_URL }
+	},
 
 	vite: {
 		resolve: {
