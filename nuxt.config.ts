@@ -1,11 +1,12 @@
-import { resolve } from 'node:path'
+import { resolve } from 'node:path';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	app: {
 		head: {
 			charset: 'utf-8',
 			viewport: 'width=device-width, initial-scale=1',
-			title: 'Туристическое агентство "ГалаТур" Орёл'
+			title: 'Туристическое агентство "ГалаТур" Орёл',
+			htmlAttrs: { lang: 'ru' }
 		}
 	},
 
@@ -108,4 +109,4 @@ export default defineNuxtConfig({
 	},
 
 	compatibilityDate: '2024-09-25'
-})
+});
