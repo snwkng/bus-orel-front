@@ -6,7 +6,7 @@ module.exports = {
 			exec_mode: 'cluster',
 			instances: 'max',
 			script: './.output/server/index.mjs',
-			restart_delay: 3000
+			exp_backoff_restart_delay: 100
 		}
 	]
 }
