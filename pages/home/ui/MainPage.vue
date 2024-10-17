@@ -36,8 +36,14 @@ onMounted(() => {
 	<div>
 		<WidgetsSearchSection />
 		<div class="px-base py-8">
-			<WidgetsBusToursSection title="Автобусные туры к морю из Орла" class="pb-11" />
-			<WidgetsExcursionsSection title="Экскурсионные туры из Орла" class="pb-11" />
+			<WidgetsBusToursSection
+				title="Автобусные туры к морю из Орла"
+				class="pb-11"
+			/>
+			<WidgetsExcursionsSection
+				title="Экскурсионные туры из Орла"
+				class="pb-11"
+			/>
 		</div>
 		<div class="px-0 py-0 lg:px-20 lg:py-8">
 			<SharedLibModulesTheDelimir />
@@ -45,7 +51,10 @@ onMounted(() => {
 		<div class="px-0 py-0 lg:px-20 lg:py-8">
 			<WidgetsBusRentSection />
 		</div>
-		<section id="tour-selection" class="px-base py-8">
+		<section
+			id="tour-selection"
+			class="px-base py-8"
+		>
 			<h2 class="mb-6 text-2xl font-bold">
 				Отдых по вашим мечтам: выбор тура с нашим агентством
 			</h2>

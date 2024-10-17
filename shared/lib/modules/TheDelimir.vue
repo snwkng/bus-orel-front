@@ -1,12 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 <template>
-	<div
-		id="travelsoft-frame-container"
-		data-frame="e582525c57"
-	/>
-	<component
-		:is="'script'"
-		type="text/javascript"
-		src="https://delimir.ru/js/frame-loader.min.js"
+	<iframe
+		id="travelsoft-iframe"
+		title="frame"
+		src="https://delimir.ru/frame/?frame=e582525c57"
+		width="100%"
+		scrolling="no"
+		style="height: 967px"
 	/>
 </template>
