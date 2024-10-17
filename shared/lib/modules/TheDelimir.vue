@@ -3,10 +3,10 @@
 <template>
 	<iframe
 		id="travelsoft-iframe"
-		title="frame"
+		title="tours"
 		src="https://delimir.ru/frame/?frame=e582525c57"
-		width="100%"
+		sandbo="allow-same-origin"
 		scrolling="no"
-		style="height: 967px"
+		class="w-full h-[1100px] overflow-hidden"
 	/>
 </template>
