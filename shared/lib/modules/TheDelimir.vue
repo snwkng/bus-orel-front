@@ -1,12 +1,23 @@
 <script setup lang="ts">
+onMounted(() => {
+	// TODO: переделать
+	if (localStorage.getItem('reloaded')) {
+		localStorage.removeItem('reloaded');
+	} else {
+		localStorage.setItem('reloaded', '1');
+		// eslint-disable-next-line no-restricted-globals
+		location.reload();
+	}
+});
 </script>
 <template>
-	<iframe
-		id="travelsoft-iframe"
-		title="tours"
-		src="https://delimir.ru/frame/?frame=e582525c57"
-		sandbo="allow-same-origin"
-		scrolling="no"
-		class="w-full h-[1100px] overflow-hidden"
+	<div
+		id="travelsoft-frame-container"
+		data-frame="e582525c57"
+	/>
+	<component
+		:is="'script'"
+		type="text/javascript"
+		src="https://delimir.ru/js/frame-loader.min.js"
 	/>
 </template>
