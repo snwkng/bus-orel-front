@@ -35,16 +35,14 @@ onMounted(() => {
 <template>
 	<div>
 		<WidgetsSearchSection />
-		<div class="px-base py-8">
-			<WidgetsBusToursSection
-				title="Автобусные туры к морю из Орла"
-				class="pb-11"
-			/>
-			<WidgetsExcursionsSection
-				title="Экскурсионные туры из Орла"
-				class="pb-11"
-			/>
-		</div>
+		<WidgetsBusToursSection
+			classes="px-base pb-11 py-8"
+			title="Автобусные туры к морю из Орла"
+		/>
+		<WidgetsExcursionsSection
+			classes="px-base pb-11"
+			title="Экскурсионные туры из Орла"
+		/>
 		<div class="px-0 py-0 lg:px-20 lg:py-8">
 			<SharedLibModulesTheDelimir />
 		</div>

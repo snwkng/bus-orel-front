@@ -1,12 +1,19 @@
 <script setup lang="ts">
-onMounted(() => {
-	// TODO: переделать
+useHead({
+	script: [
+		{
+			type: 'text/javascript',
+			src: 'https://delimir.ru/js/frame-loader.min.js'
+		}
+	]
+});
+const router = useRouter();
+onBeforeMount(() => {
 	if (localStorage.getItem('reloaded')) {
 		localStorage.removeItem('reloaded');
 	} else {
 		localStorage.setItem('reloaded', '1');
-		// eslint-disable-next-line no-restricted-globals
-		location.reload();
+		router.go(0)
 	}
 });
 </script>
@@ -14,10 +21,5 @@ onMounted(() => {
 	<div
 		id="travelsoft-frame-container"
 		data-frame="e582525c57"
-	/>
-	<component
-		:is="'script'"
-		type="text/javascript"
-		src="https://delimir.ru/js/frame-loader.min.js"
 	/>
 </template>

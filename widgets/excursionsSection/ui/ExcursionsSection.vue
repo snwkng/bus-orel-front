@@ -3,11 +3,13 @@
 export interface Props {
 	title?: string;
 	emptyText?: string;
+	classes?: string;
 }
 
 withDefaults(defineProps<Props>(), {
 	title: '',
-	emptyText: ''
+	emptyText: '',
+	classes: ''
 });
 
 const route = useRoute();
@@ -30,7 +32,7 @@ watch(
 );
 </script>
 <template>
-	<section>
+	<section v-if="!title && !cardMapped.length && !emptyText" :class="classes">
 		<h2 v-if="title && cardMapped.length" class="mb-6 text-2xl font-bold">
 			{{ title }}
 		</h2>
