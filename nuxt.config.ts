@@ -71,14 +71,18 @@ export default defineNuxtConfig({
 	},
 
 	modules: [
-		// Simple usage
 		'@nuxtjs/eslint-module',
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
 		'nuxt-svgo',
 		'nuxt-swiper',
-		'dayjs-nuxt'
+		'dayjs-nuxt',
+		'nuxt-gtag'
 	],
+
+	gtag: {
+		id: 'G-F0HWMP4P6V'
+	},
 
 	pinia: {
 		storesDirs: [
