@@ -43,9 +43,7 @@ onMounted(() => {
 			classes="px-base pb-11"
 			title="Экскурсионные туры из Орла"
 		/>
-		<div class="px-0 py-0 lg:px-20 lg:py-8">
-			<SharedLibModulesTheDelimir />
-		</div>
+		<SharedLibModulesTheDelimir />
 		<div class="px-0 py-0 lg:px-20 lg:py-8">
 			<WidgetsBusRentSection />
 		</div>
