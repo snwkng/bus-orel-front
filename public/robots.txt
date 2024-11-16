@@ -1,4 +1,6 @@
-User-agent: YandexBot
+User-agent: *
+Host: bus-orel.ru
+Sitemap: https://bus-orel.ru/sitemap.xml
 Disallow: */css/
 Disallow: */js/
 Disallow: */docs/
@@ -14,25 +16,3 @@ Disallow: */images
 Disallow: */logs
 Disallow: */admin
 Disallow: */public
-Host: bus-orel.ru
-Sitemap: https://bus-orel.ru/sitemap.xml
-
-
-User-agent: Googlebot
-Disallow: */css/
-Disallow: */js/
-Disallow: */docs/
-Disallow: */lib/
-Disallow: */images/
-Disallow: */logs/
-Disallow: */admin/
-Disallow: */css
-Disallow: */js
-Disallow: */docs
-Disallow: */lib
-Disallow: */images
-Disallow: */logs
-Disallow: */admin
-Disallow: */public
-Host: bus-orel.ru
-Sitemap: https://bus-orel.ru/sitemap.xml
