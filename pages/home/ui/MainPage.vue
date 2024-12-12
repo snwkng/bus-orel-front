@@ -14,6 +14,10 @@ useHead({
 			name: 'keywords',
 			content:
 				'галатур, туристическое агентство, Орёл, аренда микроавтобусов, экскурсии, путешествия, отдых, аренда микроавтобусов с водителем, групповые поездки, индивидуальные туры'
+		},
+		{
+			name: 'yandex-verification',
+			content: '580bdd84c70ca5a3'
 		}
 	]
 });
@@ -43,9 +47,7 @@ onMounted(() => {
 			classes="px-base pb-11"
 			title="Экскурсионные туры из Орла"
 		/>
-		<div class="px-0 py-0 lg:px-20 lg:py-8">
-			<SharedLibModulesTheDelimir />
-		</div>
+		<SharedLibModulesTheDelimir />
 		<div class="px-0 py-0 lg:px-20 lg:py-8">
 			<WidgetsBusRentSection />
 		</div>

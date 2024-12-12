@@ -6,7 +6,15 @@ export default defineNuxtConfig({
 			charset: 'utf-8',
 			viewport: 'width=device-width, initial-scale=1',
 			title: 'Туристическое агентство "ГалаТур" Орёл',
-			htmlAttrs: { lang: 'ru' }
+			htmlAttrs: { lang: 'ru' },
+			script: [
+				{
+					type: 'text/javascript',
+					src: 'metrika.js',
+					async: true,
+					defer: true
+				}
+			]
 		}
 	},
 

@@ -30,13 +30,14 @@ watch(
 		await getExcursions(route.query);
 	}
 );
+
 </script>
 <template>
-	<section v-if="!title && !cardMapped.length && !emptyText" :class="classes">
+	<section v-if="cardMapped.length || emptyText" :class="classes">
 		<h2 v-if="title && cardMapped.length" class="mb-6 text-2xl font-bold">
 			{{ title }}
 		</h2>
-		<h2 v-else-if="emptyText" class="text-2xl font-bold text-center">
+		<h2 v-else-if="emptyText.length" class="text-2xl font-bold text-center">
 			{{ emptyText }}
 		</h2>
 		<SharedUiTheGrid>
