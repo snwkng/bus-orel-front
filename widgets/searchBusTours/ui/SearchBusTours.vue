@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 onMounted(() => {
 	window.addEventListener('scroll', handleScroll);
 });
@@ -17,7 +16,7 @@ const handleScroll = () => {
 <template>
 	<div
 		:class="[
-			'px-base md:sticky top-14 z-10 flex h-full py-5 md:py-0 md:h-60 w-full flex-col items-center justify-center gap-y-8 bg-deep-blue text-white',
+			'px-base top-14 z-10 flex h-full w-full flex-col items-center justify-center gap-y-8 bg-deep-blue py-5 text-white md:sticky md:h-60 md:py-0',
 			{ 'shadow-lg': scroll },
 		]"
 	>
