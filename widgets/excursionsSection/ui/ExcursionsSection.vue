@@ -37,7 +37,7 @@ watch(
 		<h2 v-if="title && cardMapped.length" class="mb-6 text-2xl font-bold">
 			{{ title }}
 		</h2>
-		<h2 v-else-if="emptyText.length" class="text-2xl font-bold text-center">
+		<h2 v-else-if="emptyText.length && !cardMapped.length" class="text-2xl font-bold text-center">
 			{{ emptyText }}
 		</h2>
 		<SharedUiTheGrid>
@@ -48,7 +48,7 @@ watch(
 				:title="item.title"
 				:subtitle="item.subtitle"
 				:price="item.price"
-				:images="item.images"
+				:image="item.image"
 				type="excursion"
 				image-path="excursions"
 			/>

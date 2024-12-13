@@ -5,5 +5,5 @@ export interface ICard {
 	title: string;
 	subtitle: string;
 	price: number;
-	images?: { name: string }[];
+	image: string;
 }

@@ -40,11 +40,11 @@ onMounted(() => {
 	<div>
 		<WidgetsSearchSection />
 		<WidgetsBusToursSection
-			classes="px-base pb-11 py-8"
+			classes="px-base pt-11 py-8"
 			title="Автобусные туры к морю из Орла"
 		/>
 		<WidgetsExcursionsSection
-			classes="px-base pb-11"
+			classes="px-base pt-11"
 			title="Экскурсионные туры из Орла"
 		/>
 		<SharedLibModulesTheDelimir />

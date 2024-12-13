@@ -4,7 +4,7 @@ export interface IExcursion {
 	_id: ObjectId;
 	name: string;
 	description: string[];
-	images: { name: string }[];
+	images: string[];
 	duration: number;
 	price: number;
 	documentName: string;

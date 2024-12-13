@@ -45,7 +45,7 @@ watch(
 				:title="item.title"
 				:subtitle="item.subtitle"
 				:price="item.price"
-				:images="item.images"
+				:image="item.image"
 				type="tour"
 				image-path="hotels"
 			/>
