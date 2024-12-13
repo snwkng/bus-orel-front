@@ -16,7 +16,7 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 				title: ex.name,
 				subtitle: ex.city,
 				price: ex.price,
-				image: ex.images[0] || ''
+				image: ex.images?.[0] || ''
 			}));
 		}
 	},
