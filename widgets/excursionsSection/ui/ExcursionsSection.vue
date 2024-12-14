@@ -49,6 +49,7 @@ watch(
 				:subtitle="item.subtitle"
 				:price="item.price"
 				:image="item.image"
+				:date=" item?.date ? new Date(item.date) : null"
 				type="excursion"
 				image-path="excursions"
 			/>

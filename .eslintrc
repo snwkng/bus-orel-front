@@ -34,7 +34,7 @@
 				"ignores": []
 			}
 		],
-		"linebreak-style": ["error", "windows"],
+		"linebreak-style": ["error", "unix"],
 		"semi": "off",
 		"import/extensions": [
 			"error",

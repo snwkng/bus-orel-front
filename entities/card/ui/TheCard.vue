@@ -5,8 +5,8 @@ import type { ICard } from '../model/types';
 const { BASE_URL } = useRuntimeConfig().public;
 
 export interface Props extends ICard {
-	type: string;
-	image: string
+	type: 'excursion' | 'tour';
+	date?: Date | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -14,7 +14,8 @@ const props = withDefaults(defineProps<Props>(), {
 	title: 'Отель Атлас',
 	subtitle: 'Краснодарский край, Геленджик',
 	price: 14000,
-	image: ''
+	image: '',
+	date: null
 });
 const link = computed(() => (props.type === 'excursion'
 	? { name: 'excursions/excursion', params: { id: props.id } }
@@ -74,6 +75,9 @@ fetchImage();
 				</h3>
 				<div class="font-normal text-slate-500">
 					{{ subtitle }}
+				</div>
+				<div v-if="type === 'excursion' && date" class="font-normal text-slate-500">
+					{{ $dayjs(date).format('DD.MM.YYYY') }}
 				</div>
 				<div class="font-normal text-slate-500">
 					от

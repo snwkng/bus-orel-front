@@ -7,3 +7,7 @@ export interface ICard {
 	price: number;
 	image: string;
 }
+
+export interface IExcursionCard extends ICard {
+	date: Date | null,
+}

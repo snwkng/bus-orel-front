@@ -26,34 +26,14 @@ const accordionItems = computed(() => store.excursion.description.map((x: string
 				:images="store.excursion.images"
 				path="excursions"
 			/>
-			<div
-				class="flex w-full flex-col flex-wrap justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-100 px-5 py-6 text-slate-600 sm:flex-row sm:items-center"
-			>
-				<div class="flex items-center gap-x-1">
-					<div><SharedUiIconsLocationIcon width="32px" height="32px" /></div>
-					{{ store.excursion.city }}
-				</div>
-				<div class="flex items-center gap-x-1">
-					<div><SharedUiIconsTimeIcon width="32px" height="32px" /></div>
-					{{ store.excursion.duration }}
-				</div>
-				<div class="flex items-center gap-x-1">
-					<div><SharedUiIconsDateIcon width="32px" height="32px" /></div>
-					{{ $dayjs(store.excursion.excursionStart).format('DD.MM.YYYY') }}
-				</div>
-				<div class="flex items-center gap-x-1" title="Стоимость">
-					<div><SharedUiIconsMoneyIcon width="32px" height="32px" /></div>
-					от {{ store.excursion.price }} ₽
-				</div>
-				<div class="flex items-center gap-x-1">
-					<div><SharedUiIconsCityIcon width="32px" height="32px" /></div>
-					{{ store.excursion.hotelName }}
-				</div>
-				<div class="flex items-center gap-x-1" title="Скачать прайс">
-					<div><SharedUiIconsFileIcon width="32px" height="32px" /></div>
-					{{ store.excursion.documentName }}
-				</div>
-			</div>
+			<SharedUiIconsInfoExcursionIconsBar
+				:city="store.excursion.city"
+				:duration="store.excursion.duration"
+				:excursion-start="new Date(store.excursion?.excursionStart)"
+				:price="store.excursion.price"
+				:hotel-name="store.excursion.hotelName"
+				:document-name="store.excursion.documentName"
+			/>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold">
 					Программа тура

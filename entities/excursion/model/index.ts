@@ -1,4 +1,4 @@
-import type { ICard } from '@/entities/card/model/types';
+import type { IExcursionCard } from '@/entities/card/model/types';
 import type { IExcursion } from './types';
 
 const { BASE_URL } = useRuntimeConfig().public
@@ -9,14 +9,15 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 		cityList: [] as SelectItem[]
 	}),
 	getters: {
-		cardMapped (state): ICard[] {
+		cardMapped (state): IExcursionCard[] {
 			return state.excursions.map((ex: IExcursion) => ({
 				// eslint-disable-next-line no-underscore-dangle
 				id: ex._id,
 				title: ex.name,
 				subtitle: ex.city,
 				price: ex.price,
-				image: ex.images?.[0] || ''
+				image: ex.images?.[0] || '',
+				date: ex?.excursionStart || null
 			}));
 		}
 	},
