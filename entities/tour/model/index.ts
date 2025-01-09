@@ -17,7 +17,7 @@ export const useTourStore = defineStore('useTourStore', {
 				title: tour.name,
 				subtitle: tour.city,
 				price: tour.price,
-				images: tour.images
+				image: tour?.images?.[0]
 			}))
 		}
 	},

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 useHead({
+	title: 'Экскурсионные туры из Орла',
 	meta: [
 		{
 			name: 'description',

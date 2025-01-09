@@ -6,7 +6,7 @@ export interface ITour {
 	type: string;
 	locationDescription: string;
 	rooms: { type: string; numberOfSeats: number; inRoom: string }[];
-	images: { name: string }[];
+	images: string[];
 	food: string;
 	beach: string;
 	distanceToBeach: string;

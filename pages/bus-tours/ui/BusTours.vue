@@ -1,5 +1,6 @@
 <script setup lang="ts">
 useHead({
+	title: 'Автобусные туры к морю из Орла',
 	meta: [
 		{
 			name: 'description',
