@@ -12,7 +12,7 @@ defineProps<Props>();
 </script>
 <template>
 	<div
-		class="flex w-full flex-col flex-wrap justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-100 px-5 py-6 text-slate-600 sm:flex-row sm:items-center"
+		class="flex w-full flex-col flex-wrap justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-200 px-5 py-6 text-slate-600 sm:flex-row sm:items-center"
 	>
 		<div v-if="city" class="flex items-center gap-x-1">
 			<div>
@@ -21,7 +21,7 @@ defineProps<Props>();
 					height="32px"
 				/>
 			</div>
-			{{ city }}
+			<strong>{{ city }}</strong>
 		</div>
 		<div v-if="duration" class="flex items-center gap-x-1">
 			<div>
@@ -30,7 +30,7 @@ defineProps<Props>();
 					height="32px"
 				/>
 			</div>
-			{{ duration }}
+			<strong>{{ duration }}</strong>
 		</div>
 		<div v-if="excursionStart" class="flex items-center gap-x-1">
 			<div>
@@ -39,7 +39,7 @@ defineProps<Props>();
 					height="32px"
 				/>
 			</div>
-			{{ $dayjs(excursionStart).format('DD.MM.YYYY') }}
+			<strong>{{ $dayjs(excursionStart).format('DD.MM.YYYY') }}</strong>
 		</div>
 		<div
 			v-if="price"
@@ -52,7 +52,7 @@ defineProps<Props>();
 					height="32px"
 				/>
 			</div>
-			от {{ price }} ₽
+			<strong>от {{ price }}₽</strong>
 		</div>
 		<div v-if="hotelName" class="flex items-center gap-x-1">
 			<div>
@@ -61,7 +61,7 @@ defineProps<Props>();
 					height="32px"
 				/>
 			</div>
-			{{ hotelName }}
+			<strong>{{ hotelName }}</strong>
 		</div>
 		<div
 			v-if="documentName"
