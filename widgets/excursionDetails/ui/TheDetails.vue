@@ -3,6 +3,22 @@ const route = useRoute();
 const excursionId = route.params.id as string;
 const store = useExcursionStore();
 
+useHead({
+	title: `Эскурсионный тур в ${store.excursion.city}, ${store.excursion.name}`,
+	meta: [
+		{
+			name: 'description',
+			content:
+				`Экскурсионный тур в ${store.excursion.city} из Орла.`
+		},
+		{
+			name: 'keywords',
+			content:
+				'экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии'
+		}
+	]
+});
+
 await useAsyncData(
 	'excursion',
 	(): Promise<boolean> => store.getExcursion(excursionId).then(() => true)
