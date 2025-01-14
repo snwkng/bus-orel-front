@@ -35,7 +35,7 @@ const toggleItem = (title: string) => {
 				:class="
 					activeItem?.title === item.title
 						? 'text-deep-orange'
-						: 'text-slate-900'
+						: 'dark:text-slate-300 text-slate-900'
 				"
 				@click="toggleItem(item.title)"
 			>
@@ -47,7 +47,7 @@ const toggleItem = (title: string) => {
 					:class="
 						activeItem?.title === item.title
 							? 'rotate-180 text-deep-orange'
-							: 'text-slate-900'
+							: 'dark:text-slate-300 text-slate-900'
 					"
 					width="22"
 					height="22"

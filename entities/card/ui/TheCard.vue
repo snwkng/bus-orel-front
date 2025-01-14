@@ -55,7 +55,7 @@ fetchImage();
 	>
 		<div class="w-full">
 			<div
-				class="mb-3 rounded-xl bg-cover brightness-100 w-full bg-slate-100"
+				class="mb-3 rounded-xl bg-cover brightness-100 w-full dark:bg-gray-700 bg-slate-100"
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
 			>
 				<div v-if="!previewImage" class="flex items-center justify-center w-full h-full">
@@ -73,15 +73,15 @@ fetchImage();
 				<h3 class="font-semibold">
 					{{ title }}
 				</h3>
-				<div class="font-normal text-slate-500">
+				<div class="font-normal dark:text-slate-300 text-slate-500">
 					{{ subtitle }}
 				</div>
-				<div v-if="type === 'excursion' && date" class="font-normal text-slate-500">
+				<div v-if="type === 'excursion' && date" class="font-normal dark:text-slate-300 text-slate-500">
 					{{ $dayjs(date).format('DD.MM.YYYY') }}
 				</div>
-				<div class="font-normal text-slate-500">
+				<div class="font-normal dark:text-slate-300 text-slate-500">
 					от
-					<strong class="font-semibold text-black">{{ price }} &#8381;</strong>
+					<strong class="font-semibold dark:text-white text-black">{{ price }} &#8381;</strong>
 					за поездку
 				</div>
 			</div>

@@ -19,27 +19,27 @@ watch(
 	>
 		<ul class="list-none text-base">
 			<li>
-				<router-link to="/bus-tours" class="list-item">
+				<RouterLink to="/bus-tours" class="list-item">
 					Автобусные туры к морю
-				</router-link>
+				</RouterLink>
 			</li>
 			<li>
-				<router-link to="/excursions" class="list-item">
+				<RouterLink to="/excursions" class="list-item">
 					Экскурсионные туры
-				</router-link>
+				</RouterLink>
 			</li>
 			<li>
-				<router-link
+				<RouterLink
 					:to="{ name: 'home', hash: '#tour-selection' }"
 					class="list-item"
 				>
 					Подбор тура
-				</router-link>
+				</RouterLink>
 			</li>
 			<li>
-				<router-link :to="{ hash: '#contacts' }" class="list-item">
+				<RouterLink :to="{ hash: '#contacts' }" class="list-item">
 					Контакты
-				</router-link>
+				</RouterLink>
 			</li>
 		</ul>
 	</nav>
