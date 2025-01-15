@@ -1,4 +1,21 @@
 <script setup lang="ts">
+
+useHead({
+	title: 'Галатур Орел - Памятка туристам',
+	meta: [
+		{
+			name: 'description',
+			content:
+				'Галатур - Памятка туристам отправляющимся на отдых или экскурсию на автобусе'
+		},
+		{
+			name: 'keywords',
+			content:
+				'Галатур, галатур орел, памятка туристам'
+		}
+	]
+});
+
 const accordionItems = ref([
 	{
 		title: 'Автобусный тур',
