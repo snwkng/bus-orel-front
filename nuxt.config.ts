@@ -52,13 +52,13 @@ export default defineNuxtConfig({
 			prefix: 'Widgets'
 		},
 		{
-			path: '~/shared',
+			path: '~/src/shared',
 			prefix: 'Shared'
 		}
 	],
 	imports: {
 		dirs: [
-			'shared/**/*.ts',
+			'src/shared/**/*.ts',
 			'features/**/*.ts',
 			'widgets/**/*.ts',
 			'entities/**/*.ts'
@@ -67,7 +67,7 @@ export default defineNuxtConfig({
 	dir: {
 		layouts: 'app/layouts',
 		assets: 'app/assets',
-		plugins: 'shared/lib/plugins'
+		plugins: 'src/shared/lib/plugins'
 	},
 
 	devtools: { enabled: true },

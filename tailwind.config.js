@@ -7,7 +7,7 @@ module.exports = {
 		'./features/**/*.{vue,js,ts}',
 		'./pages/**/*.{vue,js,ts}',
 		'./public/**/*.{vue,js,ts}',
-		'./shared/**/*.{vue,js,ts}',
+		'./src/shared/**/*.{vue,js,ts}',
 		'./widgets/**/*.{vue,js,ts}',
 		'./app.config.{js,ts}'
 	],

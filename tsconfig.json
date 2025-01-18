@@ -2,6 +2,6 @@
 	// https://nuxt.com/docs/guide/concepts/typescript
 	"extends": "./.nuxt/tsconfig.json",
 	"compilerOptions": {
-		"typeRoots": ["./shared/lib/types/common.d.ts"]
+		"typeRoots": ["src/shared/lib/types/common.d.ts"]
 	}
 }
