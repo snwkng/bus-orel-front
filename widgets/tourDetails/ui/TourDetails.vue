@@ -1,28 +1,17 @@
 <script setup lang="ts">
 const store = useTourStore();
 
-useHead({
-	title: `Автобусный тур в ${store.tour.city}, ${store.tour.type} ${store.tour.name}`,
-	meta: [
-		{
-			name: 'description',
-			content:
-				`Автобусный тур в ${store.tour.city} из Орла.`
-		},
-		{
-			name: 'keywords',
-			content:
-				'автобусные туры к морю, поездки на море, автобусные поездки, недорогие туры на море из Орла, автобусом к морю, автобусные туры на море, отдых на море автобусом'
-		}
-	]
-});
-
 const route = useRoute();
 const tourId = route.params.id as string;
 
 await useAsyncData('tour', (): Promise<boolean> => store.getTour(tourId).then(() => true));
 </script>
 <template>
+	<Head>
+		<Title>{{ `Автобусный тур в ${store.tour.city}, ${store.tour.type} ${store.tour.name}` }}</Title>
+		<Meta name="description" :content="`Автобусный тур в ${store.tour.city} из Орла.`" />
+		<Meta name="keywords" content="автобусные туры к морю, поездки на море, автобусные поездки, недорогие туры на море из Орла, автобусом к морю, автобусные туры на море, отдых на море автобусом" />
+	</Head>
 	<div class="w-full">
 		<div class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]">
 			<div class="bg-slate-300 px-5 py-3 rounded-xl text-red-700 font-semibold">
