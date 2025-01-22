@@ -45,7 +45,7 @@ function fetchImage () {
 fetchImage();
 </script>
 <template>
-	<div class="pt-5">
+	<div>
 		<Swiper
 			v-if="previewImages.length"
 			:class="['w-full', previewImages.length > 1 ? 'rounded-t-xl' : 'rounded-xl']"
