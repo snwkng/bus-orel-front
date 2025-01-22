@@ -79,10 +79,10 @@ onMounted(() => {
 			</div>
 		</Transition>
 		<div
-			class="relative flex min-h-14 w-full items-center bg-white px-4 py-2 text-slate-800 shadow-form focus:ring"
+			class="relative flex min-h-14 min-w-[200px] w-full items-center bg-white pl-4 pr-8 py-2 text-slate-800 shadow-form focus:ring"
 			:class="[classes, { 'ring-2 ring-deep-orange': showSelect }]"
 		>
-			<span v-if="value.name">{{ value.name }}</span>
+			<span v-if="value.name" :title="value.name" class="w-[200px] overflow-hidden text-nowrap text-ellipsis">{{ value.name }}</span>
 			<span v-else-if="!showSelect" class="text-slate-400">{{ label }}</span>
 			<SharedUiIconsArrowButton
 				width="24px"
@@ -94,7 +94,7 @@ onMounted(() => {
 				]"
 			/>
 			<div
-				class="absolute right-0 top-[60px] z-10 w-full flex-col overflow-hidden rounded-b-2xl bg-inherit shadow-2xl"
+				class="absolute right-0 top-[60px] z-10 w-full flex-col overflow-hidden rounded-b-2xl bg-inherit shadow-2xl max-h-[200px] overflow-y-auto"
 				:class="[showSelect ? 'flex' : 'hidden']"
 			>
 				<div
