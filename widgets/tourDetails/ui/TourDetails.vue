@@ -40,7 +40,7 @@ await useAsyncData('tour', (): Promise<boolean> => store.getTour(tourId).then(()
 				</h3>
 				<div>{{ store.tour.locationDescription }}</div>
 			</div>
-			<hr />
+			<!-- <hr /> -->
 			<!-- <div class="">
 				<h3 class="mb-2 text-xl font-semibold">
 					Размещение
