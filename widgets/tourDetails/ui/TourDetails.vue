@@ -41,7 +41,7 @@ await useAsyncData('tour', (): Promise<boolean> => store.getTour(tourId).then(()
 				<div>{{ store.tour.locationDescription }}</div>
 			</div>
 			<hr />
-			<div class="">
+			<!-- <div class="">
 				<h3 class="mb-2 text-xl font-semibold">
 					Размещение
 				</h3>
@@ -51,7 +51,7 @@ await useAsyncData('tour', (): Promise<boolean> => store.getTour(tourId).then(()
 						{{ room.inRoom }}
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<hr />
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold">
