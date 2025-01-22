@@ -18,14 +18,14 @@ const showSearch = (search: goToSearch) => {
 
 <template>
 	<div ref="mainBtnGroup" class="flex flex-col sm:flex-row items-center justify-start gap-1 py-3">
-		<div class="flex gap-1 mb-2 sm:mb-0">
+		<div class="flex gap-2 mb-2 sm:mb-0">
 			<button
 				type="button"
 				class="rounded-xl px-3 py-2 transition-all lg:px-4 lg:py-2"
 				:class="[
 					searchSection === 'busTours'
 						? 'bg-white text-slate-900'
-						: 'bg-blue-900/20 text-white hover:bg-blue-900/35',
+						: 'dark:bg-gray-600/20 bg-blue-900/20 text-white dark:hover:bg-gray-600/35 hover:bg-blue-900/35',
 				]"
 				@click="showSearch('busTours')"
 			>
@@ -37,7 +37,7 @@ const showSearch = (search: goToSearch) => {
 				:class="[
 					searchSection === 'excursions'
 						? 'bg-white text-slate-900'
-						: 'bg-blue-900/20 text-white hover:bg-blue-900/35',
+						: 'dark:bg-gray-600/20 bg-blue-900/20 text-white dark:hover:bg-gray-600/35 hover:bg-blue-900/35',
 				]"
 				@click="showSearch('excursions')"
 			>

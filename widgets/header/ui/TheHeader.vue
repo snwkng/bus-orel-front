@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 export interface Props {
 	isSingle?: boolean;
 }
@@ -18,7 +17,7 @@ onMounted(() => {
 
 onUnmounted(() => {
 	window.removeEventListener('scroll', handleScroll);
-	mediaQuery.value?.removeEventListener('change', onChange)
+	mediaQuery.value?.removeEventListener('change', onChange);
 });
 
 const route = useRoute();
@@ -34,7 +33,7 @@ const handleScroll = () => {
 
 const onChange = () => {
 	isDesktop.value = mediaQuery.value?.matches ?? false;
-}
+};
 const close = (closeNav: boolean) => {
 	toggle.value = closeNav;
 };
@@ -43,7 +42,7 @@ const close = (closeNav: boolean) => {
 <template>
 	<header
 		:class="[
-			'font-large fixed z-20 h-14 w-full bg-deep-blue',
+			'font-large fixed z-20 h-14 w-full bg-deep-blue dark:bg-gray-800',
 			{ 'shadow-lg': scroll },
 		]"
 	>
@@ -61,18 +60,28 @@ const close = (closeNav: boolean) => {
 			<div v-if="scroll && isDesktop">
 				<FeaturesMainBtnGroup v-if="route.name === 'home'" />
 			</div>
-			<div class="relative">
-				<button type="button" class="btn-hover" @click="toggle = !toggle">
-					<i-menu
-						filled
-						:font-controlled="false"
-						class="h-6 w-6 fill-white"
-						alt="menu"
-					/>
-				</button>
-				<Transition name="dropdown-fade">
-					<FeaturesNavbar v-if="toggle" @close-nav="close" />
-				</Transition>
+			<div class="flex items-center gap-x-3">
+				<SharedUiFormsThemeSwitcher />
+				<div class="relative">
+					<button
+						type="button"
+						class="btn-hover"
+						@click="toggle = !toggle"
+					>
+						<i-menu
+							filled
+							:font-controlled="false"
+							class="h-6 w-6 fill-white"
+							alt="menu"
+						/>
+					</button>
+					<Transition name="dropdown-fade">
+						<FeaturesNavbar
+							v-if="toggle"
+							@close-nav="close"
+						/>
+					</Transition>
+				</div>
 			</div>
 		</div>
 	</header>

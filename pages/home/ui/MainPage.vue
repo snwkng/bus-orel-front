@@ -48,12 +48,12 @@ onMounted(() => {
 			title="Экскурсионные туры из Орла"
 		/>
 		<SharedLibModulesTheDelimir />
-		<div class="px-0 py-0 lg:px-20 lg:py-8">
-			<WidgetsBusRentSection />
-		</div>
+
+		<WidgetsBusRentSection />
+
 		<section
 			id="tour-selection"
-			class="px-base py-8"
+			class="px-base py-8 dark:bg-gray-800 dark:text-white"
 		>
 			<h2 class="mb-6 text-2xl font-bold">
 				Отдых по вашим мечтам: выбор тура с нашим агентством

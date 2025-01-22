@@ -69,9 +69,11 @@ const accordionItems = ref([
 ]);
 </script>
 <template>
-	<section
-		class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
-	>
-		<SharedUiAccordionsTheAccordion :items="accordionItems" />
-	</section>
+	<div class="dark:bg-gray-800 dark:text-white">
+		<section
+			class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
+		>
+			<SharedUiAccordionsTheAccordion :items="accordionItems" />
+		</section>
+	</div>
 </template>

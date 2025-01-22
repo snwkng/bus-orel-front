@@ -79,11 +79,11 @@ onMounted(() => {
 			</div>
 		</Transition>
 		<div
-			class="relative flex min-h-14 min-w-[200px] w-full items-center bg-white pl-4 pr-8 py-2 text-slate-800 shadow-form focus:ring"
+			class="relative flex min-h-14 min-w-[200px] w-full items-center dark:bg-gray-600 bg-white px-4 py-2 dark:text-slate-300 text-slate-800 shadow-form focus:ring"
 			:class="[classes, { 'ring-2 ring-deep-orange': showSelect }]"
 		>
-			<span v-if="value.name" :title="value.name" class="w-[200px] overflow-hidden text-nowrap text-ellipsis">{{ value.name }}</span>
-			<span v-else-if="!showSelect" class="text-slate-400">{{ label }}</span>
+			<span v-if="value.name">{{ value.name }}</span>
+			<span v-else-if="!showSelect" class="dark:text-slate-300 text-slate-400">{{ label }}</span>
 			<SharedUiIconsArrowButton
 				width="24px"
 				height="24px"
@@ -100,11 +100,11 @@ onMounted(() => {
 				<div
 					v-for="item in list"
 					:key="item?.id"
-					class="cursor-pointer px-2 py-4 hover:bg-slate-200"
+					class="cursor-pointer px-2 py-4 dark:hover:bg-slate-700 hover:bg-slate-200"
 					@click="value = item"
 					@keydown.enter="value = item"
 				>
-					<span class="text-slate-800">{{ item.name }}</span>
+					<span class="dark:text-slate-400 text-slate-800">{{ item.name }}</span>
 				</div>
 			</div>
 		</div>

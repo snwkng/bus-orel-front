@@ -17,7 +17,11 @@ export default defineNuxtConfig({
 			]
 		}
 	},
-
+	colorMode: {
+		classSuffix: '',
+		preference: 'light',
+		fallback: 'light'
+	},
 	nitro: {
 		preset: 'node-server',
 		devProxy: {
@@ -85,7 +89,8 @@ export default defineNuxtConfig({
 		'nuxt-svgo',
 		'nuxt-swiper',
 		'dayjs-nuxt',
-		'nuxt-gtag'
+		'nuxt-gtag',
+		'@nuxtjs/color-mode'
 	],
 
 	gtag: {
