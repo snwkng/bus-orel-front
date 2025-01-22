@@ -79,10 +79,10 @@ onMounted(() => {
 			</div>
 		</Transition>
 		<div
-			class="relative flex min-h-14 min-w-[200px] w-full items-center dark:bg-gray-600 bg-white px-4 py-2 dark:text-slate-300 text-slate-800 shadow-form focus:ring"
+			class="relative flex min-h-14 min-w-[200px] w-full items-center dark:bg-gray-600 bg-white pl-4 pr-8 py-2 dark:text-slate-300 text-slate-800 shadow-form focus:ring"
 			:class="[classes, { 'ring-2 ring-deep-orange': showSelect }]"
 		>
-			<span v-if="value.name">{{ value.name }}</span>
+			<span v-if="value.name" :title="value.name" class="w-[200px] overflow-hidden text-nowrap text-ellipsis">{{ value.name }}</span>
 			<span v-else-if="!showSelect" class="dark:text-slate-300 text-slate-400">{{ label }}</span>
 			<SharedUiIconsArrowButton
 				width="24px"
