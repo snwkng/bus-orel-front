@@ -1,4 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+	title: 'Галатур Орел - О компании',
+	meta: [
+		{
+			name: 'description',
+			content:
+				'Галатур - Туристическое агентство в Орле'
+		},
+		{
+			name: 'keywords',
+			content:
+				'Галатур, галатур орел, туристическое агентство'
+		}
+	]
+});
+</script>
 <template>
 	<div class="dark:bg-gray-800 dark:text-white">
 		<section

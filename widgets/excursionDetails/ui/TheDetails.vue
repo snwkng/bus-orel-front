@@ -3,35 +3,34 @@ const route = useRoute();
 const excursionId = route.params.id as string;
 const store = useExcursionStore();
 
-useHead({
-	title: `Эскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')}, ${store.excursion.name}`,
-	meta: [
-		{
-			name: 'description',
-			content:
-				`Экскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')} из Орла.`
-		},
-		{
-			name: 'keywords',
-			content:
-				'экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии'
-		}
-	]
-});
-
 await useAsyncData(
 	'excursion',
 	(): Promise<boolean> => store.getExcursion(excursionId).then(() => true)
 );
 
 // eslint-disable-next-line vue/max-len
-const accordionItems = computed(() => store.excursion.description.map((x: string, index: number) => ({
-	title: `День ${index + 1}`,
-	content: x
-})));
+const accordionItems = computed(() =>
+	store.excursion.description.map((x: string, index: number) => ({
+		title: `День ${index + 1}`,
+		content: x
+	}))
+);
 </script>
 <template>
 	<div class="w-full">
+		<Head>
+			<Title>{{
+				`Эскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')}, ${store.excursion.name}`
+			}}</Title>
+			<Meta
+				name="description"
+				:content="`Экскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')} из Орла.`"
+			/>
+			<Meta
+				name="keywords"
+				content="экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии"
+			/>
+		</Head>
 		<div class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]">
 			<div class="flex items-center justify-between">
 				<h1 class="mb-2 text-4xl font-bold">
@@ -43,7 +42,9 @@ const accordionItems = computed(() => store.excursion.description.map((x: string
 				path="excursions"
 			/>
 			<SharedUiIconsInfoExcursionIconsBar
-				:cities="store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')"
+				:cities="
+					store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')
+				"
 				:duration="store.excursion.duration"
 				:excursion-start="new Date(store.excursion?.excursionStart)"
 				:price="store.excursion.price"
@@ -51,15 +52,11 @@ const accordionItems = computed(() => store.excursion.description.map((x: string
 				:document-name="store.excursion.documentName"
 			/>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">
-					Программа тура
-				</h3>
+				<h3 class="mb-2 text-xl font-semibold">Программа тура</h3>
 				<SharedUiAccordionsTheAccordion :items="accordionItems" />
 			</div>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">
-					В стоимость входит
-				</h3>
+				<h3 class="mb-2 text-xl font-semibold">В стоимость входит</h3>
 				<div class="flex flex-col gap-y-3">
 					<div
 						v-for="item in store.excursion.thePriceIncludes"
@@ -67,7 +64,10 @@ const accordionItems = computed(() => store.excursion.description.map((x: string
 						class="flex w-full flex-row items-start gap-x-2"
 					>
 						<div>
-							<SharedUiIconsCheckIcon width="24px" height="24px" />
+							<SharedUiIconsCheckIcon
+								width="24px"
+								height="24px"
+							/>
 						</div>
 						{{ item }}
 					</div>
