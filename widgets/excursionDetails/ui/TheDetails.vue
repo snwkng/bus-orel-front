@@ -8,9 +8,8 @@ await useAsyncData(
 	(): Promise<boolean> => store.getExcursion(excursionId).then(() => true)
 );
 
-// eslint-disable-next-line vue/max-len
-const accordionItems = computed(() =>
-	store.excursion.description.map((x: string, index: number) => ({
+const accordionItems = computed(
+	() => store.excursion.description.map((x: string, index: number) => ({
 		title: `День ${index + 1}`,
 		content: x
 	}))
@@ -19,9 +18,11 @@ const accordionItems = computed(() =>
 <template>
 	<div class="w-full">
 		<Head>
-			<Title>{{
-				`Эскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')}, ${store.excursion.name}`
-			}}</Title>
+			<Title>
+				{{
+					`Эскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')}, ${store.excursion.name}`
+				}}
+			</Title>
 			<Meta
 				name="description"
 				:content="`Экскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')} из Орла.`"
@@ -52,11 +53,15 @@ const accordionItems = computed(() =>
 				:document-name="store.excursion.documentName"
 			/>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">Программа тура</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					Программа тура
+				</h3>
 				<SharedUiAccordionsTheAccordion :items="accordionItems" />
 			</div>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">В стоимость входит</h3>
+				<h3 class="mb-2 text-xl font-semibold">
+					В стоимость входит
+				</h3>
 				<div class="flex flex-col gap-y-3">
 					<div
 						v-for="item in store.excursion.thePriceIncludes"
