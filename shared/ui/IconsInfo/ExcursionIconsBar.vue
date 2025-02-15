@@ -1,6 +1,6 @@
 <script setup lang="ts">
 export interface Props {
-	city?: string;
+	cities?: string;
 	duration?: number;
 	excursionStart?: Date;
 	price?: number;
@@ -14,14 +14,14 @@ defineProps<Props>();
 	<div
 		class="flex w-full flex-col flex-wrap justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-200 px-5 py-6 text-slate-600 sm:flex-row sm:items-center"
 	>
-		<div v-if="city" class="flex items-center gap-x-1">
+		<div v-if="cities" class="flex items-center gap-x-1">
 			<div>
 				<SharedUiIconsLocationIcon
 					width="32px"
 					height="32px"
 				/>
 			</div>
-			<strong>{{ city }}</strong>
+			<strong>{{ cities }}</strong>
 		</div>
 		<div v-if="duration" class="flex items-center gap-x-1">
 			<div>

@@ -4,12 +4,12 @@ const excursionId = route.params.id as string;
 const store = useExcursionStore();
 
 useHead({
-	title: `Эскурсионный тур в ${store.excursion.city}, ${store.excursion.name}`,
+	title: `Эскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')}, ${store.excursion.name}`,
 	meta: [
 		{
 			name: 'description',
 			content:
-				`Экскурсионный тур в ${store.excursion.city} из Орла.`
+				`Экскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')} из Орла.`
 		},
 		{
 			name: 'keywords',
@@ -43,7 +43,7 @@ const accordionItems = computed(() => store.excursion.description.map((x: string
 				path="excursions"
 			/>
 			<SharedUiIconsInfoExcursionIconsBar
-				:city="store.excursion.city"
+				:cities="store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')"
 				:duration="store.excursion.duration"
 				:excursion-start="new Date(store.excursion?.excursionStart)"
 				:price="store.excursion.price"

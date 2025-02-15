@@ -14,7 +14,7 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 				// eslint-disable-next-line no-underscore-dangle
 				id: ex._id,
 				title: ex.name,
-				subtitle: ex.city,
+				subtitle: ex.cities?.map((x: SelectItem) => x.name).join(', '),
 				price: ex.price,
 				image: ex.images?.[0] || '',
 				date: ex?.excursionStart || null

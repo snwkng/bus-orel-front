@@ -10,7 +10,7 @@ export interface IExcursion {
 	documentName: string;
 	checkInConditions: string;
 	excursionStart: Date;
-	city: string;
+	cities: SelectItem[];
 	hotelName: string;
 	thePriceIncludes: string[];
 }
