@@ -61,7 +61,7 @@ const close = (closeNav: boolean) => {
 				<FeaturesMainBtnGroup v-if="route.name === 'home'" />
 			</div>
 			<div class="flex items-center gap-x-3">
-				<!-- <SharedUiFormsThemeSwitcher /> -->
+				<SharedUiFormsThemeSwitcher />
 				<div class="relative">
 					<button
 						type="button"

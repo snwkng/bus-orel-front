@@ -44,10 +44,9 @@ onMounted(() => {
 			title="Автобусные туры к морю из Орла"
 		/>
 		<WidgetsExcursionsSection
-			classes="px-base pt-11"
+			classes="px-base pt-11 pb-11"
 			title="Экскурсионные туры из Орла"
 		/>
-		<SharedLibModulesTheDelimir />
 
 		<WidgetsBusRentSection />
 

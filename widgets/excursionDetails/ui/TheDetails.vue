@@ -8,18 +8,29 @@ await useAsyncData(
 	(): Promise<boolean> => store.getExcursion(excursionId).then(() => true)
 );
 
-// eslint-disable-next-line vue/max-len
-const accordionItems = computed(() => store.excursion.description.map((x: string, index: number) => ({
-	title: `День ${index + 1}`,
-	content: x
-})));
+const accordionItems = computed(
+	() => store.excursion.description.map((x: string, index: number) => ({
+		title: `День ${index + 1}`,
+		content: x
+	}))
+);
 </script>
 <template>
 	<div class="w-full">
 		<Head>
-			<Title>{{ `Эскурсионный тур в ${store.excursion.city}, ${store.excursion.name}` }}</Title>
-			<Meta name="description" :content="`Экскурсионный тур в ${store.excursion.city} из Орла.`" />
-			<Meta name="keywords" content="экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии" />
+			<Title>
+				{{
+					`Эскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')}, ${store.excursion.name}`
+				}}
+			</Title>
+			<Meta
+				name="description"
+				:content="`Экскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')} из Орла.`"
+			/>
+			<Meta
+				name="keywords"
+				content="экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии"
+			/>
 		</Head>
 		<div class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]">
 			<div class="flex items-center justify-between">
@@ -32,7 +43,9 @@ const accordionItems = computed(() => store.excursion.description.map((x: string
 				path="excursions"
 			/>
 			<SharedUiIconsInfoExcursionIconsBar
-				:city="store.excursion.city"
+				:cities="
+					store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')
+				"
 				:duration="store.excursion.duration"
 				:excursion-start="new Date(store.excursion?.excursionStart)"
 				:price="store.excursion.price"
@@ -56,7 +69,10 @@ const accordionItems = computed(() => store.excursion.description.map((x: string
 						class="flex w-full flex-row items-start gap-x-2"
 					>
 						<div>
-							<SharedUiIconsCheckIcon width="24px" height="24px" />
+							<SharedUiIconsCheckIcon
+								width="24px"
+								height="24px"
+							/>
 						</div>
 						{{ item }}
 					</div>
