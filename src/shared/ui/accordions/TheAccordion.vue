@@ -68,7 +68,7 @@ const toggleItem = (title: string) => {
 				class="w-full overflow-hidden px-0 pr-4"
 				:class="[{ hidden: activeItem?.title !== item.title }]"
 			>
-				<p class="text-base leading-6">
+				<p class="text-base leading-6 dark:text-slate-200">
 					{{ item.content }}
 				</p>
 			</div>

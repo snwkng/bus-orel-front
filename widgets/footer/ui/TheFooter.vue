@@ -11,7 +11,7 @@ const fullYear: number = new Date().getFullYear();
 </script>
 <template>
 	<div class="flex w-full items-end">
-		<footer class="body-font w-full dark:bg-gray-800 dark:text-white bg-slate-100 text-slate-700">
+		<footer class="body-font w-full dark:bg-gray-800 dark:text-slate-200 bg-slate-100 text-slate-700">
 			<div
 				:class="[
 					'md:flex-no-wrap px-base mx-auto flex w-full flex-col flex-wrap px-5 py-24 md:flex-row md:items-center lg:items-start',
@@ -115,7 +115,7 @@ const fullYear: number = new Date().getFullYear();
 										:to="{ name: 'privacy-policy' }"
 										class="cursor-pointer dark:text-slate-300 dark:hover:text-slate-100 text-slate-500 transition-colors hover:text-slate-900"
 									>
-										Конфеденциальность
+										Политика в отношении персональных данных
 									</router-link>
 								</li>
 								<li class="mt-3">

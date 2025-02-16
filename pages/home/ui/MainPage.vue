@@ -52,7 +52,7 @@ onMounted(() => {
 
 		<section
 			id="tour-selection"
-			class="px-base py-8 dark:bg-gray-800 dark:text-white"
+			class="px-base py-8 dark:bg-gray-800 dark:text-slate-200"
 		>
 			<h2 class="mb-6 text-2xl font-bold">
 				Отдых по вашим мечтам: выбор тура с нашим агентством

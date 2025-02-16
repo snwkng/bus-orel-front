@@ -32,9 +32,9 @@ const accordionItems = computed(
 				content="экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии"
 			/>
 		</Head>
-		<div class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]">
+		<div class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px] dark:bg-gray-800">
 			<div class="flex items-center justify-between">
-				<h1 class="mb-2 text-4xl font-bold">
+				<h1 class="mb-2 text-4xl font-bold dark:text-slate-200">
 					{{ store.excursion.name }}
 				</h1>
 			</div>
@@ -53,20 +53,20 @@ const accordionItems = computed(
 				:document-name="store.excursion.documentName"
 			/>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Программа тура
 				</h3>
 				<SharedUiAccordionsTheAccordion :items="accordionItems" />
 			</div>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold">
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					В стоимость входит
 				</h3>
 				<div class="flex flex-col gap-y-3">
 					<div
 						v-for="item in store.excursion.thePriceIncludes"
 						:key="item"
-						class="flex w-full flex-row items-start gap-x-2"
+						class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
 					>
 						<div>
 							<SharedUiIconsCheckIcon
@@ -79,7 +79,7 @@ const accordionItems = computed(
 				</div>
 			</div>
 			<hr class="m-y-3 w-full bg-slate-200" />
-			<p class="text-justify">
+			<p class="text-justify dark:text-slate-200">
 				Компания организатор оставляет за собой право вносить некоторые
 				изменения в программу тура без уменьшения общего объема и качества
 				услуг, в том числе предоставлять замену отеля на равнозначный. Компания

@@ -12,7 +12,7 @@ defineProps<Props>();
 </script>
 <template>
 	<div
-		class="flex w-full flex-col flex-wrap justify-between gap-x-8 gap-y-4 rounded-xl bg-slate-200 px-5 py-6 text-slate-600 sm:flex-row sm:items-center"
+		class="flex w-full flex-col flex-wrap justify-between gap-x-8 gap-y-4 rounded-xl dark:bg-gray-700 bg-slate-200 px-5 py-6 dark:text-slate-200 text-slate-600 sm:flex-row sm:items-center"
 	>
 		<div v-if="cities" class="flex items-center gap-x-1">
 			<div>

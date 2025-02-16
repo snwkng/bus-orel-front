@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-	<div class="dark:bg-gray-800 dark:text-white">
+	<div class="dark:bg-gray-800 dark:text-slate-200">
 		<section
 			class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
 		>
@@ -8,9 +8,9 @@
 				class="items-startsm:items-center flex flex-col justify-start gap-y-1 sm:flex-row sm:justify-between sm:gap-y-0"
 			>
 				<h1 class="text-2xl font-bold dark:text-slate-200 text-slate-900 sm:text-3xl">
-					Политика конфиденциальности
+					Политика в отношении персональных данных
 				</h1>
-				<span class="dark:text-slate-600 text-slate-300">05.06.2024</span>
+				<span class="dark:text-slate-600 text-slate-300">16.02.2025</span>
 			</div>
 			<p class="leading-7">
 				Настоящая Политика конфиденциальности персональной информации (далее —

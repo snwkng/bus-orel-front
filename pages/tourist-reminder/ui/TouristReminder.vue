@@ -69,7 +69,7 @@ const accordionItems = ref([
 ]);
 </script>
 <template>
-	<div class="dark:bg-gray-800 dark:text-white">
+	<div class="dark:bg-gray-800 dark:text-slate-200">
 		<section
 			class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
 		>

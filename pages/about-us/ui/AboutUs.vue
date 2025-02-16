@@ -16,7 +16,7 @@ useHead({
 });
 </script>
 <template>
-	<div class="dark:bg-gray-800 dark:text-white">
+	<div class="dark:bg-gray-800 dark:text-slate-200">
 		<section
 			class="px-base m-auto flex min-h-[calc(100vh-(56px+514px+52px))] w-full flex-col gap-5 py-10 xl:w-[1280px]"
 		>

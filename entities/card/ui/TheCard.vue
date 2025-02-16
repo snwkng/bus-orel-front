@@ -81,7 +81,7 @@ fetchImage();
 				</div>
 				<div class="font-normal dark:text-slate-300 text-slate-500">
 					от
-					<strong class="font-semibold dark:text-white text-black">{{ price }} &#8381;</strong>
+					<strong class="font-semibold dark:text-slate-200 text-black">{{ price }} &#8381;</strong>
 					за поездку
 				</div>
 			</div>
