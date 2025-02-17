@@ -16,7 +16,7 @@ const accordionItems = computed(
 );
 </script>
 <template>
-	<div class="w-full">
+	<div class="w-full dark:bg-gray-800">
 		<Head>
 			<Title>
 				{{

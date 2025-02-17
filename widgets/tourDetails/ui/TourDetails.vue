@@ -7,7 +7,7 @@ const tourId = route.params.id as string;
 await useAsyncData('tour', (): Promise<boolean> => store.getTour(tourId).then(() => true));
 </script>
 <template>
-	<div class="w-full">
+	<div class="w-full dark:bg-gray-800">
 		<Head>
 			<Title>{{ `Автобусный тур в ${store.tour.city}, ${store.tour.type} ${store.tour.name}` }}</Title>
 			<Meta name="description" :content="`Автобусный тур в ${store.tour.city} из Орла.`" />
