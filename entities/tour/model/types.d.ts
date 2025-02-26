@@ -5,6 +5,7 @@ export interface ITour {
 	name: string;
 	type: string;
 	locationDescription: string;
+	documentName: string;
 	rooms: { type: string; numberOfSeats: number; inRoom: string }[];
 	images: string[];
 	food: string;

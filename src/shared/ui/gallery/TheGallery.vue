@@ -60,7 +60,7 @@ fetchImage();
 				:key="index"
 			>
 				<img
-					:class="[previewImages.length > 1 ? 'max-h-[400px] object-contain' : 'max-h-[500px] object-cover', 'w-full']"
+					:class="[previewImages.length > 1 ? 'h-[400px]' : 'h-[500px]', 'w-full object-cover object-center']"
 					alt="pic"
 					:src="slide"
 				/>
