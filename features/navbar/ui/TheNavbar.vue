@@ -15,7 +15,7 @@ watch(
 <template>
 	<nav
 		v-click-away="close"
-		class="absolute right-0 top-10 w-max sm:w-80 rounded-xl bg-white p-6 shadow-lg"
+		class="absolute right-0 top-10 w-max sm:w-80 rounded-xl bg-white dark:bg-gray-700 dark:text-slate-300 p-6 shadow-lg"
 	>
 		<ul class="list-none text-base">
 			<li>

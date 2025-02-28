@@ -119,10 +119,12 @@ const fullYear: number = new Date().getFullYear();
 									</router-link>
 								</li>
 								<li class="mt-3">
-									<a
+									<router-link
+										:to="{ path: '/sitemap.xml' }"
 										class="cursor-pointer dark:text-slate-300 dark:hover:text-slate-100 text-slate-500 transition-colors hover:text-slate-900"
-										target="_blank"
-									>Карта сайта</a>
+									>
+										Карта сайта
+									</router-link>
 								</li>
 							</ul>
 						</nav>

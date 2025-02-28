@@ -31,6 +31,8 @@ const handleScroll = () => {
 	scroll.value = window.scrollY > 400;
 };
 
+const showShadow = computed(() => scroll.value && route.name !== 'bus-tours' && route.name !== 'excursions')
+
 const onChange = () => {
 	isDesktop.value = mediaQuery.value?.matches ?? false;
 };
@@ -43,7 +45,7 @@ const close = (closeNav: boolean) => {
 	<header
 		:class="[
 			'font-large fixed z-20 h-14 w-full bg-deep-blue dark:bg-gray-800',
-			{ 'shadow-lg': scroll },
+			{ 'shadow-lg': showShadow },
 		]"
 	>
 		<div
