@@ -25,7 +25,7 @@ const donwloadFile = async () => {
 		<Head>
 			<Title>
 				{{
-					`Автобусный тур в ${store.tour.city}, ${store.tour.type} ${store.tour.name}`
+					`Автобусный тур в ${store.tour?.city?.name}, ${store.tour.type} ${store.tour.name}`
 				}}
 			</Title>
 			<Meta
@@ -84,28 +84,34 @@ const donwloadFile = async () => {
 					{{ store.tour.locationDescription }}
 				</div>
 			</div>
-			<!-- <hr /> -->
-			<!-- <div class="">
+			<hr />
+			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Размещение
 				</h3>
 				<div v-for="(room, roomIndex) in store.tour.tours" :key="roomIndex">
 					<div class="py-2">
-						<strong>{{ room.type }}, мест: {{ room.numberOfSeats }}:</strong>
+						<strong>
+							{{ room.roomName }}:
+						</strong>
 						{{ room.inRoom }}
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<hr />
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Питание</h3>
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+					Питание
+				</h3>
 				<div class="dark:text-slate-200">
 					{{ store.tour.food }}
 				</div>
 			</div>
 			<hr />
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Пляж</h3>
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+					Пляж
+				</h3>
 				<div class="dark:text-slate-200">
 					{{ store.tour.beach }}. до пляжа {{ store.tour.distanceToBeach }}.
 				</div>
@@ -125,11 +131,11 @@ const donwloadFile = async () => {
 					В стоимость включено
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ store.tour.thePriceIncludes.join(', ') }}
+					{{ store.tour?.thePriceIncludes.join(', ') }}
 				</div>
 			</div>
 		</div>
 
-		<SharedUiTableBusTourTable :tours="store.tour.tours" />
+		<SharedUiTableBusTourTable class="px-base m-auto flex w-full flex-col gap-5 py-10 dark:bg-gray-800 xl:w-[1280px]" :tours="store.tour.tours" />
 	</div>
 </template>

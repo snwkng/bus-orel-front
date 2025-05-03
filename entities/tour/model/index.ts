@@ -1,7 +1,6 @@
 import type { ICard } from '@/entities/card/model/types'
 import type { ITour } from './types'
 
-const { BASE_URL } = useRuntimeConfig().public
 export const useTourStore = defineStore('useTourStore', {
 	state: () => ({
 		tours: [],
@@ -12,10 +11,9 @@ export const useTourStore = defineStore('useTourStore', {
 	getters: {
 		cardMapped (state): ICard[] {
 			return state.tours?.map((tour: ITour) => ({
-				// eslint-disable-next-line no-underscore-dangle
 				id: tour._id,
 				title: tour.name,
-				subtitle: tour.city,
+				subtitle: tour?.city?.name ?? '',
 				price: tour.price,
 				image: tour?.images?.[0]
 			}))
@@ -23,22 +21,22 @@ export const useTourStore = defineStore('useTourStore', {
 	},
 	actions: {
 		async getTours (params?: any): Promise<void> {
-			this.tours = await $fetch(`${BASE_URL}/api/hotels`, {
+			this.tours = await $fetch('/api/bus-tours', {
 				params
 			})
 		},
 
 		async getTour (id: string): Promise<void> {
-			this.tour = await $fetch(`${BASE_URL}/api/hotels/${id}`)
+			this.tour = await $fetch(`/api/bus-tours/${id}`)
 		},
 
 		async getSeaList (): Promise<void> {
-			const sea: SelectItem[] = await $fetch(`${BASE_URL}/api/hotels/sea-list`)
+			const sea: SelectItem[] = await $fetch('/api/bus-tours/sea-list')
 			this.seaList = sea.filter((s: SelectItem) => s.name)
 		},
 
 		async getCityList (seaType?: string): Promise<void> {
-			const city: SelectItem[] = await $fetch(`${BASE_URL}/api/hotels/city-list`, {
+			const city: SelectItem[] = await $fetch('/api/bus-tours/cities', {
 				params: {
 					seaType
 				}

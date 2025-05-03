@@ -11,25 +11,18 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 <template>
 	<div class="grid">
-		<div v-for="(tour, index) in props.tours" :key="index">
-			<div class="grid grid-cols-3">
-				<div>{{ tour.roomName }}</div>
-				<div>{{ tour.type }}</div>
-				<div>
-					мест в номере: <strong>{{ tour.numberOfSeats }}</strong>
-				</div>
-			</div>
-			<div class="grid grid-cols-2">
+		<div class="border border-gray-300 rounded-xl p-4" v-for="(tour, index) in props.tours" :key="index">
+			<div class="grid grid-cols-2 font-semibold">
 				<div>Даты заезда</div>
-				<div>Цена</div>
+				<div>{{ tour.roomName }}</div>
 			</div>
 			<div
 				v-for="(datesAndPrices, dataIndex) in tour.datesAndPrices"
 				:key="dataIndex"
 				class="grid grid-cols-2"
 			>
-				<div>{{ datesAndPrices.startDate }} - {{ datesAndPrices.endDate }}</div>
-				<div>{{ datesAndPrices.price }}</div>
+				<div>{{ $dayjs(datesAndPrices.startDate).format('DD.MM.YYYY') }} - {{ $dayjs(datesAndPrices.endDate).format('DD.MM.YYYY') }}</div>
+				<div>{{ datesAndPrices.price }}&#8381;</div>
 			</div>
 		</div>
 	</div>

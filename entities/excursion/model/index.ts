@@ -11,7 +11,6 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 	getters: {
 		cardMapped (state): IExcursionCard[] {
 			return state.excursions.map((ex: IExcursion) => ({
-				// eslint-disable-next-line no-underscore-dangle
 				id: ex._id,
 				title: ex.name,
 				subtitle: ex.cities?.map((x: SelectItem) => x.name).join(', '),

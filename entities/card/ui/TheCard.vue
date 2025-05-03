@@ -1,15 +1,14 @@
 <!-- eslint-disable no-restricted-syntax -->
 <script setup lang="ts">
-import type { ICard } from '../model/types';
+import type { ICard, IExcursionCard } from '../model/types';
 
 const { BASE_URL } = useRuntimeConfig().public;
 
-export interface Props extends ICard {
+export interface IProps {
 	type: 'excursion' | 'tour';
-	date?: Date | null
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<IProps & ICard & IExcursionCard>(), {
 	type: 'tour',
 	title: 'Отель Атлас',
 	subtitle: 'Краснодарский край, Геленджик',
@@ -43,6 +42,8 @@ async function fetchImage () {
 		}
 	} catch (error) {
 		previewImage.value = ''
+		// eslint-disable-next-line no-console
+		console.error(error)
 	}
 }
 
@@ -76,12 +77,12 @@ fetchImage();
 				<div class="font-normal dark:text-slate-300 text-slate-500">
 					{{ subtitle }}
 				</div>
-				<div v-if="type === 'excursion' && date" class="font-normal dark:text-slate-300 text-slate-500">
+				<div v-if="date" class="font-normal dark:text-slate-300 text-slate-500">
 					{{ $dayjs(date).format('DD.MM.YYYY') }}
 				</div>
 				<div class="font-normal dark:text-slate-300 text-slate-500">
 					от
-					<strong class="font-semibold dark:text-slate-200 text-black">{{ price }} &#8381;</strong>
+					<strong class="font-semibold dark:text-slate-200 text-black">{{ price }}&#8381;</strong>
 					за поездку
 				</div>
 			</div>

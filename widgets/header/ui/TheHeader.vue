@@ -78,7 +78,7 @@ const close = (closeNav: boolean) => {
 						/>
 					</button>
 					<Transition name="dropdown-fade">
-						<FeaturesNavbar
+						<WidgetsNavbar
 							v-if="toggle"
 							@close-nav="close"
 						/>

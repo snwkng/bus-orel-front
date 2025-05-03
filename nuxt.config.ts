@@ -10,7 +10,7 @@ export default defineNuxtConfig({
 			script: [
 				{
 					type: 'text/javascript',
-					src: 'metrika.js',
+					src: import.meta.env.NODE_ENV === 'production' ? 'metrika.js' : '',
 					async: true,
 					defer: true
 				}
@@ -23,17 +23,11 @@ export default defineNuxtConfig({
 		fallback: 'light'
 	},
 	nitro: {
-		preset: 'node-server',
-		devProxy: {
-			'/api/*': {
-				target: import.meta.env.BASE_URL,
-				changeOrigin: true
-			}
-		}
+		preset: 'node-server'
 	},
 
 	routeRules: {
-		'/api/**': { proxy: import.meta.env.BASE_URL }
+		'/api/**': { proxy: `${import.meta.env.BASE_URL}/api/**` }
 	},
 
 	vite: {
@@ -78,7 +72,7 @@ export default defineNuxtConfig({
 
 	runtimeConfig: {
 		public: {
-			BASE_URL: process.env.BASE_URL ?? '/'
+			BASE_URL: import.meta.env.BASE_URL ?? '/'
 		}
 	},
 
@@ -94,7 +88,7 @@ export default defineNuxtConfig({
 	],
 
 	gtag: {
-		enabled: process.env.NODE_ENV === 'production',
+		enabled: import.meta.env.NODE_ENV === 'production',
 		id: 'G-F0HWMP4P6V'
 	},
 

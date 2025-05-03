@@ -20,7 +20,7 @@ watch(
 const getTours = () => {
 	router.push({
 		name: 'bus-tours',
-		query: { seaType: selectedSea.value.name, city: selectedPlace.value.name }
+		query: { seaType: selectedSea.value.name, city: selectedPlace.value._id }
 	});
 };
 
