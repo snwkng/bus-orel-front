@@ -20,7 +20,7 @@ await callOnce(getCityList);
 		class="flex w-full flex-row flex-wrap items-center justify-center gap-x-[2px]"
 	>
 		<SharedUiFormsTheInput
-			disabled="true"
+			disabled
 			input-id="откуда"
 			type="text"
 			label="Откуда"

@@ -27,9 +27,7 @@ const fullYear: number = new Date().getFullYear();
 						<strong class="text-deep-orange">Г</strong>
 						<span
 							class="h-5 w-auto fill-current text-slate-900 dark:text-slate-100"
-						>
-							алатур
-						</span>
+						>алатур</span>
 					</router-link>
 					<p
 						class="mt-2 text-sm text-slate-500 dark:text-slate-300 dark:hover:text-slate-100"

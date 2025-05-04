@@ -134,8 +134,13 @@ const donwloadFile = async () => {
 					{{ store.tour?.thePriceIncludes.join(', ') }}
 				</div>
 			</div>
+			<hr />
+			<div class="">
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+					Даты и цены
+				</h3>
+				<SharedUiTableBusTourTable :tours="store.tour.tours" />
+			</div>
 		</div>
-
-		<SharedUiTableBusTourTable class="px-base m-auto flex w-full flex-col gap-5 py-10 dark:bg-gray-800 xl:w-[1280px]" :tours="store.tour.tours" />
 	</div>
 </template>

@@ -28,22 +28,24 @@ async function fetchImage () {
 			const response = await $fetch(
 				`${BASE_URL}/api/s3/download/${props.image}`
 			);
-			const blob = (await response) as Blob; // Преобразуем ответ в Blob
+			if (response) {
+				const blob = (await response) as Blob; // Преобразуем ответ в Blob
 
-			const reader = new FileReader();
-			reader.onloadend = () => {
-				if (typeof reader.result === 'string') {
-					previewImage.value = reader.result;
-				}
-			};
-			reader.readAsDataURL(blob);
+				const reader = new FileReader();
+				reader.onloadend = () => {
+					if (typeof reader.result === 'string') {
+						previewImage.value = reader.result;
+					}
+				};
+				reader.readAsDataURL(blob);
+			}
 		} else {
-			throw new Error('no image')
+			throw new Error('no image');
 		}
 	} catch (error) {
-		previewImage.value = ''
+		previewImage.value = '';
 		// eslint-disable-next-line no-console
-		console.error(error)
+		console.error(error);
 	}
 }
 
@@ -56,15 +58,18 @@ fetchImage();
 	>
 		<div class="w-full">
 			<div
-				class="mb-3 rounded-xl bg-cover brightness-100 w-full dark:bg-gray-700 bg-slate-100"
+				class="mb-3 w-full rounded-xl bg-slate-100 bg-cover brightness-100 dark:bg-gray-700"
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
 			>
-				<div v-if="!previewImage" class="flex items-center justify-center w-full h-full">
-					<span class="text-slate-400 font-semibold">Изображение отсутствует</span>
+				<div
+					v-if="!previewImage"
+					class="flex h-full w-full items-center justify-center"
+				>
+					<span class="font-semibold text-slate-400">Изображение отсутствует</span>
 				</div>
 				<img
 					v-else
-					class="mb-3 w-full h-full rounded-xl object-cover brightness-100"
+					class="mb-3 h-full w-full rounded-xl object-cover brightness-100"
 					:src="previewImage?.toString()"
 					:alt="props.subtitle"
 					:title="props.title"
@@ -74,15 +79,18 @@ fetchImage();
 				<h3 class="font-semibold">
 					{{ title }}
 				</h3>
-				<div class="font-normal dark:text-slate-300 text-slate-500">
+				<div class="font-normal text-slate-500 dark:text-slate-300">
 					{{ subtitle }}
 				</div>
-				<div v-if="date" class="font-normal dark:text-slate-300 text-slate-500">
+				<div
+					v-if="date"
+					class="font-normal text-slate-500 dark:text-slate-300"
+				>
 					{{ $dayjs(date).format('DD.MM.YYYY') }}
 				</div>
-				<div class="font-normal dark:text-slate-300 text-slate-500">
+				<div class="font-normal text-slate-500 dark:text-slate-300">
 					от
-					<strong class="font-semibold dark:text-slate-200 text-black">{{ price }}&#8381;</strong>
+					<strong class="font-semibold text-black dark:text-slate-200">{{ price }}&#8381;</strong>
 					за поездку
 				</div>
 			</div>
