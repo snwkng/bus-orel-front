@@ -34,7 +34,7 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 			const cities: SelectItem[] = await $fetch('/api/excursions/cities', {
 			});
 			this.cityList =
-				cities.toSorted((a: SelectItem, b: SelectItem) => a?.name.localeCompare(b?.name));
+				cities.toSorted((a: SelectItem, b: SelectItem) => (a.name ?? '').localeCompare(b.name ?? ''));
 		}
 	}
 });
