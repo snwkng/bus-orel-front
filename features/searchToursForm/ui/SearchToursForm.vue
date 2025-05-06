@@ -20,7 +20,7 @@ watch(
 const getTours = () => {
 	router.push({
 		name: 'bus-tours',
-		query: { seaType: selectedSea.value.name, city: selectedPlace.value._id }
+		query: { seaType: selectedSea.value.name, city: selectedPlace.value.name }
 	});
 };
 
@@ -32,7 +32,7 @@ await callOnce(getCityList);
 		class="flex w-full flex-col items-center gap-x-[2px] md:flex-row md:justify-center"
 	>
 		<SharedUiFormsTheInput
-			disabled="true"
+			disabled
 			input-id="откуда"
 			type="text"
 			label="Откуда"

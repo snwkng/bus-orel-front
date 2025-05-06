@@ -4,7 +4,7 @@ export interface Props {
 	label: string;
 	type: string;
 	placeholder: string;
-	disabled: string | boolean;
+	disabled?: boolean;
 	classes?: string;
 }
 
