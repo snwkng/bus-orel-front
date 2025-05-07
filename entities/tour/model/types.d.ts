@@ -16,7 +16,7 @@ export interface ITour {
 	price: number;
 	thePriceIncludes: string[];
 	tours: ITourTable[];
-	city: string;
+	city: SelectItem;
 	region: string;
 }
 

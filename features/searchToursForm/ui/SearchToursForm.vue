@@ -32,7 +32,7 @@ await callOnce(getCityList);
 		class="flex w-full flex-col items-center gap-x-[2px] md:flex-row md:justify-center"
 	>
 		<SharedUiFormsTheInput
-			disabled="true"
+			disabled
 			input-id="откуда"
 			type="text"
 			label="Откуда"
