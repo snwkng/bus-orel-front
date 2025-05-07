@@ -135,7 +135,7 @@ const donwloadFile = async () => {
 				</div>
 			</div>
 			<hr />
-			<div class="">
+			<div v-if="store.tour.tours?.length" class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Даты и цены
 				</h3>
