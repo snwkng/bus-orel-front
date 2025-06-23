@@ -1,20 +1,22 @@
 <script setup lang="ts">
-import type { ITourTable } from '~/entities/tour/model/types';
+import type { IHotelRoomInfo } from '~/entities/tour/model/types';
 
 export interface Props {
-	tours?: ITourTable[];
+	tours?: IHotelRoomInfo[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
 	tours: () => []
 });
 
-const selectedRooms = ref(props.tours.map((x: ITourTable) => x.roomName) || [])
+const selectedRooms = ref(props.tours.map((x: IHotelRoomInfo) => x.roomName) || [])
 
-const rooms = computed(() => props.tours.map((x: ITourTable) => x.roomName));
+const rooms = computed(() => props.tours.map((x: IHotelRoomInfo) => x.roomName));
 
 const filteredTours =
-	computed(() => props.tours.filter((x: ITourTable) => selectedRooms.value.includes(x.roomName)));
+	computed(
+		() => props.tours.filter((x: IHotelRoomInfo) => selectedRooms.value.includes(x.roomName))
+	);
 </script>
 <template>
 	<div class="grid">
@@ -38,7 +40,7 @@ const filteredTours =
 				class="flex flex-col gap-2"
 			>
 				<div
-					v-for="(datesAndPrices, dataIndex) in tour.datesAndPrices"
+					v-for="(datesAndPrices, dataIndex) in tour.availability"
 					:key="dataIndex"
 					class="flex items-center justify-between gap-2 rounded-xl bg-slate-200 p-4 transition-all hover:bg-slate-300 dark:bg-gray-700 dark:text-slate-200 hover:dark:bg-gray-500"
 				>

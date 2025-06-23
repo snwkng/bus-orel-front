@@ -2,8 +2,6 @@
 <script setup lang="ts">
 import type { ICard, IExcursionCard } from '../model/types';
 
-const { BASE_URL } = useRuntimeConfig().public;
-
 export interface IProps {
 	type: 'excursion' | 'tour';
 }
@@ -26,7 +24,7 @@ async function fetchImage () {
 	try {
 		if (props.image) {
 			const response = await $fetch(
-				`${BASE_URL}/api/s3/download/${props.image}`
+				`/api/s3/download/${props.image}`
 			);
 			if (response) {
 				const blob = (await response) as Blob; // Преобразуем ответ в Blob

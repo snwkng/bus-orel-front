@@ -36,7 +36,7 @@ export const useTourStore = defineStore('useTourStore', {
 		},
 
 		async getCityList (seaType?: string): Promise<void> {
-			const city: SelectItem[] = await $fetch('/api/bus-tours/cities', {
+			const city: SelectItem[] = await $fetch('/api/bus-tours/cities-list', {
 				params: {
 					seaType
 				}
