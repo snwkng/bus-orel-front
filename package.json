@@ -15,28 +15,28 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@nuxt/devtools": "^1.7.0",
+		"@nuxt/devtools": "^2.5.0",
+		"@nuxt/eslint": "^1.4.1",
 		"@nuxtjs/color-mode": "^3.5.2",
-		"@nuxtjs/eslint-config-typescript": "^12.1.0",
 		"@nuxtjs/eslint-module": "^4.1.0",
-		"@nuxtjs/tailwindcss": "^6.13.1",
-		"@typescript-eslint/parser": "^6.21.0",
-		"@vue/eslint-config-airbnb": "^8.0.0",
+		"@nuxtjs/tailwindcss": "^6.14.0",
+		"@typescript-eslint/parser": "^8.35.0",
 		"dayjs-nuxt": "^2.1.11",
-		"eslint": "^8.57.1",
-		"nuxt": "^3.15.2",
-		"nuxt-gtag": "^3.0.2",
-		"nuxt-svgo": "^4.0.11",
-		"prettier": "^3.4.2",
-		"prettier-plugin-tailwindcss": "^0.6.10",
-		"sass": "^1.83.4",
-		"vue": "^3.5.13",
-		"vue-router": "^4.5.0"
+		"eslint": "^9.29.0",
+		"nuxt": "^3.17.5",
+		"nuxt-gtag": "^3.0.3",
+		"nuxt-svgo": "^4.2.2",
+		"prettier": "^3.6.0",
+		"prettier-plugin-tailwindcss": "^0.6.13",
+		"sass": "^1.89.2",
+		"typescript": "^5.8.3",
+		"vue": "^3.5.17",
+		"vue-router": "^4.5.1"
 	},
 	"dependencies": {
-		"@pinia/nuxt": "^0.5.5",
-		"nuxt-swiper": "^1.2.2",
-		"pinia": "^2.3.0",
+		"@pinia/nuxt": "^0.11.1",
+		"pinia": "^3.0.3",
+		"swiper": "^11.2.8",
 		"vue3-click-away": "^1.2.4"
 	}
 }

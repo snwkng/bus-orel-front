@@ -12,7 +12,7 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 			return state.excursions.map((ex: IExcursion) => ({
 				id: ex._id,
 				title: ex.name,
-				subtitle: ex.cities?.map((x: SelectItem) => x.name).join(', '),
+				subtitle: ex.cities?.map((x: string) => x).join(', '),
 				price: ex.price,
 				image: ex.images?.[0] || '',
 				date: ex?.excursionStart || null

@@ -77,14 +77,13 @@ export default defineNuxtConfig({
 	},
 
 	modules: [
-		'@nuxtjs/eslint-module',
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
 		'nuxt-svgo',
-		'nuxt-swiper',
 		'dayjs-nuxt',
 		'nuxt-gtag',
-		'@nuxtjs/color-mode'
+		'@nuxtjs/color-mode',
+		'@nuxt/eslint'
 	],
 
 	gtag: {
@@ -101,8 +100,7 @@ export default defineNuxtConfig({
 	},
 
 	eslint: {
-		/* module options */
-		lintOnStart: false
+
 	},
 
 	tailwindcss: {

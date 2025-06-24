@@ -1,6 +1,9 @@
 <script setup lang="ts">
+
 export interface IProps {
-	items: { title: string; content: string }[];
+	items: { title: string; content: string }[],
+	// eslint-disable-next-line vue/require-default-prop
+	parentId?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -20,6 +23,10 @@ const toggleItem = (title: string) => {
 		props.items.find(
 			(x: { title: string; content: string }) => title === x.title
 		) || null;
+	if (props?.parentId) {
+		const parent = document.getElementById(props.parentId)
+		parent?.scrollIntoView({ behavior: 'smooth' })
+	}
 };
 </script>
 <template>
@@ -39,9 +46,9 @@ const toggleItem = (title: string) => {
 				"
 				@click="toggleItem(item.title)"
 			>
-				<h5 class="font-semibold">
+				<span class="font-semibold">
 					{{ item.title }}
-				</h5>
+				</span>
 				<svg
 					class="transition duration-500 group-hover:text-deep-orange"
 					:class="
