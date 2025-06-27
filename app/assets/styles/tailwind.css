@@ -27,7 +27,7 @@
 }
 
 .swiper-btn {
-	@apply absolute top-[45%] z-10 bg-white p-2 rounded-full flex items-center justify-center shadow-md hover:shadow-lg cursor-pointer transition-all;
+	@apply absolute top-[45%] z-10 bg-white dark:bg-gray-700 p-2 rounded-full flex items-center justify-center shadow-md hover:shadow-lg cursor-pointer transition-all;
 }
 
 .rotate-Y-180 {

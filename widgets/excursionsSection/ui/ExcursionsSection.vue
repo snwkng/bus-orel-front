@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import type { IExcursion } from '~/entities/excursion/model/types';
 
-export interface Props {
+export interface IProps {
 	title?: string;
 	emptyText?: string;
 	classes?: string;
 }
 
-withDefaults(defineProps<Props>(), {
-	title: '',
-	emptyText: '',
-	classes: ''
-});
+defineProps<IProps>()
 
 const route = useRoute();
 
@@ -42,7 +38,7 @@ const { data } = await useFetch('/api/excursions', {
 			{{ title }}
 		</h2>
 		<h2
-			v-else-if="emptyText.length && !data?.length"
+			v-else-if="emptyText?.length && !data?.length"
 			class="text-center text-2xl font-bold"
 		>
 			{{ emptyText }}

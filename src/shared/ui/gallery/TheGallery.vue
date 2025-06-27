@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Swiper as SwiperClass } from 'swiper';
+import type { Swiper as SwiperClass } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -9,11 +9,11 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-export interface Props {
-	images: string[];
+export interface IProps {
+	images?: string[];
 }
 
-const props = withDefaults(defineProps<Props>(), { images: () => [] });
+const props = withDefaults(defineProps<IProps>(), { images: () => [] });
 
 const previewImages = ref<string[]>([]);
 
@@ -63,15 +63,15 @@ onMounted(async () => {
 </script>
 <template>
 	<div>
-		<div></div>
+		<div/>
 		<ClientOnly>
 			<swiper
 				v-if="previewImages.length"
 				class="relative w-full cursor-grab rounded-xl"
-				@swiper="onSwiper"
 				:scrollbar="{ draggable: true }"
 				:space-between="10"
 				:navigation="{ prevEl: 'swiper-prev', nextEl: 'swiper-next' }"
+				@swiper="onSwiper"
 			>
 				<swiper-slide
 					v-for="(slide, index) in images"
@@ -82,7 +82,7 @@ onMounted(async () => {
 						alt="pic"
 						:src="`/api/s3/download/${slide}`"
 						loading="lazy"
-					/>
+					>
 				</swiper-slide>
 				<div
 					v-if="!swiperInstance?.isBeginning"
@@ -92,7 +92,7 @@ onMounted(async () => {
 					<SharedUiIconsArrowButton
 						width="32px"
 						height="32px"
-						color="stroke-deep-blue"
+						color="stroke-deep-blue dark:stroke-white"
 						class="rotate-90"
 					/>
 				</div>
@@ -104,7 +104,7 @@ onMounted(async () => {
 					<SharedUiIconsArrowButton
 						width="32px"
 						height="32px"
-						color="stroke-deep-blue"
+						color="stroke-deep-blue dark:stroke-white"
 						class="rotate-270"
 					/>
 				</div>

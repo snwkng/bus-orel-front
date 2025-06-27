@@ -1,14 +1,13 @@
 <script setup lang="ts">
-
-export interface Props {
-	selectId: string;
-	label: string;
+export interface IProps {
+	selectId?: string;
+	label?: string;
 	list?: SelectItem[];
 	queryName?: string;
 	classes?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<IProps>(), {
 	selectId: '',
 	label: '',
 	list: () => [],
@@ -35,6 +34,14 @@ const toggle = () => {
 watch(
 	() => props.list,
 	() => {
+		if (!value.value?.name && route.query[props.queryName]) {
+			const item = props.list.find(
+				(item: SelectItem) => item.name === route.query[props.queryName]
+			);
+			if (item) {
+				value.value = item;
+			}
+		}
 		if (
 			props.list.length &&
 			value.value?.name &&
@@ -46,21 +53,23 @@ watch(
 );
 
 watch(
-	() => value.value,
+	() => route.query,
 	() => {
-		// console.log(value.value)
-		emit('change', value.value);
-	}
-);
-
-onMounted(() => {
-	if (route.query[props.queryName]) {
 		value.value =
 			props.list.find(
 				(item: SelectItem) => item.name === route.query[props.queryName]
 			) || {};
-	}
-});
+	},
+	{ immediate: true }
+);
+
+watch(
+	() => value.value,
+	() => {
+		emit('change', value.value);
+	},
+	{ immediate: true }
+);
 </script>
 <template>
 	<div
@@ -79,32 +88,45 @@ onMounted(() => {
 			</div>
 		</Transition>
 		<div
-			class="relative flex min-h-14 min-w-[200px] w-full items-center dark:bg-gray-600 bg-white pl-4 pr-8 py-2 dark:text-slate-300 text-slate-800 shadow-form focus:ring"
+			class="relative flex min-h-14 w-full min-w-[200px] items-center bg-white py-2 pl-4 pr-8 text-slate-800 shadow-form focus:ring dark:bg-gray-600 dark:text-slate-300"
 			:class="[classes, { 'ring-2 ring-deep-orange': showSelect }]"
 		>
-			<span v-if="value.name" :title="value.name" class="w-[200px] overflow-hidden text-nowrap text-ellipsis">{{ value.name }}</span>
-			<span v-else-if="!showSelect" class="dark:text-slate-300 text-slate-400">{{ label }}</span>
+			<span
+				v-if="value.name"
+				:title="value.name"
+				class="w-[200px] overflow-hidden text-ellipsis text-nowrap"
+			>
+				{{ value.name }}
+			</span>
+			<span
+				v-else-if="!showSelect"
+				class="text-slate-400 dark:text-slate-300"
+			>
+				{{ label }}
+			</span>
 			<SharedUiIconsArrowButton
 				width="24px"
 				height="24px"
 				color="stroke-slate-500"
 				:class="[
 					'absolute right-2 transition-all',
-					{ 'rotate-180': showSelect },
+					{ 'rotate-180': showSelect }
 				]"
 			/>
 			<div
-				class="absolute right-0 top-[60px] z-10 w-full flex-col overflow-hidden rounded-b-2xl bg-inherit shadow-2xl max-h-[200px] overflow-y-auto"
+				class="absolute right-0 top-[60px] z-10 max-h-[200px] w-full flex-col overflow-hidden overflow-y-auto rounded-b-2xl bg-inherit shadow-2xl"
 				:class="[showSelect ? 'flex' : 'hidden']"
 			>
 				<div
 					v-for="item in list"
 					:key="item?.id"
-					class="cursor-pointer px-2 py-4 dark:hover:bg-slate-700 hover:bg-slate-200"
+					class="cursor-pointer px-2 py-4 hover:bg-slate-200 dark:hover:bg-slate-700"
 					@click="value = item"
 					@keydown.enter="value = item"
 				>
-					<span class="dark:text-slate-400 text-slate-800">{{ item.name }}</span>
+					<span class="text-slate-800 dark:text-slate-400">{{
+						item.name
+					}}</span>
 				</div>
 			</div>
 		</div>

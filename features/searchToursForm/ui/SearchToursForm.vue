@@ -14,8 +14,17 @@ watch(
 	() => selectedSea.value,
 	() => {
 		getCityList(selectedSea.value.name);
-	}
+	},
+	{ immediate: true }
 );
+
+const updateValue = (value: SelectItem, type: string) => {
+	if (type === 'seaType') {
+		selectedSea.value = value
+	} else if (type === 'city') {
+		selectedPlace.value = value
+	}
+}
 
 const getTours = () => {
 	router.push({
@@ -44,7 +53,7 @@ await callOnce(getCityList);
 			label="Море"
 			query-name="seaType"
 			:list="seaList"
-			@change="selectedSea = $event"
+			@change="updateValue($event, 'seaType')"
 		/>
 		<SharedUiFormsSelectTheSelect
 			select-id="куда"
@@ -52,7 +61,7 @@ await callOnce(getCityList);
 			label="Куда"
 			query-name="city"
 			classes="md:rounded-r-xl"
-			@change="selectedPlace = $event"
+			@change="updateValue($event, 'city')"
 		/>
 		<SharedUiButtonsTheButton
 			class="w-full rounded-t-none md:ml-5 md:w-52 md:rounded-t-xl"
