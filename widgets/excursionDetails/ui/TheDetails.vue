@@ -1,21 +1,16 @@
 <script setup lang="ts">
-const route = useRoute();
-const excursionId = route.params.id as string;
-const store = useExcursionStore();
-const { getExcursion } = store;
-const { excursion } = storeToRefs(store);
+import type { IExcursion } from '~/entities/excursion/model/types';
 
-await callOnce(`excursion-${excursionId}`, () => getExcursion(excursionId), {
-	mode: 'navigation'
+
+const route = useRoute();
+const excursionId = computed(() => route.params.id as string);
+
+const { data } = await useFetch<IExcursion>(`/api/excursions/${excursionId.value}`, {
+	key: `excursion-${excursionId.value}`,
 });
 
-// await useAsyncData(
-// 	'excursion',
-// 	(): Promise<boolean> => store.getExcursion(excursionId).then(() => true)
-// );
-
 const accordionItems = computed(() =>
-	excursion.value.description?.map((x: string, index: number) => ({
+	data.value?.description?.map((x: string, index: number) => ({
 		title: `День ${index + 1}`,
 		content: x
 	}))
@@ -26,12 +21,12 @@ const accordionItems = computed(() =>
 		<Head>
 			<Title>
 				{{
-					`Эскурсионный тур в ${excursion.cities?.join(', ')}, ${excursion.name}`
+					`Эскурсионный тур в ${data?.cities?.join(', ')}, ${data?.name}`
 				}}
 			</Title>
 			<Meta
 				name="description"
-				:content="`Экскурсионный тур в ${excursion.cities?.join(', ')} из Орла.`"
+				:content="`Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
 			/>
 			<Meta
 				name="keywords"
@@ -42,14 +37,14 @@ const accordionItems = computed(() =>
 			class="px-base m-auto flex w-full flex-col gap-5 py-10 dark:bg-gray-800 xl:w-[1280px]"
 		>
 			<WidgetsHeaderItem
-				:title="excursion?.name"
-				:price="excursion?.price"
+				:title="data?.name"
+				:price="data?.price"
 				price-description="Минимально возможная цена за человека"
-				:cities="excursion?.cities"
-				:duration="excursion?.duration"
+				:cities="data?.cities"
+				:duration="data?.duration"
 			/>
 			<SharedUiGalleryTheGallery
-				:images="excursion.images"
+				:images="data?.images ?? []"
 			/>
 			<div class="">
 				<div
@@ -59,15 +54,15 @@ const accordionItems = computed(() =>
 					<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 						Даты предстоящих экскурсий
 					</h3>
-					{{ $dayjs(excursion?.excursionStart).format('DD.MM.YYYY') }},
-					{{ $dayjs(excursion?.excursionStart).format('DD.MM.YYYY') }}
+					{{ $dayjs(data?.excursionStart).format('DD.MM.YYYY') }},
+					{{ $dayjs(data?.excursionStart).format('DD.MM.YYYY') }}
 				</div>
-				<hr class="my-4" />
+				<hr class="my-4">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Программа тура
 				</h3>
 				<SharedUiAccordionsTheAccordion
-					:items="accordionItems"
+					:items="accordionItems ?? []"
 					parent-id="ex-dates"
 				/>
 			</div>
@@ -77,7 +72,7 @@ const accordionItems = computed(() =>
 				</h3>
 				<div class="flex flex-col gap-y-3">
 					<div
-						v-for="item in excursion.thePriceIncludes"
+						v-for="item in data?.thePriceIncludes"
 						:key="item"
 						class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
 					>

@@ -1,21 +1,26 @@
 <script setup lang="ts">
-const { BASE_URL } = useRuntimeConfig().public;
-const store = useTourStore();
+import type { ITour } from '~/entities/tour/model/types';
 
-const { tour } = storeToRefs(store);
+// const store = useTourStore();
+
+// const { tour } = storeToRefs(store);
 
 const route = useRoute();
 const tourId = computed(() => route.params.id as string);
-const tourTitle = computed(() => tour.value?.type || tour.value?.name ? `${tour.value?.type} ${tour.value?.name}` : '');
+const tourTitle = computed(() => data.value?.type || data.value?.name ? `${data.value?.type} ${data.value?.name}` : '');
 const tourCity = computed(() =>
-	tour.value?.address?.fullAddress || tour.value?.address?.city
-		? [tour.value?.address?.fullAddress ?? tour.value?.address?.city]
+	data.value?.address?.fullAddress || data.value?.address?.city
+		? [data.value?.address?.fullAddress ?? data.value?.address?.city]
 		: []
 );
 
-await callOnce(`tour-${tourId.value}`, () => store.getTour(tourId.value), {
-	mode: 'navigation'
+const { data } = await useFetch<ITour>(`/api/bus-tours/${tourId.value}`, {
+	key: `bus-tour-${tourId.value}`,
 });
+
+// await callOnce(`tour-${tourId.value}`, () => store.getTour(tourId.value), {
+// 	mode: 'navigation'
+// });
 
 // await useAsyncData(
 // 	'tour',
@@ -24,7 +29,7 @@ await callOnce(`tour-${tourId.value}`, () => store.getTour(tourId.value), {
 
 const donwloadFile = async () => {
 	const response = await $fetch(
-		`${BASE_URL}/api/s3/download/${tour.value.documentName}`
+		`/api/s3/download/${data.value?.documentName}`
 	);
 	const link = document.createElement('a');
 	link.href = URL.createObjectURL(response as Blob);
@@ -37,12 +42,12 @@ const donwloadFile = async () => {
 		<Head>
 			<Title>
 				{{
-					`Автобусный тур в ${tour?.address?.city}, ${tour.type} ${tour.name}`
+					`Автобусный тур в ${data?.address?.city}, ${data?.type} ${data?.name}`
 				}}
 			</Title>
 			<Meta
 				name="description"
-				:content="`Автобусный тур в ${tour?.address?.city} из Орла.`"
+				:content="`Автобусный тур в ${data?.address?.city} из Орла.`"
 			/>
 			<Meta
 				name="keywords"
@@ -63,16 +68,16 @@ const donwloadFile = async () => {
 			</div>
 			<WidgetsHeaderItem
 				:title="tourTitle"
-				:price="tour.minPrice"
+				:price="data?.minPrice"
 				price-description="Минимально возможная цена за 1 туриста при 2-х местном размещении"
 				:cities="tourCity"
 			/>
 			<SharedUiGalleryTheGallery
-				:images="tour.images"
+				:images="data?.images ?? []"
 			/>
 			<div class="">
 				<button
-					v-if="tour?.documentName"
+					v-if="data?.documentName"
 					type="button"
 					class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-deep-orange px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-deep-orange/95 md:w-52"
 					@click.prevent="donwloadFile"
@@ -83,16 +88,16 @@ const donwloadFile = async () => {
 					Расположение
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ tour.address?.fullAddress }}
+					{{ data?.address?.fullAddress }}
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Размещение
 				</h3>
 				<div
-					v-for="(room, roomIndex) in tour.tours"
+					v-for="(room, roomIndex) in data?.tours"
 					:key="roomIndex"
 				>
 					<div class="py-2 dark:text-slate-200">
@@ -101,49 +106,49 @@ const donwloadFile = async () => {
 					</div>
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Питание</h3>
 				<div class="dark:text-slate-200">
-					{{ tour?.additionalInfo?.food?.type }}
+					{{ data?.additionalInfo?.food?.type }}
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Пляж</h3>
 				<div class="dark:text-slate-200">
-					{{ tour?.additionalInfo?.beach?.type }}. до пляжа
-					{{ tour?.additionalInfo?.beach?.distanceMinutes }} мин.
+					{{ data?.additionalInfo?.beach?.type }}. до пляжа
+					{{ data?.additionalInfo?.beach?.distanceMinutes }} мин.
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Заселение
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ tour?.additionalInfo?.checkInOut?.checkIn }} -
-					{{ tour?.additionalInfo?.checkInOut?.checkOut }}
+					{{ data?.additionalInfo?.checkInOut?.checkIn }} -
+					{{ data?.additionalInfo?.checkInOut?.checkOut }}
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					В стоимость включено
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ tour?.includedInThePrice?.map((x) => x?.serviceName)?.join(', ') }}
+					{{ data?.includedInThePrice?.map((x) => x?.serviceName)?.join(', ') }}
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div
-				v-if="tour.tours?.length"
+				v-if="data?.tours?.length"
 				class=""
 			>
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Даты и цены
 				</h3>
-				<SharedUiTableBusTourTable :tours="tour.tours" />
+				<SharedUiTableBusTourTable :tours="data.tours" />
 			</div>
 		</div>
 	</div>

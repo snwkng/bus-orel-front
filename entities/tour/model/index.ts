@@ -1,36 +1,9 @@
-import type { ICard } from '@/entities/card/model/types'
-import type { ITour } from './types'
-
 export const useTourStore = defineStore('useTourStore', {
 	state: () => ({
-		tours: [],
-		tour: {} as ITour,
 		seaList: [] as SelectItem[],
 		cityList: [] as SelectItem[]
 	}),
-	getters: {
-		cardMapped (state): ICard[] {
-			return state.tours?.map((tour: ITour) => ({
-				id: tour._id,
-				title: tour.name,
-				subtitle: tour?.address.city ?? '',
-				price: tour.minPrice,
-				image: tour?.images?.[0]
-			}))
-		}
-	},
 	actions: {
-		async getTours (params?: any): Promise<void> {
-			console.log(params)
-			this.tours = await $fetch('/api/bus-tours', {
-				params
-			})
-		},
-
-		async getTour (id: string): Promise<void> {
-			this.tour = await $fetch(`/api/bus-tours/${id}`)
-		},
-
 		async getSeaList (): Promise<void> {
 			const sea: SelectItem[] = await $fetch('/api/bus-tours/sea-list')
 			this.seaList = sea.filter((s: SelectItem) => s.name)
