@@ -5,36 +5,21 @@ const store = useExcursionStore();
 const { getExcursion } = store;
 const { excursion } = storeToRefs(store);
 
-await callOnce(
-	`excursion-${excursionId}`,
-	() => getExcursion(excursionId),
-	{ mode: 'navigation' }
-)
+await callOnce(`excursion-${excursionId}`, () => getExcursion(excursionId), {
+	mode: 'navigation'
+});
 
 // await useAsyncData(
 // 	'excursion',
 // 	(): Promise<boolean> => store.getExcursion(excursionId).then(() => true)
 // );
 
-const accordionItems = computed(
-	() => excursion.value.description?.map((x: string, index: number) => ({
+const accordionItems = computed(() =>
+	excursion.value.description?.map((x: string, index: number) => ({
 		title: `День ${index + 1}`,
 		content: x
 	}))
 );
-
-const endWordDayCheck = () => {
-	if (excursion.value.duration === 1) {
-		return 'день'
-	// eslint-disable-next-line no-else-return
-	} else if (excursion.value.duration > 1 && excursion.value.duration < 5) {
-		return 'дня'
-	} else if (excursion.value.duration >= 5) {
-		return 'дней'
-	} else {
-		return ''
-	}
-}
 </script>
 <template>
 	<div class="w-full dark:bg-gray-800">
@@ -56,51 +41,21 @@ const endWordDayCheck = () => {
 		<div
 			class="px-base m-auto flex w-full flex-col gap-5 py-10 dark:bg-gray-800 xl:w-[1280px]"
 		>
-			<div class="flex md:items-center md:justify-between sm:flex-col md:flex-row sm:gap-y-4">
-				<div class="felx flex-col gap-y-2">
-					<h1 class="mb-2 text-4xl font-bold dark:text-slate-200">
-						{{ excursion.name }}
-					</h1>
-					<div class="flex flex-row gap-1 items-center gap-x-3">
-						<div class="flex flex-row gap-1 items-center justify-center text-gray-500 dark:text-slate-200">
-							<SharedUiIconsLocationIcon
-								width="24px"
-								height="24px"
-							/>
-							<span class="">{{ excursion.cities?.map((x: string) => x).join(', ') }}</span>
-						</div>
-						<div class="flex flex-row gap-1 items-center justify-center">
-							<SharedUiIconsTimeIcon
-								width="24px"
-								height="24px"
-							/>
-							<span class="text-gray-500 dark:text-slate-200">{{ excursion.duration }} {{ endWordDayCheck() }}</span>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div class="flex flex-col md:items-end justify-end gap-y-2">
-						<span class="text-sm text-gray-400">
-							Минимальная цена за человека
-						</span>
-						<span class="font-semibold dark:text-slate-200">от {{ excursion.price }} ₽</span>
-					</div>
-				</div>
-			</div>
+			<WidgetsHeaderItem
+				:title="excursion?.name"
+				:price="excursion?.price"
+				price-description="Минимально возможная цена за человека"
+				:cities="excursion?.cities"
+				:duration="excursion?.duration"
+			/>
 			<SharedUiGalleryTheGallery
 				:images="excursion.images"
-				path="excursions"
 			/>
-			<!-- <SharedUiIconsInfoExcursionIconsBar
-				:cities="excursion.value.cities?.map((x: string) => x).join(', ')"
-				:duration="excursion.value.duration"
-				:excursion-start="new Date(excursion?.excursionStart)"
-				:price="excursion.value.price"
-				:hotel-name="excursion.value.hotelName"
-				:document-name="excursion.value.documentName"
-			/> -->
 			<div class="">
-				<div id="ex-dates" class="dark:text-slate-200">
+				<div
+					id="ex-dates"
+					class="dark:text-slate-200"
+				>
 					<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 						Даты предстоящих экскурсий
 					</h3>
@@ -111,7 +66,10 @@ const endWordDayCheck = () => {
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Программа тура
 				</h3>
-				<SharedUiAccordionsTheAccordion :items="accordionItems" parent-id="ex-dates" />
+				<SharedUiAccordionsTheAccordion
+					:items="accordionItems"
+					parent-id="ex-dates"
+				/>
 			</div>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">

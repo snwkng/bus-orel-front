@@ -17,14 +17,19 @@ const store = useTourStore();
 const { getTours } = store;
 const { cardMapped } = storeToRefs(store);
 
-await useAsyncData(
-	'tours',
-	(): Promise<boolean> => store.getTours(route?.query).then(() => true)
-);
+await callOnce('tours', () => getTours(route?.query), {
+	mode: 'navigation'
+});
+
+// await useAsyncData(
+// 	'tours',
+// 	(): Promise<boolean> => getTours(route?.query).then(() => true)
+// );
 
 watch(
 	() => route.query,
 	async () => {
+		console.log('query')
 		await getTours(route.query);
 	}
 );

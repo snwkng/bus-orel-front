@@ -19,10 +19,14 @@ const store = useExcursionStore();
 const { getExcursions } = store;
 const { cardMapped } = storeToRefs(store);
 
-await useAsyncData(
-	'excursions',
-	(): Promise<boolean> => store.getExcursions(route?.query).then(() => true)
-);
+await callOnce('excursions', () => getExcursions(route?.query), {
+	mode: 'navigation'
+});
+
+// await useAsyncData(
+// 	'excursions',
+// 	(): Promise<boolean> => getExcursions(route?.query).then(() => true)
+// );
 
 watch(
 	() => route.query,

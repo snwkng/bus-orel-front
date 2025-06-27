@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
+import { Swiper as SwiperClass } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -13,19 +13,25 @@ export interface Props {
 	images: string[];
 }
 
-const props = withDefaults(defineProps<Props>(), {
-	images: () => []
-});
-
-const thumbsSwiper = ref(null);
-
-const setThumbsSwiper = (swiper: any) => {
-	thumbsSwiper.value = swiper;
-};
+const props = withDefaults(defineProps<Props>(), { images: () => [] });
 
 const previewImages = ref<string[]>([]);
 
-function fetchImage() {
+const swiperInstance = ref<SwiperClass | null>(null);
+
+const onSwiper = (swiper: SwiperClass) => {
+	swiperInstance.value = swiper;
+};
+
+const swiperNextSlide = () => {
+	(swiperInstance.value as SwiperClass)?.slideNext();
+};
+
+const swiperPrevSlide = () => {
+	(swiperInstance.value as SwiperClass)?.slidePrev();
+};
+
+const fetchImage = () => {
 	try {
 		if (props.images.length) {
 			props.images.forEach(async (image) => {
@@ -33,12 +39,14 @@ function fetchImage() {
 				const blob = (await response) as Blob; // Преобразуем ответ в Blob
 
 				const reader = new FileReader();
-				reader.onloadend = () => {
-					if (typeof reader.result === 'string') {
-						previewImages.value.push(reader.result);
-					}
-				};
-				reader.readAsDataURL(blob);
+				if (reader) {
+					reader.onloadend = () => {
+						if (typeof reader.result === 'string') {
+							previewImages.value.push(reader.result);
+						}
+					};
+					reader.readAsDataURL(blob);
+				}
 			});
 		} else {
 			throw new Error('no image');
@@ -47,62 +55,59 @@ function fetchImage() {
 		console.error(error);
 		previewImages.value = [];
 	}
-}
+};
 
-fetchImage();
+onMounted(async () => {
+ await fetchImage();
+})
 </script>
 <template>
 	<div>
+		<div></div>
 		<ClientOnly>
 			<swiper
 				v-if="previewImages.length"
-				:class="[
-					'w-full',
-					previewImages.length > 1 ? 'rounded-t-xl' : 'rounded-xl'
-				]"
-				:modules="[Thumbs, FreeMode, Navigation]"
-				:loop="true"
+				class="relative w-full cursor-grab rounded-xl"
+				@swiper="onSwiper"
+				:scrollbar="{ draggable: true }"
 				:space-between="10"
-				:thumbs="{ swiper: thumbsSwiper }"
-				navigation
+				:navigation="{ prevEl: 'swiper-prev', nextEl: 'swiper-next' }"
 			>
 				<swiper-slide
-					v-for="(slide, index) in previewImages"
+					v-for="(slide, index) in images"
 					:key="index"
 				>
 					<img
-						:class="[
-							previewImages.length > 1 ? 'h-[400px]' : 'h-[500px]',
-							'w-full object-cover object-center'
-						]"
+						class="h-[300px] md:h-[550px] w-full object-cover object-center"
 						alt="pic"
-						:src="slide"
-					/>
-				</swiper-slide>
-			</swiper>
-			<swiper
-				v-if="previewImages.length > 1"
-				class="max-h-40 rounded-b-xl"
-				:modules="[Thumbs, FreeMode]"
-				:loop="true"
-				:slides-per-view="3"
-				:free-mode="true"
-				:watch-slides-progress="true"
-				:center-insufficient-slides="true"
-				:auto-height="true"
-				@swiper="setThumbsSwiper"
-			>
-				<swiper-slide
-					v-for="(slide, index) in previewImages"
-					:key="index"
-				>
-					<img
-						class="min-h-[100px] w-full object-fill"
-						alt="pic"
-						:src="slide"
+						:src="`/api/s3/download/${slide}`"
 						loading="lazy"
 					/>
 				</swiper-slide>
+				<div
+					v-if="!swiperInstance?.isBeginning"
+					class="swiper-btn swiper-prev left-2"
+					@click="swiperPrevSlide"
+				>
+					<SharedUiIconsArrowButton
+						width="32px"
+						height="32px"
+						color="stroke-deep-blue"
+						class="rotate-90"
+					/>
+				</div>
+				<div
+					v-if="!swiperInstance?.isEnd"
+					class="swiper-btn swiper-next right-2"
+					@click="swiperNextSlide"
+				>
+					<SharedUiIconsArrowButton
+						width="32px"
+						height="32px"
+						color="stroke-deep-blue"
+						class="rotate-270"
+					/>
+				</div>
 			</swiper>
 		</ClientOnly>
 	</div>

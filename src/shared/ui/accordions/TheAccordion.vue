@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 export interface IProps {
-	items: { title: string; content: string }[],
+	items: { title: string; content: string }[];
 	// eslint-disable-next-line vue/require-default-prop
-	parentId?: string
+	parentId?: string;
 }
 
 const props = withDefaults(defineProps<IProps>(), {

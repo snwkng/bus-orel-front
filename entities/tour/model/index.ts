@@ -13,14 +13,15 @@ export const useTourStore = defineStore('useTourStore', {
 			return state.tours?.map((tour: ITour) => ({
 				id: tour._id,
 				title: tour.name,
-				subtitle: tour?.city?.name ?? '',
-				price: tour.price,
+				subtitle: tour?.address.city ?? '',
+				price: tour.minPrice,
 				image: tour?.images?.[0]
 			}))
 		}
 	},
 	actions: {
 		async getTours (params?: any): Promise<void> {
+			console.log(params)
 			this.tours = await $fetch('/api/bus-tours', {
 				params
 			})
