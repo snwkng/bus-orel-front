@@ -1,13 +1,13 @@
 <script setup lang="ts">
 
 export interface IProps {
-	items: { title: string; content: string }[];
-	// eslint-disable-next-line vue/require-default-prop
+	items?: { title: string; content: string }[];
 	parentId?: string;
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-	items: () => []
+	items: () => [],
+	parentId: ''
 });
 
 const activeItem = ref<null | { title: string; content: string }>(
@@ -75,7 +75,7 @@ const toggleItem = (title: string) => {
 				class="w-full overflow-hidden px-0 pr-4"
 				:class="[{ hidden: activeItem?.title !== item.title }]"
 			>
-				<p class="text-base leading-6 dark:text-slate-200">
+				<p class="text-base leading-6 dark:text-slate-200 whitespace-pre-wrap">
 					{{ item.content }}
 				</p>
 			</div>
