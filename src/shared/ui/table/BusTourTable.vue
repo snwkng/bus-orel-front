@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 const selectedRooms = ref(
 	props.tours
 		?.filter((x: IHotelRoomInfo) => x.availability?.length)
-		.map((x: IHotelRoomInfo) => x.roomName) || []
+		.map((x: IHotelRoomInfo) => x.roomName)
 );
 
 const rooms = computed(() =>
@@ -21,7 +21,7 @@ const rooms = computed(() =>
 
 const filteredTours = computed(() =>
 	props.tours.filter((x: IHotelRoomInfo) =>
-		selectedRooms.value.includes(x.roomName)
+		selectedRooms.value.includes(x.roomName as string)
 	)
 );
 
@@ -42,10 +42,10 @@ const hasAvailability = computed(() =>
 				:key="index"
 			>
 				<SharedUiFormsTheCheckbox
-					v-model="selectedRooms as string[]"
+					v-model="selectedRooms"
 					:checkbox-id="`${room}_${index}`"
-					:label="room || ''"
-					:value="room || ''"
+					:label="(room || '')"
+					:value="(room || '')"
 				/>
 			</div>
 		</div>

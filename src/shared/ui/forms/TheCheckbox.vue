@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export interface IProps {
 	checkboxId: string;
-	modelValue: string[];
+	modelValue: (string | undefined)[];
 	value: string;
 	label: string;
 	disabled?: boolean;
