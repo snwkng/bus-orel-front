@@ -2,8 +2,6 @@
 <script setup lang="ts">
 import type { ICard, IExcursionCard } from '../model/types';
 
-const { BASE_URL } = useRuntimeConfig().public;
-
 export interface IProps {
 	type: 'excursion' | 'tour';
 }
@@ -26,7 +24,7 @@ async function fetchImage () {
 	try {
 		if (props.image) {
 			const response = await $fetch(
-				`${BASE_URL}/api/s3/download/${props.image}`
+				`/api/s3/download/${props.image}`
 			);
 			if (response) {
 				const blob = (await response) as Blob; // Преобразуем ответ в Blob
@@ -49,7 +47,7 @@ async function fetchImage () {
 	}
 }
 
-fetchImage();
+// fetchImage();
 </script>
 <template>
 	<RouterLink
@@ -62,7 +60,7 @@ fetchImage();
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
 			>
 				<div
-					v-if="!previewImage"
+					v-if="!image"
 					class="flex h-full w-full items-center justify-center"
 				>
 					<span class="font-semibold text-slate-400">Изображение отсутствует</span>
@@ -70,9 +68,10 @@ fetchImage();
 				<img
 					v-else
 					class="mb-3 h-full w-full rounded-xl object-cover brightness-100"
-					:src="previewImage?.toString()"
+					:src="`/api/s3/download/${image}`"
 					:alt="props.subtitle"
 					:title="props.title"
+					loading="lazy"
 				/>
 			</div>
 			<div class="card-content">

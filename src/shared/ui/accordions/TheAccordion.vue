@@ -1,10 +1,13 @@
 <script setup lang="ts">
+
 export interface IProps {
-	items: { title: string; content: string }[];
+	items?: { title: string; content: string }[];
+	parentId?: string;
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-	items: () => []
+	items: () => [],
+	parentId: ''
 });
 
 const activeItem = ref<null | { title: string; content: string }>(
@@ -20,6 +23,10 @@ const toggleItem = (title: string) => {
 		props.items.find(
 			(x: { title: string; content: string }) => title === x.title
 		) || null;
+	if (props?.parentId) {
+		const parent = document.getElementById(props.parentId)
+		parent?.scrollIntoView({ behavior: 'smooth' })
+	}
 };
 </script>
 <template>
@@ -39,9 +46,9 @@ const toggleItem = (title: string) => {
 				"
 				@click="toggleItem(item.title)"
 			>
-				<h5 class="font-semibold">
+				<span class="font-semibold">
 					{{ item.title }}
-				</h5>
+				</span>
 				<svg
 					class="transition duration-500 group-hover:text-deep-orange"
 					:class="
@@ -68,7 +75,7 @@ const toggleItem = (title: string) => {
 				class="w-full overflow-hidden px-0 pr-4"
 				:class="[{ hidden: activeItem?.title !== item.title }]"
 			>
-				<p class="text-base leading-6 dark:text-slate-200">
+				<p class="text-base leading-6 dark:text-slate-200 whitespace-pre-wrap">
 					{{ item.content }}
 				</p>
 			</div>

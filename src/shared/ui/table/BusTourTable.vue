@@ -1,33 +1,51 @@
 <script setup lang="ts">
-import type { ITourTable } from '~/entities/tour/model/types';
+import type { IHotelRoomInfo } from '~/entities/tour/model/types';
 
 export interface Props {
-	tours?: ITourTable[];
+	tours?: IHotelRoomInfo[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
 	tours: () => []
 });
 
-const selectedRooms = ref(props.tours.map((x: ITourTable) => x.roomName) || [])
+const selectedRooms = ref(
+	props.tours
+		?.filter((x: IHotelRoomInfo) => x.availability?.length)
+		.map((x: IHotelRoomInfo) => x.roomName) || []
+);
 
-const rooms = computed(() => props.tours.map((x: ITourTable) => x.roomName));
+const rooms = computed(() =>
+	props.tours.map((x: IHotelRoomInfo) => x.roomName)
+);
 
-const filteredTours =
-	computed(() => props.tours.filter((x: ITourTable) => selectedRooms.value.includes(x.roomName)));
+const filteredTours = computed(() =>
+	props.tours.filter((x: IHotelRoomInfo) =>
+		selectedRooms.value.includes(x.roomName)
+	)
+);
+
+const hasAvailability = computed(() =>
+	props.tours.some((x: IHotelRoomInfo) => x.availability?.length)
+);
 </script>
 <template>
-	<div class="grid">
-		<div class="mb-6 flex gap-2 rounded-xl bg-slate-100 px-6 py-4 dark:bg-gray-700 dark:text-slate-200">
+	<div
+		v-if="hasAvailability"
+		class="grid"
+	>
+		<div
+			class="mb-6 flex gap-2 rounded-xl bg-slate-100 px-6 py-4 dark:bg-gray-700 dark:text-slate-200"
+		>
 			<div
 				v-for="(room, index) in rooms"
 				:key="index"
 			>
 				<SharedUiFormsTheCheckbox
-					v-model="selectedRooms"
+					v-model="selectedRooms as string[]"
 					:checkbox-id="`${room}_${index}`"
-					:label="room"
-					:value="room"
+					:label="room || ''"
+					:value="room || ''"
 				/>
 			</div>
 		</div>
@@ -38,7 +56,7 @@ const filteredTours =
 				class="flex flex-col gap-2"
 			>
 				<div
-					v-for="(datesAndPrices, dataIndex) in tour.datesAndPrices"
+					v-for="(datesAndPrices, dataIndex) in tour.availability"
 					:key="dataIndex"
 					class="flex items-center justify-between gap-2 rounded-xl bg-slate-200 p-4 transition-all hover:bg-slate-300 dark:bg-gray-700 dark:text-slate-200 hover:dark:bg-gray-500"
 				>
@@ -50,13 +68,16 @@ const filteredTours =
 						<div>{{ tour.roomName }}</div>
 					</div>
 					<div
-						class="rounded-xl bg-deep-blue p-2 font-semibold text-white text-center"
+						class="rounded-xl bg-deep-blue p-2 text-center font-semibold text-white"
 					>
-						<span v-if="datesAndPrices.price">от {{ datesAndPrices.price }}&#8381;</span>
+						<span v-if="datesAndPrices?.pricePerPerson"
+							>от {{ datesAndPrices.pricePerPerson }}&#8381;</span
+						>
 						<span v-else>Уточните по телефону</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<LazySharedUiInformersEmptyDataInformer v-else text="Данных о датах и ценах пока нет" />
 </template>

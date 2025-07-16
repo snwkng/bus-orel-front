@@ -1,4 +1,4 @@
-import { ObjectId } from 'bson';
+import type { ObjectId } from 'bson';
 
 export interface IExcursion {
 	_id: ObjectId;
@@ -10,7 +10,7 @@ export interface IExcursion {
 	documentName: string;
 	checkInConditions: string;
 	excursionStart: Date;
-	cities: SelectItem[];
+	cities: string[];
 	hotelName: string;
 	thePriceIncludes: string[];
 }

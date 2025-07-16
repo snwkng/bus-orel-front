@@ -1,55 +1,58 @@
 <script setup lang="ts">
+import type { IExcursion } from '~/entities/excursion/model/types';
 
-export interface Props {
+export interface IProps {
 	title?: string;
 	emptyText?: string;
 	classes?: string;
 }
 
-withDefaults(defineProps<Props>(), {
-	title: '',
-	emptyText: '',
-	classes: ''
-});
+defineProps<IProps>()
 
 const route = useRoute();
 
-const store = useExcursionStore();
-
-const { getExcursions } = store;
-const { cardMapped } = storeToRefs(store);
-
-await useAsyncData(
-	'excursions',
-	(): Promise<boolean> => store.getExcursions(route?.query).then(() => true)
-);
-
-watch(
-	() => route.query,
-	async () => {
-		await getExcursions(route.query);
+const { data } = await useFetch('/api/excursions', {
+	query: computed(() => route.query),
+	transform: (data) => {
+		return (data as IExcursion[]).map((ex: IExcursion) => ({
+			id: ex._id,
+			title: ex.name,
+			subtitle: ex.cities?.map((x: string) => x).join(', '),
+			price: ex.price,
+			image: ex.images?.[0] || '',
+			date: ex?.excursionStart || null
+		}))
 	}
-);
+});
 
 </script>
 <template>
-	<section v-if="cardMapped.length || emptyText" :class="['dark:bg-gray-800 dark:text-slate-200', classes]">
-		<h2 v-if="title && cardMapped.length" class="mb-6 text-2xl font-bold">
+	<section
+		v-if="data?.length || emptyText"
+		:class="['dark:bg-gray-800 dark:text-slate-200', classes]"
+	>
+		<h2
+			v-if="title && data?.length"
+			class="mb-6 text-2xl font-bold"
+		>
 			{{ title }}
 		</h2>
-		<h2 v-else-if="emptyText.length && !cardMapped.length" class="text-2xl font-bold text-center">
+		<h2
+			v-else-if="emptyText?.length && !data?.length"
+			class="text-center text-2xl font-bold"
+		>
 			{{ emptyText }}
 		</h2>
 		<SharedUiTheGrid>
 			<EntitiesCard
-				v-for="item in cardMapped"
+				v-for="item in data"
 				:id="item.id"
 				:key="item.id"
 				:title="item.title"
 				:subtitle="item.subtitle"
 				:price="item.price"
 				:image="item.image"
-				:date=" item?.date ? new Date(item.date) : null"
+				:date="item?.date ? new Date(item.date) : null"
 				type="excursion"
 				image-path="excursions"
 			/>

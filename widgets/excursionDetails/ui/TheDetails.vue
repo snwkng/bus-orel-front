@@ -1,15 +1,16 @@
 <script setup lang="ts">
+import type { IExcursion } from '~/entities/excursion/model/types';
+
+
 const route = useRoute();
-const excursionId = route.params.id as string;
-const store = useExcursionStore();
+const excursionId = computed(() => route.params.id as string);
 
-await useAsyncData(
-	'excursion',
-	(): Promise<boolean> => store.getExcursion(excursionId).then(() => true)
-);
+const { data } = await useFetch<IExcursion>(`/api/excursions/${excursionId.value}`, {
+	key: `excursion-${excursionId.value}`,
+});
 
-const accordionItems = computed(
-	() => store.excursion.description.map((x: string, index: number) => ({
+const accordionItems = computed(() =>
+	data.value?.description?.map((x: string, index: number) => ({
 		title: `День ${index + 1}`,
 		content: x
 	}))
@@ -20,43 +21,50 @@ const accordionItems = computed(
 		<Head>
 			<Title>
 				{{
-					`Эскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')}, ${store.excursion.name}`
+					`Эскурсионный тур в ${data?.cities?.join(', ')}, ${data?.name}`
 				}}
 			</Title>
 			<Meta
 				name="description"
-				:content="`Экскурсионный тур в ${store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')} из Орла.`"
+				:content="`Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
 			/>
 			<Meta
 				name="keywords"
 				content="экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии"
 			/>
 		</Head>
-		<div class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px] dark:bg-gray-800">
-			<div class="flex items-center justify-between">
-				<h1 class="mb-2 text-4xl font-bold dark:text-slate-200">
-					{{ store.excursion.name }}
-				</h1>
-			</div>
-			<SharedUiGalleryTheGallery
-				:images="store.excursion.images"
-				path="excursions"
+		<div
+			class="px-base m-auto flex w-full flex-col gap-5 py-10 dark:bg-gray-800 xl:w-[1280px]"
+		>
+			<WidgetsHeaderItem
+				:title="data?.name"
+				:price="data?.price"
+				price-description="Минимально возможная цена за человека"
+				:cities="data?.cities"
+				:duration="data?.duration"
 			/>
-			<SharedUiIconsInfoExcursionIconsBar
-				:cities="
-					store.excursion.cities?.map((x: SelectItem) => x.name).join(', ')
-				"
-				:duration="store.excursion.duration"
-				:excursion-start="new Date(store.excursion?.excursionStart)"
-				:price="store.excursion.price"
-				:hotel-name="store.excursion.hotelName"
-				:document-name="store.excursion.documentName"
+			<SharedUiGalleryTheGallery
+				:images="data?.images ?? []"
 			/>
 			<div class="">
+				<div
+					id="ex-dates"
+					class="dark:text-slate-200"
+				>
+					<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+						Даты предстоящих экскурсий
+					</h3>
+					{{ $dayjs(data?.excursionStart).format('DD.MM.YYYY') }},
+					{{ $dayjs(data?.excursionStart).format('DD.MM.YYYY') }}
+				</div>
+				<hr class="my-4">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Программа тура
 				</h3>
-				<SharedUiAccordionsTheAccordion :items="accordionItems" />
+				<SharedUiAccordionsTheAccordion
+					:items="accordionItems ?? []"
+					parent-id="ex-dates"
+				/>
 			</div>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
@@ -64,7 +72,7 @@ const accordionItems = computed(
 				</h3>
 				<div class="flex flex-col gap-y-3">
 					<div
-						v-for="item in store.excursion.thePriceIncludes"
+						v-for="item in data?.thePriceIncludes"
 						:key="item"
 						class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
 					>

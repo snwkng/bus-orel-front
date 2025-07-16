@@ -1,20 +1,30 @@
 <script setup lang="ts">
-const { BASE_URL } = useRuntimeConfig().public;
-const store = useTourStore();
+import type { IHotelRoomInfo, ITour } from '~/entities/tour/model/types';
+
+// const store = useTourStore();
+
+// const { tour } = storeToRefs(store);
 
 const route = useRoute();
-const tourId = route.params.id as string;
-
-await useAsyncData(
-	'tour',
-	(): Promise<boolean> => store.getTour(tourId).then(() => true)
+const tourId = computed(() => route.params.id as string);
+const tourTitle = computed(() => data.value?.type || data.value?.name ? `${data.value?.type} ${data.value?.name}` : '');
+const tourCity = computed(() =>
+	data.value?.address?.fullAddress || data.value?.address?.city
+		? [data.value?.address?.fullAddress ?? data.value?.address?.city]
+		: []
 );
+
+const hasRoomsinfo = computed(() => data.value?.tours?.some((x: IHotelRoomInfo) => x.roomName))
+
+const { data } = await useFetch<ITour>(`/api/bus-tours/${tourId.value}`, {
+	key: `bus-tour-${tourId.value}`,
+});
 
 const donwloadFile = async () => {
 	const response = await $fetch(
-		`${BASE_URL}/api/s3/download/${store.tour.documentName}`
+		`/api/s3/download/${data.value?.documentName}`
 	);
-	const link = document.createElement('a')
+	const link = document.createElement('a');
 	link.href = URL.createObjectURL(response as Blob);
 	link.click();
 	URL.revokeObjectURL(link.href);
@@ -25,12 +35,12 @@ const donwloadFile = async () => {
 		<Head>
 			<Title>
 				{{
-					`Автобусный тур в ${store.tour?.city?.name}, ${store.tour.type} ${store.tour.name}`
+					`Автобусный тур в ${data?.address?.city}, ${data?.type} ${data?.name}`
 				}}
 			</Title>
 			<Meta
 				name="description"
-				:content="`Автобусный тур в ${store.tour.city} из Орла.`"
+				:content="`Автобусный тур в ${data?.address?.city} из Орла.`"
 			/>
 			<Meta
 				name="keywords"
@@ -44,33 +54,23 @@ const donwloadFile = async () => {
 				class="rounded-xl bg-slate-100 px-5 py-3 font-semibold dark:bg-gray-700 dark:text-slate-200"
 			>
 				УВАЖАЕМЫЕ ТУРИСТЫ ОБРАЩАЕМ ВАШЕ ВНИМАНИЕ, ВО МНОГИХ ОТЕЛЯХ ДИНАМИЧЕСКОЕ
-				ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ ПОСТАРАЙТЕСЬ ЛУЧШЕ УТОЧНИТЬ
+				ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ, ПОЖАЛУЙСТА, УТОЧНИТЕ
 				АКТУАЛЬНЫЙ ПРАЙС. НАДЕЕМСЯ НА ВАШЕ ПОНИМАНИЕ! КОНСУЛЬТАЦИЯ И
 				БРОНИРОВАНИЕ:
 				<span class="text-red-700 dark:text-red-300">ТЕЛ. +79036370958</span>
 			</div>
-			<div class="flex flex-col justify-between sm:flex-row sm:items-center">
-				<h1
-					class="mb-2 text-3xl font-bold dark:text-slate-200 sm:text-xl md:text-4xl"
-				>
-					{{ store.tour.type }} {{ store.tour.name }}
-				</h1>
-				<div class="flex flex-col gap-x-1 sm:items-end">
-					<span class="font-semibold dark:text-slate-200">
-						от {{ store.tour.price }}₽
-					</span>
-					<span class="text-sm text-slate-400 sm:text-right">
-						Минимально возможная цена за 1 туриста при 2-х местном размещении
-					</span>
-				</div>
-			</div>
+			<WidgetsHeaderItem
+				:title="tourTitle"
+				:price="data?.minPrice"
+				price-description="Минимально возможная цена за 1 туриста при 2-х местном размещении"
+				:cities="tourCity"
+			/>
 			<SharedUiGalleryTheGallery
-				:images="store.tour.images"
-				path="hotels"
+				:images="data?.images ?? []"
 			/>
 			<div class="">
 				<button
-					v-if="store.tour.documentName"
+					v-if="data?.documentName"
 					type="button"
 					class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-deep-orange px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-deep-orange/95 md:w-52"
 					@click.prevent="donwloadFile"
@@ -78,68 +78,74 @@ const donwloadFile = async () => {
 					Скачать прайс
 				</button>
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Расположение
+					Описание
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ store.tour.locationDescription }}
+					{{ data?.description }}
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Размещение
 				</h3>
-				<div v-for="(room, roomIndex) in store.tour.tours" :key="roomIndex">
-					<div class="py-2">
-						<strong>
-							{{ room.roomName }}:
-						</strong>
-						{{ room.inRoom }}
+				<div v-if="hasRoomsinfo">
+					<div
+						v-for="(room, roomIndex) in data?.tours"
+						:key="roomIndex"
+					>
+						<div class="py-2 dark:text-slate-200">
+							<strong> {{ room?.roomName }}: </strong>
+							{{ room?.description }}
+						</div>
 					</div>
 				</div>
+				<LazySharedUiInformersEmptyDataInformer v-else text="Данных о номерах пока нет" />
 			</div>
-			<hr />
+			<hr>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Питание
-				</h3>
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Питание</h3>
 				<div class="dark:text-slate-200">
-					{{ store.tour.food }}
+					{{ data?.additionalInfo?.food?.type }}
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
-				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Пляж
-				</h3>
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Пляж</h3>
 				<div class="dark:text-slate-200">
-					{{ store.tour.beach }}. до пляжа {{ store.tour.distanceToBeach }}.
+					<span v-if="data?.additionalInfo?.beach?.type">{{ data.additionalInfo.beach.type }}.</span>
+					<span v-if="data?.additionalInfo?.beach?.distanceMinutes"> До пляжа {{ data.additionalInfo.beach.distanceMinutes }} мин.</span>
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Заселение
+					Заселение / Выселение
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ store.tour.checkInConditions }}
+					<span v-if="data?.additionalInfo?.checkInOut?.checkIn">Заселение с {{ data.additionalInfo.checkInOut.checkIn }}</span>
+					<span v-if="data?.additionalInfo?.checkInOut?.checkIn && data?.additionalInfo?.checkInOut?.checkOut"> - </span>
+					<span v-if="data?.additionalInfo?.checkInOut?.checkOut"> выселение до {{ data.additionalInfo.checkInOut.checkOut }}</span>
 				</div>
 			</div>
-			<hr />
+			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					В стоимость включено
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ store.tour?.thePriceIncludes.join(', ') }}
+					{{ data?.includedInThePrice?.map((x) => x?.serviceName)?.join(', ') }}
 				</div>
 			</div>
-			<hr />
-			<div v-if="store.tour.tours?.length" class="">
+			<hr>
+			<div
+				v-if="data?.tours?.length"
+				class=""
+			>
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Даты и цены
 				</h3>
-				<SharedUiTableBusTourTable :tours="store.tour.tours" />
+				<SharedUiTableBusTourTable :tours="data.tours" />
 			</div>
 		</div>
 	</div>

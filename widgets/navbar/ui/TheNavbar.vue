@@ -39,7 +39,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="1"
-				/>
+				>
 			</li>
 			<li
 				itemprop="itemListElement"
@@ -56,7 +56,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="2"
-				/>
+				>
 			</li>
 			<li
 				itemprop="itemListElement"
@@ -73,7 +73,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="3"
-				/>
+				>
 			</li>
 			<li
 				itemprop="itemListElement"
@@ -90,7 +90,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="4"
-				/>
+				>
 			</li>
 		</ul>
 	</nav>

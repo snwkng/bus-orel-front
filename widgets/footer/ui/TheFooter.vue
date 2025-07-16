@@ -13,21 +13,28 @@ const fullYear: number = new Date().getFullYear();
 	<div class="flex w-full items-end">
 		<footer
 			class="body-font w-full bg-slate-100 text-slate-700 dark:bg-gray-800 dark:text-slate-200"
+			itemscope
+			itemtype="https://schema.org/Organization"
 		>
 			<div
 				:class="[
 					'md:flex-no-wrap px-base mx-auto flex w-full flex-col flex-wrap px-5 py-24 md:flex-row md:items-center lg:items-start',
-					{ 'px-base xl:w-[1280px]': isSingle },
+					{ 'px-base xl:w-[1280px]': isSingle }
 				]"
 			>
 				<div
 					class="mx-auto w-64 flex-shrink-0 text-center md:mx-0 md:text-left"
+					itemprop="description"
 				>
-					<router-link :to="{ name: 'home' }">
+					<router-link
+						:to="{ name: 'home' }"
+						itemprop="name"
+					>
 						<strong class="text-deep-orange">Г</strong>
 						<span
 							class="h-5 w-auto fill-current text-slate-900 dark:text-slate-100"
-						>алатур</span>
+							>алатур</span
+						>
 					</router-link>
 					<p
 						class="mt-2 text-sm text-slate-500 dark:text-slate-300 dark:hover:text-slate-100"
@@ -44,6 +51,7 @@ const fullYear: number = new Date().getFullYear();
 								class="cursor-pointer"
 								target="_blank"
 								aria-label="vk"
+								itemprop="sameAs"
 							>
 								<i-vk
 									filled
@@ -59,6 +67,7 @@ const fullYear: number = new Date().getFullYear();
 								class="ml-3 cursor-pointer"
 								target="_blank"
 								aria-label="одноклассники"
+								itemprop="sameAs"
 							>
 								<i-okru
 									filled
@@ -77,29 +86,57 @@ const fullYear: number = new Date().getFullYear();
 					<div class="w-full px-4 md:w-1/2 lg:w-1/4">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
+							itemprop="department"
+							itemscope
+							itemtype="https://schema.org/Organization "
 						>
-							Компания
+							<span itemprop="name">Компания</span>
 						</h2>
 						<nav
 							class="mb-10 list-none"
 							aria-label="Company"
+							itemscope
+							itemtype="https://schema.org/SiteNavigationElement"
 						>
-							<ul>
-								<li class="mt-3">
+							<ul
+								itemscope
+								itemtype="https://schema.org/ItemList"
+							>
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<router-link
 										:to="{ name: 'about' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										О нас
+										<span itemprop="name">О нас</span>
 									</router-link>
+									<meta
+										itemprop="position"
+										content="1"
+									/>
 								</li>
-								<li class="mt-3">
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<router-link
 										:to="{ name: 'tourist-reminder' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										Памятка туристу
+										<span itemprop="name">Памятка туристу</span>
 									</router-link>
+									<meta
+										itemprop="position"
+										content="2"
+									/>
 								</li>
 							</ul>
 						</nav>
@@ -107,37 +144,77 @@ const fullYear: number = new Date().getFullYear();
 					<div class="w-full px-4 md:w-1/2 lg:w-1/4">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
+							itemprop="department"
+							itemscope
+							itemtype="https://schema.org/Organization"
 						>
-							Информация
+							<span itemprop="name">Информация</span>
 						</h2>
 						<nav
 							class="mb-10 list-none"
 							aria-label="Information"
+							itemscope
+							itemtype="https://schema.org/SiteNavigationElement"
 						>
-							<ul>
-								<li class="mt-3">
+							<ul
+								itemscope
+								itemtype="https://schema.org/ItemList"
+							>
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<router-link
 										:to="{ name: 'agreement' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										Соглашения
+										<span itemprop="name">Соглашения</span>
 									</router-link>
+									<meta
+										itemprop="position"
+										content="1"
+									/>
 								</li>
-								<li class="mt-3">
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<router-link
 										:to="{ name: 'privacy-policy' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										Политика в отношении персональных данных
+										<span itemprop="name"
+											>Политика в отношении персональных данных</span
+										>
 									</router-link>
+									<meta
+										itemprop="position"
+										content="2"
+									/>
 								</li>
-								<li class="mt-3">
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<a
 										href="/sitemap.xml"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										Карта сайта
+										<span itemprop="name">Карта сайта</span>
 									</a>
+									<meta
+										itemprop="position"
+										content="3"
+									/>
 								</li>
 							</ul>
 						</nav>
@@ -145,45 +222,93 @@ const fullYear: number = new Date().getFullYear();
 					<div class="w-full px-4 md:w-1/2 lg:w-1/4">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
+							itemprop="department"
+							itemscope
+							itemtype="https://schema.org/Organization"
 						>
-							Услуги
+							<span itemprop="name">Услуги</span>
 						</h2>
 						<nav
 							class="mb-10 list-none"
 							aria-label="Service"
+							itemscope
+							itemtype="https://schema.org/SiteNavigationElement"
 						>
-							<ul>
-								<li class="mt-3">
+							<ul
+								itemscope
+								itemtype="https://schema.org/ItemList"
+							>
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<router-link
 										to="/bus-tours"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										Автобусные туры к морю из Орла
+										<span itemprop="name">Автобусные туры к морю из Орла</span>
 									</router-link>
+									<meta
+										itemprop="position"
+										content="1"
+									/>
 								</li>
-								<li class="mt-3">
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<router-link
 										to="/excursions"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										Экскурсионные туры из Орла
+										<span itemprop="name">Экскурсионные туры из Орла</span>
 									</router-link>
+									<meta
+										itemprop="position"
+										content="2"
+									/>
 								</li>
-								<li class="mt-3">
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<router-link
 										:to="{ name: 'home', hash: '#bus-rent' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										Аренда микроавтобусов
+										<span itemprop="name">Аренда микроавтобусов</span>
 									</router-link>
+									<meta
+										itemprop="position"
+										content="3"
+									/>
 								</li>
-								<li class="mt-3">
+								<li
+									class="mt-3"
+									itemprop="itemListElement"
+									itemscope
+									itemtype="https://schema.org/ListItem"
+								>
 									<router-link
 										:to="{ name: 'home', hash: '#tour-selection' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="url"
 									>
-										Подбор туров
+										<span itemprop="name">Подбор туров</span>
 									</router-link>
+									<meta
+										itemprop="position"
+										content="4"
+									/>
 								</li>
 							</ul>
 						</nav>
@@ -200,12 +325,15 @@ const fullYear: number = new Date().getFullYear();
 						<nav
 							class="mb-10 list-none"
 							aria-label="Contacts"
+							itemscope
+							itemtype="https://schema.org/ContactPoint"
 						>
 							<ul>
 								<li class="mt-3">
 									<a
 										href="mailto:avtobus-orel.petlaj@yandex.ru"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="email"
 									>
 										avtobus-orel.petlaj@yandex.ru
 									</a>
@@ -214,26 +342,32 @@ const fullYear: number = new Date().getFullYear();
 									<a
 										href="tel:+74862780958"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+										itemprop="telephone"
 									>
 										+7(4862)78-09-58
 									</a>
 								</li>
-								<li class="mt-3 md:flex md:flex-wrap">
-									<a
-										href="https://yandex.ru/maps/org/turisticheskoye_agentstvo_galatur/1067897790/?ll=36.060826%2C52.953087&z=14.36"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										г. Орёл, ул. Комсомольская 88, оф. 6
-									</a>
-								</li>
-								<li>
-									<span>(Внимание! Офис работает только по предварительной
-										записи)</span>
-								</li>
 							</ul>
 						</nav>
+
+						<!-- Адрес (PostalAddress), связанный с Organization -->
+						<div
+							itemscope
+							itemtype="https://schema.org/PostalAddress "
+						>
+							<a
+								href="https://yandex.ru/maps/org/turisticheskoye_agentstvo_galatur/1067897790/?ll=36.060826%2C52.953087&z=14.36"
+								class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+								target="_blank"
+								rel="noopener noreferrer"
+								itemprop="streetAddress"
+							>
+								г. Орёл, ул. Комсомольская 88, оф. 6
+							</a>
+							<span>
+								(Внимание! Офис работает только по предварительной записи)
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>

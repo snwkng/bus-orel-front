@@ -1,14 +1,14 @@
 <script setup lang="ts">
-export interface Props {
-	inputId: string;
-	label: string;
-	type: string;
-	placeholder: string;
+export interface IProps {
+	inputId?: string;
+	label?: string;
+	type?: string;
+	placeholder?: string;
 	disabled?: boolean;
 	classes?: string;
 }
 
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<IProps>(), {
 	inputId: '',
 	label: '',
 	type: 'text',
