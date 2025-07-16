@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ITour } from '~/entities/tour/model/types';
+import type { IHotelRoomInfo, ITour } from '~/entities/tour/model/types';
 
 // const store = useTourStore();
 
@@ -14,18 +14,11 @@ const tourCity = computed(() =>
 		: []
 );
 
+const hasRoomsinfo = computed(() => data.value?.tours?.some((x: IHotelRoomInfo) => x.roomName))
+
 const { data } = await useFetch<ITour>(`/api/bus-tours/${tourId.value}`, {
 	key: `bus-tour-${tourId.value}`,
 });
-
-// await callOnce(`tour-${tourId.value}`, () => store.getTour(tourId.value), {
-// 	mode: 'navigation'
-// });
-
-// await useAsyncData(
-// 	'tour',
-// 	(): Promise<boolean> => store.getTour(tourId).then(() => true)
-// );
 
 const donwloadFile = async () => {
 	const response = await $fetch(
@@ -85,10 +78,10 @@ const donwloadFile = async () => {
 					Скачать прайс
 				</button>
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Расположение
+					Описание
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ data?.address?.fullAddress }}
+					{{ data?.description }}
 				</div>
 			</div>
 			<hr>
@@ -96,15 +89,18 @@ const donwloadFile = async () => {
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Размещение
 				</h3>
-				<div
-					v-for="(room, roomIndex) in data?.tours"
-					:key="roomIndex"
-				>
-					<div class="py-2 dark:text-slate-200">
-						<strong> {{ room?.roomName }}: </strong>
-						{{ room?.description }}
+				<div v-if="hasRoomsinfo">
+					<div
+						v-for="(room, roomIndex) in data?.tours"
+						:key="roomIndex"
+					>
+						<div class="py-2 dark:text-slate-200">
+							<strong> {{ room?.roomName }}: </strong>
+							{{ room?.description }}
+						</div>
 					</div>
 				</div>
+				<LazySharedUiInformersEmptyDataInformer v-else text="Данных о номерах пока нет" />
 			</div>
 			<hr>
 			<div class="">
@@ -117,18 +113,19 @@ const donwloadFile = async () => {
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Пляж</h3>
 				<div class="dark:text-slate-200">
-					{{ data?.additionalInfo?.beach?.type }}. до пляжа
-					{{ data?.additionalInfo?.beach?.distanceMinutes }} мин.
+					<span v-if="data?.additionalInfo?.beach?.type">{{ data.additionalInfo.beach.type }}.</span>
+					<span v-if="data?.additionalInfo?.beach?.distanceMinutes"> До пляжа {{ data.additionalInfo.beach.distanceMinutes }} мин.</span>
 				</div>
 			</div>
 			<hr>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Заселение
+					Заселение / Выселение
 				</h3>
 				<div class="dark:text-slate-200">
-					{{ data?.additionalInfo?.checkInOut?.checkIn }} -
-					{{ data?.additionalInfo?.checkInOut?.checkOut }}
+					<span v-if="data?.additionalInfo?.checkInOut?.checkIn">Заселение с {{ data.additionalInfo.checkInOut.checkIn }}</span>
+					<span v-if="data?.additionalInfo?.checkInOut?.checkIn && data?.additionalInfo?.checkInOut?.checkOut"> - </span>
+					<span v-if="data?.additionalInfo?.checkInOut?.checkOut"> выселение до {{ data.additionalInfo.checkInOut.checkOut }}</span>
 				</div>
 			</div>
 			<hr>

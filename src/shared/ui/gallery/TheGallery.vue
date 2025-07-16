@@ -62,9 +62,12 @@ onMounted(async () => {
 })
 </script>
 <template>
-	<div>
+	<div class="h-[300px] md:h-[550px]">
 		<div/>
-		<ClientOnly>
+		<ClientOnly fallback-tag="div">
+			<template #fallback>
+				<SharedUiSkeletonSwiper />
+			</template>
 			<swiper
 				v-if="previewImages.length"
 				class="relative w-full cursor-grab rounded-xl"
