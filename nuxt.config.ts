@@ -7,6 +7,10 @@ export default defineNuxtConfig({
 			viewport: 'width=device-width, initial-scale=1',
 			title: 'Туристическое агентство "ГалаТур" Орёл',
 			htmlAttrs: { lang: 'ru' },
+			meta: [
+				{ 'http-equiv': 'Content-Type', content: 'text/html; charset=utf-8' },
+				{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
+			],
 			script: [
 				{
 					type: 'text/javascript',
@@ -65,7 +69,8 @@ export default defineNuxtConfig({
 	dir: {
 		layouts: 'app/layouts',
 		assets: 'app/assets',
-		plugins: 'src/shared/lib/plugins'
+		plugins: 'src/shared/lib/plugins',
+		middleware: 'src/shared/config/middleware'
 	},
 
 	devtools: { enabled: true },

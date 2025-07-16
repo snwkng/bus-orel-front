@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import type { IExcursion } from '~/entities/excursion/model/types';
 
+const { BASE_URL } = useRuntimeConfig().public
 
 const route = useRoute();
+
+useHead({
+	link: [{ rel: 'canonical', href: BASE_URL + (route.path === '/' ? '' : route.path) }],
+})
+
 const excursionId = computed(() => route.params.id as string);
 
 const { data } = await useFetch<IExcursion>(`/api/excursions/${excursionId.value}`, {
@@ -28,6 +34,8 @@ const accordionItems = computed(() =>
 				name="description"
 				:content="`Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
 			/>
+			<Meta name="og:title" :content="`Эскурсионный тур в ${data?.cities?.join(', ')}, ${data?.name}`" />
+			<Meta name="og:description" :content="`Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`" />
 			<Meta
 				name="keywords"
 				content="экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии"

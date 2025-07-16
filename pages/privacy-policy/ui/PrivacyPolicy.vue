@@ -1,4 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useSeoMeta({
+	title: 'Галатур Орел - Политика в отношении персональных данных',
+	ogTitle: 'Галатур Орел - Политика в отношении персональных данных',
+	description:
+		'Галатур - Политика в отношении персональных данных',
+	ogDescription:
+		'Галатур - Политика в отношении персональных данных',
+	keywords:
+		''
+});
+</script>
 <template>
 	<div class="dark:bg-gray-800 dark:text-slate-200">
 		<section

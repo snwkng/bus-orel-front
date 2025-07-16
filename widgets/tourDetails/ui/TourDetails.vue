@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { IHotelRoomInfo, ITour } from '~/entities/tour/model/types';
 
-// const store = useTourStore();
-
-// const { tour } = storeToRefs(store);
+const { BASE_URL } = useRuntimeConfig().public
 
 const route = useRoute();
+
+useHead({
+	link: [{ rel: 'canonical', href: BASE_URL + (route.path === '/' ? '' : route.path) }],
+})
+
 const tourId = computed(() => route.params.id as string);
 const tourTitle = computed(() => data.value?.type || data.value?.name ? `${data.value?.type} ${data.value?.name}` : '');
 const tourCity = computed(() =>
@@ -46,6 +49,8 @@ const donwloadFile = async () => {
 				name="keywords"
 				content="автобусные туры к морю, поездки на море, автобусные поездки, недорогие туры на море из Орла, автобусом к морю, автобусные туры на море, отдых на море автобусом"
 			/>
+			<Meta name="og:title" :content="`Автобусный тур в ${data?.address?.city}, ${data?.type} ${data?.name}`" />
+			<Meta name="og:description" :content="`Автобусный тур в ${data?.address?.city} из Орла.`" />
 		</Head>
 		<div
 			class="px-base m-auto flex w-full flex-col gap-5 py-10 dark:bg-gray-800 xl:w-[1280px]"

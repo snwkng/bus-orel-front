@@ -1,19 +1,22 @@
 <script setup lang="ts">
+const { BASE_URL } = useRuntimeConfig().public
+
+const route = useRoute();
+
 useHead({
+	link: [{ rel: 'canonical', href: BASE_URL + (route.path === '/' ? '' : route.path) }],
+})
+
+useSeoMeta({
 	title: 'Галатур Орел - Политика обработки персональных данных',
-	meta: [
-		{
-			name: 'description',
-			content:
-				'Галатур - Политика обработки персональных данных'
-		},
-		{
-			name: 'keywords',
-			content:
-				'Галатур, галатур орел, туристическое агентство'
-		}
-	]
-});
+	ogTitle: 'Галатур Орел - Политика обработки персональных данных',
+	description:
+		'Галатур - Политика обработки персональных данных',
+	ogDescription:
+		'Галатур - Политика обработки персональных данных',
+	keywords:
+		'галатур, галатур орел, туристическое агентство'
+})
 </script>
 <template>
 	<div class="dark:bg-gray-800 dark:text-slate-200">
