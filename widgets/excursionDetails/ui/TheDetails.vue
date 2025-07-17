@@ -1,13 +1,36 @@
 <script setup lang="ts">
 import type { IExcursion } from '~/entities/excursion/model/types';
 
+const { BASE_URL } = useRuntimeConfig().public;
 
 const route = useRoute();
+
+useHead({
+	link: [
+		{
+			rel: 'canonical',
+			href: BASE_URL + (route.path === '/' ? '' : route.path)
+		}
+	]
+});
+
 const excursionId = computed(() => route.params.id as string);
 
-const { data } = await useFetch<IExcursion>(`/api/excursions/${excursionId.value}`, {
-	key: `excursion-${excursionId.value}`,
-});
+const { data, error } = await useFetch<IExcursion>(
+	`/api/excursions/${excursionId.value}`,
+	{
+		key: `excursion-${excursionId.value}`
+	}
+);
+
+// перекидываем на 404, если бэк выловил невалидный id 
+if (error.value?.statusCode === 404) {
+	throw createError({
+		statusCode: error.value?.statusCode,
+		statusMessage: error.value?.message,
+		fatal: true
+	});
+}
 
 const accordionItems = computed(() =>
 	data.value?.description?.map((x: string, index: number) => ({
@@ -20,12 +43,18 @@ const accordionItems = computed(() =>
 	<div class="w-full dark:bg-gray-800">
 		<Head>
 			<Title>
-				{{
-					`Эскурсионный тур в ${data?.cities?.join(', ')}, ${data?.name}`
-				}}
+				{{ `Эскурсионный тур в ${data?.cities?.join(', ')}, ${data?.name}` }}
 			</Title>
 			<Meta
 				name="description"
+				:content="`Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
+			/>
+			<Meta
+				name="og:title"
+				:content="`Эскурсионный тур в ${data?.cities?.join(', ')}, ${data?.name}`"
+			/>
+			<Meta
+				name="og:description"
 				:content="`Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
 			/>
 			<Meta
@@ -43,9 +72,7 @@ const accordionItems = computed(() =>
 				:cities="data?.cities"
 				:duration="data?.duration"
 			/>
-			<SharedUiGalleryTheGallery
-				:images="data?.images ?? []"
-			/>
+			<SharedUiGalleryTheGallery :images="data?.images ?? []" />
 			<div class="">
 				<div
 					id="ex-dates"

@@ -67,6 +67,7 @@ const close = (closeNav: boolean) => {
 				<div class="relative">
 					<button
 						type="button"
+						name="menu"
 						class="btn-hover"
 						@click="toggle = !toggle"
 					>
