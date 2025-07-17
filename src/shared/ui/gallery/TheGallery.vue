@@ -13,9 +13,9 @@ export interface IProps {
 	images?: string[];
 }
 
-const props = withDefaults(defineProps<IProps>(), { images: () => [] });
+// const props = withDefaults(defineProps<IProps>(), { images: () => [] });
 
-const previewImages = ref<string[]>([]);
+// const previewImages = ref<string[]>([]);
 
 const swiperInstance = ref<SwiperClass | null>(null);
 
@@ -31,35 +31,35 @@ const swiperPrevSlide = () => {
 	(swiperInstance.value as SwiperClass)?.slidePrev();
 };
 
-const fetchImage = () => {
-	try {
-		if (props.images.length) {
-			props.images.forEach(async (image) => {
-				const response = await $fetch(`/api/s3/download/${image}`);
-				const blob = (await response) as Blob; // Преобразуем ответ в Blob
+// const fetchImage = () => {
+// 	try {
+// 		if (props.images.length) {
+// 			props.images.forEach(async (image) => {
+// 				const response = await $fetch(`/api/s3/download/${image}`);
+// 				const blob = (await response) as Blob; // Преобразуем ответ в Blob
 
-				const reader = new FileReader();
-				if (reader) {
-					reader.onloadend = () => {
-						if (typeof reader.result === 'string') {
-							previewImages.value.push(reader.result);
-						}
-					};
-					reader.readAsDataURL(blob);
-				}
-			});
-		} else {
-			throw new Error('no image');
-		}
-	} catch (error) {
-		console.error(error);
-		previewImages.value = [];
-	}
-};
+// 				const reader = new FileReader();
+// 				if (reader) {
+// 					reader.onloadend = () => {
+// 						if (typeof reader.result === 'string') {
+// 							previewImages.value.push(reader.result);
+// 						}
+// 					};
+// 					reader.readAsDataURL(blob);
+// 				}
+// 			});
+// 		} else {
+// 			throw new Error('no image');
+// 		}
+// 	} catch (error) {
+// 		console.error(error);
+// 		previewImages.value = [];
+// 	}
+// };
 
-onMounted(async () => {
- await fetchImage();
-})
+// onMounted(async () => {
+//  await fetchImage();
+// })
 </script>
 <template>
 	<div class="h-[300px] md:h-[550px]">
@@ -69,7 +69,6 @@ onMounted(async () => {
 				<SharedUiSkeletonSwiper />
 			</template>
 			<swiper
-				v-if="previewImages.length"
 				class="relative w-full cursor-grab rounded-xl"
 				:scrollbar="{ draggable: true }"
 				:space-between="10"
@@ -80,12 +79,14 @@ onMounted(async () => {
 					v-for="(slide, index) in images"
 					:key="index"
 				>
-					<img
-						class="h-[300px] md:h-[550px] w-full object-cover object-center"
-						alt="pic"
-						:src="`/api/s3/download/${slide}`"
-						loading="lazy"
-					>
+				<NuxtImg
+					class="h-[300px] md:h-[550px] w-full object-cover object-center"
+					:src="`/image/${slide}`"
+					:alt="`slide-${index}`"
+					height="550"
+					loading="lazy"
+					fit="inside"
+				/>
 				</swiper-slide>
 				<div
 					v-if="!swiperInstance?.isBeginning"

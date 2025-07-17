@@ -88,7 +88,8 @@ export default defineNuxtConfig({
 		'dayjs-nuxt',
 		'nuxt-gtag',
 		'@nuxtjs/color-mode',
-		'@nuxt/eslint'
+		'@nuxt/eslint',
+		'@nuxt/image'
 	],
 
 	gtag: {
@@ -122,6 +123,20 @@ export default defineNuxtConfig({
 		autoImportPath: '~/app/assets/images/icons/',
 		componentPrefix: 'i'
 	},
+
+	  image: {
+    format: ['avif', 'webp'],
+    domains: [import.meta.env.BASE_URL],
+    alias: {
+      image: `${import.meta.env.BASE_URL}/api/s3/download`
+    },
+    screens: {
+      sm: 640,
+			ma: 768,
+      lg: 1024,
+      xl: 1280,
+    },
+  },
 
 	compatibilityDate: '2024-09-25'
 });
