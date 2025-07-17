@@ -3,7 +3,7 @@
 import type { ICard, IExcursionCard } from '../model/types';
 
 export interface IProps {
-	type: 'excursion' | 'tour';
+	type?: 'excursion' | 'tour';
 }
 
 const props = withDefaults(defineProps<IProps & ICard & IExcursionCard>(), {
@@ -19,35 +19,6 @@ const link = computed(() =>
 		? { name: 'excursions/excursion', params: { id: props.id } }
 		: { name: 'bus-tours/bus-tour', params: { id: props.id } }
 );
-
-// const previewImage = ref<string | null>(null);
-
-// async function fetchImage() {
-// 	try {
-// 		if (props.image) {
-// 			const response = await $fetch(`/api/s3/download/${props.image}`);
-// 			if (response) {
-// 				const blob = (await response) as Blob; // Преобразуем ответ в Blob
-
-// 				const reader = new FileReader();
-// 				reader.onloadend = () => {
-// 					if (typeof reader.result === 'string') {
-// 						previewImage.value = reader.result;
-// 					}
-// 				};
-// 				reader.readAsDataURL(blob);
-// 			}
-// 		} else {
-// 			throw new Error('no image');
-// 		}
-// 	} catch (error) {
-// 		previewImage.value = '';
-// 		// eslint-disable-next-line no-console
-// 		console.error(error);
-// 	}
-// }
-
-// fetchImage();
 </script>
 <template>
 	<RouterLink
@@ -59,14 +30,6 @@ const link = computed(() =>
 				class="mb-3 w-full rounded-xl bg-slate-100 bg-cover brightness-100 dark:bg-gray-700"
 				:class="[type === 'tour' ? 'h-72' : 'h-96']"
 			>
-				<!-- <div
-					v-if="!image"
-					class="flex h-full w-full items-center justify-center"
-				>
-					<span class="font-semibold text-slate-400"
-						>Изображение отсутствует</span
-					>
-				</div> -->
 				<NuxtImg
 					class="mb-3 w-full rounded-xl object-cover brightness-100 h-full"
 					:src="`/image/${image}`"

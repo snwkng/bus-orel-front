@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 
 const route = useRoute();
 
-const { data } = await useFetch('/api/bus-tours', {
+const { data, pending } = await useFetch('/api/bus-tours', {
 	query: computed(() => route.query),
 	transform: (data) => {
 		return (data as ITour[]).map((tour: ITour) => ({
@@ -40,7 +40,7 @@ const { data } = await useFetch('/api/bus-tours', {
 			{{ title }}
 		</h2>
 		<h2
-			v-else-if="emptyText.length && !data?.length"
+			v-else-if="emptyText.length && !data?.length && !pending"
 			class="text-center text-2xl font-bold"
 		>
 			{{ emptyText }}
