@@ -13,7 +13,7 @@ export interface IProps {
 	images?: string[];
 }
 
-// const props = withDefaults(defineProps<IProps>(), { images: () => [] });
+withDefaults(defineProps<IProps>(), { images: () => [] });
 
 // const previewImages = ref<string[]>([]);
 
