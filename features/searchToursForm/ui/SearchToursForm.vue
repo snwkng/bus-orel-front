@@ -11,9 +11,9 @@ const selectedSea = ref<SelectItem>({});
 const selectedPlace = ref<SelectItem>({});
 
 watch(
-	() => selectedSea.value,
-	() => {
-		getCityList(selectedSea.value.name);
+	() => selectedSea.value?.name,
+	async () => {
+		await getCityList(selectedSea.value.name);
 	},
 	{ immediate: true }
 );
