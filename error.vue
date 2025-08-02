@@ -10,16 +10,15 @@ const error = useError();
 			{{ error?.statusCode }}
 		</h1>
 		<p
-			v-if="error?.statusCode === 404"
 			class="text-3xl md:text-4xl lg:text-6xl"
 		>
-			Страница не найдена
+			{{ error?.statusCode === 404 ? 'Страница не найдена' : error?.statusMessage }}
 		</p>
-		<RouterLink
+		<NuxtLink
 			class="flex min-h-14 min-w-40 mt-4 items-center justify-center rounded-xl bg-deep-orange px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-deep-orange/95"
 			:to="{ name: 'home' }"
 		>
 			На главную
-		</RouterLink>
+		</NuxtLink>
 	</div>
 </template>

@@ -24,12 +24,8 @@ const { data, error } = await useFetch<IExcursion>(
 );
 
 // перекидываем на 404, если бэк выловил невалидный id 
-if (error.value?.statusCode === 404) {
-	throw createError({
-		statusCode: error.value?.statusCode,
-		statusMessage: error.value?.message,
-		fatal: true
-	});
+if (error.value) {
+	throw createError({ statusCode: error.value?.statusCode, statusMessage: error.value?.message || error.value?.statusMessage });
 }
 
 const accordionItems = computed(() =>

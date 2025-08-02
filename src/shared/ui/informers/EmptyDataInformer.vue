@@ -10,12 +10,14 @@ interface IProps {
 		<span>
 			{{ text || 'Нет данных' }}, уточните информацию по телефону
 			указанному в
-			<RouterLink
+			<NuxtLink
 				:to="{ hash: '#contacts' }"
 				class="text-deep-blue transition-colors hover:text-ligth-blue dark:text-ligth-blue dark:hover:text-deep-blue"
-				>контактах</RouterLink
-			>.</span
-		>
+			>
+				контактах
+			</NuxtLink>
+			.
+		</span>
 		<span>
 			Или напишите нам в сообществе в
 			<a

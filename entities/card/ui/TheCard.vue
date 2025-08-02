@@ -21,9 +21,8 @@ const link = computed(() =>
 );
 </script>
 <template>
-	<RouterLink
+	<NuxtLink
 		:to="link"
-		rel="noopener noreferrer nofollow"
 	>
 		<div class="w-full">
 			<div
@@ -62,5 +61,5 @@ const link = computed(() =>
 				</div>
 			</div>
 		</div>
-	</RouterLink>
+	</NuxtLink>
 </template>

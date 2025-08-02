@@ -19,9 +19,13 @@ const tourCity = computed(() =>
 
 const hasRoomsinfo = computed(() => data.value?.tours?.some((x: IHotelRoomInfo) => x.roomName))
 
-const { data } = await useFetch<ITour>(`/api/bus-tours/${tourId.value}`, {
+const { data, error } = await useFetch<ITour>(`/api/bus-tours/${tourId.value}`, {
 	key: `bus-tour-${tourId.value}`,
 });
+
+if (error.value) {
+	throw createError({ statusCode: error.value?.statusCode, statusMessage: error.value?.data?.statusMessage || error.value?.statusMessage });
+}
 
 const donwloadFile = async () => {
 	const response = await $fetch(
