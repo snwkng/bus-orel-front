@@ -44,11 +44,11 @@ const showSearch = (search: goToSearch) => {
 				Экскурсии
 			</button>
 		</div>
-		<RouterLink
+		<NuxtLink
 			to="#bus-rent"
 			class="sm:ml-5 rounded-xl bg-blue-200/20 px-3 py-2 text-white transition-all lg:px-4 lg:py-2"
 		>
 			Аренда автобуса
-		</RouterLink>
+		</NuxtLink>
 	</div>
 </template>

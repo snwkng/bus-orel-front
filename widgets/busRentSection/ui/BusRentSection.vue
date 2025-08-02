@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const openModal = ref(false);
+</script>
 <template>
 	<div
 		id="bus-rent"
@@ -18,8 +20,29 @@
 				<SharedUiButtonsTheButton
 					btn-title="Арендовать"
 					class="w-7"
+					@click="openModal = true"
 				/>
 			</div>
 		</section>
 	</div>
+	<SharedUiModalBaseModal
+		v-model="openModal"
+		title="Аренда автобусов и микроавтобусов"
+		description=""
+	>
+		<p>По вопросам аренды автобусов и микроавтобусов звоните:
+			<a href="tel:+74862780958" class="cursor-pointer text-deep-blue transition-colors hover:text-ligth-blue dark:text-ligth-blue dark:hover:text-deep-blue">+7(4862)78-09-58</a>
+		</p>
+		<p>или напишите нам в группу в
+			<a
+				href="https://vk.com/gtorel"
+				rel="noopener noreferrer"
+				class="cursor-pointer text-deep-blue transition-colors hover:text-ligth-blue dark:text-ligth-blue dark:hover:text-deep-blue"
+				target="_blank"
+				aria-label="vk"
+			>
+				VK
+			</a>
+		</p>
+	</SharedUiModalBaseModal>
 </template>

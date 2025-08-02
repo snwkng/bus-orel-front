@@ -29,13 +29,13 @@ watch(
 				itemscope
 				itemtype="https://schema.org/ListItem"
 			>
-				<RouterLink
+				<NuxtLink
 					to="/bus-tours"
 					class="list-item"
 					itemprop="url"
 				>
 					<span itemprop="name">Автобусные туры к морю</span>
-				</RouterLink>
+				</NuxtLink>
 				<meta
 					itemprop="position"
 					content="1"
@@ -46,13 +46,13 @@ watch(
 				itemscope
 				itemtype="https://schema.org/ListItem"
 			>
-				<RouterLink
+				<NuxtLink
 					to="/excursions"
 					class="list-item"
 					itemprop="url"
 				>
 					<span itemprop="name">Экскурсионные туры</span>
-				</RouterLink>
+				</NuxtLink>
 				<meta
 					itemprop="position"
 					content="2"
@@ -63,13 +63,13 @@ watch(
 				itemscope
 				itemtype="https://schema.org/ListItem"
 			>
-				<RouterLink
+				<NuxtLink
 					:to="{ name: 'home', hash: '#tour-selection' }"
 					class="list-item"
 					itemprop="url"
 				>
 					<span itemprop="name">Подбор тура</span>
-				</RouterLink>
+				</NuxtLink>
 				<meta
 					itemprop="position"
 					content="3"
@@ -80,13 +80,13 @@ watch(
 				itemscope
 				itemtype="https://schema.org/ListItem"
 			>
-				<RouterLink
+				<NuxtLink
 					:to="{ hash: '#contacts' }"
 					class="list-item"
 					itemprop="url"
 				>
 					<span itemprop="name">Контакты</span>
-				</RouterLink>
+				</NuxtLink>
 				<meta
 					itemprop="position"
 					content="4"
