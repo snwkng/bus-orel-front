@@ -1,12 +1,4 @@
 <script setup lang="ts">
-export interface Props {
-	isSingle?: boolean;
-}
-
-withDefaults(defineProps<Props>(), {
-	isSingle: false
-});
-
 onMounted(() => {
 	mediaQuery.value = window.matchMedia('(min-width: 992px)');
 	mediaQuery.value.addEventListener('change', onChange);
@@ -49,10 +41,7 @@ const close = (closeNav: boolean) => {
 		]"
 	>
 		<div
-			:class="[
-				'px-base mx-auto flex h-14 w-full items-center justify-between bg-transparent',
-				{ 'xl:w-[1280px]': isSingle },
-			]"
+			class="flex h-14 w-full items-center justify-between bg-transparent max-w-container"
 		>
 			<div class="text-white">
 				<router-link :to="{ name: 'home' }">

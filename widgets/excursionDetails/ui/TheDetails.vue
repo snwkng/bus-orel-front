@@ -59,7 +59,7 @@ const accordionItems = computed(() =>
 			/>
 		</Head>
 		<div
-			class="px-base m-auto flex w-full flex-col gap-5 py-10 dark:bg-gray-800 xl:w-[1280px]"
+			class="flex w-full flex-col gap-5 py-10 dark:bg-gray-800 max-w-container"
 		>
 			<WidgetsHeaderItem
 				:title="data?.name"

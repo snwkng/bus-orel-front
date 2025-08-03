@@ -6,16 +6,20 @@
 		@apply overflow-hidden;
 	}
 }
+
+.max-w-container {
+	@apply 2xl:max-w-[calc(1440px+160px)] mx-auto px-6 md:px-10 lg:px-20;
+}
+
+.max-w-container-rent {
+	@apply 2xl:max-w-[calc(1440px+160px)] mx-auto md:px-10 lg:px-20;
+}
 .btn-hover {
 	@apply rounded-xl p-1 hover:bg-slate-200/10 focus:bg-slate-200/10;
 }
 
 .list-item {
 	@apply cursor-pointer rounded-xl p-2 hover:bg-slate-200 dark:hover:bg-slate-500 hover:bg-opacity-30 focus:bg-slate-200 dark:focus:bg-slate-500 focus:bg-opacity-30;
-}
-
-.px-base {
-	@apply px-6 md:px-10 lg:px-20;
 }
 
 .subtitle {

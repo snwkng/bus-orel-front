@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const title = ref('Поиск автобусных туров к морю из Орла');
 
 const store = useMainBtnGroupStore();
@@ -19,13 +18,15 @@ watch(
 </script>
 <template>
 	<div
-		class="px-base flex h-full w-full flex-col items-center justify-center gap-y-6 dark:bg-gray-800 bg-deep-blue py-5 text-white lg:h-96"
+		class="h-full w-full bg-deep-blue text-white dark:bg-gray-800"
 	>
-		<h1 class="mb-2 text-3xl sm:text-4xl font-bold">
-			{{ title }}
-		</h1>
-		<FeaturesMainBtnGroup />
-		<FeaturesSearchExcursionsForm v-if="searchSection === 'excursions'" />
-		<FeaturesSearchToursForm v-else />
+		<div class="flex flex-col items-center justify-center gap-y-6 lg:h-96 py-5 max-w-container">
+			<h1 class="mb-2 text-3xl font-bold sm:text-4xl">
+				{{ title }}
+			</h1>
+			<FeaturesMainBtnGroup />
+			<FeaturesSearchExcursionsForm v-if="searchSection === 'excursions'" />
+			<FeaturesSearchToursForm v-else />
+		</div>
 	</div>
 </template>

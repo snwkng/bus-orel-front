@@ -21,7 +21,7 @@ useSeoMeta({
 <template>
 	<div class="dark:bg-gray-800 dark:text-slate-200">
 		<section
-			class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
+			class="m-auto flex w-full flex-col gap-5 py-10 max-w-container"
 		>
 			<h1 class="text-2xl font-bold dark:text-slate-200 text-slate-900 sm:text-3xl">
 				Политика обработки персональных данных
