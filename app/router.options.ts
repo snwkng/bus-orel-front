@@ -3,7 +3,7 @@ import type { RouteLocationNormalized } from 'vue-router';
 
 export default <RouterConfig>{
 	// https://router.vuejs.org/api/interfaces/routeroptions.html#routes
-	routes: (_routes: any) => [
+	routes: (_routes: unknown) => [
 		{
 			name: 'home',
 			path: '/',
@@ -19,7 +19,7 @@ export default <RouterConfig>{
 			name: 'bus-tours/bus-tour',
 			path: '/bus-tours/:id',
 			meta: {
-				layout: 'single'
+				// layout: 'single'
 			},
 			component: () => import('~/pages/bus-tour/').then(r => r.default ?? r),
 			props: true
@@ -34,7 +34,7 @@ export default <RouterConfig>{
 			name: 'excursions/excursion',
 			path: '/excursions/:id',
 			meta: {
-				layout: 'single'
+				// layout: 'single'
 			},
 			component: () => import('~/pages/excursion/').then(r => r.default ?? r),
 			props: true
@@ -43,7 +43,7 @@ export default <RouterConfig>{
 			name: 'about',
 			path: '/about',
 			meta: {
-				layout: 'single'
+				// layout: 'single'
 			},
 			component: () => import('~/pages/about-us/').then(r => r.default ?? r)
 		},
@@ -51,7 +51,7 @@ export default <RouterConfig>{
 			name: 'tourist-reminder',
 			path: '/tourist-reminder',
 			meta: {
-				layout: 'single'
+				// layout: 'single'
 			},
 			component: () => import('~/pages/tourist-reminder/').then(r => r.default ?? r)
 		},
@@ -59,7 +59,7 @@ export default <RouterConfig>{
 			name: 'agreement',
 			path: '/agreement',
 			meta: {
-				layout: 'single'
+				// layout: 'single'
 			},
 			component: () => import('~/pages/agreement/').then(r => r.default ?? r)
 		},
@@ -67,7 +67,7 @@ export default <RouterConfig>{
 			name: 'privacy-policy',
 			path: '/privacy-policy',
 			meta: {
-				layout: 'single'
+				// layout: 'single'
 			},
 			component: () => import('~/pages/privacy-policy/').then(r => r.default ?? r)
 		}
@@ -75,7 +75,7 @@ export default <RouterConfig>{
 	scrollBehavior (
 		to: RouteLocationNormalized,
 		_from: RouteLocationNormalized,
-		savedPosition: any
+		savedPosition: unknown
 	) {
 		if (savedPosition) {
 			return savedPosition;

@@ -57,7 +57,7 @@ const donwloadFile = async () => {
 			<Meta name="og:description" :content="`Автобусный тур в ${data?.address?.city} из Орла.`" />
 		</Head>
 		<div
-			class="px-base m-auto flex w-full flex-col gap-5 py-10 dark:bg-gray-800 xl:w-[1280px]"
+			class="flex w-full flex-col gap-5 py-10 dark:bg-gray-800 max-w-container"
 		>
 			<div
 				class="rounded-xl bg-slate-100 px-5 py-3 font-semibold dark:bg-gray-700 dark:text-slate-200"

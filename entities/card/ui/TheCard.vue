@@ -27,14 +27,14 @@ const link = computed(() =>
 		<div class="w-full">
 			<div
 				class="mb-3 w-full rounded-xl bg-slate-100 bg-cover brightness-100 dark:bg-gray-700"
-				:class="[type === 'tour' ? 'h-72' : 'h-96']"
+				:class="[type === 'tour' ? 'h-60' : 'h-96']"
 			>
 				<NuxtImg
 					class="mb-3 w-full rounded-xl object-cover brightness-100 h-full"
 					:src="`/image/${image}`"
 					:alt="props.subtitle"
 					:title="props.title"
-					:height="type === 'tour' ? 288 : 384"
+					:height="type === 'tour' ? 236 : 384"
 					loading="lazy"
 					fit="inside"
 				/>

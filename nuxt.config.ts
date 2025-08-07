@@ -92,11 +92,6 @@ export default defineNuxtConfig({
 		'@nuxt/image'
 	],
 
-	gtag: {
-		enabled: import.meta.env.NODE_ENV === 'production',
-		id: 'G-F0HWMP4P6V'
-	},
-
 	pinia: {
 		storesDirs: [
 			'./entities/**/model/**',

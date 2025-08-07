@@ -1,11 +1,16 @@
 <script setup lang="ts">
-const { BASE_URL } = useRuntimeConfig().public
+const { BASE_URL } = useRuntimeConfig().public;
 
 const route = useRoute();
 
 useHead({
-	link: [{ rel: 'canonical', href: BASE_URL + (route.path === '/' ? '' : route.path) }],
-})
+	link: [
+		{
+			rel: 'canonical',
+			href: BASE_URL + (route.path === '/' ? '' : route.path)
+		}
+	]
+});
 
 useSeoMeta({
 	title: 'Экскурсионные туры из Орла',
@@ -16,12 +21,12 @@ useSeoMeta({
 		'Погрузитесь в мир увлекательных путешествий с нашими экскурсионными турами из Орла. Откройте для себя уникальные маршруты, захватывающие места и незабываемые впечатления!',
 	keywords:
 		'экскурсионные туры из Орла, туры по России из Орла, экскурсии по России, автобусные экскурсии из Орла, путешествия по России, культурные туры из Орла, интересные экскурсии из Орла, обзорные экскурсии по городам России, туры на выходные из Орла'
-})
+});
 </script>
 <template>
 	<div>
 		<WidgetsSearchExcursions />
-		<div class="px-base py-8 dark:bg-gray-800">
+		<div class="py-8 dark:bg-gray-800">
 			<WidgetsExcursionsSection
 				class="pb-11"
 				empty-text="Экскурсионных туров пока нет"

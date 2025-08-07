@@ -13,7 +13,7 @@ useSeoMeta({
 <template>
 	<div class="dark:bg-gray-800 dark:text-slate-200">
 		<section
-			class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
+			class="m-auto flex w-full flex-col gap-5 py-10 max-w-container"
 		>
 			<div
 				class="items-startsm:items-center flex flex-col justify-start gap-y-1 sm:flex-row sm:justify-between sm:gap-y-0"

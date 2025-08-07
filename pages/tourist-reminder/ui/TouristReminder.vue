@@ -66,7 +66,7 @@ const accordionItems = ref([
 <template>
 	<div class="dark:bg-gray-800 dark:text-slate-200">
 		<section
-			class="px-base m-auto flex w-full flex-col gap-5 py-10 xl:w-[1280px]"
+			class="m-auto flex w-full flex-col gap-5 py-10 max-w-container"
 		>
 			<SharedUiAccordionsTheAccordion :items="accordionItems" />
 		</section>
