@@ -86,7 +86,6 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'nuxt-svgo',
 		'dayjs-nuxt',
-		'nuxt-gtag',
 		'@nuxtjs/color-mode',
 		'@nuxt/eslint',
 		'@nuxt/image'
