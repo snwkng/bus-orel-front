@@ -18,6 +18,12 @@ export default defineNuxtConfig({
 					async: true,
 					defer: true
 				}
+			],
+			link: [
+				{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: '32x32' },
+				{ rel: 'icon', type: 'image/svg+xml', href: '/favicon_16.svg', sizes: '16x16' },
+				{ rel: 'icon', type: 'image/svg+xml', href: '/favicon_32.svg', sizes: '32x32' },
+				{ rel: 'icon', type: 'image/svg+xml', href: '/favicon_120.svg', sizes: '120x120' },
 			]
 		}
 	},
