@@ -71,9 +71,9 @@ const fullYear: number = new Date().getFullYear();
 					</div>
 				</div>
 				<div
-					class="mb-10 mt-10 flex flex-grow flex-wrap text-center lg:mt-0 md:text-left gap-5"
+					class="mb-10 mt-10 grid md:grid-cols-2 xl:grid-cols-4 text-center lg:mt-0 md:text-left gap-5"
 				>
-					<div class="w-full md:w-1/2 lg:w-1/4 lg:px-4">
+					<div class="w-full">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
 							itemprop="department"
@@ -131,7 +131,7 @@ const fullYear: number = new Date().getFullYear();
 							</ul>
 						</nav>
 					</div>
-					<div class="w-full md:w-1/2 lg:w-1/4 lg:px-4">
+					<div class="w-full">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
 							itemprop="department"
@@ -209,7 +209,7 @@ const fullYear: number = new Date().getFullYear();
 							</ul>
 						</nav>
 					</div>
-					<div class="w-full md:w-1/2 lg:w-1/4 lg:px-4">
+					<div class="w-full">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
 							itemprop="department"
@@ -305,7 +305,7 @@ const fullYear: number = new Date().getFullYear();
 					</div>
 					<div
 						id="contacts"
-						class="w-full md:w-1/2 lg:w-1/4 lg:px-4"
+						class="w-full"
 					>
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"

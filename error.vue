@@ -4,6 +4,12 @@ const error = useError();
 useSeoMeta({
 	title: `Галатур Орел - Ошибка ${error.value?.statusCode || ''}`,
 	ogTitle: `Галатур Орел - Ошибка ${error.value?.statusCode || ''}`,
+		description:
+		 `Галатур Орел - Ошибка ${error.value?.statusCode || ''}`,
+	ogDescription:
+		`Галатур Орел - Ошибка ${error.value?.statusCode || ''}`,
+	keywords:
+		'',
 	robots: { noindex: true, nofollow: true }
 });
 </script>

@@ -78,7 +78,7 @@ export default <RouterConfig>{
 		savedPosition: unknown
 	) {
 		if (savedPosition) {
-			return savedPosition;
+			return savedPosition ?? { left: 0, top: 0 };
 		}
 		if (to.hash) {
 			return {
