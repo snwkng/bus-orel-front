@@ -8,6 +8,7 @@ const openModal = ref(false);
 	>
 		<div class="max-w-container-rent flex items-center justify-center">
 			<section
+				id="bus-rent-focus"
 				class="p-5 flex min-h-40 flex-col items-center justify-center sm:justify-between gap-4 bg-slate-50 py-8 dark:bg-gray-700 dark:text-slate-200 sm:min-h-60 sm:flex-row sm:gap-8 md:gap-16 md:rounded-xl"
 			>
 				<div

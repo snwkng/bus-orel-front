@@ -8,12 +8,12 @@ const cookie = useCookie('cookie_agree');
 		<div class="max-w-container flex min-h-10 flex-row items-center justify-between">
 			<div class="text-slate-500 dark:text-slate-200">
 				Мы используем cookie и аналогичные технологии.
-				<router-link
+				<NuxtLink
 					to="/privacy-policy"
 					class="text-deep-blue transition-colors hover:text-ligth-blue"
 				>
 					Узнайте подробнее
-				</router-link>
+				</NuxtLink>
 			</div>
 			<button
 				type="button"
