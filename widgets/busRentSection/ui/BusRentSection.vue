@@ -37,7 +37,7 @@ const openModal = ref(false);
 			По вопросам аренды автобусов и микроавтобусов звоните:
 			<a
 				href="tel:+74862780958"
-				class="cursor-pointer text-deep-blue transition-colors hover:text-ligth-blue dark:text-ligth-blue dark:hover:text-deep-blue"
+				class="cursor-pointer base-link dark:text-ligth-blue dark:hover:text-deep-blue"
 				>+7(4862)78-09-58</a
 			>
 		</p>
@@ -46,7 +46,7 @@ const openModal = ref(false);
 			<a
 				href="https://vk.com/gtorel"
 				rel="noopener noreferrer"
-				class="cursor-pointer text-deep-blue transition-colors hover:text-ligth-blue dark:text-ligth-blue dark:hover:text-deep-blue"
+				class="cursor-pointer base-link dark:text-ligth-blue dark:hover:text-deep-blue"
 				target="_blank"
 				aria-label="vk"
 			>
