@@ -19,7 +19,7 @@ useSeoMeta({
 				>
 					ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ в отношении обработки персональных данных
 				</h1>
-				<span class="text-slate-300 dark:text-slate-600">20.08.2025</span>
+				<span class="text-slate-300 dark:text-slate-600">21.08.2025</span>
 			</div>
 			<p>
 				<strong>1. Общие положения</strong>
