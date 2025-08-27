@@ -23,9 +23,12 @@ const { data, error } = await useFetch<IExcursion>(
 	}
 );
 
-// перекидываем на 404, если бэк выловил невалидный id 
+// перекидываем на 404, если бэк выловил невалидный id
 if (error.value) {
-	throw createError({ statusCode: error.value?.statusCode, statusMessage: error.value?.message || error.value?.statusMessage });
+	throw createError({
+		statusCode: error.value?.statusCode,
+		statusMessage: error.value?.message || error.value?.statusMessage
+	});
 }
 
 const accordionItems = computed(() =>
@@ -34,6 +37,16 @@ const accordionItems = computed(() =>
 		content: x
 	}))
 );
+
+const donwloadFile = async () => {
+	const response = await $fetch(
+		`/api/s3/download/${data.value?.documentName[0]}`
+	);
+	const link = document.createElement('a');
+	link.href = URL.createObjectURL(response as Blob);
+	link.click();
+	URL.revokeObjectURL(link.href);
+};
 </script>
 <template>
 	<div class="w-full dark:bg-gray-800">
@@ -59,7 +72,7 @@ const accordionItems = computed(() =>
 			/>
 		</Head>
 		<div
-			class="flex w-full flex-col gap-5 py-10 dark:bg-gray-800 max-w-container"
+			class="max-w-container flex w-full flex-col gap-5 py-10 dark:bg-gray-800"
 		>
 			<WidgetsHeaderItem
 				:title="data?.name"
@@ -69,18 +82,34 @@ const accordionItems = computed(() =>
 				:duration="data?.duration"
 			/>
 			<SharedUiGalleryTheGallery :images="data?.images ?? []" />
+			
 			<div class="">
+				<button
+					v-if="data?.documentName?.length && data?.documentName[0]"
+					type="button"
+					class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-deep-orange px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-deep-orange/95 md:w-52"
+					@click.prevent="donwloadFile"
+				>
+					Скачать прайс
+				</button>
 				<div
+					v-if="data?.excursionStartDates?.length"
 					id="ex-dates"
 					class="dark:text-slate-200"
 				>
 					<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 						Даты предстоящих экскурсий
 					</h3>
-					{{ $dayjs(data?.excursionStart).format('DD.MM.YYYY') }},
-					{{ $dayjs(data?.excursionStart).format('DD.MM.YYYY') }}
+					<div class="flex flex-row whitespace-nowrap">
+						<span
+							v-for="(date, idx) in data.excursionStartDates"
+							:key="idx"
+						>
+							{{ $dayjs(date).format('DD.MM.YYYY') }}<template v-if="idx !== data.excursionStartDates.length - 1">,&nbsp;</template>
+					</span>
+					</div>
 				</div>
-				<hr class="my-4">
+				<hr class="my-4" />
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Программа тура
 				</h3>

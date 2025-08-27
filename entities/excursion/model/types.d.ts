@@ -7,9 +7,8 @@ export interface IExcursion {
 	images: string[];
 	duration: number;
 	price: number;
-	documentName: string;
-	checkInConditions: string;
-	excursionStart: Date;
+	documentName: string[];
+	excursionStartDates: string[];
 	cities: string[];
 	hotelName: string;
 	thePriceIncludes: string[];
