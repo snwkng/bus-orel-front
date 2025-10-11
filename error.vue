@@ -22,7 +22,7 @@ useSeoMeta({
 		</h1>
 		<p class="text-3xl md:text-4xl lg:text-6xl">
 			{{
-				error?.statusCode === 404 ? 'Страница не найдена' : error?.statusMessage
+				error?.statusCode === 404 ? 'Страница не найдена' : error?.message
 			}}
 		</p>
 		<NuxtLink

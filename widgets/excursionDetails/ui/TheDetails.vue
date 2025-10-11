@@ -27,7 +27,7 @@ const { data, error } = await useFetch<IExcursion>(
 if (error.value) {
 	throw createError({
 		statusCode: error.value?.statusCode,
-		statusMessage: error.value?.message || error.value?.statusMessage
+		message: error.value?.message || error.value?.statusMessage
 	});
 }
 

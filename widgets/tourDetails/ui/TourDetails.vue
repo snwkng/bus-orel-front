@@ -24,7 +24,10 @@ const { data, error } = await useFetch<ITour>(`/api/bus-tours/${tourId.value}`, 
 });
 
 if (error.value) {
-	throw createError({ statusCode: error.value?.statusCode, statusMessage: error.value?.data?.statusMessage || error.value?.statusMessage });
+	throw createError({
+		statusCode: error.value?.statusCode,
+		statusMessage: error.value?.message || error.value?.statusMessage
+	});
 }
 
 const donwloadFile = async () => {
