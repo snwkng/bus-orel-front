@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 			script: [
 				{
 					type: 'text/javascript',
-					src: import.meta.env.NODE_ENV === 'production' ? 'metrika.js' : '',
+					src: import.meta.env.NODE_ENV === 'production' ? '/metrika.js' : '',
 					async: true,
 					defer: true
 				}
