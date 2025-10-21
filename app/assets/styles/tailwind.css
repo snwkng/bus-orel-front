@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-	.modal-open {
-		@apply overflow-hidden;
+	.lock {
+		@apply overflow-hidden pr-[15px];
 	}
 }
 

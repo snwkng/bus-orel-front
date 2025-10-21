@@ -1,22 +1,24 @@
 <script setup lang="ts">
 onMounted(() => {
-	mediaQuery.value = window.matchMedia('(min-width: 992px)');
-	mediaQuery.value.addEventListener('change', onChange);
-	onChange();
+	isDesktop.value = !$viewport.isLessThan('lg')
 	window.addEventListener('scroll', handleScroll);
 	handleScroll();
 });
 
 onUnmounted(() => {
 	window.removeEventListener('scroll', handleScroll);
-	mediaQuery.value?.removeEventListener('change', onChange);
 });
+
+const { $viewport } = useNuxtApp()
+
+watch($viewport.breakpoint, () => {
+	isDesktop.value = !$viewport.isLessThan('lg')
+})
 
 const route = useRoute();
 
 const toggle = ref(false);
 const scroll = ref(false);
-const mediaQuery = ref<MediaQueryList>();
 const isDesktop = ref(false);
 
 const handleScroll = () => {
@@ -25,12 +27,21 @@ const handleScroll = () => {
 
 const showShadow = computed(() => scroll.value && route.name !== 'bus-tours' && route.name !== 'excursions')
 
-const onChange = () => {
-	isDesktop.value = mediaQuery.value?.matches ?? false;
-};
 const close = (closeNav: boolean) => {
+	if ($viewport.isLessThan('sm')) {
+		document.body.classList.remove('lock');
+	}
 	toggle.value = closeNav;
 };
+
+const toggleMenu = () => {
+	toggle.value = !toggle.value
+	if (toggle.value && $viewport.isLessThan('sm')) {
+		document.body.classList.add('lock');
+	} else if ($viewport.isLessThan('sm')) {
+		document.body.classList.remove('lock');
+	}
+}
 </script>
 
 <template>
@@ -58,7 +69,7 @@ const close = (closeNav: boolean) => {
 						type="button"
 						name="menu"
 						class="btn-hover"
-						@click="toggle = !toggle"
+						@click="toggleMenu"
 					>
 						<i-menu
 							filled

@@ -88,7 +88,8 @@ export default defineNuxtConfig({
 		'dayjs-nuxt',
 		'@nuxtjs/color-mode',
 		'@nuxt/eslint',
-		'@nuxt/image'
+		'@nuxt/image',
+		'nuxt-viewport'
 	],
 
 	pinia: {
@@ -97,6 +98,25 @@ export default defineNuxtConfig({
 			'./features/**/model/**',
 			'./widgets/**/model/**'
 		]
+	},
+
+	viewport: {
+		breakpoints: {
+			xs: 320,
+			sm: 640,
+			md: 768,
+			lg: 1024,
+			xl: 1280,
+			'2xl': 1536,
+		},
+
+		defaultBreakpoints: {
+			desktop: 'lg',
+			mobile: 'xs',
+			tablet: 'md',
+		},
+
+		fallbackBreakpoint: 'lg'
 	},
 
 	eslint: {
@@ -118,19 +138,19 @@ export default defineNuxtConfig({
 		componentPrefix: 'i'
 	},
 
-	  image: {
-    format: ['avif', 'webp'],
-    domains: [import.meta.env.BASE_URL],
-    alias: {
-      image: `${import.meta.env.BASE_URL}/api/s3/download`
-    },
-    screens: {
-      sm: 640,
+	image: {
+		format: ['avif', 'webp'],
+		domains: [import.meta.env.BASE_URL],
+		alias: {
+			image: `${import.meta.env.BASE_URL}/api/s3/download`
+		},
+		screens: {
+			sm: 640,
 			ma: 768,
-      lg: 1024,
-      xl: 1280,
-    },
-  },
+			lg: 1024,
+			xl: 1280,
+		},
+	},
 
 	compatibilityDate: '2024-09-25'
 });

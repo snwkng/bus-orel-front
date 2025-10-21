@@ -10,17 +10,45 @@ watch(
 		close();
 	}
 );
+
+watch(
+	() => route.hash,
+	() => {
+		close();
+	}
+);
 </script>
 
 <template>
 	<nav
 		v-click-away="close"
-		class="absolute right-0 top-10 w-max rounded-xl bg-white p-6 shadow-lg dark:bg-gray-700 dark:text-slate-300 sm:w-80"
+		class="fixed left-0 top-0 h-full w-full overflow-hidden bg-white p-6 shadow-lg dark:bg-gray-700 dark:text-slate-300 sm:absolute sm:left-auto sm:right-0 sm:top-10 sm:h-max sm:w-80 sm:rounded-xl"
 		itemscope
 		itemtype="https://schema.org/SiteNavigationElement"
 	>
+		<button
+			type="button"
+			class="flex absolute right-2 top-2 cursor-pointer justify-end rounded-full p-1 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:text-gray-300 dark:hover:text-gray-100 sm:hidden"
+			aria-label="Закрыть меню"
+			@click="close"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M6 18L18 6M6 6l12 12"
+				/>
+			</svg>
+		</button>
 		<ul
-			class="list-none text-base"
+			class="list-none text-base mt-5 sm:mt-0"
 			itemscope
 			itemtype="https://schema.org/ItemList"
 		>
@@ -39,7 +67,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="1"
-				>
+				/>
 			</li>
 			<li
 				itemprop="itemListElement"
@@ -56,7 +84,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="2"
-				>
+				/>
 			</li>
 			<li
 				itemprop="itemListElement"
@@ -73,7 +101,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="3"
-				>
+				/>
 			</li>
 			<li
 				itemprop="itemListElement"
@@ -90,7 +118,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="4"
-				>
+				/>
 			</li>
 		</ul>
 	</nav>
