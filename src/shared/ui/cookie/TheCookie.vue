@@ -5,22 +5,29 @@ const cookie = useCookie('cookie_agree');
 	<div
 		class="fixed bottom-0 z-10 w-full border-t border-slate-400 bg-white py-4 text-sm dark:border-slate-700 dark:bg-gray-800"
 	>
-		<div class="max-w-container flex min-h-10 flex-row items-center justify-between">
+		<div
+			class="max-w-container flex min-h-10 items-center justify-between flex-col md:flex-row gap-5"
+		>
 			<div class="text-slate-500 dark:text-slate-200">
-				Мы используем cookie и аналогичные технологии.
-				<router-link
-					to="/privacy-policy"
-					class="text-deep-blue transition-colors hover:text-ligth-blue"
-				>
-					Узнайте подробнее
-				</router-link>
+				Данный веб-сайт использует файлы cookie с целью повышения удобства и
+				эффективности работы пользователя. Нажимая на кнопку «Подтвердить», Вы
+				соглашаетесь с
+					<NuxtLink
+						to="/privacy-policy"
+						class="base-link"
+					>
+						Условиями использования файлов cookie и Политикой обработки
+						персональных данных.
+					</NuxtLink>
+				В случае несогласия с обработкой файлов cookie, Вы должны покинуть сайт
+				или произвести соответствующие настройки.
 			</div>
 			<button
 				type="button"
 				class="rounded-xl bg-deep-blue px-3 py-1 text-white transition-colors hover:bg-ligth-blue"
 				@click="cookie = 'true'"
 			>
-				Хорошо
+				Подтвердить
 			</button>
 		</div>
 	</div>

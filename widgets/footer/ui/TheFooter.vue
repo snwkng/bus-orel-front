@@ -16,7 +16,7 @@ const fullYear: number = new Date().getFullYear();
 					class="w-64 flex-shrink-0 text-center md:text-left"
 					itemprop="description"
 				>
-					<router-link
+					<NuxtLink
 						:to="{ name: 'home' }"
 						itemprop="name"
 					>
@@ -25,7 +25,7 @@ const fullYear: number = new Date().getFullYear();
 							class="h-5 w-auto fill-current text-slate-900 dark:text-slate-100"
 							>алатур</span
 						>
-					</router-link>
+					</NuxtLink>
 					<p
 						class="mt-2 text-sm text-slate-500 dark:text-slate-300 dark:hover:text-slate-100"
 					>
@@ -71,9 +71,9 @@ const fullYear: number = new Date().getFullYear();
 					</div>
 				</div>
 				<div
-					class="mb-10 mt-10 flex flex-grow flex-wrap text-center lg:mt-0 md:text-left gap-5"
+					class="mb-10 mt-10 grid md:grid-cols-2 xl:grid-cols-4 text-center lg:mt-0 md:text-left gap-5"
 				>
-					<div class="w-full md:w-1/2 lg:w-1/4 lg:px-4">
+					<div class="w-full">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
 							itemprop="department"
@@ -98,13 +98,13 @@ const fullYear: number = new Date().getFullYear();
 									itemscope
 									itemtype="https://schema.org/ListItem"
 								>
-									<router-link
+									<NuxtLink
 										:to="{ name: 'about' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
 										itemprop="url"
 									>
 										<span itemprop="name">О нас</span>
-									</router-link>
+									</NuxtLink>
 									<meta
 										itemprop="position"
 										content="1"
@@ -116,13 +116,13 @@ const fullYear: number = new Date().getFullYear();
 									itemscope
 									itemtype="https://schema.org/ListItem"
 								>
-									<router-link
+									<NuxtLink
 										:to="{ name: 'tourist-reminder' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
 										itemprop="url"
 									>
 										<span itemprop="name">Памятка туристу</span>
-									</router-link>
+									</NuxtLink>
 									<meta
 										itemprop="position"
 										content="2"
@@ -131,7 +131,7 @@ const fullYear: number = new Date().getFullYear();
 							</ul>
 						</nav>
 					</div>
-					<div class="w-full md:w-1/2 lg:w-1/4 lg:px-4">
+					<div class="w-full">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
 							itemprop="department"
@@ -156,13 +156,13 @@ const fullYear: number = new Date().getFullYear();
 									itemscope
 									itemtype="https://schema.org/ListItem"
 								>
-									<router-link
+									<NuxtLink
 										:to="{ name: 'agreement' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
 										itemprop="url"
 									>
 										<span itemprop="name">Соглашения</span>
-									</router-link>
+									</NuxtLink>
 									<meta
 										itemprop="position"
 										content="1"
@@ -174,7 +174,7 @@ const fullYear: number = new Date().getFullYear();
 									itemscope
 									itemtype="https://schema.org/ListItem"
 								>
-									<router-link
+									<NuxtLink
 										:to="{ name: 'privacy-policy' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
 										itemprop="url"
@@ -182,7 +182,7 @@ const fullYear: number = new Date().getFullYear();
 										<span itemprop="name"
 											>Политика в отношении персональных данных</span
 										>
-									</router-link>
+									</NuxtLink>
 									<meta
 										itemprop="position"
 										content="2"
@@ -209,7 +209,7 @@ const fullYear: number = new Date().getFullYear();
 							</ul>
 						</nav>
 					</div>
-					<div class="w-full md:w-1/2 lg:w-1/4 lg:px-4">
+					<div class="w-full">
 						<h2
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
 							itemprop="department"
@@ -234,13 +234,13 @@ const fullYear: number = new Date().getFullYear();
 									itemscope
 									itemtype="https://schema.org/ListItem"
 								>
-									<router-link
+									<NuxtLink
 										to="/bus-tours"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
 										itemprop="url"
 									>
 										<span itemprop="name">Автобусные туры к морю из Орла</span>
-									</router-link>
+									</NuxtLink>
 									<meta
 										itemprop="position"
 										content="1"
@@ -252,13 +252,13 @@ const fullYear: number = new Date().getFullYear();
 									itemscope
 									itemtype="https://schema.org/ListItem"
 								>
-									<router-link
+									<NuxtLink
 										to="/excursions"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
 										itemprop="url"
 									>
 										<span itemprop="name">Экскурсионные туры из Орла</span>
-									</router-link>
+									</NuxtLink>
 									<meta
 										itemprop="position"
 										content="2"
@@ -270,13 +270,13 @@ const fullYear: number = new Date().getFullYear();
 									itemscope
 									itemtype="https://schema.org/ListItem"
 								>
-									<router-link
+									<NuxtLink
 										:to="{ name: 'home', hash: '#bus-rent' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
 										itemprop="url"
 									>
 										<span itemprop="name">Аренда микроавтобусов</span>
-									</router-link>
+									</NuxtLink>
 									<meta
 										itemprop="position"
 										content="3"
@@ -288,13 +288,13 @@ const fullYear: number = new Date().getFullYear();
 									itemscope
 									itemtype="https://schema.org/ListItem"
 								>
-									<router-link
+									<NuxtLink
 										:to="{ name: 'home', hash: '#tour-selection' }"
 										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
 										itemprop="url"
 									>
 										<span itemprop="name">Подбор туров</span>
-									</router-link>
+									</NuxtLink>
 									<meta
 										itemprop="position"
 										content="4"
@@ -305,9 +305,10 @@ const fullYear: number = new Date().getFullYear();
 					</div>
 					<div
 						id="contacts"
-						class="w-full md:w-1/2 lg:w-1/4 lg:px-4"
+						class="w-full"
 					>
 						<h2
+							id="contacts-focus"
 							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
 						>
 							Контакты

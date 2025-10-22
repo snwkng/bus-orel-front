@@ -55,9 +55,9 @@ const toggleMenu = () => {
 			class="flex h-14 w-full items-center justify-between bg-transparent max-w-container"
 		>
 			<div class="text-white">
-				<router-link :to="{ name: 'home' }">
+				<NuxtLink :to="{ name: 'home' }">
 					<strong class="text-deep-orange">Г</strong>алатур
-				</router-link>
+				</NuxtLink>
 			</div>
 			<div v-if="scroll && isDesktop">
 				<FeaturesMainBtnGroup v-if="route.name === 'home'" />

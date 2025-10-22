@@ -24,12 +24,15 @@ const { data, error } = await useFetch<ITour>(`/api/bus-tours/${tourId.value}`, 
 });
 
 if (error.value) {
-	throw createError({ statusCode: error.value?.statusCode, statusMessage: error.value?.data?.statusMessage || error.value?.statusMessage });
+	throw createError({
+		statusCode: error.value?.statusCode,
+		statusMessage: error.value?.message || error.value?.statusMessage
+	});
 }
 
 const donwloadFile = async () => {
 	const response = await $fetch(
-		`/api/s3/download/${data.value?.documentName}`
+		`/api/s3/download/${data.value?.documentName[0]}`
 	);
 	const link = document.createElement('a');
 	link.href = URL.createObjectURL(response as Blob);
@@ -79,7 +82,7 @@ const donwloadFile = async () => {
 			/>
 			<div class="">
 				<button
-					v-if="data?.documentName"
+					v-if="data?.documentName?.length && data.documentName[0]"
 					type="button"
 					class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-deep-orange px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-deep-orange/95 md:w-52"
 					@click.prevent="donwloadFile"

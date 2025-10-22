@@ -1,4 +1,4 @@
-import { ObjectId } from 'bson';
+import type { ObjectId } from 'bson';
 
 export interface ICard {
 	id: ObjectId;
@@ -9,5 +9,5 @@ export interface ICard {
 }
 
 export interface IExcursionCard extends ICard {
-	date: Date | null,
+	date: string | null,
 }

@@ -7,7 +7,7 @@ const toggleTheme = () => {
 <template>
 	<div class="flex flex-row items-center justify-center btn-hover">
 		<SharedUiIconsNightIcon
-			v-show="colorMode.preference === 'light'"
+			v-show="colorMode?.preference === 'light'"
 			width="24"
 			height="24"
 			color="white"
@@ -15,7 +15,7 @@ const toggleTheme = () => {
 			@click="toggleTheme"
 		/>
 		<SharedUiIconsSunIcon
-			v-show="colorMode.preference === 'dark'"
+			v-show="colorMode?.preference === 'dark'"
 			width="24"
 			height="24"
 			color="white"

@@ -109,6 +109,23 @@ watch(
 				itemtype="https://schema.org/ListItem"
 			>
 				<NuxtLink
+					:to="{ name: 'home', hash: '#bus-rent' }"
+					class="list-item"
+					itemprop="url"
+				>
+					<span itemprop="name">Аренда автобуса</span>
+				</NuxtLink>
+				<meta
+					itemprop="position"
+					content="4"
+				>
+			</li>
+			<li
+				itemprop="itemListElement"
+				itemscope
+				itemtype="https://schema.org/ListItem"
+			>
+				<NuxtLink
 					:to="{ hash: '#contacts' }"
 					class="list-item"
 					itemprop="url"
@@ -117,8 +134,8 @@ watch(
 				</NuxtLink>
 				<meta
 					itemprop="position"
-					content="4"
-				/>
+					content="5"
+				>
 			</li>
 		</ul>
 	</nav>

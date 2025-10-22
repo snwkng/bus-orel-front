@@ -12,7 +12,7 @@ interface IProps {
 			указанному в
 			<NuxtLink
 				:to="{ hash: '#contacts' }"
-				class="text-deep-blue transition-colors hover:text-ligth-blue dark:text-ligth-blue dark:hover:text-deep-blue"
+				class="base-link dark:text-ligth-blue dark:hover:text-deep-blue"
 			>
 				контактах
 			</NuxtLink>
@@ -23,7 +23,7 @@ interface IProps {
 			<a
 				href="https://vk.com/gtorel"
 				rel="noopener noreferrer"
-				class="cursor-pointer text-deep-blue transition-colors hover:text-ligth-blue dark:text-ligth-blue dark:hover:text-deep-blue"
+				class="cursor-pointer base-link dark:text-ligth-blue dark:hover:text-deep-blue"
 				target="_blank"
 				aria-label="vk"
 			>

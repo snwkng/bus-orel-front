@@ -72,19 +72,34 @@ export default <RouterConfig>{
 			component: () => import('~/pages/privacy-policy/').then(r => r.default ?? r)
 		}
 	],
-	scrollBehavior (
+	scrollBehavior(
 		to: RouteLocationNormalized,
 		_from: RouteLocationNormalized,
 		savedPosition: unknown
 	) {
 		if (savedPosition) {
-			return savedPosition;
+			return savedPosition ?? { left: 0, top: 0 };
 		}
+
 		if (to.hash) {
-			return {
-				el: to.hash,
-				behavior: 'smooth'
-			};
+			const el = document.querySelector(to.hash);
+			if (el) {
+				nextTick(() => {
+					const item = document.getElementById(`${to.hash.slice(1)}-focus`);
+					if (item) {
+						item?.classList.add('animate-glow');
+						item?.classList.add('rounded-xl');
+						setTimeout(() => {
+							item?.classList.remove('animate-glow');
+							item?.classList.remove('rounded-xl');
+						}, 1500);
+					}
+				});
+				return {
+					el: to.hash,
+					behavior: 'smooth'
+				};
+			}
 		}
 		return {
 			top: 0
