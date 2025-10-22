@@ -27,11 +27,11 @@ const handleScroll = () => {
 
 const showShadow = computed(() => scroll.value && route.name !== 'bus-tours' && route.name !== 'excursions')
 
-const close = (closeNav: boolean) => {
+const close = () => {
 	if ($viewport.isLessThan('sm')) {
 		document.body.classList.remove('lock');
 	}
-	toggle.value = closeNav;
+	toggle.value = false;
 };
 
 const toggleMenu = () => {
@@ -64,7 +64,7 @@ const toggleMenu = () => {
 			</div>
 			<div class="flex items-center gap-x-3">
 				<SharedUiFormsThemeSwitcher />
-				<div class="relative">
+				<div v-click-away="close" class="relative">
 					<button
 						type="button"
 						name="menu"
@@ -78,9 +78,9 @@ const toggleMenu = () => {
 							alt="menu"
 						/>
 					</button>
-					<Transition name="dropdown-fade">
+					<Transition :name="$viewport.isLessThan('sm') ? 'dropdown-translateY' : 'dropdown-fade'">
 						<WidgetsNavbar
-							v-if="toggle"
+							v-show="toggle"
 							@close-nav="close"
 						/>
 					</Transition>
@@ -98,5 +98,16 @@ const toggleMenu = () => {
 .dropdown-fade-enter-from,
 .dropdown-fade-leave-to {
 	opacity: 0;
+}
+
+.dropdown-translateY-enter-active,
+.dropdown-translateY-leave-active {
+	transform: translateY(0);
+	transition: all 0.2s ease;
+}
+
+.dropdown-translateY-enter-from,
+.dropdown-translateY-leave-to {
+	transform: translateY(1000px);
 }
 </style>

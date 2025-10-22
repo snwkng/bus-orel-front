@@ -355,7 +355,7 @@ const fullYear: number = new Date().getFullYear();
 							>
 								г. Орёл, ул. Комсомольская 88, оф. 6
 							</a>
-							<span>
+							<span class="font-medium">
 								(Внимание! Офис работает только по предварительной записи)
 							</span>
 						</div>

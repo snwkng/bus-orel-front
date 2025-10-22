@@ -46,10 +46,10 @@ onMounted(() => {
 });
 </script>
 <template>
-	<div>
+	<div class="flex flex-col gap-y-8">
 		<WidgetsSearchSection />
 		<WidgetsBusToursSection
-			classes="pt-11 py-8"
+			classes="pt-11"
 			title="Автобусные туры к морю из Орла"
 		/>
 		<WidgetsExcursionsSection
@@ -61,7 +61,7 @@ onMounted(() => {
 
 		<div
 			id="tour-selection"
-			class="py-8 dark:bg-gray-800 dark:text-slate-200"
+			class=" dark:bg-gray-800 dark:text-slate-200 pb-8"
 		>
 			<section class="max-w-container">
 				<h2

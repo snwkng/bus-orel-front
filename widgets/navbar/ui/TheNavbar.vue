@@ -2,7 +2,7 @@
 const emit = defineEmits(['closeNav']);
 const route = useRoute();
 const close = () => {
-	emit('closeNav', false);
+	emit('closeNav');
 };
 watch(
 	() => route.name,
@@ -21,7 +21,6 @@ watch(
 
 <template>
 	<nav
-		v-click-away="close"
 		class="fixed left-0 top-0 h-full w-full overflow-hidden bg-white p-6 shadow-lg dark:bg-gray-700 dark:text-slate-300 sm:absolute sm:left-auto sm:right-0 sm:top-10 sm:h-max sm:w-80 sm:rounded-xl"
 		itemscope
 		itemtype="https://schema.org/SiteNavigationElement"
