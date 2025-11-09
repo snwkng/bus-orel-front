@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 export interface IProps {
 	items?: { title: string; content: string }[];
 	parentId?: string;
@@ -42,7 +41,7 @@ const toggleItem = (title: string) => {
 				:class="
 					activeItem?.title === item.title
 						? 'text-deep-orange'
-						: 'dark:text-slate-300 text-slate-900'
+						: 'text-slate-900 dark:text-slate-300'
 				"
 				@click="toggleItem(item.title)"
 			>
@@ -54,7 +53,7 @@ const toggleItem = (title: string) => {
 					:class="
 						activeItem?.title === item.title
 							? 'rotate-180 text-deep-orange'
-							: 'dark:text-slate-300 text-slate-900'
+							: 'text-slate-900 dark:text-slate-300'
 					"
 					width="22"
 					height="22"
@@ -73,9 +72,8 @@ const toggleItem = (title: string) => {
 			</button>
 			<div
 				class="w-full overflow-hidden px-0 pr-4"
-				:class="[{ hidden: activeItem?.title !== item.title }]"
 			>
-				<p class="text-base leading-6 dark:text-slate-200 whitespace-pre-wrap">
+				<p class="whitespace-pre-wrap text-base leading-6 dark:text-slate-200">
 					{{ item.content }}
 				</p>
 			</div>
