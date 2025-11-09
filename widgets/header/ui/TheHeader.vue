@@ -1,22 +1,24 @@
 <script setup lang="ts">
 onMounted(() => {
-	mediaQuery.value = window.matchMedia('(min-width: 992px)');
-	mediaQuery.value.addEventListener('change', onChange);
-	onChange();
+	isDesktop.value = !$viewport.isLessThan('lg')
 	window.addEventListener('scroll', handleScroll);
 	handleScroll();
 });
 
 onUnmounted(() => {
 	window.removeEventListener('scroll', handleScroll);
-	mediaQuery.value?.removeEventListener('change', onChange);
 });
+
+const { $viewport } = useNuxtApp()
+
+watch($viewport.breakpoint, () => {
+	isDesktop.value = !$viewport.isLessThan('lg')
+})
 
 const route = useRoute();
 
 const toggle = ref(false);
 const scroll = ref(false);
-const mediaQuery = ref<MediaQueryList>();
 const isDesktop = ref(false);
 
 const handleScroll = () => {
@@ -25,12 +27,21 @@ const handleScroll = () => {
 
 const showShadow = computed(() => scroll.value && route.name !== 'bus-tours' && route.name !== 'excursions')
 
-const onChange = () => {
-	isDesktop.value = mediaQuery.value?.matches ?? false;
+const close = () => {
+	if ($viewport.isLessThan('sm')) {
+		document.body.classList.remove('lock');
+	}
+	toggle.value = false;
 };
-const close = (closeNav: boolean) => {
-	toggle.value = closeNav;
-};
+
+const toggleMenu = () => {
+	toggle.value = !toggle.value
+	if (toggle.value && $viewport.isLessThan('sm')) {
+		document.body.classList.add('lock');
+	} else if ($viewport.isLessThan('sm')) {
+		document.body.classList.remove('lock');
+	}
+}
 </script>
 
 <template>
@@ -53,12 +64,12 @@ const close = (closeNav: boolean) => {
 			</div>
 			<div class="flex items-center gap-x-3">
 				<SharedUiFormsThemeSwitcher />
-				<div class="relative">
+				<div v-click-away="close" class="relative">
 					<button
 						type="button"
 						name="menu"
 						class="btn-hover"
-						@click="toggle = !toggle"
+						@click="toggleMenu"
 					>
 						<i-menu
 							filled
@@ -67,9 +78,9 @@ const close = (closeNav: boolean) => {
 							alt="menu"
 						/>
 					</button>
-					<Transition name="dropdown-fade">
+					<Transition :name="$viewport.isLessThan('sm') ? 'dropdown-translateY' : 'dropdown-fade'">
 						<WidgetsNavbar
-							v-if="toggle"
+							v-show="toggle"
 							@close-nav="close"
 						/>
 					</Transition>
@@ -87,5 +98,16 @@ const close = (closeNav: boolean) => {
 .dropdown-fade-enter-from,
 .dropdown-fade-leave-to {
 	opacity: 0;
+}
+
+.dropdown-translateY-enter-active,
+.dropdown-translateY-leave-active {
+	transform: translateY(0);
+	transition: all 0.2s ease;
+}
+
+.dropdown-translateY-enter-from,
+.dropdown-translateY-leave-to {
+	transform: translateY(1000px);
 }
 </style>

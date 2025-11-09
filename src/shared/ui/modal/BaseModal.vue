@@ -30,9 +30,9 @@ watch(
 	async (isOpen) => {
 		if (import.meta.client) {
 			if (isOpen) {
-				document.body.classList.add('modal-open');
+				document.body.classList.add('lock');
 			} else {
-				document.body.classList.remove('modal-open');
+				document.body.classList.remove('lock');
 			}
 		}
 
@@ -65,7 +65,7 @@ const focusFirstElement = () => {
 };
 
 onUnmounted(() => {
-	document.body.classList.remove('modal-open');
+	document.body.classList.remove('lock');
 });
 </script>
 <template>

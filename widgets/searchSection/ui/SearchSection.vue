@@ -20,7 +20,7 @@ watch(
 	<div
 		class="h-full w-full bg-deep-blue text-white dark:bg-gray-800"
 	>
-		<div class="flex flex-col items-center justify-center gap-y-6 lg:h-96 py-5 max-w-container">
+		<div class="flex flex-col items-center justify-center gap-y-6 lg:h-[500px] lg:mt-[-56px] py-5 max-w-container">
 			<h1 class="mb-2 text-3xl font-bold sm:text-4xl">
 				{{ title }}
 			</h1>
