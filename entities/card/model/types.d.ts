@@ -9,5 +9,5 @@ export interface ICard {
 }
 
 export interface IExcursionCard extends ICard {
-	date: string | null,
+	date: string | null;
 }

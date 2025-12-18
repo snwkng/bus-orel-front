@@ -1,15 +1,14 @@
 <script setup lang="ts">
 interface IProps {
-  text?: string
+	text?: string;
 }
 
- defineProps<IProps>()
+defineProps<IProps>();
 </script>
 <template>
 	<div class="dark:text-slate-200">
 		<span>
-			{{ text || 'Нет данных' }}, уточните информацию по телефону
-			указанному в
+			{{ text || 'Нет данных' }}, уточните информацию по телефону указанному в
 			<NuxtLink
 				:to="{ hash: '#contacts' }"
 				class="base-link dark:text-ligth-blue dark:hover:text-deep-blue"
@@ -23,7 +22,7 @@ interface IProps {
 			<a
 				href="https://vk.com/gtorel"
 				rel="noopener noreferrer"
-				class="cursor-pointer base-link dark:text-ligth-blue dark:hover:text-deep-blue"
+				class="base-link cursor-pointer dark:text-ligth-blue dark:hover:text-deep-blue"
 				target="_blank"
 				aria-label="vk"
 			>

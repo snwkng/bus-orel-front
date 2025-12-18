@@ -124,9 +124,9 @@ watch(
 					@click="value = item"
 					@keydown.enter="value = item"
 				>
-					<span class="text-slate-800 dark:text-slate-400">{{
-						item.name
-					}}</span>
+					<span class="text-slate-800 dark:text-slate-400">
+						{{ item.name }}
+					</span>
 				</div>
 			</div>
 		</div>

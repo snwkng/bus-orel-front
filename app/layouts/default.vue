@@ -1,9 +1,11 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 <template>
-	<div class="flex flex-col min-h-[100vh]">
+	<div class="flex min-h-[100vh] flex-col">
 		<WidgetsHeader />
-		<main id="main" class="pt-14 flex-1 dark:bg-gray-800">
+		<main
+			id="main"
+			class="flex-1 pt-14 dark:bg-gray-800"
+		>
 			<slot />
 		</main>
 		<WidgetsFooter />

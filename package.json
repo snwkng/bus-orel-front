@@ -2,7 +2,7 @@
 	"name": "bus-orel-front",
 	"private": true,
 	"type": "module",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "set \"VITE_CJS_TRACE=true\" && nuxt dev",

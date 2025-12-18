@@ -20,7 +20,9 @@ const { data } = await useFetch('/api/excursions', {
 			subtitle: ex.cities?.map((x: string) => x).join(', '),
 			price: ex.price,
 			image: ex.images?.[0] || '',
-			date: ex?.excursionStartDates?.find((date) => new Date(date) >= new Date()) || null
+			date:
+				ex?.excursionStartDates?.find((date) => new Date(date) >= new Date()) ||
+				null
 		}));
 	}
 });

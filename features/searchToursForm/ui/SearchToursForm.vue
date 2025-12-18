@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const router = useRouter();
 
 const store = useTourStore();
@@ -20,11 +19,11 @@ watch(
 
 const updateValue = (value: SelectItem, type: string) => {
 	if (type === 'seaType') {
-		selectedSea.value = value
+		selectedSea.value = value;
 	} else if (type === 'city') {
-		selectedPlace.value = value
+		selectedPlace.value = value;
 	}
-}
+};
 
 const getTours = () => {
 	router.push({

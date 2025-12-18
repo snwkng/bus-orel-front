@@ -21,16 +21,14 @@ const link = computed(() =>
 );
 </script>
 <template>
-	<NuxtLink
-		:to="link"
-	>
+	<NuxtLink :to="link">
 		<div class="w-full">
 			<div
 				class="mb-3 w-full rounded-xl bg-slate-100 bg-cover brightness-100 dark:bg-gray-700"
 				:class="[type === 'tour' ? 'h-60' : 'h-96']"
 			>
 				<NuxtImg
-					class="mb-3 w-full rounded-xl object-cover brightness-100 h-full"
+					class="mb-3 h-full w-full rounded-xl object-cover brightness-100"
 					:src="`/image/${image}`"
 					:alt="props.subtitle"
 					:title="props.title"

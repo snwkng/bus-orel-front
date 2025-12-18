@@ -1,16 +1,17 @@
 <script setup lang="ts">
-
 const fullYear: number = new Date().getFullYear();
 </script>
 <template>
-	<div class="flex w-full items-end bg-slate-100 text-slate-700 dark:bg-gray-800 dark:text-slate-200">
+	<div
+		class="flex w-full items-end bg-slate-100 text-slate-700 dark:bg-gray-800 dark:text-slate-200"
+	>
 		<footer
 			class="body-font w-full"
 			itemscope
 			itemtype="https://schema.org/Organization"
 		>
 			<div
-				class="max-w-container flex w-full flex-col py-24 lg:flex-row justify-center items-center md:justify-start md:items-start"
+				class="max-w-container flex w-full flex-col items-center justify-center py-24 md:items-start md:justify-start lg:flex-row"
 			>
 				<div
 					class="w-64 flex-shrink-0 text-center md:text-left"
@@ -71,7 +72,7 @@ const fullYear: number = new Date().getFullYear();
 					</div>
 				</div>
 				<div
-					class="mb-10 mt-10 grid md:grid-cols-2 xl:grid-cols-4 text-center lg:mt-0 md:text-left gap-5"
+					class="mb-10 mt-10 grid gap-5 text-center md:grid-cols-2 md:text-left lg:mt-0 xl:grid-cols-4"
 				>
 					<div class="w-full">
 						<h2
@@ -108,7 +109,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="1"
-									>
+									/>
 								</li>
 								<li
 									class="mt-3"
@@ -126,7 +127,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="2"
-									>
+									/>
 								</li>
 							</ul>
 						</nav>
@@ -166,7 +167,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="1"
-									>
+									/>
 								</li>
 								<li
 									class="mt-3"
@@ -186,7 +187,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="2"
-									>
+									/>
 								</li>
 								<li
 									class="mt-3"
@@ -204,7 +205,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="3"
-									>
+									/>
 								</li>
 							</ul>
 						</nav>
@@ -244,7 +245,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="1"
-									>
+									/>
 								</li>
 								<li
 									class="mt-3"
@@ -262,7 +263,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="2"
-									>
+									/>
 								</li>
 								<li
 									class="mt-3"
@@ -280,7 +281,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="3"
-									>
+									/>
 								</li>
 								<li
 									class="mt-3"
@@ -298,7 +299,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="4"
-									>
+									/>
 								</li>
 							</ul>
 						</nav>
@@ -364,9 +365,7 @@ const fullYear: number = new Date().getFullYear();
 			</div>
 			<div class="w-full bg-slate-300 dark:bg-gray-900">
 				<div class="container mx-auto px-5 py-4">
-					<p
-						class="text-sm text-slate-700 dark:text-slate-300 xl:text-center"
-					>
+					<p class="text-sm text-slate-700 dark:text-slate-300 xl:text-center">
 						© {{ fullYear }} Информация на сайте носит ознакомительный характер
 						и не является публичной офертой
 					</p>

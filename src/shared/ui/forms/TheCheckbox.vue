@@ -13,26 +13,28 @@ const emit =
 	defineEmits<(event: 'update:modelValue', payload: boolean) => void>();
 
 const model = computed({
-	get () {
+	get() {
 		return props.modelValue;
 	},
-	set (value: boolean) {
+	set(value: boolean) {
 		emit('update:modelValue', value);
 	}
 });
 </script>
 <template>
-	<div class="flex gap-2 items-center p-2 bg-slate-200 hover:bg-slate-300 transition-all rounded-xl dark:bg-gray-700 dark:text-slate-200 hover:dark:bg-gray-500">
+	<div
+		class="flex items-center gap-2 rounded-xl bg-slate-200 p-2 transition-all hover:bg-slate-300 dark:bg-gray-700 dark:text-slate-200 hover:dark:bg-gray-500"
+	>
 		<input
 			:id="checkboxId"
 			v-model="model"
 			type="checkbox"
 			:value="value"
 			class="size-4"
-		>
+		/>
 		<label
 			:for="checkboxId"
-			class="flex font-semibold text-lg"
+			class="flex text-lg font-semibold"
 		>
 			{{ label }}
 		</label>
