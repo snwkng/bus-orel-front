@@ -1,32 +1,44 @@
 <script setup lang="ts">
 import type { IHotelRoomInfo, ITour } from '~/entities/tour/model/types';
 
-const { BASE_URL } = useRuntimeConfig().public
+const { BASE_URL } = useRuntimeConfig().public;
 
 const route = useRoute();
 
 useHead({
-	link: [{ rel: 'canonical', href: BASE_URL + (route.path === '/' ? '' : route.path) }],
-})
+	link: [
+		{
+			rel: 'canonical',
+			href: BASE_URL + (route.path === '/' ? '' : route.path)
+		}
+	]
+});
 
 const tourId = computed(() => route.params.id as string);
-const tourTitle = computed(() => data.value?.type || data.value?.name ? `${data.value?.type} ${data.value?.name}` : '');
+const tourTitle = computed(() =>
+	data.value?.type || data.value?.name
+		? `${data.value?.type} ${data.value?.name}`
+		: ''
+);
 const tourCity = computed(() =>
 	data.value?.address?.fullAddress || data.value?.address?.city
 		? [data.value?.address?.fullAddress ?? data.value?.address?.city]
 		: []
 );
 
-const hasRoomsinfo = computed(() => data.value?.tours?.some((x: IHotelRoomInfo) => x.roomName))
+const hasRoomsinfo = computed(() =>
+	data.value?.tours?.some((x: IHotelRoomInfo) => x.roomName)
+);
 
-const { data, error } = await useFetch<ITour>(`/api/bus-tours/${tourId.value}`, {
-	key: `bus-tour-${tourId.value}`,
+const { data, error } = await useFetch<ITour>(`/api/hotels/${tourId.value}`, {
+	key: `hotels-${tourId.value}`
 });
 
 if (error.value) {
 	throw createError({
 		statusCode: error.value?.statusCode,
-		statusMessage: error.value?.message || error.value?.statusMessage
+		statusMessage: error.value?.message || error.value?.statusMessage,
+		fatal: true
 	});
 }
 
@@ -56,19 +68,24 @@ const donwloadFile = async () => {
 				name="keywords"
 				content="автобусные туры к морю, поездки на море, автобусные поездки, недорогие туры на море из Орла, автобусом к морю, автобусные туры на море, отдых на море автобусом"
 			/>
-			<Meta name="og:title" :content="`Автобусный тур в ${data?.address?.city}, ${data?.type} ${data?.name}`" />
-			<Meta name="og:description" :content="`Автобусный тур в ${data?.address?.city} из Орла.`" />
+			<Meta
+				name="og:title"
+				:content="`Автобусный тур в ${data?.address?.city}, ${data?.type} ${data?.name}`"
+			/>
+			<Meta
+				name="og:description"
+				:content="`Автобусный тур в ${data?.address?.city} из Орла.`"
+			/>
 		</Head>
 		<div
-			class="flex w-full flex-col gap-5 py-10 dark:bg-gray-800 max-w-container"
+			class="max-w-container flex w-full flex-col gap-5 py-10 dark:bg-gray-800"
 		>
 			<div
 				class="rounded-xl bg-slate-100 px-5 py-3 font-semibold dark:bg-gray-700 dark:text-slate-200"
 			>
 				УВАЖАЕМЫЕ ТУРИСТЫ ОБРАЩАЕМ ВАШЕ ВНИМАНИЕ, ВО МНОГИХ ОТЕЛЯХ ДИНАМИЧЕСКОЕ
-				ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ, ПОЖАЛУЙСТА, УТОЧНИТЕ
-				АКТУАЛЬНЫЙ ПРАЙС. НАДЕЕМСЯ НА ВАШЕ ПОНИМАНИЕ! КОНСУЛЬТАЦИЯ И
-				БРОНИРОВАНИЕ:
+				ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ, ПОЖАЛУЙСТА, УТОЧНИТЕ АКТУАЛЬНЫЙ
+				ПРАЙС. НАДЕЕМСЯ НА ВАШЕ ПОНИМАНИЕ! КОНСУЛЬТАЦИЯ И БРОНИРОВАНИЕ:
 				<span class="text-red-700 dark:text-red-300">ТЕЛ. +79036370958</span>
 			</div>
 			<WidgetsHeaderItem
@@ -77,9 +94,7 @@ const donwloadFile = async () => {
 				price-description="Минимально возможная цена за 1 туриста при 2-х местном размещении"
 				:cities="tourCity"
 			/>
-			<SharedUiGalleryTheGallery
-				:images="data?.images ?? []"
-			/>
+			<SharedUiGalleryTheGallery :images="data?.images ?? []" />
 			<div class="">
 				<button
 					v-if="data?.documentName?.length && data.documentName[0]"
@@ -89,14 +104,12 @@ const donwloadFile = async () => {
 				>
 					Скачать прайс
 				</button>
-				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Описание
-				</h3>
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Описание</h3>
 				<div class="dark:text-slate-200">
 					{{ data?.description }}
 				</div>
 			</div>
-			<hr>
+			<hr />
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Размещение
@@ -112,35 +125,53 @@ const donwloadFile = async () => {
 						</div>
 					</div>
 				</div>
-				<LazySharedUiInformersEmptyDataInformer v-else text="Данных о номерах пока нет" />
+				<LazySharedUiInformersEmptyDataInformer
+					v-else
+					text="Данных о номерах пока нет"
+				/>
 			</div>
-			<hr>
+			<hr />
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Питание</h3>
 				<div class="dark:text-slate-200">
 					{{ data?.additionalInfo?.food?.type }}
 				</div>
 			</div>
-			<hr>
+			<hr />
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">Пляж</h3>
 				<div class="dark:text-slate-200">
-					<span v-if="data?.additionalInfo?.beach?.type">{{ data.additionalInfo.beach.type }}.</span>
-					<span v-if="data?.additionalInfo?.beach?.distanceMinutes"> До пляжа {{ data.additionalInfo.beach.distanceMinutes }} мин.</span>
+					<span v-if="data?.additionalInfo?.beach?.type"
+						>{{ data.additionalInfo.beach.type }}.</span
+					>
+					<span v-if="data?.additionalInfo?.beach?.distanceMinutes">
+						До пляжа {{ data.additionalInfo.beach.distanceMinutes }} мин.</span
+					>
 				</div>
 			</div>
-			<hr>
+			<hr />
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Заселение / Выселение
 				</h3>
 				<div class="dark:text-slate-200">
-					<span v-if="data?.additionalInfo?.checkInOut?.checkIn">Заселение с {{ data.additionalInfo.checkInOut.checkIn }}</span>
-					<span v-if="data?.additionalInfo?.checkInOut?.checkIn && data?.additionalInfo?.checkInOut?.checkOut"> - </span>
-					<span v-if="data?.additionalInfo?.checkInOut?.checkOut"> выселение до {{ data.additionalInfo.checkInOut.checkOut }}</span>
+					<span v-if="data?.additionalInfo?.checkInOut?.checkIn"
+						>Заселение с {{ data.additionalInfo.checkInOut.checkIn }}</span
+					>
+					<span
+						v-if="
+							data?.additionalInfo?.checkInOut?.checkIn &&
+							data?.additionalInfo?.checkInOut?.checkOut
+						"
+					>
+						-
+					</span>
+					<span v-if="data?.additionalInfo?.checkInOut?.checkOut">
+						выселение до {{ data.additionalInfo.checkInOut.checkOut }}</span
+					>
 				</div>
 			</div>
-			<hr>
+			<hr />
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					В стоимость включено
@@ -149,7 +180,7 @@ const donwloadFile = async () => {
 					{{ data?.includedInThePrice?.map((x) => x?.serviceName)?.join(', ') }}
 				</div>
 			</div>
-			<hr>
+			<hr />
 			<div
 				v-if="data?.tours?.length"
 				class=""

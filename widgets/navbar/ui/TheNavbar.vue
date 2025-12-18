@@ -27,7 +27,7 @@ watch(
 	>
 		<button
 			type="button"
-			class="flex absolute right-2 top-2 cursor-pointer justify-end rounded-full p-1 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:text-gray-300 dark:hover:text-gray-100 sm:hidden"
+			class="absolute right-2 top-2 flex cursor-pointer justify-end rounded-full p-1 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:text-gray-300 dark:hover:text-gray-100 sm:hidden"
 			aria-label="Закрыть меню"
 			@click="close"
 		>
@@ -47,7 +47,7 @@ watch(
 			</svg>
 		</button>
 		<ul
-			class="list-none text-base mt-5 sm:mt-0"
+			class="mt-5 list-none text-base sm:mt-0"
 			itemscope
 			itemtype="https://schema.org/ItemList"
 		>
@@ -117,7 +117,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="4"
-				>
+				/>
 			</li>
 			<li
 				itemprop="itemListElement"
@@ -134,7 +134,7 @@ watch(
 				<meta
 					itemprop="position"
 					content="5"
-				>
+				/>
 			</li>
 		</ul>
 	</nav>

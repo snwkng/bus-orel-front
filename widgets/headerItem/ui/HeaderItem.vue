@@ -2,7 +2,7 @@
 interface IProps {
 	title?: string;
 	price?: number;
-  priceDescription?: string;
+	priceDescription?: string;
 	cities?: string[];
 	duration?: number;
 }
@@ -24,7 +24,9 @@ const endWordDayCheck = () => {
 </script>
 
 <template>
-	<div class="flex flex-col justify-between sm:flex-row sm:items-center gap-y-2 sm:gap-y-0">
+	<div
+		class="flex flex-col justify-between gap-y-2 sm:flex-row sm:items-center sm:gap-y-0"
+	>
 		<div class="felx flex-col gap-y-2">
 			<h1
 				class="mb-2 text-4xl font-bold dark:text-slate-200"
@@ -60,7 +62,10 @@ const endWordDayCheck = () => {
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-col gap-x-1 sm:items-end" v-if="price">
+		<div
+			class="flex flex-col gap-x-1 sm:items-end"
+			v-if="price"
+		>
 			<span class="font-semibold dark:text-slate-200"> от {{ price }}₽ </span>
 			<span class="text-sm text-slate-400 sm:text-right">
 				{{ priceDescription }}

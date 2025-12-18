@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 
 const route = useRoute();
 
-const { data, pending } = await useFetch('/api/bus-tours', {
+const { data, pending } = await useFetch('/api/hotels', {
 	query: computed(() => route.query),
 	transform: (data) => {
 		return (data as ITour[]).map((tour: ITour) => ({

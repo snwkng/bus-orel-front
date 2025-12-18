@@ -61,7 +61,7 @@ onMounted(() => {
 
 		<div
 			id="tour-selection"
-			class=" dark:bg-gray-800 dark:text-slate-200 pb-8"
+			class="pb-8 dark:bg-gray-800 dark:text-slate-200"
 		>
 			<section class="max-w-container">
 				<h2

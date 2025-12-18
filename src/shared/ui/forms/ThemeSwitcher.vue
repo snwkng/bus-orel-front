@@ -5,7 +5,7 @@ const toggleTheme = () => {
 };
 </script>
 <template>
-	<div class="flex flex-row items-center justify-center btn-hover">
+	<div class="btn-hover flex flex-row items-center justify-center">
 		<SharedUiIconsNightIcon
 			v-show="colorMode?.preference === 'light'"
 			width="24"

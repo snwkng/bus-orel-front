@@ -27,16 +27,10 @@ const { data, error } = await useFetch<IExcursion>(
 if (error.value) {
 	throw createError({
 		statusCode: error.value?.statusCode,
-		message: error.value?.message || error.value?.statusMessage
+		message: error.value?.message || error.value?.statusMessage,
+		fatal: true
 	});
 }
-
-const accordionItems = computed(() =>
-	data.value?.description?.map((x: string, index: number) => ({
-		title: `День ${index + 1}`,
-		content: x
-	}))
-);
 
 const donwloadFile = async () => {
 	const response = await $fetch(
@@ -52,11 +46,11 @@ const donwloadFile = async () => {
 	<div class="w-full dark:bg-gray-800">
 		<Head>
 			<Title>
-				{{ `Эскурсионный тур в ${data?.cities?.join(', ')}, ${data?.name}` }}
+				{{ `Экскурсия: ${data?.name}` }}
 			</Title>
 			<Meta
 				name="description"
-				:content="`Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
+				:content="`${data?.name} &#8212; Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
 			/>
 			<Meta
 				name="og:title"
@@ -64,7 +58,7 @@ const donwloadFile = async () => {
 			/>
 			<Meta
 				name="og:description"
-				:content="`Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
+				:content="`${data?.name} &#8212; Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
 			/>
 			<Meta
 				name="keywords"
@@ -82,7 +76,7 @@ const donwloadFile = async () => {
 				:duration="data?.duration"
 			/>
 			<SharedUiGalleryTheGallery :images="data?.images ?? []" />
-			
+
 			<div class="">
 				<button
 					v-if="data?.documentName?.length && data?.documentName[0]"
@@ -105,18 +99,33 @@ const donwloadFile = async () => {
 							v-for="(date, idx) in data.excursionStartDates"
 							:key="idx"
 						>
-							{{ $dayjs(date).format('DD.MM.YYYY') }}<template v-if="idx !== data.excursionStartDates.length - 1">,&nbsp;</template>
-					</span>
+							{{ $dayjs(date).format('DD.MM.YYYY')
+							}}<template v-if="idx !== data.excursionStartDates.length - 1"
+								>,&nbsp;</template
+							>
+						</span>
 					</div>
 				</div>
 				<hr class="my-4" />
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					Программа тура
 				</h3>
-				<SharedUiAccordionsTheAccordion
-					:items="accordionItems ?? []"
-					parent-id="ex-dates"
-				/>
+				<div
+					v-for="(dayContent, index) in data?.description"
+					:key="index"
+					class="border-b border-solid border-slate-200 pb-4 pt-2"
+				>
+					<span class="font-semibold">
+						{{ `День ${index + 1}` }}
+					</span>
+					<div class="w-full overflow-hidden px-0 pr-4">
+						<p
+							class="whitespace-pre-wrap text-base leading-6 dark:text-slate-200"
+						>
+							{{ dayContent }}
+						</p>
+					</div>
+				</div>
 			</div>
 			<div class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">

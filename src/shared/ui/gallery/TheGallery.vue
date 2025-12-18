@@ -63,7 +63,7 @@ const swiperPrevSlide = () => {
 </script>
 <template>
 	<div class="h-[300px] md:h-[550px]">
-		<div/>
+		<div />
 		<ClientOnly fallback-tag="div">
 			<template #fallback>
 				<SharedUiSkeletonSwiper />
@@ -79,14 +79,14 @@ const swiperPrevSlide = () => {
 					v-for="(slide, index) in images"
 					:key="index"
 				>
-				<NuxtImg
-					class="h-[300px] md:h-[550px] w-full object-cover object-center"
-					:src="`/image/${slide}`"
-					:alt="`slide-${index}`"
-					height="550"
-					loading="lazy"
-					fit="inside"
-				/>
+					<NuxtImg
+						class="h-[300px] w-full object-cover object-center md:h-[550px]"
+						:src="`/image/${slide}`"
+						:alt="`slide-${index}`"
+						height="550"
+						loading="lazy"
+						fit="inside"
+					/>
 				</swiper-slide>
 				<div
 					v-if="!swiperInstance?.isBeginning"

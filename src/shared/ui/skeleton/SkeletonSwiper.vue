@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 <template>
-  <div class="md:h-[550px] w-full rounded-xl bg-gray-300" />
+	<div class="w-full rounded-xl bg-gray-300 md:h-[550px]" />
 </template>

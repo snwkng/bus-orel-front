@@ -42,7 +42,6 @@ export interface ISeaList {
 	name: string;
 }
 
-
 export interface IHotelRoomInfo {
 	type?: string;
 	roomName?: string;

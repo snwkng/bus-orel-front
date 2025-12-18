@@ -2,11 +2,10 @@ name: bus-orel-front
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -16,16 +15,15 @@ jobs:
     env:
       BASE_URL: ${{secrets.BASE_URL}}
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Create .env file
-      run: |
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Create .env file
+        run: |
           touch .env
           echo "BASE_URL=${{secrets.BASE_URL}}" >> .env
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: pm2 restart front
-
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: pm2 restart front

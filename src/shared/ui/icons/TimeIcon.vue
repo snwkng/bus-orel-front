@@ -20,7 +20,11 @@ const props = withDefaults(defineProps<IProps>(), {
 		xmlns="http://www.w3.org/2000/svg"
 		fill="none"
 	>
-		<circle cx="32" cy="32" r="24" />
+		<circle
+			cx="32"
+			cy="32"
+			r="24"
+		/>
 		<polyline points="40 44 32 32 32 16" />
 	</svg>
 </template>

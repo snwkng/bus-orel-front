@@ -19,7 +19,7 @@
 }
 
 .list-item {
-	@apply cursor-pointer rounded-xl p-2 hover:bg-slate-200 hover:bg-opacity-30 focus:bg-slate-200 focus:bg-opacity-30 dark:hover:bg-slate-500 dark:focus:bg-slate-500 font-medium;
+	@apply cursor-pointer rounded-xl p-2 font-medium hover:bg-slate-200 hover:bg-opacity-30 focus:bg-slate-200 focus:bg-opacity-30 dark:hover:bg-slate-500 dark:focus:bg-slate-500;
 }
 
 .subtitle {
@@ -39,7 +39,7 @@
 }
 
 .base-link {
-	@apply text-deep-blue transition-colors hover:text-ligth-blue
+	@apply text-deep-blue transition-colors hover:text-ligth-blue;
 }
 
 .rotate-Y-180 {

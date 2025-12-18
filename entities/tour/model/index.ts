@@ -4,18 +4,18 @@ export const useTourStore = defineStore('useTourStore', {
 		cityList: [] as SelectItem[]
 	}),
 	actions: {
-		async getSeaList (): Promise<void> {
-			const sea: SelectItem[] = await $fetch('/api/bus-tours/sea-list')
-			this.seaList = sea.filter((s: SelectItem) => s.name)
+		async getSeaList(): Promise<void> {
+			const sea: SelectItem[] = await $fetch('/api/hotels/sea-list');
+			this.seaList = sea.filter((s: SelectItem) => s.name);
 		},
 
-		async getCityList (seaType?: string): Promise<void> {
-			const city: SelectItem[] = await $fetch('/api/bus-tours/cities-list', {
+		async getCityList(seaType?: string): Promise<void> {
+			const city: SelectItem[] = await $fetch('/api/hotels/cities-list', {
 				params: {
 					seaType
 				}
-			})
-			this.cityList = city.filter((c: SelectItem) => c.name)
+			});
+			this.cityList = city.filter((c: SelectItem) => c.name);
 		}
 	}
-})
+});

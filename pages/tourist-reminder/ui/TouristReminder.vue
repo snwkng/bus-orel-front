@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 useSeoMeta({
 	title: 'Галатур Орел - Памятка туристам',
 	ogTitle: 'Галатур Орел - Памятка туристам',
@@ -7,8 +6,7 @@ useSeoMeta({
 		'Галатур - Памятка туристам отправляющимся на отдых или экскурсию на автобусе',
 	ogDescription:
 		'Галатур - Памятка туристам отправляющимся на отдых или экскурсию на автобусе',
-	keywords:
-		'галатур, галатур орел, памятка туристам'
+	keywords: 'галатур, галатур орел, памятка туристам'
 });
 
 const accordionItems = ref([
@@ -65,9 +63,7 @@ const accordionItems = ref([
 </script>
 <template>
 	<div class="dark:bg-gray-800 dark:text-slate-200">
-		<section
-			class="m-auto flex w-full flex-col gap-5 py-10 max-w-container"
-		>
+		<section class="max-w-container m-auto flex w-full flex-col gap-5 py-10">
 			<SharedUiAccordionsTheAccordion :items="accordionItems" />
 		</section>
 	</div>

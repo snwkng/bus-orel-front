@@ -1,6 +1,6 @@
 <script setup lang="ts">
 onMounted(() => {
-	isDesktop.value = !$viewport.isLessThan('lg')
+	isDesktop.value = !$viewport.isLessThan('lg');
 	window.addEventListener('scroll', handleScroll);
 	handleScroll();
 });
@@ -9,11 +9,11 @@ onUnmounted(() => {
 	window.removeEventListener('scroll', handleScroll);
 });
 
-const { $viewport } = useNuxtApp()
+const { $viewport } = useNuxtApp();
 
 watch($viewport.breakpoint, () => {
-	isDesktop.value = !$viewport.isLessThan('lg')
-})
+	isDesktop.value = !$viewport.isLessThan('lg');
+});
 
 const route = useRoute();
 
@@ -25,7 +25,10 @@ const handleScroll = () => {
 	scroll.value = window.scrollY > 400;
 };
 
-const showShadow = computed(() => scroll.value && route.name !== 'bus-tours' && route.name !== 'excursions')
+const showShadow = computed(
+	() =>
+		scroll.value && route.name !== 'bus-tours' && route.name !== 'excursions'
+);
 
 const close = () => {
 	if ($viewport.isLessThan('sm')) {
@@ -35,24 +38,24 @@ const close = () => {
 };
 
 const toggleMenu = () => {
-	toggle.value = !toggle.value
+	toggle.value = !toggle.value;
 	if (toggle.value && $viewport.isLessThan('sm')) {
 		document.body.classList.add('lock');
 	} else if ($viewport.isLessThan('sm')) {
 		document.body.classList.remove('lock');
 	}
-}
+};
 </script>
 
 <template>
 	<header
 		:class="[
 			'font-large fixed z-20 h-14 w-full bg-deep-blue dark:bg-gray-800',
-			{ 'shadow-lg': showShadow },
+			{ 'shadow-lg': showShadow }
 		]"
 	>
 		<div
-			class="flex h-14 w-full items-center justify-between bg-transparent max-w-container"
+			class="max-w-container flex h-14 w-full items-center justify-between bg-transparent"
 		>
 			<div class="text-white">
 				<NuxtLink :to="{ name: 'home' }">
@@ -64,7 +67,10 @@ const toggleMenu = () => {
 			</div>
 			<div class="flex items-center gap-x-3">
 				<SharedUiFormsThemeSwitcher />
-				<div v-click-away="close" class="relative">
+				<div
+					v-click-away="close"
+					class="relative"
+				>
 					<button
 						type="button"
 						name="menu"
@@ -78,7 +84,13 @@ const toggleMenu = () => {
 							alt="menu"
 						/>
 					</button>
-					<Transition :name="$viewport.isLessThan('sm') ? 'dropdown-translateY' : 'dropdown-fade'">
+					<Transition
+						:name="
+							$viewport.isLessThan('sm')
+								? 'dropdown-translateY'
+								: 'dropdown-fade'
+						"
+					>
 						<WidgetsNavbar
 							v-show="toggle"
 							@close-nav="close"
