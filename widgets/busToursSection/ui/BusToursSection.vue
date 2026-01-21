@@ -17,8 +17,8 @@ const route = useRoute();
 
 const { data, pending } = await useFetch('/api/hotels', {
 	query: computed(() => route.query),
-	transform: (data) => {
-		return (data as ITour[]).map((tour: ITour) => ({
+	transform: (response: ApiResponse<ITour[]>) => {
+		return response?.data?.map((tour: ITour) => ({
 			id: tour._id,
 			title: tour.name,
 			subtitle: tour?.address.city ?? '',

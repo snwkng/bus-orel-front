@@ -12,7 +12,6 @@ const props = defineProps<IProps>();
 const endWordDayCheck = () => {
 	if (props?.duration === 1) {
 		return 'день';
-		// eslint-disable-next-line no-else-return
 	} else if (props?.duration && props.duration > 1 && props.duration < 5) {
 		return 'дня';
 	} else if (props?.duration && props.duration >= 5) {
@@ -25,22 +24,22 @@ const endWordDayCheck = () => {
 
 <template>
 	<div
-		class="flex flex-col justify-between gap-y-2 sm:flex-row sm:items-center sm:gap-y-0"
+		class="flex flex-col justify-between gap-y-2 sm:flex-row sm:items-end sm:gap-y-0"
 	>
 		<div class="felx flex-col gap-y-2">
 			<h1
-				class="mb-2 text-4xl font-bold dark:text-slate-200"
 				v-if="title"
+				class="mb-2 text-4xl font-bold dark:text-slate-200"
 			>
 				{{ title }}
 			</h1>
 			<div
-				class="flex flex-row items-center gap-1 gap-x-3"
 				v-if="duration || cities?.length"
+				class="flex flex-row items-center gap-1 gap-x-3"
 			>
 				<div
-					class="flex flex-row items-center justify-center gap-1 text-gray-500 dark:text-slate-200"
 					v-if="cities?.length"
+					class="flex flex-row items-center justify-center gap-1 text-gray-500 dark:text-slate-200"
 				>
 					<SharedUiIconsLocationIcon
 						width="24px"
@@ -49,8 +48,8 @@ const endWordDayCheck = () => {
 					<span class="">{{ cities?.map((x: string) => x).join(', ') }}</span>
 				</div>
 				<div
-					class="flex flex-row items-center justify-center gap-1"
 					v-if="duration"
+					class="flex flex-row items-center justify-center gap-1"
 				>
 					<SharedUiIconsTimeIcon
 						width="24px"
@@ -63,8 +62,8 @@ const endWordDayCheck = () => {
 			</div>
 		</div>
 		<div
-			class="flex flex-col gap-x-1 sm:items-end"
 			v-if="price"
+			class="flex flex-col justify-end gap-x-1 sm:items-end"
 		>
 			<span class="font-semibold dark:text-slate-200"> от {{ price }}₽ </span>
 			<span class="text-sm text-slate-400 sm:text-right">

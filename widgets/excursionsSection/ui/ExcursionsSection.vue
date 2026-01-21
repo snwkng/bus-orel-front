@@ -13,8 +13,8 @@ const route = useRoute();
 
 const { data } = await useFetch('/api/excursions', {
 	query: computed(() => route.query),
-	transform: (data) => {
-		return (data as IExcursion[]).map((ex: IExcursion) => ({
+	transform: (response: ApiResponse<IExcursion[]>) => {
+		return response?.data?.map((ex: IExcursion) => ({
 			id: ex._id,
 			title: ex.name,
 			subtitle: ex.cities?.map((x: string) => x).join(', '),
@@ -23,7 +23,7 @@ const { data } = await useFetch('/api/excursions', {
 			date:
 				ex?.excursionStartDates?.find((date) => new Date(date) >= new Date()) ||
 				null
-		}));
+		})) || [];
 	}
 });
 </script>

@@ -16,12 +16,12 @@ useHead({
 
 const excursionId = computed(() => route.params.id as string);
 
-const { data, error } = await useFetch<IExcursion>(
-	`/api/excursions/${excursionId.value}`,
-	{
-		key: `excursion-${excursionId.value}`
+const { data, error } = await useFetch(`/api/excursions/${excursionId.value}`, {
+	key: `excursion-${excursionId.value}`,
+	transform: (response: ApiResponse<IExcursion>) => {
+		return response?.data;
 	}
-);
+});
 
 // перекидываем на 404, если бэк выловил невалидный id
 if (error.value) {
@@ -127,13 +127,34 @@ const donwloadFile = async () => {
 					</div>
 				</div>
 			</div>
-			<div class="">
+			<div v-if="data?.thePriceIncludes?.length" class="">
 				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
 					В стоимость входит
 				</h3>
 				<div class="flex flex-col gap-y-3">
 					<div
 						v-for="item in data?.thePriceIncludes"
+						:key="item"
+						class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
+					>
+						<div>
+							<SharedUiIconsCheckIcon
+								width="24px"
+								height="24px"
+							/>
+						</div>
+						{{ item }}
+					</div>
+				</div>
+			</div>
+			<hr v-if="data?.additionallyPaid?.length" class="m-y-3 w-full bg-slate-200" />
+			<div v-if="data?.additionallyPaid?.length" class="">
+				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+					Дополнительно оплачивается
+				</h3>
+				<div class="flex flex-col gap-y-3">
+					<div
+						v-for="item in data?.additionallyPaid"
 						:key="item"
 						class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
 					>

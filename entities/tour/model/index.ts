@@ -5,17 +5,17 @@ export const useTourStore = defineStore('useTourStore', {
 	}),
 	actions: {
 		async getSeaList(): Promise<void> {
-			const sea: SelectItem[] = await $fetch('/api/hotels/sea-list');
-			this.seaList = sea.filter((s: SelectItem) => s.name);
+			const sea: ApiResponse<SelectItem[]> = await $fetch('/api/hotels/sea-list');
+			this.seaList = sea.data?.filter((s: SelectItem) => s.name) || [];
 		},
 
 		async getCityList(seaType?: string): Promise<void> {
-			const city: SelectItem[] = await $fetch('/api/hotels/cities-list', {
+			const city: ApiResponse<SelectItem[]> = await $fetch('/api/hotels/cities-list', {
 				params: {
 					seaType
 				}
 			});
-			this.cityList = city.filter((c: SelectItem) => c.name);
+			this.cityList = city.data?.filter((c: SelectItem) => c.name) || [];
 		}
 	}
 });
