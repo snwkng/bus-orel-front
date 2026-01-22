@@ -4,13 +4,13 @@ export const useExcursionStore = defineStore('useExcursionStore', {
 	}),
 	actions: {
 		async getCityList(): Promise<void> {
-			const cities: SelectItem[] = await $fetch(
+			const cities: ApiResponse<SelectItem[]> = await $fetch(
 				'/api/excursions/cities-list',
 				{}
 			);
-			this.cityList = cities.toSorted((a: SelectItem, b: SelectItem) =>
+			this.cityList = cities.data?.toSorted((a: SelectItem, b: SelectItem) =>
 				(a.name ?? '').localeCompare(b.name ?? '')
-			);
+			) || [];
 		}
 	}
 });

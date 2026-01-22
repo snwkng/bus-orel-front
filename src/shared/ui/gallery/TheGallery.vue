@@ -31,35 +31,6 @@ const swiperPrevSlide = () => {
 	(swiperInstance.value as SwiperClass)?.slidePrev();
 };
 
-// const fetchImage = () => {
-// 	try {
-// 		if (props.images.length) {
-// 			props.images.forEach(async (image) => {
-// 				const response = await $fetch(`/api/s3/download/${image}`);
-// 				const blob = (await response) as Blob; // Преобразуем ответ в Blob
-
-// 				const reader = new FileReader();
-// 				if (reader) {
-// 					reader.onloadend = () => {
-// 						if (typeof reader.result === 'string') {
-// 							previewImages.value.push(reader.result);
-// 						}
-// 					};
-// 					reader.readAsDataURL(blob);
-// 				}
-// 			});
-// 		} else {
-// 			throw new Error('no image');
-// 		}
-// 	} catch (error) {
-// 		console.error(error);
-// 		previewImages.value = [];
-// 	}
-// };
-
-// onMounted(async () => {
-//  await fetchImage();
-// })
 </script>
 <template>
 	<div class="h-[300px] md:h-[550px]">

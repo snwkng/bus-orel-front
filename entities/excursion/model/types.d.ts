@@ -12,4 +12,5 @@ export interface IExcursion {
 	cities: string[];
 	hotelName: string;
 	thePriceIncludes: string[];
+	additionallyPaid: string[];
 }

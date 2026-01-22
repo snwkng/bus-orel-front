@@ -30,8 +30,11 @@ const hasRoomsinfo = computed(() =>
 	data.value?.tours?.some((x: IHotelRoomInfo) => x.roomName)
 );
 
-const { data, error } = await useFetch<ITour>(`/api/hotels/${tourId.value}`, {
-	key: `hotels-${tourId.value}`
+const { data, error } = await useFetch(`/api/hotels/${tourId.value}`, {
+	key: `hotels-${tourId.value}`,
+	transform: (response: ApiResponse<ITour>) => {
+			return response?.data
+		}
 });
 
 if (error.value) {
