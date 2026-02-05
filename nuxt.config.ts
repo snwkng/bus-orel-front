@@ -1,4 +1,3 @@
-import { resolve } from 'node:path';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	app: {
@@ -47,6 +46,12 @@ export default defineNuxtConfig({
 			]
 		}
 	},
+
+	router: {
+		options: {
+			scrollBehaviorType: 'smooth',
+		},
+	},
 	colorMode: {
 		classSuffix: '',
 		preference: 'light',
@@ -60,44 +65,23 @@ export default defineNuxtConfig({
 		'/api/**': { proxy: `${import.meta.env.BASE_URL}/api/**` }
 	},
 
-	vite: {
-		resolve: {
-			alias: [{ find: '@', replacement: resolve(__dirname, './') }]
-		}
-	},
+	srcDir: 'src/',
 
-	components: [
-		{
-			path: '~/entities',
-			prefix: 'Entities'
-		},
-		{
-			path: '~/features',
-			prefix: 'Features'
-		},
-		{
-			path: '~/widgets',
-			prefix: 'Widgets'
-		},
-		{
-			path: '~/src/shared',
-			prefix: 'Shared'
-		}
-	],
-	imports: {
-		dirs: [
-			'src/shared/**/*.ts',
-			'features/**/*.ts',
-			'widgets/**/*.ts',
-			'entities/**/*.ts'
-		]
-	},
 	dir: {
+		// app: 'src/app',
 		layouts: 'app/layouts',
-		assets: 'app/assets',
-		plugins: 'src/shared/lib/plugins',
-		middleware: 'src/shared/config/middleware'
+		// pages: 'src/pages',
+		assets: 'shared/assets',
+		plugins: 'shared/lib/plugins',
+		middleware: 'shared/config/middleware',
 	},
+	components: [
+		{ path: 'shared/ui', prefix: 'Shared' },
+		{ path: 'widgets', prefix: 'Widgets' },
+		{ path: 'entities', prefix: 'Entities' },
+		{ path: 'features', prefix: 'Features' },
+	],
+
 
 	devtools: { enabled: true },
 
@@ -115,14 +99,16 @@ export default defineNuxtConfig({
 		'@nuxtjs/color-mode',
 		'@nuxt/eslint',
 		'@nuxt/image',
-		'nuxt-viewport'
+		'nuxt-viewport',
+		'@nuxt/icon',
+		'@vueuse/nuxt'
 	],
 
 	pinia: {
 		storesDirs: [
-			'./entities/**/model/**',
-			'./features/**/model/**',
-			'./widgets/**/model/**'
+			'entities/**/model/**',
+			'features/**/model/**',
+			'widgets/**/model/**'
 		]
 	},
 
@@ -145,10 +131,10 @@ export default defineNuxtConfig({
 		fallbackBreakpoint: 'lg'
 	},
 
-	eslint: {},
+	css: ['~/app/assets/styles/tailwind.css'],
 
 	tailwindcss: {
-		cssPath: ['~/app/assets/styles/tailwind.css', { injectPosition: 'first' }],
+		// cssPath: ['app/assets/styles/tailwind.css', { injectPosition: 'first' }],
 		configPath: 'tailwind.config',
 		exposeConfig: {
 			level: 2
@@ -158,8 +144,15 @@ export default defineNuxtConfig({
 	},
 
 	svgo: {
-		autoImportPath: '~/app/assets/images/icons/',
+		autoImportPath: 'app/assets/images/icons/',
 		componentPrefix: 'i'
+	},
+
+	icon: {
+		serverBundle: 'local',
+		clientBundle: {
+			scan: true
+		}
 	},
 
 	image: {

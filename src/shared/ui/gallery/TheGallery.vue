@@ -37,7 +37,7 @@ const swiperPrevSlide = () => {
 		<div />
 		<ClientOnly fallback-tag="div">
 			<template #fallback>
-				<SharedUiSkeletonSwiper />
+				<SharedSkeletonSwiper />
 			</template>
 			<swiper
 				class="relative w-full cursor-grab rounded-xl"
@@ -64,7 +64,7 @@ const swiperPrevSlide = () => {
 					class="swiper-btn swiper-prev left-2"
 					@click="swiperPrevSlide"
 				>
-					<SharedUiIconsArrowButton
+					<SharedIconsArrowButton
 						width="32px"
 						height="32px"
 						color="stroke-deep-blue dark:stroke-white"
@@ -76,7 +76,7 @@ const swiperPrevSlide = () => {
 					class="swiper-btn swiper-next right-2"
 					@click="swiperNextSlide"
 				>
-					<SharedUiIconsArrowButton
+					<SharedIconsArrowButton
 						width="32px"
 						height="32px"
 						color="stroke-deep-blue dark:stroke-white"

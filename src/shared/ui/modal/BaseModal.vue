@@ -73,7 +73,7 @@ onUnmounted(() => {
 		<Teleport to="body">
 			<dialog
 				ref="dialogRef"
-				class="mx-auto my-8 w-full max-w-md border-0 bg-transparent p-0 backdrop:bg-black/50"
+				class="w-full max-w-md border-0 bg-transparent p-0 backdrop:bg-black/50 m-auto"
 				@click="handleBackdropClick"
 				@cancel="closeModal"
 			>
@@ -92,7 +92,7 @@ onUnmounted(() => {
 						</h2>
 						<button
 							type="button"
-							class="rounded-full p-1 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:text-gray-300 dark:hover:text-gray-100"
+							class="rounded-full p-1 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:text-gray-300 dark:hover:text-gray-100 transition-all hover:scale-110 hover:bg-gray-100"
 							aria-label="Закрыть модальное окно"
 							@click="closeModal"
 						>

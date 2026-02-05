@@ -21,11 +21,9 @@ export default defineNuxtPlugin((nuxtApp) => {
 function glow(to: RouteLocationNormalized) {
 	const item = document.getElementById(`${to.hash.slice(1)}-focus`);
 	if (item) {
-		item?.classList.add('animate-glow');
-		item?.classList.add('rounded-xl');
+		item?.classList.add('animate-glow', 'rounded-xl');
 		setTimeout(() => {
-			item?.classList.remove('animate-glow');
-			item?.classList.remove('rounded-xl');
+			item?.classList.remove('animate-glow', 'rounded-xl');
 		}, 1500);
 	}
 }

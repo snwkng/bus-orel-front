@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core';
+import { useTemplateRef } from 'vue';
+
 export interface IProps {
 	selectId?: string;
 	label?: string;
@@ -14,6 +17,10 @@ const props = withDefaults(defineProps<IProps>(), {
 	queryName: '',
 	classes: ''
 });
+
+const target = useTemplateRef('target');
+
+onClickOutside(target, () => close());
 
 const route = useRoute();
 
@@ -45,7 +52,7 @@ watch(
 		if (
 			props.list.length &&
 			value.value?.name &&
-			!props.list.find((item: SelectItem) => value.value.name === item.name)
+			!props.list.some((item: SelectItem) => value.value.name === item.name)
 		) {
 			value.value = {};
 		}
@@ -73,7 +80,7 @@ watch(
 </script>
 <template>
 	<div
-		v-click-away="close"
+		ref="target"
 		class="relative w-full min-w-[200px] md:w-auto"
 		@click="toggle"
 		@keydown.enter="toggle"
@@ -104,7 +111,7 @@ watch(
 			>
 				{{ label }}
 			</span>
-			<SharedUiIconsArrowButton
+			<SharedIconsArrowButton
 				width="24px"
 				height="24px"
 				color="stroke-slate-500"
@@ -132,3 +139,19 @@ watch(
 		</div>
 	</div>
 </template>
+<style lang="scss" scoped>
+/* animations */
+.label-fade-enter-active {
+	transition: all 0.3s ease-out;
+}
+
+.label-fade-leave-active {
+	transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.label-fade-enter-from,
+.label-fade-leave-to {
+	transform: translateY(20px);
+	opacity: 0;
+}
+</style>

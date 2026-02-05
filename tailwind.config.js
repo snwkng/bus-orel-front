@@ -2,14 +2,8 @@
 module.exports = {
 	darkMode: 'class',
 	content: [
-		'./app/**/*.{vue,js,ts}',
-		'./entities/**/*.{vue,js,ts}',
-		'./features/**/*.{vue,js,ts}',
-		'./pages/**/*.{vue,js,ts}',
-		'./public/**/*.{vue,js,ts}',
-		'./src/shared/**/*.{vue,js,ts}',
-		'./widgets/**/*.{vue,js,ts}',
-		'./app.config.{js,ts}'
+		"./src/**/*.{vue,js,ts,jsx,tsx}", // Охватывает все подпапки в src
+		"./app.vue"
 	],
 	theme: {
 		extend: {
@@ -26,7 +20,7 @@ module.exports = {
 				'main-screen': '500px'
 			},
 			backgroundImage: {
-				sprinter: "url('~/app/assets/images/others/mercedessprinter.webp')"
+				sprinter: "url('/mercedessprinter.webp')"
 			},
 			rotate: {
 				270: '270deg'

@@ -41,7 +41,7 @@ const hasAvailability = computed(() =>
 				v-for="(room, index) in rooms"
 				:key="index"
 			>
-				<SharedUiFormsTheCheckbox
+				<SharedFormsTheCheckbox
 					v-model="selectedRooms"
 					:checkbox-id="`${room}_${index}`"
 					:label="room || ''"
@@ -79,7 +79,7 @@ const hasAvailability = computed(() =>
 			</div>
 		</div>
 	</div>
-	<LazySharedUiInformersEmptyDataInformer
+	<LazySharedInformersEmptyDataInformer
 		v-else
 		text="Данных о датах и ценах пока нет"
 	/>

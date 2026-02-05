@@ -22,7 +22,7 @@ useSeoMeta({
 		</p>
 		<NuxtLink
 			class="mt-4 flex min-h-14 min-w-40 items-center justify-center rounded-xl bg-deep-orange px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-deep-orange/95"
-			:to="{ name: 'home' }"
+			:to="{ name: 'index' }"
 		>
 			На главную
 		</NuxtLink>

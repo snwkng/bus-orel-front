@@ -6,6 +6,6 @@ const cookie = useCookie('cookie_agree');
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>
-		<SharedUiCookieTheCookie v-if="!cookie" />
+		<SharedCookieTheCookie v-if="!cookie" />
 	</div>
 </template>
