@@ -24,9 +24,15 @@ const link = computed(() =>
 	<NuxtLink :to="link">
 		<div class="w-full">
 			<div
-				class="mb-3 w-full rounded-xl bg-slate-100 bg-cover brightness-100 dark:bg-gray-700"
+				class="relative mb-3 w-full rounded-xl bg-slate-100 bg-cover brightness-100 dark:bg-gray-700"
 				:class="[type === 'tour' ? 'h-60' : 'h-96']"
 			>
+				<div
+					v-if="date"
+					class="absolute left-3 top-3 z-10 rounded-xl bg-gray-200 px-3 py-1 font-semibold text-slate-700 shadow-md dark:bg-slate-700 dark:text-slate-300"
+				>
+					{{ $dayjs(date).format('DD.MM.YYYY') }}
+				</div>
 				<NuxtImg
 					class="mb-3 h-full w-full rounded-xl object-cover brightness-100"
 					:src="`/image/${image}`"
@@ -43,12 +49,6 @@ const link = computed(() =>
 				</h3>
 				<div class="font-normal text-slate-500 dark:text-slate-300">
 					{{ subtitle }}
-				</div>
-				<div
-					v-if="date"
-					class="font-normal text-slate-500 dark:text-slate-300"
-				>
-					{{ $dayjs(date).format('DD.MM.YYYY') }}
 				</div>
 				<div class="font-normal text-slate-500 dark:text-slate-300">
 					от

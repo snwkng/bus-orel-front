@@ -51,26 +51,28 @@ const getTours = () => {
 </script>
 <template>
 	<form
-		class="flex w-full flex-col items-center gap-x-[2px] md:flex-row md:justify-center"
+		class="flex w-full select-none flex-col items-center gap-x-[2px] md:flex-row md:justify-center"
 	>
-		<SharedFormsTheInput
-			disabled
-			input-id="откуда"
-			type="text"
-			label="Откуда"
-			placeholder="Орёл"
-			classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl md:rounded-tl-xl"
-		/>
-		<SharedFormsBaseSelect
-			v-model="selectedSea"
-			label="Море"
-			:list="seaList"
-		/>
-		<SharedFormsBaseSelect
-			v-model="selectedPlace"
-			:list="cityList"
-			label="Куда"
-		/>
+		<SharedBlockGroupsSelectGroup>
+			<SharedFormsTheInput
+				disabled
+				input-id="откуда"
+				type="text"
+				label="Откуда"
+				placeholder="Орёл"
+				classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl md:rounded-tl-xl"
+			/>
+			<SharedFormsBaseSelect
+				v-model="selectedSea"
+				label="Море"
+				:list="seaList"
+			/>
+			<SharedFormsBaseSelect
+				v-model="selectedPlace"
+				:list="cityList"
+				label="Куда"
+			/>
+		</SharedBlockGroupsSelectGroup>
 		<SharedButtonsTheButton
 			class="w-full rounded-t-none md:ml-5 md:w-52 md:rounded-t-xl"
 			btn-title="Найти"
