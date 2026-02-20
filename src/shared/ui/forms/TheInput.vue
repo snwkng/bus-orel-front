@@ -34,7 +34,7 @@ const inputFocus = ref(false);
 			:disabled="Boolean(disabled)"
 			:aria-label="inputId"
 			:type="type"
-			class="min-h-14 w-full px-4 py-2 text-black shadow-form ring-deep-orange focus:ring disabled:placeholder:text-slate-200"
+			class="min-h-14 w-full px-4 py-2 text-black shadow-form ring-primary-500 focus:ring disabled:placeholder:text-slate-200"
 			:class="classes"
 			:placeholder="inputFocus ? '' : (placeholder ?? label)"
 			@focus="inputFocus = true"

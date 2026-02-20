@@ -21,7 +21,7 @@ const fullYear: number = new Date().getFullYear();
 						:to="{ name: 'index' }"
 						itemprop="name"
 					>
-						<strong class="text-deep-orange">Г</strong>
+						<strong class="text-primary-500">Г</strong>
 						<span
 							class="h-5 w-auto fill-current text-slate-900 dark:text-slate-100"
 							>алатур</span

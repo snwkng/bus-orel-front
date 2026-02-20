@@ -16,7 +16,7 @@ const handleScroll = () => {
 <template>
 	<div
 		:class="[
-			'top-14 z-10 h-full w-full bg-deep-blue py-5 text-white dark:bg-gray-800 md:sticky md:h-60 md:py-0',
+			'top-14 z-10 h-full w-full bg-secondary-500 py-5 text-white dark:bg-gray-800 md:sticky md:h-60 md:py-0',
 			{ 'shadow-lg': scroll }
 		]"
 	>

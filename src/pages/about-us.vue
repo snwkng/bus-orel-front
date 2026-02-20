@@ -28,7 +28,7 @@ useSeoMeta({
 			<h1
 				class="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:text-3xl"
 			>
-				<strong class="text-deep-orange">Г</strong>алаТур Орёл - ваш проводник в
+				<strong class="text-primary-500">Г</strong>алаТур Орёл - ваш проводник в
 				мир увлекательных путешествий!
 			</h1>
 			<p class="leading-7">
@@ -41,7 +41,7 @@ useSeoMeta({
 				Забронировать тур стало легко и удобно благодаря нашей команде
 				профессионалов, которые создают для вас максимально комфортные и
 				прозрачные условия. Откройте для себя новые уголки мира с
-				<strong class="text-deep-orange">Г</strong>алаТур и наслаждайтесь
+				<strong class="text-primary-500">Г</strong>алаТур и наслаждайтесь
 				незабываемым отдыхом!
 			</p>
 		</section>

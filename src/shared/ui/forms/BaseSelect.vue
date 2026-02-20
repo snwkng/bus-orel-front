@@ -38,7 +38,7 @@ const clearModel = () => {
 	<div
 		ref="target"
 		class="relative flex min-h-14 w-full items-center bg-white py-2 pl-4 pr-8 text-slate-800 shadow-form focus:ring dark:bg-gray-600 dark:text-slate-300 xl:min-w-[280px] transition-all"
-		:class="{ 'ring-2 ring-deep-orange': showSelect }"
+		:class="{ 'ring-2 ring-primary-500': showSelect }"
 		@click="toggle"
 		@keydown.enter="toggle"
 	>
@@ -69,7 +69,7 @@ const clearModel = () => {
 			<Icon
 				name="lucide:chevron-down"
 				size="24"
-				:class="['text-slate-500 transition-all', { 'rotate-180': showSelect }]"
+				:class="['transition-all', { 'text-slate-500': !showSelect, 'rotate-180 dark:text-slate-300 text-slate-700': showSelect }]"
 			/>
 		</div>
 

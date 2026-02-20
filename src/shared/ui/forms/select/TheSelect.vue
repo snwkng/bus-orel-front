@@ -96,7 +96,7 @@ watch(
 		</Transition>
 		<div
 			class="relative flex min-h-14 w-full min-w-[200px] items-center bg-white py-2 pl-4 pr-8 text-slate-800 shadow-form focus:ring dark:bg-gray-600 dark:text-slate-300"
-			:class="[classes, { 'ring-2 ring-deep-orange': showSelect }]"
+			:class="[classes, { 'ring-2 ring-primary-500': showSelect }]"
 		>
 			<span
 				v-if="value.name"

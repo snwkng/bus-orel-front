@@ -102,7 +102,7 @@ const donwloadFile = async () => {
 				<button
 					v-if="data?.documentName?.length && data.documentName[0]"
 					type="button"
-					class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-deep-orange px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-deep-orange/95 md:w-52"
+					class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95 md:w-52"
 					@click.prevent="donwloadFile"
 				>
 					Скачать прайс

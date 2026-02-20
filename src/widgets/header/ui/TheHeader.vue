@@ -58,7 +58,7 @@ const toggleMenu = () => {
 <template>
 	<header
 		:class="[
-			'font-large fixed z-20 h-14 w-full bg-deep-blue dark:bg-gray-800',
+			'font-large fixed z-20 h-14 w-full bg-secondary-500 dark:bg-gray-800',
 			{ 'shadow-lg': showShadow }
 		]"
 	>
@@ -67,7 +67,7 @@ const toggleMenu = () => {
 		>
 			<div class="text-white">
 				<NuxtLink :to="{ name: 'index' }">
-					<strong class="text-deep-orange">Г</strong>алатур
+					<strong class="text-primary-500">Г</strong>алатур
 				</NuxtLink>
 			</div>
 			<div v-if="scroll && isDesktop">

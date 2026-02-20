@@ -68,7 +68,7 @@ const hasAvailability = computed(() =>
 						<div>{{ tour.roomName }}</div>
 					</div>
 					<div
-						class="rounded-xl bg-deep-blue p-2 text-center font-semibold text-white"
+						class="rounded-xl bg-secondary-500 p-2 text-center font-semibold text-white"
 					>
 						<span v-if="datesAndPrices?.pricePerPerson"
 							>от {{ datesAndPrices.pricePerPerson }}&#8381;</span

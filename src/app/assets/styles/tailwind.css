@@ -40,7 +40,7 @@
 	}
 
 	.base-link {
-		@apply text-deep-blue transition-colors hover:text-ligth-blue;
+		@apply text-secondary-500 transition-colors hover:text-secondary-300;
 	}
 
 	.rotate-Y-180 {

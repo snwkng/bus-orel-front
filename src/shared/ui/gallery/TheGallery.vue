@@ -67,7 +67,7 @@ const swiperPrevSlide = () => {
 					<SharedIconsArrowButton
 						width="32px"
 						height="32px"
-						color="stroke-deep-blue dark:stroke-white"
+						color="stroke-secondary-500 dark:stroke-white"
 						class="rotate-90"
 					/>
 				</div>
@@ -79,7 +79,7 @@ const swiperPrevSlide = () => {
 					<SharedIconsArrowButton
 						width="32px"
 						height="32px"
-						color="stroke-deep-blue dark:stroke-white"
+						color="stroke-secondary-500 dark:stroke-white"
 						class="rotate-270"
 					/>
 				</div>
