@@ -24,7 +24,7 @@ const link = computed(() =>
 	<NuxtLink :to="link">
 		<div class="w-full">
 			<div
-				class="relative mb-3 w-full rounded-xl bg-slate-100 bg-cover brightness-100 dark:bg-gray-700"
+				class="relative mb-3 w-full rounded-3xl bg-slate-100 bg-cover brightness-100 dark:bg-gray-700 overflow-hidden"
 				:class="[type === 'tour' ? 'h-60' : 'h-96']"
 			>
 				<div
@@ -34,7 +34,7 @@ const link = computed(() =>
 					{{ $dayjs(date).format('DD.MM.YYYY') }}
 				</div>
 				<NuxtImg
-					class="mb-3 h-full w-full rounded-xl object-cover brightness-100"
+					class="mb-3 h-full w-full object-cover brightness-100"
 					:src="`/image/${image}`"
 					:alt="props.subtitle"
 					:title="props.title"

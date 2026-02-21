@@ -38,7 +38,7 @@
 		"nuxt-svgo": "^4.2.6",
 		"nuxt-viewport": "^2.3.1",
 		"pinia": "^3.0.4",
-		"swiper": "^12.1.0",
+		"swiper": "^12.1.2",
 		"vue": "^3.5.27",
 		"vue-router": "^5.0.2"
 	}

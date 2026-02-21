@@ -53,6 +53,13 @@ module.exports = {
 					'error': '#F44336',
 					'info': '#2196F3',
 				},
+
+				'text': {
+					'primary': '#323232',
+					'seconday': '#C7C7C7',
+					'primary-light': '#FAF8FF',
+					'secondary-light': '#D2D2D2'
+				}
 			},
 			height: {
 				header: '50px',

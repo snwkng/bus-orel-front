@@ -49,15 +49,15 @@ const classes = computed(() => {
 		'heading-md': 'text-lg leading-normal',
 		'heading-sm': 'text-base leading-normal',
 
-		// Body
-		'body-lg': 'text-base leading-relaxed',
-		'body-md': 'text-sm leading-relaxed',
-		'body-sm': 'text-sm leading-normal',
+		// // Body
+		// 'body-lg': 'text-base leading-relaxed',
+		// 'body-md': 'text-sm leading-relaxed',
+		// 'body-sm': 'text-sm leading-normal',
 
-		// Caption
-		'caption-lg': 'text-xs leading-normal',
-		'caption-md': 'text-xs leading-normal',
-		'caption-sm': 'text-[11px] leading-normal'
+		// // Caption
+		// 'caption-lg': 'text-xs leading-normal',
+		// 'caption-md': 'text-xs leading-normal',
+		// 'caption-sm': 'text-[11px] leading-normal'
 	};
 
 	const weightClasses: Record<string, string> = {
