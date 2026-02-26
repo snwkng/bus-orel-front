@@ -64,12 +64,15 @@ onMounted(() => {
 			class="pb-8 dark:bg-gray-800 dark:text-slate-200"
 		>
 			<section class="max-w-container">
-				<h2
+				<SharedFontsHeading
 					id="tour-selection-focus"
-					class="mb-6 text-2xl font-bold"
+					variant="heading-xl"
+					color="default"
+					weight="bold"
+					class="mb-6"
 				>
 					Отдых по вашим мечтам: выбор тура с нашим агентством
-				</h2>
+				</SharedFontsHeading>
 				<p class="mb-2 leading-7">
 					Подбор тура - это одна из ключевых услуг, предлагаемых нашим
 					туристическим агентством в городе Орёл. Наша команда опытных

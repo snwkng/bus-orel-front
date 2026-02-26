@@ -1,20 +1,26 @@
 <script setup lang="ts">
 interface IProps {
 	variant?:
-		| 'display-xl'
-		| 'display-lg'
-		| 'display-md'
-		| 'heading-xl'
-		| 'heading-lg'
-		| 'heading-md'
-		| 'heading-sm';
-	color?: 'default' | 'primary' | 'secondary' | 'muted' | 'disabled' | 'dark' | 'white';
+		| 'body-lg'
+		| 'body-md'
+		| 'body-sm'
+		| 'caption-lg'
+		| 'caption-md'
+		| 'caption-sm';
+	color?:
+		| 'default'
+		| 'primary'
+		| 'secondary'
+		| 'muted'
+		| 'disabled'
+		| 'dark'
+		| 'white';
 	align?: 'left' | 'center' | 'right';
 	weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-	variant: 'display-xl',
+	variant: 'body-md',
 	color: 'default',
 	align: 'left',
 	weight: 'medium'
@@ -22,13 +28,12 @@ const props = withDefaults(defineProps<IProps>(), {
 
 const tag = computed(() => {
 	const headingMap: Record<string, string> = {
-		'display-xl': 'h1',
-		'display-lg': 'h1',
-		'display-md': 'h2',
-		'heading-xl': 'h2',
-		'heading-lg': 'h2',
-		'heading-md': 'h3',
-		'heading-sm': 'h4'
+		'body-lg': 'p',
+		'body-md': 'p',
+		'body-sm': 'p',
+		'caption-lg': 'span',
+		'caption-md': 'span',
+		'caption-sm': 'span'
 	};
 
 	return headingMap[props.variant] || 'span';
@@ -37,16 +42,13 @@ const tag = computed(() => {
 // Стили
 const classes = computed(() => {
 	const variantClasses: Record<string, string> = {
-		// Display
-		'display-xl': 'text-5xl leading-tight tracking-tight',
-		'display-lg': 'text-4xl leading-tight tracking-tight',
-		'display-md': 'text-3xl leading-snug',
+		'body-lg': 'text-base leading-relaxed',
+		'body-md': 'text-sm leading-relaxed',
+		'body-sm': 'text-sm leading-normal',
 
-		// Heading
-		'heading-xl': 'text-2xl leading-snug',
-		'heading-lg': 'text-xl leading-snug',
-		'heading-md': 'text-lg leading-normal',
-		'heading-sm': 'text-base leading-normal',
+		'caption-lg': 'text-xs leading-normal',
+		'caption-md': 'text-xs leading-normal',
+		'caption-sm': 'text-[11px] leading-normal'
 	};
 
 	const weightClasses: Record<string, string> = {
@@ -63,7 +65,8 @@ const classes = computed(() => {
 		secondary: 'text-secondary-600 dark:text-secondary-400',
 		muted: 'text-neutral-600 dark:text-neutral-400',
 		disabled: 'text-neutral-400 dark:text-neutral-500',
-    dark: 'text-gray-600 dark:text-gray-300'
+		dark: 'text-neutral-900 dark:text-neutral-200',
+		white: 'text-neutral-200 dark:text-neutral-900'
 	};
 
 	const alignClasses: Record<string, string> = {

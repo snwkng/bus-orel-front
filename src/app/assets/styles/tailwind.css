@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
 	body {
-		@apply text-text-primary dark:text-text-primary-light;
+		@apply text-neutral-900 dark:text-neutral-200;
 	}
 	.lock {
 		@apply overflow-hidden pr-[15px];

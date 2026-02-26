@@ -11,19 +11,22 @@ defineProps<IProps>();
 
 const route = useRoute();
 
-const { data } = await useFetch('/api/excursions', {
+const { data, pending } = await useFetch('/api/excursions', {
 	query: computed(() => route.query),
 	transform: (response: ApiResponse<IExcursion[]>) => {
-		return response?.data?.map((ex: IExcursion) => ({
-			id: ex._id,
-			title: ex.name,
-			subtitle: ex.cities?.map((x: string) => x).join(', '),
-			price: ex.price,
-			image: ex.images?.[0] || '',
-			date:
-				ex?.excursionStartDates?.find((date) => new Date(date) >= new Date()) ||
-				null
-		})) || [];
+		return (
+			response?.data?.map((ex: IExcursion) => ({
+				id: ex._id,
+				title: ex.name,
+				subtitle: ex.cities?.map((x: string) => x).join(', '),
+				price: ex.price,
+				image: ex.images?.[0] || '',
+				date:
+					ex?.excursionStartDates?.find(
+						(date) => new Date(date) >= new Date()
+					) || null
+			})) || []
+		);
 	}
 });
 </script>
@@ -33,20 +36,36 @@ const { data } = await useFetch('/api/excursions', {
 			v-if="data?.length || emptyText"
 			:class="['max-w-container', classes]"
 		>
-			<h2
+			<div
 				v-if="title && data?.length"
-				class="mb-6 text-2xl font-bold"
+				class="flex gap-4 items-baseline mb-6"
 			>
-				{{ title }}
-			</h2>
-			<h2
-				v-else-if="emptyText?.length && !data?.length"
-				class="text-center text-2xl font-bold"
+				<SharedFontsHeading
+					variant="heading-xl"
+					color="default"
+					weight="bold"
+				>
+					{{ title }}
+				</SharedFontsHeading>
+				<NuxtLink to="/excursions" class="rounded-full p-2 bg-neutral-100 flex items-center justify-center transition-all hover:scale-105 hover:shadow-md">
+					<Icon
+						name="lucide:arrow-right"
+						size="18"
+						class="text-neutral-800"
+					/>
+				</NuxtLink>
+			</div>
+			<SharedFontsHeading
+				v-else-if="emptyText?.length && !data?.length && !pending"
+				variant="heading-xl"
+				color="default"
+				weight="bold"
+				align="center"
 			>
 				{{ emptyText }}
-			</h2>
+			</SharedFontsHeading>
 			<SharedSlidersBaseSlider>
-				<EntitiesCard
+				<!-- <EntitiesCard
 					v-for="item in data"
 					:id="item.id"
 					:key="item.id"
@@ -57,6 +76,16 @@ const { data } = await useFetch('/api/excursions', {
 					:date="item?.date"
 					type="excursion"
 					image-path="excursions"
+				/> -->
+				<SharedCardsBaseCard
+					v-for="item in data"
+					:id="item.id"
+					:key="item.id"
+					type="excursion"
+					:title="item.title"
+					:price="item.price"
+					:date="item?.date ?? ''"
+					:image-link="item.image"
 				/>
 			</SharedSlidersBaseSlider>
 		</section>

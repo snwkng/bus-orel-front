@@ -34,18 +34,24 @@ const { data, pending } = await useFetch('/api/hotels', {
 			v-if="data?.length || emptyText"
 			:class="['max-w-container', classes]"
 		>
-			<h2
+			<SharedFontsHeading
 				v-if="title && data?.length"
-				class="mb-6 text-2xl font-bold"
+				variant="heading-xl"
+				color="default"
+				weight="bold"
+				class="mb-6"
 			>
 				{{ title }}
-			</h2>
-			<h2
+			</SharedFontsHeading>
+			<SharedFontsHeading
 				v-else-if="emptyText.length && !data?.length && !pending"
-				class="text-center text-2xl font-bold"
+				variant="heading-xl"
+				color="default"
+				weight="bold"
+				align="center"
 			>
 				{{ emptyText }}
-			</h2>
+			</SharedFontsHeading>
 			<SharedTheGrid v-if="data?.length">
 				<EntitiesCard
 					v-for="item in data"
@@ -54,7 +60,7 @@ const { data, pending } = await useFetch('/api/hotels', {
 					:title="item.title"
 					:subtitle="item.subtitle"
 					:price="item.price"
-					:image="item.image"
+					:image="item?.image ?? ''"
 					:date="null"
 					type="tour"
 					image-path="hotels"
