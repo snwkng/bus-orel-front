@@ -34,15 +34,28 @@ const { data, pending } = await useFetch('/api/hotels', {
 			v-if="data?.length || emptyText"
 			:class="['max-w-container', classes]"
 		>
-			<SharedFontsHeading
+			<div
 				v-if="title && data?.length"
-				variant="heading-xl"
-				color="default"
-				weight="bold"
-				class="mb-6"
+				class="flex gap-4 items-baseline mb-6"
 			>
-				{{ title }}
-			</SharedFontsHeading>
+				<SharedFontsHeading
+					variant="heading-xl"
+					color="default"
+					weight="bold"
+				>
+					{{ title }}
+				</SharedFontsHeading>
+				<NuxtLink
+					to="/bus-tours"
+					class="flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all hover:scale-105 hover:shadow-md"
+				>
+					<Icon
+						name="lucide:arrow-right"
+						size="18"
+						class="text-neutral-800"
+					/>
+				</NuxtLink>
+			</div>
 			<SharedFontsHeading
 				v-else-if="emptyText.length && !data?.length && !pending"
 				variant="heading-xl"
@@ -52,20 +65,18 @@ const { data, pending } = await useFetch('/api/hotels', {
 			>
 				{{ emptyText }}
 			</SharedFontsHeading>
-			<SharedTheGrid v-if="data?.length">
-				<EntitiesCard
+			<SharedSlidersBaseSlider v-if="data?.length">
+				<SharedCardsBaseCard
 					v-for="item in data"
 					:id="item.id"
 					:key="item.id"
+					type="bus-tour"
 					:title="item.title"
-					:subtitle="item.subtitle"
 					:price="item.price"
-					:image="item?.image ?? ''"
-					:date="null"
-					type="tour"
-					image-path="hotels"
+					:subtitle="item.subtitle"
+					:image-link="item.image ?? ''"
 				/>
-			</SharedTheGrid>
+			</SharedSlidersBaseSlider>
 		</section>
 	</div>
 </template>

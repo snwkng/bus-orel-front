@@ -4,12 +4,16 @@ interface IProps {
 	type: 'excursion' | 'bus-tour';
 	title: string;
 	price: number;
-	date: string | Date;
+	subtitle: string;
+	date?: string | Date;
 	imageLink: string;
 }
 
-const props = withDefaults(defineProps<IProps>(), {});
-const dayjs = useDayjs()
+const props = withDefaults(defineProps<IProps>(), {
+	date: undefined
+});
+
+const dayjs = useDayjs();
 
 const link = computed(() =>
 	props.type === 'excursion'
@@ -17,7 +21,9 @@ const link = computed(() =>
 		: { name: 'bus-tours-id', params: { id: props.id } }
 );
 
-const formattedDate = computed(() => dayjs(props.date).format('DD.MM.YYYY')) 
+const formattedDate = computed(() =>
+	props.date ? dayjs(props.date).format('DD.MM.YYYY') : undefined
+);
 </script>
 <template>
 	<article>
@@ -27,7 +33,7 @@ const formattedDate = computed(() => dayjs(props.date).format('DD.MM.YYYY'))
 		>
 			<div class="relative mb-3">
 				<NuxtImg
-					class="h-[250px] w-full object-cover brightness-100 rounded-3xl"
+					class="h-[250px] w-full rounded-3xl object-cover brightness-100"
 					:src="`/image/${imageLink}`"
 					:alt="title"
 					:title="title"
@@ -35,8 +41,17 @@ const formattedDate = computed(() => dayjs(props.date).format('DD.MM.YYYY'))
 					loading="lazy"
 					fit="inside"
 				/>
-				<div class="absolute left-3 top-3 rounded-3xl px-2 py-1 bg-secondary-200 dark:bg-secondary-50 flex items-center justify-center shadow-md">
-					<SharedFontsText variant="body-sm" weight="semibold" color="white">{{ formattedDate }}</SharedFontsText>
+				<div
+					v-if="formattedDate"
+					class="absolute left-3 top-3 flex items-center justify-center rounded-3xl bg-secondary-200 px-2 py-1 shadow-md dark:bg-secondary-50"
+				>
+					<SharedFontsText
+						variant="body-sm"
+						weight="semibold"
+						color="white"
+					>
+						{{ formattedDate }}
+					</SharedFontsText>
 				</div>
 			</div>
 
@@ -49,15 +64,30 @@ const formattedDate = computed(() => dayjs(props.date).format('DD.MM.YYYY'))
 				</SharedFontsHeading>
 			</slot>
 			<slot name="subtitle">
+				<SharedFontsText
+					variant="body-sm"
+					color="muted"
+					>{{ subtitle }}</SharedFontsText
+				>
+			</slot>
+			<slot name="price">
 				<div class="flex gap-1">
-					<SharedFontsText variant="body-sm" color="muted">от</SharedFontsText>
+					<SharedFontsText
+						variant="body-sm"
+						color="muted"
+						>от</SharedFontsText
+					>
 					<SharedFontsText
 						variant="body-sm"
 						weight="semibold"
 					>
 						{{ price }}&#8381;
 					</SharedFontsText>
-					<SharedFontsText variant="body-sm" color="muted">за поездку</SharedFontsText>
+					<SharedFontsText
+						variant="body-sm"
+						color="muted"
+						>за поездку</SharedFontsText
+					>
 				</div>
 			</slot>
 		</NuxtLink>

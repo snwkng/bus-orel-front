@@ -82,6 +82,25 @@ export default defineNuxtConfig({
 		{ path: 'features', prefix: 'Features' },
 	],
 
+	imports: {
+		dirs: [
+			'shared/lib',
+			'shared/lib/slider',
+			'entities/*/lib',
+			'features/*/lib',
+			'widgets/*/lib'
+		]
+	},
+
+	typescript: {
+		tsConfig: {
+			include: [
+				'./shared/**/*',
+				'./entities/**/*',
+				'./features/**/*'
+			]
+		}
+	},
 
 	devtools: { enabled: true },
 

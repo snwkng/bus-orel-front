@@ -38,7 +38,7 @@ const { data, pending } = await useFetch('/api/excursions', {
 		>
 			<div
 				v-if="title && data?.length"
-				class="flex gap-4 items-baseline mb-6"
+				class="mb-6 flex items-baseline gap-4"
 			>
 				<SharedFontsHeading
 					variant="heading-xl"
@@ -47,7 +47,10 @@ const { data, pending } = await useFetch('/api/excursions', {
 				>
 					{{ title }}
 				</SharedFontsHeading>
-				<NuxtLink to="/excursions" class="rounded-full p-2 bg-neutral-100 flex items-center justify-center transition-all hover:scale-105 hover:shadow-md">
+				<NuxtLink
+					to="/excursions"
+					class="flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all hover:scale-105 hover:shadow-md"
+				>
 					<Icon
 						name="lucide:arrow-right"
 						size="18"
@@ -64,19 +67,7 @@ const { data, pending } = await useFetch('/api/excursions', {
 			>
 				{{ emptyText }}
 			</SharedFontsHeading>
-			<SharedSlidersBaseSlider>
-				<!-- <EntitiesCard
-					v-for="item in data"
-					:id="item.id"
-					:key="item.id"
-					:title="item.title"
-					:subtitle="item.subtitle"
-					:price="item.price"
-					:image="item.image"
-					:date="item?.date"
-					type="excursion"
-					image-path="excursions"
-				/> -->
+			<SharedSlidersBaseSlider v-if="data?.length">
 				<SharedCardsBaseCard
 					v-for="item in data"
 					:id="item.id"
@@ -85,6 +76,7 @@ const { data, pending } = await useFetch('/api/excursions', {
 					:title="item.title"
 					:price="item.price"
 					:date="item?.date ?? ''"
+					:subtitle="item.subtitle"
 					:image-link="item.image"
 				/>
 			</SharedSlidersBaseSlider>
