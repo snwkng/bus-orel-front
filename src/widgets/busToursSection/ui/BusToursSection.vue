@@ -29,7 +29,7 @@ const { data, pending } = await useFetch('/api/hotels', {
 });
 </script>
 <template>
-	<div class="dark:bg-gray-800 dark:text-slate-200">
+	<div class="dark:bg-gray-800">
 		<section
 			v-if="data?.length || emptyText"
 			:class="['max-w-container', classes]"

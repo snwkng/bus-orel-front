@@ -31,7 +31,7 @@ const formattedDate = computed(() =>
 			:to="link"
 			class="flex flex-col"
 		>
-			<div class="relative mb-3">
+			<div class="relative mb-1">
 				<NuxtImg
 					class="h-[250px] w-full rounded-3xl object-cover brightness-100"
 					:src="`/image/${imageLink}`"

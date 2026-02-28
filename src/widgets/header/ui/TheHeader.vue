@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { useTemplateRef } from 'vue'
 
 const target = useTemplateRef('target')
 
 onClickOutside(target, () => close())
 
 onMounted(() => {
-	isDesktop.value = !$viewport.isLessThan('lg');
 	window.addEventListener('scroll', handleScroll);
 	handleScroll();
 });
@@ -19,15 +17,12 @@ onUnmounted(() => {
 
 const { $viewport } = useNuxtApp();
 
-watch($viewport.breakpoint, () => {
-	isDesktop.value = !$viewport.isLessThan('lg');
-});
+const isDesktop = computed(() => $viewport.isGreaterThan('md'))
 
 const route = useRoute();
 
 const toggle = ref(false);
 const scroll = ref(false);
-const isDesktop = ref(false);
 
 const handleScroll = () => {
 	scroll.value = window.scrollY > 400;
@@ -71,7 +66,7 @@ const toggleMenu = () => {
 				</NuxtLink>
 			</div>
 			<div v-if="scroll && isDesktop">
-				<FeaturesMainBtnGroup v-if="route.name === 'home'" />
+				<FeaturesMainBtnGroup v-if="route.name === 'index'" />
 			</div>
 			<div class="flex items-center gap-x-3">
 				<SharedFormsThemeSwitcher />

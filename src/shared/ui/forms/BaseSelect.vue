@@ -37,7 +37,7 @@ const clearModel = () => {
 <template>
 	<div
 		ref="target"
-		class="relative flex min-h-14 w-full items-center bg-white py-2 pl-4 pr-8 text-slate-800 shadow-form focus:ring dark:bg-gray-600 dark:text-slate-300 xl:min-w-[280px] transition-all"
+		class="relative flex min-h-14 w-full items-center bg-white py-2 pl-4 pr-8 text-slate-800 shadow-form transition-all focus:ring dark:bg-gray-600 dark:text-slate-300 xl:min-w-[280px]"
 		:class="{ 'ring-2 ring-primary-500': showSelect }"
 		@click="toggle"
 		@keydown.enter="toggle"
@@ -69,28 +69,36 @@ const clearModel = () => {
 			<Icon
 				name="lucide:chevron-down"
 				size="24"
-				:class="['transition-all', { 'text-slate-500': !showSelect, 'rotate-180 dark:text-slate-300 text-slate-700': showSelect }]"
+				:class="[
+					'transition-all',
+					{
+						'text-slate-500': !showSelect,
+						'rotate-180 text-slate-700 dark:text-slate-300': showSelect
+					}
+				]"
 			/>
 		</div>
 
 		<Transition name="fade-top">
 			<div
 				v-show="showSelect"
-				class="absolute right-0 top-[60px] z-10 flex max-h-[200px] w-full flex-col overflow-hidden overflow-y-auto rounded-xl bg-inherit shadow-2xl"
+				class="absolute right-0 top-[60px] z-10 flex max-h-[200px] w-full flex-col overflow-hidden rounded-xl bg-inherit pr-2 shadow-2xl"
 			>
-				<slot>
-					<div
-						v-for="item in list"
-						:key="item?.id"
-						class="cursor-pointer px-2 py-4 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-						@click="update(item)"
-						@keydown.enter="update(item)"
-					>
-						<span class="text-slate-800 dark:text-slate-400">
-							{{ item.name }}
-						</span>
-					</div>
-				</slot>
+				<div class="overflow-y-auto mr-[-8px]">
+					<slot>
+						<div
+							v-for="item in list"
+							:key="item?.id"
+							class="cursor-pointer px-2 py-4 transition-colors hover:bg-slate-200 dark:hover:bg-slate-700"
+							@click="update(item)"
+							@keydown.enter="update(item)"
+						>
+							<span class="text-slate-800 dark:text-slate-400">
+								{{ item.name }}
+							</span>
+						</div>
+					</slot>
+				</div>
 			</div>
 		</Transition>
 	</div>
