@@ -7,10 +7,8 @@ const store = useTourStore();
 const { getSeaList, getCityList } = store;
 const { seaList, cityList } = storeToRefs(store);
 
-await useAsyncData('init-data', async () => {
-	await Promise.all([getSeaList(), getCityList(route.query.seaType as string)]);
-	return true;
-});
+await callOnce(getSeaList)
+await callOnce(() => getCityList(route.query.seaType as string))
 
 const selectedSea = ref(
 	seaList.value.find(
@@ -60,7 +58,6 @@ const getTours = () => {
 				type="text"
 				label="Откуда"
 				placeholder="Орёл"
-				classes="rounded-t-xl md:rounded-t-none md:rounded-l-xl md:rounded-tl-xl"
 			/>
 			<SharedFormsBaseSelect
 				v-model="selectedSea"

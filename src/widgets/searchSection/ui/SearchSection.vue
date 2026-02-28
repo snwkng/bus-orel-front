@@ -21,12 +21,35 @@ watch(
 		<div
 			class="max-w-container flex flex-col items-center justify-center gap-y-6 py-5 lg:mt-[-56px] lg:h-[500px]"
 		>
-			<SharedFontsHeading variant="display-lg" color="white" weight="bold" class="mb-2">
+			<SharedFontsHeading
+				variant="display-lg"
+				color="white"
+				weight="bold"
+				class="mb-2"
+			>
 				{{ title }}
 			</SharedFontsHeading>
 			<FeaturesMainBtnGroup />
-			<FeaturesSearchExcursionsForm v-if="searchSection === 'excursions'" />
-			<FeaturesSearchToursForm v-else />
+			<ClientOnly>
+				<Transition
+					name="fade"
+					mode="out-in"
+				>
+					<FeaturesSearchExcursionsForm v-if="searchSection === 'excursions'" />
+					<FeaturesSearchToursForm v-else />
+				</Transition>
+			</ClientOnly>
 		</div>
 	</div>
 </template>
+<style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+</style>

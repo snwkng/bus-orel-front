@@ -5,7 +5,6 @@ export interface IProps {
 	type?: string;
 	placeholder?: string;
 	disabled?: boolean;
-	classes?: string;
 }
 
 withDefaults(defineProps<IProps>(), {
@@ -13,32 +12,30 @@ withDefaults(defineProps<IProps>(), {
 	label: '',
 	type: 'text',
 	placeholder: '',
-	disabled: false,
-	classes: ''
+	disabled: false
 });
-const inputFocus = ref(false);
+
+const model = defineModel<string>();
 </script>
 <template>
-	<div class="relative w-full min-w-40 md:w-auto">
+	<div class="relative w-full min-w-40 md:w-auto xl:min-w-[280px]">
 		<Transition name="label-fade">
 			<label
-				v-if="inputFocus || (disabled && label)"
+				v-if="label"
 				:for="inputId"
-				class="absolute top-[-24px] hidden px-4 text-sm font-normal text-white md:block"
+				class="absolute left-4 top-[-28px] hidden text-sm font-normal text-white md:block"
 			>
 				{{ label }}
 			</label>
 		</Transition>
 		<input
 			:id="inputId"
+			v-model="model"
 			:disabled="Boolean(disabled)"
 			:aria-label="inputId"
-			:type="type"
-			class="min-h-14 w-full px-4 py-2 text-black shadow-form ring-primary-500 focus:ring disabled:placeholder:text-slate-200"
-			:class="classes"
-			:placeholder="inputFocus ? '' : (placeholder ?? label)"
-			@focus="inputFocus = true"
-			@blur="inputFocus = false"
+			type="text"
+			class="min-h-14 w-full rounded-[inherit] px-4 py-2 text-black shadow-form ring-primary-500 focus:ring disabled:placeholder:text-slate-200"
+			:placeholder="placeholder"
 		/>
 	</div>
 </template>
