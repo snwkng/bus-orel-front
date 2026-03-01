@@ -49,4 +49,12 @@
 	.rotate-Y-180 {
 		transform: rotateY(180deg);
 	}
+
+	/* sliders */
+	.slider-btn {
+		@apply flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all
+	}
+	.slider-btn:hover:not(:disabled) {
+    @apply scale-105 shadow-md
+  }
 }

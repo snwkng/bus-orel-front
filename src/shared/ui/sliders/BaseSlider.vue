@@ -37,9 +37,9 @@ watch(
 </script>
 
 <template>
-	<div class="slider-container">
+	<div class="relative">
 		<slot name="controls">
-			<div class="slider-controls">
+			<div class="hidden gap-3 absolute right-0 top-[-60px] md:flex">
 				<button
 					ref="prev"
 					type="button"
@@ -49,8 +49,9 @@ watch(
 					@click="scroll('prev')"
 				>
 					<Icon
-						name="lucide:arrow-left"
+						name="lucide:chevron-left"
 						size="24"
+						class="text-neutral-800"
 					/>
 				</button>
 
@@ -63,8 +64,9 @@ watch(
 					@click="scroll('next')"
 				>
 					<Icon
-						name="lucide:arrow-right"
+						name="lucide:chevron-right"
 						size="24"
+						class="text-neutral-800"
 					/>
 				</button>
 			</div>
@@ -95,36 +97,6 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-.slider-container {
-	position: relative;
-}
-
-.slider-controls {
-	position: absolute;
-	right: 0;
-	top: -60px;
-	display: flex;
-	gap: 12px;
-
-	@media (max-width: 768px) {
-		display: none; // Скрываем на мобильных (там свайп)
-	}
-}
-
-.slider-btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 9999px;
-	background-color: rgb(245 245 245);
-	padding: 8px;
-	transition: all 0.2s;
-
-	&:hover:not(:disabled) {
-		transform: scale(1.05);
-		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-	}
-}
 
 .slider-wrapper {
 	display: grid;
