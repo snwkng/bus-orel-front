@@ -1,7 +1,5 @@
-import type { ObjectId } from 'bson';
-
-export interface IExcursion {
-	_id: ObjectId;
+export interface IExcursionDto {
+	_id: string;
 	name: string;
 	description: string[];
 	images: string[];
@@ -10,7 +8,7 @@ export interface IExcursion {
 	documentName: string[];
 	excursionStartDates: string[];
 	cities: string[];
-	hotelName: string;
+	hotelName?: string;
 	thePriceIncludes: string[];
 	additionallyPaid: string[];
 }

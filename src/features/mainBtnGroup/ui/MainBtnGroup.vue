@@ -26,11 +26,11 @@ const showSearch = (search: goToSearch) => {
 				type="button"
 				class="rounded-xl px-3 py-2 transition-all lg:px-4 lg:py-2"
 				:class="[
-					searchSection === 'busTours'
+					searchSection === 'tour'
 						? 'bg-white text-slate-900'
 						: 'bg-blue-900/20 text-white hover:bg-blue-900/35 dark:bg-gray-600/20 dark:hover:bg-gray-600/35'
 				]"
-				@click="showSearch('busTours')"
+				@click="showSearch('tour')"
 			>
 				Туры к морю
 			</button>
@@ -38,11 +38,11 @@ const showSearch = (search: goToSearch) => {
 				type="button"
 				class="rounded-xl px-3 py-2 transition-all lg:px-4 lg:py-2"
 				:class="[
-					searchSection === 'excursions'
+					searchSection === 'excursion'
 						? 'bg-white text-slate-900'
 						: 'bg-blue-900/20 text-white hover:bg-blue-900/35 dark:bg-gray-600/20 dark:hover:bg-gray-600/35'
 				]"
-				@click="showSearch('excursions')"
+				@click="showSearch('excursion')"
 			>
 				Экскурсии
 			</button>

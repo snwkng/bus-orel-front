@@ -8,7 +8,7 @@ const { searchSection } = storeToRefs(store);
 watch(
 	() => searchSection.value,
 	() => {
-		if (searchSection.value === 'excursions') {
+		if (searchSection.value === 'excursion') {
 			title.value = 'Поиск экскурсионных туров из Орла';
 		} else {
 			title.value = 'Поиск автобусных туров к морю из Орла';
@@ -30,26 +30,7 @@ watch(
 				{{ title }}
 			</SharedFontsHeading>
 			<FeaturesMainBtnGroup />
-			<ClientOnly>
-				<Transition
-					name="fade"
-					mode="out-in"
-				>
-					<FeaturesSearchExcursionsForm v-if="searchSection === 'excursions'" />
-					<FeaturesSearchToursForm v-else />
-				</Transition>
-			</ClientOnly>
+			<FeaturesSearchForm :type="searchSection" />
 		</div>
 	</div>
 </template>
-<style lang="scss" scoped>
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 0.1s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-	opacity: 0;
-}
-</style>

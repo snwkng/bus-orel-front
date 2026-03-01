@@ -51,7 +51,7 @@ const getTours = () => {
 	<form
 		class="flex w-full select-none flex-col items-center gap-x-[2px] md:flex-row md:justify-center"
 	>
-		<SharedBlockGroupsSelectGroup>
+		<SharedLayoutsSelectGroup>
 			<SharedFormsTheInput
 				disabled
 				input-id="откуда"
@@ -69,7 +69,7 @@ const getTours = () => {
 				:list="cityList"
 				label="Куда"
 			/>
-		</SharedBlockGroupsSelectGroup>
+		</SharedLayoutsSelectGroup>
 		<SharedButtonsTheButton
 			class="w-full rounded-t-none md:ml-5 md:w-52 md:rounded-t-xl"
 			btn-title="Найти"

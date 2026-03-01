@@ -24,7 +24,7 @@ await callOnce(getCityList);
 	<form
 		class="flex w-full flex-row flex-wrap items-center justify-center gap-x-[2px]"
 	>
-		<SharedBlockGroupsSelectGroup>
+		<SharedLayoutsSelectGroup>
 			<SharedFormsTheInput
 				disabled
 				input-id="откуда"
@@ -37,7 +37,7 @@ await callOnce(getCityList);
 				label="Куда"
 				:list="cityList"
 			/>
-		</SharedBlockGroupsSelectGroup>
+		</SharedLayoutsSelectGroup>
 		<SharedButtonsTheButton
 			class="w-full rounded-t-none md:ml-5 md:w-52 md:rounded-t-xl"
 			btn-title="Найти"

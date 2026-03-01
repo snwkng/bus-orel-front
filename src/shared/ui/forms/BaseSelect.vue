@@ -5,13 +5,11 @@ import { useTemplateRef } from 'vue';
 export interface IProps {
 	label?: string;
 	list?: SelectItem[];
-	roudingType?: 'left' | 'right' | 'all' | 'none';
 }
 
 withDefaults(defineProps<IProps>(), {
 	label: '',
 	list: () => [],
-	roudingType: 'none'
 });
 
 const model = defineModel<SelectItem>();
@@ -31,7 +29,7 @@ const toggle = () => {
 };
 
 const clearModel = () => {
-	model.value = {};
+	model.value = {} as SelectItem;
 };
 </script>
 <template>

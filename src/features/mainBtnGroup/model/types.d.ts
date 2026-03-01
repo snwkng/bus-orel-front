@@ -1,1 +1,1 @@
-export type goToSearch = 'busTours' | 'excursions';
+export type goToSearch = 'tour' | 'excursion';

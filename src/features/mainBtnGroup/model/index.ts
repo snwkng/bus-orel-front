@@ -2,7 +2,7 @@ import type { goToSearch } from '@/features/mainBtnGroup/model/types';
 
 export const useMainBtnGroupStore = defineStore('useMainBtnGroupStore', {
 	state: () => ({
-		searchSection: 'busTours' as goToSearch
+		searchSection: 'tour' as goToSearch
 	}),
 	getters: {
 		//
