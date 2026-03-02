@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { BASE_URL } = useRuntimeConfig().public;
 
 const route = useRoute();
 
@@ -23,12 +22,6 @@ useHead({
 		{
 			name: 'yandex-verification',
 			content: '580bdd84c70ca5a3'
-		}
-	],
-	link: [
-		{
-			rel: 'canonical',
-			href: BASE_URL + (route.path === '/' ? '' : route.path)
 		}
 	]
 });
@@ -73,24 +66,36 @@ onMounted(() => {
 				>
 					Отдых по вашим мечтам: выбор тура с нашим агентством
 				</SharedFontsHeading>
-				<p class="mb-2 leading-7">
+				<SharedFontsText
+					variant="body-lg"
+					weight="regular"
+					class="mb-2"
+				>
 					Подбор тура - это одна из ключевых услуг, предлагаемых нашим
 					туристическим агентством в городе Орёл. Наша команда опытных
 					специалистов готова тщательно подобрать идеальный тур, учитывая все
 					ваши предпочтения и интересы. Мы учтем каждую деталь - от
 					продолжительности путешествия и типа развлечений до вашего бюджета и
 					потребностей.
-				</p>
-				<p class="mb-2 leading-7">
+				</SharedFontsText>
+				<SharedFontsText
+					variant="body-lg"
+					weight="regular"
+					class="mb-2"
+				>
 					Мы предлагаем широкий выбор туров по различным направлениям - от
 					пляжного отдыха до культурных экскурсий. Наша главная цель - сделать
 					ваше путешествие максимально комфортным и запоминающимся.
-				</p>
-				<p class="mb-2 leading-7">
+				</SharedFontsText>
+				<SharedFontsText
+					variant="body-lg"
+					weight="regular"
+					class="mb-2"
+				>
 					Наше агентство отличает надежность, прозрачность и высокий уровень
 					сервиса. Доверьте нам подбор тура и отправляйтесь в увлекательное
 					путешествие, которое запомнится вам на всю жизнь!
-				</p>
+				</SharedFontsText>
 			</section>
 		</div>
 	</div>

@@ -18,7 +18,7 @@ withDefaults(defineProps<IProps>(), {
 const model = defineModel<string>();
 </script>
 <template>
-	<div class="relative w-full min-w-40 md:w-auto xl:min-w-[280px]">
+	<div class="relative w-full min-w-40 md:w-auto">
 		<Transition name="label-fade">
 			<label
 				v-if="label"

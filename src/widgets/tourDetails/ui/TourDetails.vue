@@ -1,18 +1,7 @@
 <script setup lang="ts">
 import type { IHotelRoomInfo, ITour } from '~/entities/tour/model/types';
 
-const { BASE_URL } = useRuntimeConfig().public;
-
 const route = useRoute();
-
-useHead({
-	link: [
-		{
-			rel: 'canonical',
-			href: BASE_URL + (route.path === '/' ? '' : route.path)
-		}
-	]
-});
 
 const tourId = computed(() => route.params.id as string);
 const tourTitle = computed(() =>

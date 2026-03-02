@@ -35,7 +35,7 @@ const clearModel = () => {
 <template>
 	<div
 		ref="target"
-		class="relative flex min-h-14 w-full items-center bg-white py-2 pl-4 pr-8 text-slate-800 shadow-form transition-all focus:ring dark:bg-gray-600 dark:text-slate-300 xl:min-w-[280px]"
+		class="relative flex min-h-14 w-full items-center bg-white py-2 pl-4 text-slate-800 shadow-form transition-all focus:ring dark:bg-gray-600 dark:text-slate-300"
 		:class="{ 'ring-2 ring-primary-500': showSelect }"
 		@click="toggle"
 		@keydown.enter="toggle"
@@ -43,7 +43,7 @@ const clearModel = () => {
 		<span
 			v-if="model?.name"
 			:title="model?.name"
-			class="w-[200px] overflow-hidden truncate text-ellipsis text-nowrap"
+			class="truncate w-[calc(100%-60px)]"
 		>
 			{{ model.name }}
 		</span>

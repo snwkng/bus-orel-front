@@ -70,7 +70,7 @@ const goToSearchPage = () => {
 
 <template>
 	<form
-		class="flex w-full flex-row flex-wrap items-center justify-center gap-x-[2px]"
+		class="flex w-full flex-row flex-wrap items-center justify-center gap-x-[2px] md:gap-y-4"
 	>
 		<SharedLayoutsSelectGroup>
 			<SharedFormsTheInput
@@ -101,8 +101,9 @@ const goToSearchPage = () => {
 		</SharedLayoutsSelectGroup>
 		<SharedButtonsTheButton
 			class="w-full rounded-t-none md:ml-5 md:w-52 md:rounded-t-xl"
-			btn-title="Найти"
 			@click="goToSearchPage"
-		/>
+		>
+			Найти
+		</SharedButtonsTheButton>
 	</form>
 </template>

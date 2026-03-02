@@ -15,15 +15,16 @@ const openModal = ref(false);
 					class="min-h-40 w-full bg-sprinter bg-contain bg-center bg-no-repeat sm:min-h-60"
 				/>
 				<div class="flex w-full flex-col items-center gap-y-5 sm:items-start">
-					<span class="text-xl md:text-2xl">
+					<SharedFontsText variant="body-2xl">
 						Арендуйте микроавтобусы в Орле с опытными водителями и
 						комфортабельными салонами для приятного путешествия
-					</span>
+					</SharedFontsText>
 					<SharedButtonsTheButton
-						btn-title="Арендовать"
 						class="w-7"
 						@click="openModal = true"
-					/>
+					>
+						Арендовать
+					</SharedButtonsTheButton>
 				</div>
 			</section>
 		</div>

@@ -1,17 +1,4 @@
 <script setup lang="ts">
-const { BASE_URL } = useRuntimeConfig().public;
-
-const route = useRoute();
-
-useHead({
-	link: [
-		{
-			rel: 'canonical',
-			href: BASE_URL + (route.path === '/' ? '' : route.path)
-		}
-	]
-});
-
 useSeoMeta({
 	title: 'Галатур Орел - Пользовательское соглашение',
 	ogTitle: 'Галатур Орел - Пользовательское соглашение',

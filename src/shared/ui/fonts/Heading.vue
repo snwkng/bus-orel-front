@@ -87,6 +87,7 @@ const classes = computed(() => {
 <template>
 	<component
 		:is="tag"
+		class="overflow-hidden text-ellipsis"
 		:class="classes"
 	>
 		<slot />

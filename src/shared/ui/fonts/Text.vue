@@ -1,6 +1,8 @@
 <script setup lang="ts">
 interface IProps {
 	variant?:
+		| 'body-2xl'
+		| 'body-xl'
 		| 'body-lg'
 		| 'body-md'
 		| 'body-sm'
@@ -28,6 +30,8 @@ const props = withDefaults(defineProps<IProps>(), {
 
 const tag = computed(() => {
 	const headingMap: Record<string, string> = {
+		'body-2xl': 'p',
+		'body-xl': 'p',
 		'body-lg': 'p',
 		'body-md': 'p',
 		'body-sm': 'p',
@@ -42,6 +46,8 @@ const tag = computed(() => {
 // Стили
 const classes = computed(() => {
 	const variantClasses: Record<string, string> = {
+		'body-2xl': 'text-2xl leading-relaxed',
+		'body-xl': 'text-xl leading-relaxed',
 		'body-lg': 'text-base leading-relaxed',
 		'body-md': 'text-sm leading-relaxed',
 		'body-sm': 'text-sm leading-normal',

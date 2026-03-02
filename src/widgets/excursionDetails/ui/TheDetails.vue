@@ -1,18 +1,7 @@
 <script setup lang="ts">
 import type { IExcursion } from '~/entities/excursion/model/types';
 
-const { BASE_URL } = useRuntimeConfig().public;
-
 const route = useRoute();
-
-useHead({
-	link: [
-		{
-			rel: 'canonical',
-			href: BASE_URL + (route.path === '/' ? '' : route.path)
-		}
-	]
-});
 
 const excursionId = computed(() => route.params.id as string);
 
