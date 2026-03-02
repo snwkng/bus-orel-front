@@ -1,19 +1,30 @@
 <script setup lang="ts">
-const title = ref('Поиск автобусных туров к морю из Орла');
+interface IProps {
+	multiple?: boolean;
+	title?: string;
+	searchControl?: 'default' | 'excursion' | 'tour';
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+	multiple: false,
+	title: '',
+	searchControl: 'default'
+});
 
 const store = useMainBtnGroupStore();
 
 const { searchSection } = storeToRefs(store);
 
-watch(
-	() => searchSection.value,
-	() => {
-		if (searchSection.value === 'excursion') {
-			title.value = 'Поиск экскурсионных туров из Орла';
-		} else {
-			title.value = 'Поиск автобусных туров к морю из Орла';
-		}
-	}
+const commonTitle = computed(() => {
+	if (props.title) return props.title;
+
+	return searchSection.value === 'excursion'
+		? 'Поиск экскурсионных туров из Орла'
+		: 'Поиск автобусных туров к морю из Орла';
+});
+
+const typeControl = computed(() =>
+	props.searchControl === 'default' ? searchSection.value : props.searchControl
 );
 </script>
 <template>
@@ -27,10 +38,10 @@ watch(
 				weight="bold"
 				class="mb-2"
 			>
-				{{ title }}
+				{{ commonTitle }}
 			</SharedFontsHeading>
-			<FeaturesMainBtnGroup />
-			<FeaturesSearchForm :type="searchSection" />
+			<FeaturesMainBtnGroup v-if="multiple" />
+			<FeaturesSearchForm :type="typeControl" />
 		</div>
 	</div>
 </template>

@@ -25,7 +25,7 @@ useSeoMeta({
 </script>
 <template>
 	<div>
-		<WidgetsSearchExcursions />
+		<WidgetsSearchSection title="Экскурсионные туры из Орла" search-control="excursion" />
 		<div class="py-8 dark:bg-gray-800">
 			<WidgetsExcursionsSection
 				class="pb-11"

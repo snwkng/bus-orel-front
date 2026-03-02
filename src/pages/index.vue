@@ -47,7 +47,7 @@ onMounted(() => {
 </script>
 <template>
 	<div class="flex flex-col gap-y-8">
-		<WidgetsSearchSection />
+		<WidgetsSearchSection multiple />
 		<WidgetsBusToursSection
 			classes="pt-11"
 			title="Автобусные туры к морю из Орла"
