@@ -20,19 +20,8 @@ useSeoMeta({
 			<WidgetsBusToursSection
 				class="pb-11"
 				type="grid"
-			>
-				<template #title="{ dataLength }">
-					<template v-if="!dataLength">
-						<LazySharedFontsHeading
-							variant="heading-xl"
-							color="default"
-							weight="bold"
-						>
-							Автобусных туров к морю пока нет
-						</LazySharedFontsHeading>
-					</template>
-				</template>
-			</WidgetsBusToursSection>
+				empty-text="Автобусных туров к морю пока нет"
+			/>
 		</div>
 	</div>
 </template>
