@@ -41,7 +41,7 @@ onMounted(() => {
 	<div class="flex flex-col gap-y-8">
 		<WidgetsSearchSection multiple />
 
-		<WidgetsBusToursSection
+		<WidgetsToursSection
 			class="pt-11"
 			type="slider"
 			title="Автобусные туры к морю из Орла"

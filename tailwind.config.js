@@ -7,6 +7,31 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			gridTemplateAreas: {
+				'gallery-desktop': '"b a a c" "d a a e"',
+			},
+			height: {
+				header: '50px',
+				'main-screen': '500px'
+			},
+			backgroundImage: {
+				sprinter: "url('/mercedessprinter.webp')"
+			},
+			rotate: {
+				270: '270deg'
+			},
+			boxShadow: {
+				form: '0 2px 6px 0 rgba(0, 0, 0, .15);'
+			},
+			animation: {
+				glow: 'glow 1s infinite' // Links 'glow' animation to 'glow' keyframes
+			},
+			keyframes: {
+				glow: {
+					'0%, 100%': { boxShadow: '0 0 10px #FF5722' },
+					'50%': { boxShadow: '0 0 20px #FF5722' }
+				}
+			},
 			colors: {
 				'primary': {
 					50: '#FFAB91',
@@ -54,29 +79,30 @@ module.exports = {
 					'info': '#2196F3',
 				},
 			},
-			height: {
-				header: '50px',
-				'main-screen': '500px'
-			},
-			backgroundImage: {
-				sprinter: "url('/mercedessprinter.webp')"
-			},
-			rotate: {
-				270: '270deg'
-			},
-			boxShadow: {
-				form: '0 2px 6px 0 rgba(0, 0, 0, .15);'
-			},
-			animation: {
-				glow: 'glow 1s infinite' // Links 'glow' animation to 'glow' keyframes
-			},
-			keyframes: {
-				glow: {
-					'0%, 100%': { boxShadow: '0 0 10px #FF5722' },
-					'50%': { boxShadow: '0 0 20px #FF5722' }
-				}
-			}
 		}
 	},
-	plugins: []
+	plugins: [
+		(function ({ addUtilities, theme }) {
+			const areas = theme('gridTemplateAreas');
+			const utils = {};
+
+			Object.entries(areas).forEach(([key, value]) => {
+				// 1. Генерируем класс сетки: .grid-areas-airbnb
+				const gridString = Array.isArray(value)
+					? value.map((row) => `"${row}"`).join(' ')
+					: value;
+				utils[`.grid-areas-${key}`] = { 'grid-template-areas': gridString };
+
+				// 2. Генерируем классы элементов: .grid-in-main, .grid-in-a и т.д.
+				const rawValues = Array.isArray(value) ? value.join(' ') : value;
+				const uniqueAreas = [...new Set(rawValues.split(/\s+/).map(a => a.replaceAll('"', '')))];
+
+				uniqueAreas.forEach((area) => {
+					utils[`.grid-in-${area}`] = { 'grid-area': area };
+				});
+			});
+
+			addUtilities(utils);
+		}),
+	],
 };

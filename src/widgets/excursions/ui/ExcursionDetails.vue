@@ -15,7 +15,7 @@ const { data, error } = await useFetch(`/api/excursions/${excursionId.value}`, {
 // перекидываем на 404, если бэк выловил невалидный id
 if (error.value) {
 	throw createError({
-		statusCode: error.value?.statusCode,
+		status: error.value?.statusCode,
 		message: error.value?.message || error.value?.statusMessage,
 		fatal: true
 	});
@@ -64,101 +64,119 @@ const donwloadFile = async () => {
 				:cities="data?.cities"
 				:duration="data?.duration"
 			/>
-			<SharedGalleryTheGallery :images="data?.images ?? []" />
+			<SharedGalleryBaseGallery :images="data.images" />
+			<!-- <SharedGalleryTheGallery :images="data?.images ?? []" /> -->
 
-			<div class="">
-				<button
-					v-if="data?.documentName?.length && data?.documentName[0]"
-					type="button"
-					class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95 md:w-52"
-					@click.prevent="donwloadFile"
-				>
-					Скачать прайс
-				</button>
-				<div
-					v-if="data?.excursionStartDates?.length"
-					id="ex-dates"
-					class="dark:text-slate-200"
-				>
-					<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-						Даты предстоящих экскурсий
-					</h3>
-					<div class="flex flex-row whitespace-nowrap">
-						<span
-							v-for="(date, idx) in data.excursionStartDates"
-							:key="idx"
-						>
-							{{ $dayjs(date).format('DD.MM.YYYY')
-							}}<template v-if="idx !== data.excursionStartDates.length - 1"
-								>,&nbsp;</template
+			<div class="grid grid-flow-col gap-6">
+				<div class="flex flex-col gap-4">
+					<div
+						v-if="data?.excursionStartDates?.length"
+						id="ex-dates"
+						class="dark:text-slate-200"
+					>
+						<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+							Даты предстоящих экскурсий
+						</h3>
+						<div class="flex flex-row whitespace-nowrap">
+							<span
+								v-for="(date, idx) in data.excursionStartDates"
+								:key="idx"
 							>
+								{{ $dayjs(date).format('DD.MM.YYYY')
+								}}<template v-if="idx !== data.excursionStartDates.length - 1"
+									>,&nbsp;</template
+								>
+							</span>
+						</div>
+					</div>
+					<hr class="my-4" />
+					<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+						Программа тура
+					</h3>
+					<div
+						v-for="(dayContent, index) in data?.description"
+						:key="index"
+						class="border-b border-solid border-slate-200 pb-4 pt-2"
+					>
+						<span class="font-semibold">
+							{{ `День ${index + 1}` }}
 						</span>
+						<div class="w-full overflow-hidden px-0 pr-4">
+							<p
+								class="whitespace-pre-wrap text-base leading-6 dark:text-slate-200"
+							>
+								{{ dayContent }}
+							</p>
+						</div>
+					</div>
+					<div
+						v-if="data?.thePriceIncludes?.length"
+						class=""
+					>
+						<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+							В стоимость входит
+						</h3>
+						<div class="flex flex-col gap-y-3">
+							<div
+								v-for="item in data?.thePriceIncludes"
+								:key="item"
+								class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
+							>
+								<div>
+									<SharedIconsCheckIcon
+										width="24px"
+										height="24px"
+									/>
+								</div>
+								{{ item }}
+							</div>
+						</div>
+					</div>
+					<hr
+						v-if="data?.additionallyPaid?.length"
+						class="m-y-3 w-full bg-slate-200"
+					/>
+					<div
+						v-if="data?.additionallyPaid?.length"
+						class=""
+					>
+						<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+							Дополнительно оплачивается
+						</h3>
+						<div class="flex flex-col gap-y-3">
+							<div
+								v-for="item in data?.additionallyPaid"
+								:key="item"
+								class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
+							>
+								<div>
+									<SharedIconsCheckIcon
+										width="24px"
+										height="24px"
+									/>
+								</div>
+								{{ item }}
+							</div>
+						</div>
 					</div>
 				</div>
-				<hr class="my-4" />
-				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Программа тура
-				</h3>
-				<div
-					v-for="(dayContent, index) in data?.description"
-					:key="index"
-					class="border-b border-solid border-slate-200 pb-4 pt-2"
-				>
-					<span class="font-semibold">
-						{{ `День ${index + 1}` }}
-					</span>
-					<div class="w-full overflow-hidden px-0 pr-4">
-						<p
-							class="whitespace-pre-wrap text-base leading-6 dark:text-slate-200"
+
+				<div class="w-96">
+					<div class="sticky top-20 flex justify-end">
+						<button
+							v-if="data?.documentName?.length && data?.documentName[0]"
+							type="button"
+							class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95 md:w-52"
+							@click.prevent="donwloadFile"
 						>
-							{{ dayContent }}
-						</p>
+							Скачать прайс
+						</button>
 					</div>
 				</div>
 			</div>
-			<div v-if="data?.thePriceIncludes?.length" class="">
-				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					В стоимость входит
-				</h3>
-				<div class="flex flex-col gap-y-3">
-					<div
-						v-for="item in data?.thePriceIncludes"
-						:key="item"
-						class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
-					>
-						<div>
-							<SharedIconsCheckIcon
-								width="24px"
-								height="24px"
-							/>
-						</div>
-						{{ item }}
-					</div>
-				</div>
-			</div>
-			<hr v-if="data?.additionallyPaid?.length" class="m-y-3 w-full bg-slate-200" />
-			<div v-if="data?.additionallyPaid?.length" class="">
-				<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-					Дополнительно оплачивается
-				</h3>
-				<div class="flex flex-col gap-y-3">
-					<div
-						v-for="item in data?.additionallyPaid"
-						:key="item"
-						class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
-					>
-						<div>
-							<SharedIconsCheckIcon
-								width="24px"
-								height="24px"
-							/>
-						</div>
-						{{ item }}
-					</div>
-				</div>
-			</div>
+
 			<hr class="m-y-3 w-full bg-slate-200" />
-			<p class="text-justify dark:text-slate-200">
+			<SharedFontsText variant="body-lg">
 				Компания организатор оставляет за собой право вносить некоторые
 				изменения в программу тура без уменьшения общего объема и качества
 				услуг, в том числе предоставлять замену отеля на равнозначный. Компания
@@ -167,7 +185,7 @@ const donwloadFile = async () => {
 				приезды в отели, объекты экскурсий. В случае особых непредвиденных
 				ситуаций возможны изменения в порядке проведения экскурсий, объем
 				программы при этом не меняется.
-			</p>
+			</SharedFontsText>
 		</div>
 	</div>
 </template>

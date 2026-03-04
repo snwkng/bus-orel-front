@@ -65,7 +65,7 @@ const componentName = computed(() =>
 				:date="item?.date ?? ''"
 				:subtitle="item.subtitle"
 				:image-link="item.image"
-				type="bus-tour"
+				type="excursion"
 			/>
 		</component>
 	</div>

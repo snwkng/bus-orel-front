@@ -17,7 +17,7 @@ useSeoMeta({
 			search-control="tour"
 		/>
 		<div class="w-full py-8 dark:bg-gray-800">
-			<WidgetsBusToursSection
+			<WidgetsToursSection
 				class="pb-11"
 				type="grid"
 				empty-text="Автобусных туров к морю пока нет"

@@ -28,7 +28,7 @@ const { data, error } = await useFetch(`/api/hotels/${tourId.value}`, {
 
 if (error.value) {
 	throw createError({
-		statusCode: error.value?.statusCode,
+		status: error.value?.statusCode,
 		statusMessage: error.value?.message || error.value?.statusMessage,
 		fatal: true
 	});
