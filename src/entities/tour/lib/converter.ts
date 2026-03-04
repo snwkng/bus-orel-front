@@ -19,6 +19,7 @@ import type { IHotelRoomDto } from '../api/hotelRoom.dto';
 import type { IHotelRoomModel } from '../model/hotelRoom.model';
 import type { IDatesAndPricesDto } from '../api/datesAndPrices.dto';
 import type { IDatesAndPricesModel } from '../model/datesAndPrices.model';
+import type { ICardModel } from '@/shared/lib/types/card.model';
 
 const converterAddress: Converter<IAddressDto, IAddressModel> = (dto) => ({
   id: dto._id,
@@ -98,9 +99,18 @@ const converterOneListItem: Converter<ITourDto, ITourModel> = (dto) => ({
   tours: converterHotelRoomList(dto?.tours)
 });
 
+const converterCardItem: Converter<ITourDto, ICardModel> = (dto) => ({
+  id: dto._id,
+  title: dto.name,
+  subtitle: dto.address?.city ?? '',
+  price: dto.minPrice,
+  image: dto.images?.[0] ?? ''
+})
 
-export const converterToursList = converterArray(converterOneListItem);
 
-export const converterCitiesList = converterArray(converterCitiesListItem);
-export const converterSeaList = converterArray(converterSeaListItem);
+export const tourConverterList = converterArray(converterOneListItem);
+export const tourConverterCardList = converterArray(converterCardItem);
+
+export const tourConverterCitiesList = converterArray(converterCitiesListItem);
+export const tourConverterSeaList = converterArray(converterSeaListItem);
 

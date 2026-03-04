@@ -94,7 +94,7 @@ const toggleMenu = () => {
 								: 'dropdown-fade'
 						"
 					>
-						<WidgetsNavbar
+						<WidgetsTheNavbar
 							v-show="toggle"
 							@close-nav="close"
 						/>

@@ -2,7 +2,7 @@ import { converterArray, toArray, type Converter } from '@/shared/lib/converter'
 import type { IExcursionDto } from '../api/excursion.dto';
 import type { ICitiesDto } from '../api/cities.dto';
 import type { IExcursionModel } from '../model/excursion.model';
-import type { IExcursionCardModel } from '../model/excursionCard.model';
+import type { ICardModel } from '@/shared/lib/types/card.model';
 
 
 const converterOneListItem: Converter<IExcursionDto, IExcursionModel> = (dto) => ({
@@ -20,7 +20,7 @@ const converterOneListItem: Converter<IExcursionDto, IExcursionModel> = (dto) =>
   additionallyPaid: toArray(dto.additionallyPaid),
 });
 
-const converterCardItem: Converter<IExcursionDto, IExcursionCardModel> = (dto) => ({
+const converterCardItem: Converter<IExcursionDto, ICardModel> = (dto) => ({
   id: dto._id,
   title: dto.name,
   subtitle: dto.cities?.map((x: string) => x).join(', '),
@@ -35,9 +35,9 @@ const converterCitiesListItem: Converter<ICitiesDto, SelectItem> = (dto) => ({
   name: dto.name
 });
 
-export const converterExcursionCardList = converterArray(converterCardItem)
+export const excursionConverterCardList = converterArray(converterCardItem);
 
-export const converterExcursionList = converterArray(converterOneListItem);
+export const excursionConverterList = converterArray(converterOneListItem);
 
-export const converterCitiesList = converterArray(converterCitiesListItem)
+export const excursionConverterCitiesList = converterArray(converterCitiesListItem)
 

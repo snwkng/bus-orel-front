@@ -76,11 +76,26 @@ export default defineNuxtConfig({
 		middleware: 'shared/config/middleware',
 	},
 	components: [
-		{ path: 'shared/ui', prefix: 'Shared' },
-		{ path: 'widgets', prefix: 'Widgets' },
-		{ path: 'entities', prefix: 'Entities' },
-		{ path: 'features', prefix: 'Features' },
-	],
+    { path: 'shared/ui', prefix: 'Shared' },
+    {
+      path: 'widgets',
+      pattern: '*/ui/*.vue',
+      pathPrefix: false,
+      prefix: 'Widgets',
+    },
+    {
+      path: 'entities',
+      pattern: '*/ui/*.vue',
+      pathPrefix: false,
+      prefix: 'Entities',
+    },
+    {
+      path: 'features',
+      pattern: '*/ui/*.vue',
+      pathPrefix: false,
+      prefix: 'Features',
+    }
+  ],
 
 	imports: {
 		dirs: [

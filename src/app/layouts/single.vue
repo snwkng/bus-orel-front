@@ -1,10 +1,10 @@
 <script setup lang="ts"></script>
 <template>
 	<div>
-		<WidgetsHeader />
+		<WidgetsTheHeader />
 		<main class="pt-14">
 			<slot />
 		</main>
-		<WidgetsFooter />
+		<WidgetsTheFooter />
 	</div>
 </template>

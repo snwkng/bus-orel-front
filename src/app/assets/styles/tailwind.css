@@ -12,7 +12,7 @@
 
 @layer components {
 	.max-w-container {
-		@apply mx-auto px-6 md:px-10 lg:px-20 2xl:max-w-[calc(1440px+160px)];
+		@apply mx-auto px-6 md:px-10 lg:px-20 w-full 2xl:max-w-[calc(1440px+160px)];
 	}
 
 	.max-w-container-rent {

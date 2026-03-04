@@ -12,12 +12,27 @@ useSeoMeta({
 </script>
 <template>
 	<div>
-		<WidgetsSearchSection title="Экскурсионные туры из Орла" search-control="excursion" />
+		<WidgetsSearchSection
+			title="Экскурсионные туры из Орла"
+			search-control="excursion"
+		/>
 		<div class="py-8 dark:bg-gray-800">
 			<WidgetsExcursionsSection
 				class="pb-11"
-				empty-text="Экскурсионных туров пока нет"
-			/>
+				type="grid"
+			>
+				<template #title="{ dataLength }">
+					<template v-if="!dataLength">
+						<LazySharedFontsHeading
+							variant="heading-xl"
+							color="default"
+							weight="bold"
+						>
+							Экскурсионных туров пока нет
+						</LazySharedFontsHeading>
+					</template>
+				</template>
+			</WidgetsExcursionsSection>
 		</div>
 	</div>
 </template>

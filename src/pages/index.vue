@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const route = useRoute();
 
 definePageMeta({
@@ -41,14 +40,57 @@ onMounted(() => {
 <template>
 	<div class="flex flex-col gap-y-8">
 		<WidgetsSearchSection multiple />
-		<WidgetsBusToursSection
-			classes="pt-11"
-			title="Автобусные туры к морю из Орла"
-		/>
+
+		<WidgetsBusToursSection class="pt-11" type="slider">
+			<template #title>
+				<div class="mb-6 flex items-baseline gap-4">
+					<SharedFontsHeading
+						variant="heading-xl"
+						color="default"
+						weight="bold"
+					>
+						Автобусные туры к морю из Орла
+					</SharedFontsHeading>
+					<NuxtLink
+						to="/bus-tours"
+						class="flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all hover:scale-105 hover:shadow-md"
+					>
+						<Icon
+							name="lucide:arrow-right"
+							size="18"
+							class="text-neutral-800"
+						/>
+					</NuxtLink>
+				</div>
+			</template>
+		</WidgetsBusToursSection>
+		
 		<WidgetsExcursionsSection
-			classes="pt-11 pb-11"
-			title="Экскурсионные туры из Орла"
-		/>
+			class="pb-11 pt-11"
+			type="slider"
+		>
+			<template #title>
+				<div class="mb-6 flex items-baseline gap-4">
+					<SharedFontsHeading
+						variant="heading-xl"
+						color="default"
+						weight="bold"
+					>
+						Экскурсионные туры из Орла
+					</SharedFontsHeading>
+					<NuxtLink
+						to="/excursions"
+						class="flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all hover:scale-105 hover:shadow-md"
+					>
+						<Icon
+							name="lucide:arrow-right"
+							size="18"
+							class="text-neutral-800"
+						/>
+					</NuxtLink>
+				</div>
+			</template>
+		</WidgetsExcursionsSection>
 
 		<WidgetsBusRentSection />
 

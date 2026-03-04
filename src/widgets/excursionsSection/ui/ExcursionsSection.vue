@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { getExcursionsCardList } from '@/entities/excursion/api/excursion.api';
+import TheGrid from '@/shared/ui/layouts/TheGrid.vue';
+import BaseSlider from '@/shared/ui/sliders/BaseSlider.vue';
 
 export interface IProps {
-	title?: string;
-	emptyText?: string;
-	classes?: string;
+	type: 'slider' | 'grid';
 }
 
-defineProps<IProps>();
+const props = defineProps<IProps>();
 
 const route = useRoute();
 
@@ -15,44 +15,21 @@ const routeRef = computed(() => route.query);
 
 const { data, pending } = getExcursionsCardList(routeRef);
 
+const componentName = computed(() =>
+	props.type === 'slider' ? BaseSlider : TheGrid
+);
 </script>
 <template>
-	<section
-		v-if="data?.length || emptyText"
-		:class="['max-w-container', classes]"
-	>
-		<div
-			v-if="title && data?.length"
-			class="mb-6 flex items-baseline gap-4"
+	<div class="max-w-container">
+		<slot
+			name="title"
+			:data-length="data?.length"
+		/>
+
+		<component
+			:is="componentName"
+			v-if="data?.length"
 		>
-			<SharedFontsHeading
-				variant="heading-xl"
-				color="default"
-				weight="bold"
-			>
-				{{ title }}
-			</SharedFontsHeading>
-			<NuxtLink
-				to="/excursions"
-				class="flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all hover:scale-105 hover:shadow-md"
-			>
-				<Icon
-					name="lucide:arrow-right"
-					size="18"
-					class="text-neutral-800"
-				/>
-			</NuxtLink>
-		</div>
-		<SharedFontsHeading
-			v-else-if="emptyText?.length && !data?.length && !pending"
-			variant="heading-xl"
-			color="default"
-			weight="bold"
-			align="center"
-		>
-			{{ emptyText }}
-		</SharedFontsHeading>
-		<SharedLayoutsTheGrid v-if="data?.length">
 			<SharedCardsBaseCard
 				v-for="item in data"
 				:id="item.id"
@@ -64,6 +41,6 @@ const { data, pending } = getExcursionsCardList(routeRef);
 				:image-link="item.image"
 				type="excursion"
 			/>
-		</SharedLayoutsTheGrid>
-	</section>
+		</component>
+	</div>
 </template>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 useSeoMeta({
 	title: 'Автобусные туры к морю из Орла',
 	ogTitle: 'Автобусные туры к морю из Орла',
@@ -13,12 +12,27 @@ useSeoMeta({
 </script>
 <template>
 	<div>
-		<WidgetsSearchSection title="Автобусные туры к морю из Орла" search-control="tour" />
+		<WidgetsSearchSection
+			title="Автобусные туры к морю из Орла"
+			search-control="tour"
+		/>
 		<div class="w-full py-8 dark:bg-gray-800">
 			<WidgetsBusToursSection
 				class="pb-11"
-				empty-text="Автобусных туров к морю пока нет"
-			/>
+				type="grid"
+			>
+				<template #title="{ dataLength }">
+					<template v-if="!dataLength">
+						<LazySharedFontsHeading
+							variant="heading-xl"
+							color="default"
+							weight="bold"
+						>
+							Автобусных туров к морю пока нет
+						</LazySharedFontsHeading>
+					</template>
+				</template>
+			</WidgetsBusToursSection>
 		</div>
 	</div>
 </template>

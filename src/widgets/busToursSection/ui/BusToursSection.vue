@@ -1,82 +1,46 @@
 <script setup lang="ts">
-import type { ITour } from '~/entities/tour/model/types';
+import { getToursCardList } from '~/entities/tour/api/tour.api';
+import TheGrid from '@/shared/ui/layouts/TheGrid.vue';
+import BaseSlider from '@/shared/ui/sliders/BaseSlider.vue';
 
-export interface Props {
-	title?: string;
-	emptyText?: string;
-	classes?: string;
+export interface IProps {
+	type: 'slider' | 'grid';
 }
 
-withDefaults(defineProps<Props>(), {
-	title: '',
-	emptyText: '',
-	classes: ''
-});
+const props = defineProps<IProps>();
 
 const route = useRoute();
 
-const { data, pending } = await useFetch('/api/hotels', {
-	query: computed(() => route.query),
-	transform: (response: ApiResponse<ITour[]>) => {
-		return response?.data?.map((tour: ITour) => ({
-			id: tour._id,
-			title: tour.name,
-			subtitle: tour?.address.city ?? '',
-			price: tour.minPrice,
-			image: tour?.images?.[0]
-		}));
-	}
-});
+const routeRef = computed(() => route.query);
+
+const { data, pending } = getToursCardList(routeRef);
+
+const componentName = computed(() =>
+	props.type === 'slider' ? BaseSlider : TheGrid
+);
 </script>
 <template>
-	<div class="dark:bg-gray-800">
-		<section
-			v-if="data?.length || emptyText"
-			:class="['max-w-container', classes]"
+	<div class="max-w-container">
+		<slot
+			name="title"
+			:data-length="data?.length"
+		/>
+
+		<component
+			:is="componentName"
+			v-if="data?.length"
 		>
-			<div
-				v-if="title && data?.length"
-				class="flex gap-4 items-baseline mb-6"
-			>
-				<SharedFontsHeading
-					variant="heading-xl"
-					color="default"
-					weight="bold"
-				>
-					{{ title }}
-				</SharedFontsHeading>
-				<NuxtLink
-					to="/bus-tours"
-					class="flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all hover:scale-105 hover:shadow-md"
-				>
-					<Icon
-						name="lucide:arrow-right"
-						size="18"
-						class="text-neutral-800"
-					/>
-				</NuxtLink>
-			</div>
-			<SharedFontsHeading
-				v-else-if="emptyText.length && !data?.length && !pending"
-				variant="heading-xl"
-				color="default"
-				weight="bold"
-				align="center"
-			>
-				{{ emptyText }}
-			</SharedFontsHeading>
-			<SharedSlidersBaseSlider v-if="data?.length">
-				<SharedCardsBaseCard
-					v-for="item in data"
-					:id="item.id"
-					:key="item.id"
-					type="bus-tour"
-					:title="item.title"
-					:price="item.price"
-					:subtitle="item.subtitle"
-					:image-link="item.image ?? ''"
-				/>
-			</SharedSlidersBaseSlider>
-		</section>
+			<SharedCardsBaseCard
+				v-for="item in data"
+				:id="item.id"
+				:key="item.id"
+				:title="item.title"
+				:price="item.price"
+				:date="item?.date ?? ''"
+				:subtitle="item.subtitle"
+				:image-link="item.image"
+				type="bus-tour"
+			/>
+		</component>
 	</div>
 </template>
