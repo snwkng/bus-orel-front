@@ -3,6 +3,8 @@ import { getExcursion } from '@/entities/excursion/api/excursion.api';
 
 const route = useRoute();
 
+const dayjs = useDayjs();
+
 const excursionId = computed(() => route.params.id as string);
 
 const { data, error } = await getExcursion(excursionId);
@@ -20,6 +22,13 @@ const endWordDayCheck = computed(() => {
 		return '';
 	}
 });
+
+const dates = computed(
+	() =>
+		data.value?.excursionStartDates
+			?.map((date) => dayjs(date).format('DD.MM.YYYY'))
+			?.join(', ') ?? ''
+);
 
 // перекидываем на 404, если бэк выловил невалидный id
 if (error.value) {
@@ -64,137 +73,111 @@ const donwloadFile = async () => {
 		<div
 			class="max-w-container flex w-full flex-col gap-5 py-10 dark:bg-gray-800"
 		>
-			<WidgetsHeaderItem
-				:title="data?.name"
-				:price="data?.price"
-				price-description="Минимально возможная цена за человека"
-				:cities="data?.cities"
-				:duration="data?.duration"
-			/>
+			<div
+				class="w-fulll flex flex-col items-end justify-between gap-y-2 sm:flex-row sm:gap-y-0 mb-4"
+			>
+				<SharedFontsHeading
+					variant="display-lg"
+					weight="bold"
+				>
+					{{ data?.name }}
+				</SharedFontsHeading>
+				<button
+					v-if="data?.fileName?.length && data?.fileName[0]"
+					type="button"
+					class="min-h-14 w-full min-w-40 rounded-xl bg-secondary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-secondary-500/95 md:w-52"
+					@click.prevent="donwloadFile"
+				>
+					Скачать прайс
+				</button>
+			</div>
+
 			<SharedGalleryBaseGallery
 				v-if="data?.images"
 				:images="data.images"
 			/>
 
-			<div class="grid grid-flow-col gap-6">
-				<div class="flex flex-col gap-4">
-					<div
-						v-if="data?.excursionStartDates?.length"
-						id="ex-dates"
-						class="dark:text-slate-200"
-					>
-						<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-							Даты предстоящих экскурсий
-						</h3>
-						<div class="flex flex-row whitespace-nowrap">
-							<span
-								v-for="(date, idx) in data.excursionStartDates"
-								:key="idx"
-							>
-								{{ $dayjs(date).format('DD.MM.YYYY')
-								}}<template v-if="idx !== data.excursionStartDates.length - 1"
-									>,&nbsp;</template
-								>
-							</span>
-						</div>
-					</div>
-					<hr class="my-4" />
+			<div class="grid gap-6 md:grid-flow-col">
+				<div class="order-2 flex flex-col gap-4 md:order-1">
 					<SharedFontsHeading
 						class="mb-2"
-						variant="display-md"
+						variant="heading-xl"
 					>
 						Программа тура
 					</SharedFontsHeading>
 					<div
 						v-for="(dayContent, index) in data?.description"
 						:key="index"
-						class="flex mb-8"
+						class="mb-8 flex"
 					>
 						<EntitiesExcursionDayContent
 							:day="index + 1"
 							:text="dayContent"
 						/>
 					</div>
-					<div
-						v-if="data?.thePriceIncludes?.length"
-						class=""
-					>
-						<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-							В стоимость входит
-						</h3>
-						<div class="flex flex-col gap-y-3">
-							<div
-								v-for="item in data?.thePriceIncludes"
-								:key="item"
-								class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
-							>
-								<div>
-									<SharedIconsCheckIcon
-										width="24px"
-										height="24px"
-									/>
-								</div>
-								{{ item }}
-							</div>
-						</div>
-					</div>
-					<hr
-						v-if="data?.additionallyPaid?.length"
-						class="m-y-3 w-full bg-slate-200"
-					/>
-					<div
-						v-if="data?.additionallyPaid?.length"
-						class=""
-					>
-						<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
-							Дополнительно оплачивается
-						</h3>
-						<div class="flex flex-col gap-y-3">
-							<div
-								v-for="item in data?.additionallyPaid"
-								:key="item"
-								class="flex w-full flex-row items-start gap-x-2 dark:text-slate-200"
-							>
-								<div>
-									<SharedIconsCheckIcon
-										width="24px"
-										height="24px"
-									/>
-								</div>
-								{{ item }}
-							</div>
-						</div>
-					</div>
 				</div>
 
-				<div class="w-96">
+				<div class="order-1 w-full md:order-2 md:w-96">
 					<div class="sticky top-20">
 						<div
-							class="flex h-fit w-full flex-col gap-2 rounded-xl p-4 shadow-lg"
+							class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 shadow-xl"
 						>
 							<SharedLayoutsIconWithInfo
 								icon-name="map-pin"
+								title="Город(-а)"
 								:text="data?.cities?.join(', ') ?? ''"
 							/>
 							<SharedLayoutsIconWithInfo
 								icon-name="clock-fading"
+								title="Длительность"
 								:text="endWordDayCheck"
 							/>
 
-							<button
-								v-if="data?.fileName?.length && data?.fileName[0]"
-								type="button"
-								class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95 md:w-52"
-								@click.prevent="donwloadFile"
+							<SharedLayoutsIconWithInfo
+								title="Даты предстоящих экскурсий"
+								icon-name="calendar-days"
+								:text="dates"
+							/>
+
+							<div
+								v-if="data?.price"
+								class="flex flex-col items-center justify-center"
 							>
-								Скачать прайс
+								<div class="rounded-xl bg-primary-50 px-4 py-2">
+									<SharedFontsText variant="body-2xl">
+										от {{ data?.price }}₽
+									</SharedFontsText>
+								</div>
+								<SharedFontsText
+									variant="caption-lg"
+									color="muted"
+								>
+									Минимально возможная цена за человека
+								</SharedFontsText>
+							</div>
+
+							<button
+								type="button"
+								class="min-h-14 w-full rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95"
+							>
+								Забронировать
 							</button>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<hr class="m-y-3 w-full bg-slate-200" />
+			<hr class="m-y-3 w-full bg-neutral-200" />
+
+			<EntitiesConditionsBlock
+				:included="data?.thePriceIncludes"
+				:excluded="data?.additionallyPaid"
+				included-title="Включено"
+				excluded-title="Оплачивается отдельно"
+				title="Условия тура"
+			/>
+
+			<hr class="m-y-3 w-full bg-neutral-200" />
 			<SharedFontsText variant="body-lg">
 				Компания организатор оставляет за собой право вносить некоторые
 				изменения в программу тура без уменьшения общего объема и качества

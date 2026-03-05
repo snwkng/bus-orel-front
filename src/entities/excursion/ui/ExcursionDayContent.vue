@@ -11,7 +11,7 @@ defineProps<IProps>();
 		class="relative flex gap-4"
 	>
 		<div
-			class="relative z-10 flex h-fit w-fit flex-nowrap items-center justify-center rounded-xl bg-neutral-200 p-8"
+			class="relative z-10 flex h-fit w-fit flex-nowrap items-center justify-center rounded-xl bg-neutral-200 p-4 lg:p-8"
 		>
 			<SharedFontsText
 				variant="caption-lg"

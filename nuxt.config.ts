@@ -184,6 +184,7 @@ export default defineNuxtConfig({
 
 	icon: {
 		serverBundle: 'local',
+		localApiEndpoint: '/_nuxt_icon',
 		clientBundle: {
 			scan: true
 		}

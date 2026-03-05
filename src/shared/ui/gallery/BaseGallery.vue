@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
 	<!-- Используем созданный класс сетки -->
-	<div class="grid-areas-gallery-desktop auto-cols-fr grid h-[450px] w-full gap-2 rounded-xl overflow-hidden">
+	<div class="grid-areas-gallery-desktop auto-cols-fr grid h-[300px] md:h-[450px] w-full gap-2 rounded-xl overflow-hidden">
 		<div
 			v-for="(img, idx) in 5"
 			:key="img"
@@ -28,7 +28,7 @@ defineProps<{
 				loading="lazy"
 				fit="outside"
 			/>
-      <div v-else class="bg-neutral-300 h-full w-full"></div>
+      <div v-else class="bg-neutral-300 h-full w-full" />
 		</div>
 	</div>
 </template>
