@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import type { IExcursion } from '~/entities/excursion/model/types';
+import { getExcursion } from '@/entities/excursion/api/excursion.api';
 
 const route = useRoute();
 
 const excursionId = computed(() => route.params.id as string);
 
-const { data, error } = await useFetch(`/api/excursions/${excursionId.value}`, {
-	key: `excursion-${excursionId.value}`,
-	transform: (response: ApiResponse<IExcursion>) => {
-		return response?.data;
+const { data, error } = await getExcursion(excursionId);
+
+const endWordDayCheck = computed(() => {
+	if (data.value?.duration) {
+		if (data.value?.duration === 1) {
+			return `${data.value.duration} день`;
+		} else if (data.value.duration > 1 && data.value.duration < 5) {
+			return `${data.value.duration} дня`;
+		} else {
+			return `${data.value.duration} дней`;
+		}
+	} else {
+		return '';
 	}
 });
 
@@ -22,9 +31,7 @@ if (error.value) {
 }
 
 const donwloadFile = async () => {
-	const response = await $fetch(
-		`/api/s3/download/${data.value?.documentName[0]}`
-	);
+	const response = await $fetch(`/api/s3/download/${data.value?.fileName[0]}`);
 	const link = document.createElement('a');
 	link.href = URL.createObjectURL(response as Blob);
 	link.click();
@@ -64,8 +71,10 @@ const donwloadFile = async () => {
 				:cities="data?.cities"
 				:duration="data?.duration"
 			/>
-			<SharedGalleryBaseGallery :images="data.images" />
-			<!-- <SharedGalleryTheGallery :images="data?.images ?? []" /> -->
+			<SharedGalleryBaseGallery
+				v-if="data?.images"
+				:images="data.images"
+			/>
 
 			<div class="grid grid-flow-col gap-6">
 				<div class="flex flex-col gap-4">
@@ -90,24 +99,21 @@ const donwloadFile = async () => {
 						</div>
 					</div>
 					<hr class="my-4" />
-					<h3 class="mb-2 text-xl font-semibold dark:text-slate-200">
+					<SharedFontsHeading
+						class="mb-2"
+						variant="display-md"
+					>
 						Программа тура
-					</h3>
+					</SharedFontsHeading>
 					<div
 						v-for="(dayContent, index) in data?.description"
 						:key="index"
-						class="border-b border-solid border-slate-200 pb-4 pt-2"
+						class="flex mb-8"
 					>
-						<span class="font-semibold">
-							{{ `День ${index + 1}` }}
-						</span>
-						<div class="w-full overflow-hidden px-0 pr-4">
-							<p
-								class="whitespace-pre-wrap text-base leading-6 dark:text-slate-200"
-							>
-								{{ dayContent }}
-							</p>
-						</div>
+						<EntitiesExcursionDayContent
+							:day="index + 1"
+							:text="dayContent"
+						/>
 					</div>
 					<div
 						v-if="data?.thePriceIncludes?.length"
@@ -162,15 +168,28 @@ const donwloadFile = async () => {
 				</div>
 
 				<div class="w-96">
-					<div class="sticky top-20 flex justify-end">
-						<button
-							v-if="data?.documentName?.length && data?.documentName[0]"
-							type="button"
-							class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95 md:w-52"
-							@click.prevent="donwloadFile"
+					<div class="sticky top-20">
+						<div
+							class="flex h-fit w-full flex-col gap-2 rounded-xl p-4 shadow-lg"
 						>
-							Скачать прайс
-						</button>
+							<SharedLayoutsIconWithInfo
+								icon-name="map-pin"
+								:text="data?.cities?.join(', ') ?? ''"
+							/>
+							<SharedLayoutsIconWithInfo
+								icon-name="clock-fading"
+								:text="endWordDayCheck"
+							/>
+
+							<button
+								v-if="data?.fileName?.length && data?.fileName[0]"
+								type="button"
+								class="mb-2 min-h-14 w-full min-w-40 rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95 md:w-52"
+								@click.prevent="donwloadFile"
+							>
+								Скачать прайс
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
