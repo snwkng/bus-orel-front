@@ -15,8 +15,9 @@ interface IProps {
 		| 'secondary'
 		| 'muted'
 		| 'disabled'
-		| 'dark'
-		| 'white';
+		| 'dark-only'
+		| 'white'
+		| 'white-only';
 	align?: 'left' | 'center' | 'right';
 	weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
 }
@@ -71,8 +72,9 @@ const classes = computed(() => {
 		secondary: 'text-secondary-600 dark:text-secondary-400',
 		muted: 'text-neutral-600 dark:text-neutral-400',
 		disabled: 'text-neutral-400 dark:text-neutral-500',
-		dark: 'text-neutral-900 dark:text-neutral-200',
-		white: 'text-neutral-200 dark:text-neutral-900'
+		'dark-only': 'text-neutral-900 dark:text-neutral-900',
+		white: 'text-neutral-200 dark:text-neutral-900',
+		'white-only': 'text-neutral-200 dark:text-neutral-300'
 	};
 
 	const alignClasses: Record<string, string> = {

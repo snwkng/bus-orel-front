@@ -120,7 +120,7 @@ const donwloadFile = async () => {
 				<div class="order-1 w-full md:order-2 md:w-96">
 					<div class="sticky top-20">
 						<div
-							class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 shadow-xl"
+							class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 shadow-xl dark:bg-gray-700"
 						>
 							<SharedLayoutsIconWithInfo
 								icon-name="map-pin"
@@ -144,7 +144,7 @@ const donwloadFile = async () => {
 								class="flex flex-col items-center justify-center"
 							>
 								<div class="rounded-xl bg-primary-50 px-4 py-2">
-									<SharedFontsText variant="body-2xl">
+									<SharedFontsText variant="body-2xl" color="dark-only">
 										от {{ data?.price }}₽
 									</SharedFontsText>
 								</div>

@@ -16,7 +16,7 @@ defineProps<IProps>();
 			<SharedFontsText
 				variant="caption-lg"
 				weight="bold"
-				color="dark"
+				color="dark-only"
 				class="whitespace-nowrap uppercase"
 				>{{ day }} День</SharedFontsText
 			>
