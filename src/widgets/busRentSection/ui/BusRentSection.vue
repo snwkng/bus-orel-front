@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const openModal = ref(false);
+import BusRentModal from '@/features/busRentModal/ui/BusRentModal.vue';
+const { $modals } = useNuxtApp()
+
+const toggleModal = () => {
+  $modals.open(BusRentModal)
+}
 </script>
 <template>
 	<div
@@ -21,7 +26,7 @@ const openModal = ref(false);
 					</SharedFontsText>
 					<SharedButtonsTheButton
 						class="w-7"
-						@click="openModal = true"
+						@click="toggleModal"
 					>
 						Арендовать
 					</SharedButtonsTheButton>
@@ -29,30 +34,4 @@ const openModal = ref(false);
 			</section>
 		</div>
 	</div>
-	<SharedModalBaseModal
-		v-model="openModal"
-		title="Аренда автобусов и микроавтобусов"
-		description=""
-	>
-		<p>
-			По вопросам аренды автобусов и микроавтобусов звоните:
-			<a
-				href="tel:+74862780958"
-				class="base-link cursor-pointer dark:text-secondary-300 dark:hover:text-secondary-500"
-				>+7(4862)78-09-58</a
-			>
-		</p>
-		<p>
-			или напишите нам в группу в
-			<a
-				href="https://vk.com/gtorel"
-				rel="noopener noreferrer"
-				class="base-link cursor-pointer dark:text-secondary-300 dark:hover:text-secondary-500"
-				target="_blank"
-				aria-label="vk"
-			>
-				VK
-			</a>
-		</p>
-	</SharedModalBaseModal>
 </template>

@@ -5,9 +5,6 @@
 	body {
 		@apply text-neutral-900 dark:text-neutral-200;
 	}
-	.lock {
-		@apply overflow-hidden pr-[15px];
-	}
 }
 
 @layer components {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { BASE_URL } = useRuntimeConfig().public;
+const { $modals } = useNuxtApp();
 
 const route = useRoute();
 
@@ -25,6 +26,14 @@ useHead({
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>
+		<component
+			:is="modal.component"
+			v-for="modal in $modals.activeModals.value"
+			:key="modal.id"
+			v-bind="modal.props"
+			@close="modal.props.onClose"
+			@confirm="modal.props.onConfirm"
+		/>
 		<SharedCookieTheCookie v-if="!cookie" />
 	</div>
 </template>
