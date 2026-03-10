@@ -11,15 +11,15 @@ defineProps<IProps>();
 	<SharedModalBaseModal @close="$emit('close')">
 		<div>
       <h3>{{ title }}</h3>
-			<p>
+			<SharedFontsText variant="body-lg">
 				По вопросам аренды автобусов и микроавтобусов звоните:
 				<a
 					href="tel:+74862780958"
 					class="base-link cursor-pointer dark:text-secondary-300 dark:hover:text-secondary-500"
 					>+7(4862)78-09-58</a
 				>
-			</p>
-			<p>
+			</SharedFontsText>
+			<SharedFontsText variant="body-lg">
 				или напишите нам в группу в
 				<a
 					href="https://vk.com/gtorel"
@@ -30,7 +30,7 @@ defineProps<IProps>();
 				>
 					VK
 				</a>
-			</p>
+			</SharedFontsText>
 		</div>
 	</SharedModalBaseModal>
 </template>

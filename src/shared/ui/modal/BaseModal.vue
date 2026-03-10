@@ -56,7 +56,7 @@ const handleClose = () => {
 					>
 						<!-- modal-content -->
 						<div
-							class="sm: relative h-fit max-h-[30vh] rounded-xl rounded-t-xl bg-white p-6"
+							class="relative h-fit max-h-[30vh] rounded-xl rounded-t-xl bg-white p-6"
 						>
 							<button
 								class="absolute right-2 top-2 flex cursor-pointer items-center justify-center rounded-full p-2 transition-all hover:bg-neutral-200"
