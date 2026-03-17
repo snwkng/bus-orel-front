@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface IProps {
-  title: string
+  title?: string
 }
 defineEmits<(e: 'close') => void>();
 
@@ -10,7 +10,7 @@ defineProps<IProps>();
 <template>
 	<SharedModalBaseModal @close="$emit('close')">
 		<div>
-      <h3>{{ title }}</h3>
+      <h3 v-if="title">{{ title }}</h3>
 			<SharedFontsText variant="body-lg">
 				По вопросам аренды автобусов и микроавтобусов звоните:
 				<a

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Массив имен областей должен соответствовать буквам в конфиге
 const AREAS = ['a', 'b', 'c', 'd', 'e'] as const;
 
 defineProps<{
@@ -8,27 +7,24 @@ defineProps<{
 </script>
 
 <template>
-	<!-- Используем созданный класс сетки -->
-	<div class="grid-areas-gallery-desktop auto-cols-fr grid h-[300px] md:h-[450px] w-full gap-2 rounded-xl overflow-hidden">
+	<div
+		class="grid h-[300px] w-full auto-cols-fr gap-2 overflow-hidden rounded-xl grid-areas-gallery-desktop md:h-[450px]"
+	>
 		<div
-			v-for="(img, idx) in 5"
-			:key="img"
-			:class="[
-				'relative overflow-hidden transition-opacity hover:opacity-90',
-				// Динамически подставляем grid-in-main, grid-in-a и т.д.
-				`grid-in-${AREAS[idx]}`
-			]"
+			v-for="(area, idx) in AREAS"
+			:key="area"
+			class="relative h-full w-full overflow-hidden bg-neutral-300 transition-opacity hover:opacity-90"
+			:class="`grid-in-${area}`"
 		>
 			<NuxtImg
-        v-if="images[idx]"
-				class="w-full h-full object-cover object-center"
+				v-if="images[idx]"
+				class="h-full w-full object-cover object-center"
 				:src="`/image/${images[idx]}`"
-				:alt="img"
-				:title="img"
+				:alt="area"
+				:title="area"
 				loading="lazy"
 				fit="outside"
 			/>
-      <div v-else class="bg-neutral-300 h-full w-full" />
 		</div>
 	</div>
 </template>

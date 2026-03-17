@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { getExcursion } from '@/entities/excursion/api/excursion.api';
+import { OrderModal } from '@/features/modals';
+
+const { $modals } = useNuxtApp();
+
+const toggleModal = () => {
+	$modals.open(OrderModal);
+};
 
 const route = useRoute();
 
@@ -8,6 +15,27 @@ const dayjs = useDayjs();
 const excursionId = computed(() => route.params.id as string);
 
 const { data, error } = await getExcursion(excursionId);
+
+const orderInfoValues = computed(() => [
+	{
+		iconName: 'map-pin',
+		title: 'Город(-а)',
+		text: data.value?.cities?.join(', ') ?? '',
+		textOnTitle: false
+	},
+	{
+		iconName: 'clock-fading',
+		title: 'Длительность',
+		text: endWordDayCheck.value,
+		textOnTitle: false
+	},
+	{
+		iconName: 'calendar-days',
+		title: 'Даты предстоящих экскурсий',
+		text: dates.value,
+		textOnTitle: false
+	}
+]);
 
 const endWordDayCheck = computed(() => {
 	if (data.value?.duration) {
@@ -46,35 +74,22 @@ const donwloadFile = async () => {
 	link.click();
 	URL.revokeObjectURL(link.href);
 };
+
+useSeoMeta({
+	title: computed(() => data.value?.name),
+	description: () =>
+		`Экскурсия - ${data.value?.name}, Автобусный тур в ${data.value?.cities?.join(', ')} из Орла.`,
+	ogDescription: () =>
+		`Экскурсия - ${data.value?.name}, Автобусный тур в ${data.value?.cities?.join(', ')} из Орла.`
+});
 </script>
 <template>
 	<div class="w-full dark:bg-gray-800">
-		<Head>
-			<Title>
-				{{ `Экскурсия: ${data?.name}` }}
-			</Title>
-			<Meta
-				name="description"
-				:content="`${data?.name} &#8212; Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
-			/>
-			<Meta
-				name="og:title"
-				:content="`Эскурсионный тур в ${data?.cities?.join(', ')}, ${data?.name}`"
-			/>
-			<Meta
-				name="og:description"
-				:content="`${data?.name} &#8212; Экскурсионный тур в ${data?.cities?.join(', ')} из Орла.`"
-			/>
-			<Meta
-				name="keywords"
-				content="экскурсионные туры из Орла, экскурсии Орел, экскурсии на автобусе, недорогие экскурсии из Орла, экскурсии"
-			/>
-		</Head>
 		<div
 			class="max-w-container flex w-full flex-col gap-5 py-10 dark:bg-gray-800"
 		>
 			<div
-				class="w-fulll flex flex-col items-end justify-between gap-y-2 sm:flex-row sm:gap-y-0 mb-4"
+				class="w-fulll mb-4 flex flex-col items-end justify-between gap-y-2 sm:flex-row sm:gap-y-0"
 			>
 				<SharedFontsHeading
 					variant="display-lg"
@@ -119,55 +134,16 @@ const donwloadFile = async () => {
 
 				<div class="order-1 w-full md:order-2 md:w-96">
 					<div class="sticky top-20">
-						<div
-							class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 shadow-xl dark:bg-gray-700"
-						>
-							<SharedLayoutsIconWithInfo
-								icon-name="map-pin"
-								title="Город(-а)"
-								:text="data?.cities?.join(', ') ?? ''"
-							/>
-							<SharedLayoutsIconWithInfo
-								icon-name="clock-fading"
-								title="Длительность"
-								:text="endWordDayCheck"
-							/>
-
-							<SharedLayoutsIconWithInfo
-								title="Даты предстоящих экскурсий"
-								icon-name="calendar-days"
-								:text="dates"
-							/>
-
-							<div
-								v-if="data?.price"
-								class="flex flex-col items-center justify-center"
-							>
-								<div class="rounded-xl bg-primary-50 px-4 py-2">
-									<SharedFontsText variant="body-2xl" color="dark-only">
-										от {{ data?.price }}₽
-									</SharedFontsText>
-								</div>
-								<SharedFontsText
-									variant="caption-lg"
-									color="muted"
-								>
-									Минимально возможная цена за человека
-								</SharedFontsText>
-							</div>
-
-							<button
-								type="button"
-								class="min-h-14 w-full rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95"
-							>
-								Забронировать
-							</button>
-						</div>
+						<FeaturesOrderWithInfo
+							:price="data?.price"
+							:info-values="orderInfoValues"
+							@click-order="toggleModal"
+						/>
 					</div>
 				</div>
 			</div>
 
-			<hr class="m-y-3 w-full bg-neutral-200" />
+			<hr class="m-y-3 w-full bg-neutral-200" >
 
 			<EntitiesConditionsBlock
 				:included="data?.thePriceIncludes"
@@ -177,7 +153,7 @@ const donwloadFile = async () => {
 				title="Условия тура"
 			/>
 
-			<hr class="m-y-3 w-full bg-neutral-200" />
+			<hr class="m-y-3 w-full bg-neutral-200" >
 			<SharedFontsText variant="body-lg">
 				Компания организатор оставляет за собой право вносить некоторые
 				изменения в программу тура без уменьшения общего объема и качества

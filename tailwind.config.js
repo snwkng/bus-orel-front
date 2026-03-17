@@ -8,7 +8,7 @@ module.exports = {
 	theme: {
 		extend: {
 			gridTemplateAreas: {
-				'gallery-desktop': '"b a a c" "d a a e"',
+				'gallery-desktop': '"a a b c" "a a d e"',
 			},
 			height: {
 				header: '50px',
@@ -81,6 +81,11 @@ module.exports = {
 			},
 		}
 	},
+	safelist: [
+		{
+      pattern: /^grid-in-/,
+    },
+	],
 	plugins: [
 		(function ({ addUtilities, theme }) {
 			const areas = theme('gridTemplateAreas');

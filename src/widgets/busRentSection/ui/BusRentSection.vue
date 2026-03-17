@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import BusRentModal from '@/features/busRentModal/ui/BusRentModal.vue';
-const { $modals } = useNuxtApp()
+import { BusRentModal } from '@/features/modals';
+const { $modals } = useNuxtApp();
 
 const toggleModal = () => {
-  $modals.open(BusRentModal)
-}
+	$modals.open(BusRentModal);
+};
 </script>
 <template>
 	<div

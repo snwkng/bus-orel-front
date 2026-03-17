@@ -26,14 +26,16 @@ useHead({
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>
-		<component
-			:is="modal.component"
-			v-for="modal in $modals.activeModals.value"
-			:key="modal.id"
-			v-bind="modal.props"
-			@close="modal.props.onClose"
-			@confirm="modal.props.onConfirm"
-		/>
+		<ClientOnly>
+			<component
+				:is="modal.component"
+				v-for="modal in $modals.activeModals.value"
+				:key="modal.id"
+				v-bind="modal.props"
+				@close="modal.props.onClose"
+				@confirm="modal.props.onConfirm"
+			/>
+		</ClientOnly>
 		<SharedCookieTheCookie v-if="!cookie" />
 	</div>
 </template>

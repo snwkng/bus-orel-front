@@ -22,18 +22,18 @@ const {
 	visibilityThreshold: 0.5,
 	enableKeyboard: true,
 	onScrollEnd: () => {
-		console.log('Доскроллили до конца!');
+		// console.log('Доскроллили до конца!');
 	}
 });
 
 // (для отладки)
-watch(
-	visibleIndices,
-	(indices) => {
-		console.log('Видимые слайды:', indices);
-	},
-	{ deep: true }
-);
+// watch(
+// 	visibleIndices,
+// 	(indices) => {
+// 		console.log('Видимые слайды:', indices);
+// 	},
+// 	{ deep: true }
+// );
 </script>
 
 <template>
