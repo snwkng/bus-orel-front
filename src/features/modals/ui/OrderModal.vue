@@ -12,7 +12,7 @@ defineProps<IProps>();
 		<div>
       <h3 v-if="title">{{ title }}</h3>
 			<SharedFontsText variant="body-lg">
-				По вопросам бронирования туров и экскурсий звоните (пишите):
+				По вопросам бронирования туров и экскурсий звоните (или пишите):
 				<a
 					href="tel:+74862780958"
 					class="base-link cursor-pointer dark:text-secondary-300 dark:hover:text-secondary-500"
@@ -20,7 +20,7 @@ defineProps<IProps>();
 				>
 			</SharedFontsText>
 			<SharedFontsText variant="body-lg">
-				или напишите нам в группу в
+				Так же можете написать нам в 
 				<a
 					href="https://vk.com/gtorel"
 					rel="noopener noreferrer"
@@ -28,7 +28,7 @@ defineProps<IProps>();
 					target="_blank"
 					aria-label="vk"
 				>
-					VK
+					ВК
 				</a>
 			</SharedFontsText>
 		</div>

@@ -19,7 +19,7 @@ const converterCitiesListItem: Converter<ICitiesDto, SelectItem> = (dto) => ({
   name: dto.name
 });
 
-export const converterOneListItem: Converter<IExcursionDto, IExcursionModel> = (dto) => ({
+export const excursionConverterOneListItem: Converter<IExcursionDto, IExcursionModel> = (dto) => ({
   id: dto._id,
   name: dto.name,
   description: toArray(dto.description),
@@ -36,7 +36,7 @@ export const converterOneListItem: Converter<IExcursionDto, IExcursionModel> = (
 
 export const excursionConverterCardList = converterArray(converterCardItem);
 
-export const excursionConverterList = converterArray(converterOneListItem);
+export const excursionConverterList = converterArray(excursionConverterOneListItem);
 
 export const excursionConverterCitiesList = converterArray(converterCitiesListItem)
 

@@ -24,7 +24,8 @@ defineProps<IProps>();
 		<SharedFontsText
 			variant="body-lg"
 			weight="regular"
-			>{{ text }}</SharedFontsText
-		>
+			>
+			{{ text }}
+			</SharedFontsText>
 	</div>
 </template>

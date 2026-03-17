@@ -84,7 +84,15 @@ const converterHotelRoomItem: Converter<IHotelRoomDto, IHotelRoomModel> = (dto) 
 
 const converterHotelRoomList = converterArray(converterHotelRoomItem);
 
-const converterOneListItem: Converter<ITourDto, ITourModel> = (dto) => ({
+const converterCardItem: Converter<ITourDto, ICardModel> = (dto) => ({
+  id: dto._id,
+  title: dto.name,
+  subtitle: dto.address?.city ?? '',
+  price: dto.minPrice,
+  image: dto.images?.[0] ?? ''
+})
+
+export const tourConverterOneListItem: Converter<ITourDto, ITourModel> = (dto) => ({
   id: dto._id,
   name: dto.name,
   type: dto.type,
@@ -99,16 +107,8 @@ const converterOneListItem: Converter<ITourDto, ITourModel> = (dto) => ({
   tours: converterHotelRoomList(dto?.tours)
 });
 
-const converterCardItem: Converter<ITourDto, ICardModel> = (dto) => ({
-  id: dto._id,
-  title: dto.name,
-  subtitle: dto.address?.city ?? '',
-  price: dto.minPrice,
-  image: dto.images?.[0] ?? ''
-})
 
-
-export const tourConverterList = converterArray(converterOneListItem);
+export const tourConverterList = converterArray(tourConverterOneListItem);
 export const tourConverterCardList = converterArray(converterCardItem);
 
 export const tourConverterCitiesList = converterArray(converterCitiesListItem);

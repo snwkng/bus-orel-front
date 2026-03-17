@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getExcursion } from '@/entities/excursion/api/excursion.api';
 import { OrderModal } from '@/features/modals';
+import { donwloadFile } from '@/shared/lib/download/useLinkDownloadFile';
 
 const { $modals } = useNuxtApp();
 
@@ -67,14 +68,6 @@ if (error.value) {
 	});
 }
 
-const donwloadFile = async () => {
-	const response = await $fetch(`/api/s3/download/${data.value?.fileName[0]}`);
-	const link = document.createElement('a');
-	link.href = URL.createObjectURL(response as Blob);
-	link.click();
-	URL.revokeObjectURL(link.href);
-};
-
 useSeoMeta({
 	title: computed(() => data.value?.name),
 	description: () =>
@@ -89,7 +82,7 @@ useSeoMeta({
 			class="max-w-container flex w-full flex-col gap-5 py-10 dark:bg-gray-800"
 		>
 			<div
-				class="w-fulll mb-4 flex flex-col items-end justify-between gap-y-2 sm:flex-row sm:gap-y-0"
+				class="w-full mb-4 flex flex-col items-end justify-between gap-y-2 sm:flex-row sm:gap-y-0"
 			>
 				<SharedFontsHeading
 					variant="display-lg"
@@ -101,7 +94,7 @@ useSeoMeta({
 					v-if="data?.fileName?.length && data?.fileName[0]"
 					type="button"
 					class="min-h-14 w-full min-w-40 rounded-xl bg-secondary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-secondary-500/95 md:w-52"
-					@click.prevent="donwloadFile"
+					@click.prevent="donwloadFile(data?.fileName[0], data.name)"
 				>
 					Скачать прайс
 				</button>
