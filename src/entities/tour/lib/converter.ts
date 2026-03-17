@@ -104,7 +104,8 @@ export const tourConverterOneListItem: Converter<ITourDto, ITourModel> = (dto) =
   minPrice: dto.minPrice,
   seaType: dto.seaType,
   fileName: toArray(dto.documentName),
-  tours: converterHotelRoomList(dto?.tours)
+  tours: converterHotelRoomList(dto?.tours),
+  registryNumber: dto.registryNumber
 });
 
 

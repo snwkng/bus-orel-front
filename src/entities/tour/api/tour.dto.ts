@@ -16,5 +16,6 @@ export interface ITourDto {
   seaType: string;
   documentName: string[];
   tours?: IHotelRoomDto[];
-  published: boolean
+  published: boolean;
+  registryNumber: string;
 }

@@ -142,13 +142,29 @@ useSeoMeta({
 					<hr />
 				</div>
 
-				<div class="order-1 w-full md:order-2 md:w-96">
-					<div class="sticky top-20 flex flex-col gap-5">
-						<div
-							class="rounded-xl bg-neutral-100 px-5 py-3 font-semibold shadow-md dark:bg-gray-700 dark:text-neutral-200"
-						>
+				<div class="order-1 w-full md:order-2 md:w-96 min-h-20">
+					<SharedAlertsBaseAlert
+						v-if="data?.registryNumber"
+						icon-name="badge-check"
+						class="mb-5"
+					>
+						<SharedFontsText variant="body-md">
+							Объект прошёл классификацию. Реестровый номер
+							{{ data.registryNumber }}
+							<a
+								class="link"
+								href="https://tourism.fsa.gov.ru/ru/resorts/showcase/hotels"
+								target="_blank"
+								>в едином реестре объектов классификации в сфере туристской
+								индустрии</a
+							>
+						</SharedFontsText>
+					</SharedAlertsBaseAlert>
+
+					<div class="sticky z-10 top-20 flex flex-col gap-5">
+						<SharedAlertsBaseAlert icon-name="circle-alert">
 							<SharedFontsText variant="body-md">
-								УВАЖАЕМЫЕ ТУРИСТЫ ОБРАЩАЕМ ВАШЕ ВНИМАНИЕ, ВО МНОГИХ ОТЕЛЯХ
+								УВАЖАЕМЫЕ ТУРИСТЫ! ОБРАЩАЕМ ВАШЕ ВНИМАНИЕ, ВО МНОГИХ ОТЕЛЯХ
 								ДИНАМИЧЕСКОЕ ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ, ПОЖАЛУЙСТА,
 								УТОЧНИТЕ АКТУАЛЬНЫЙ ПРАЙС. НАДЕЕМСЯ НА ВАШЕ ПОНИМАНИЕ!
 								КОНСУЛЬТАЦИЯ И БРОНИРОВАНИЕ:
@@ -159,7 +175,8 @@ useSeoMeta({
 									+7(4862)78-09-58
 								</a>
 							</SharedFontsText>
-						</div>
+						</SharedAlertsBaseAlert>
+
 						<FeaturesOrderWithInfo
 							:price="data?.minPrice"
 							:info-values="orderInfoValues"
@@ -170,11 +187,11 @@ useSeoMeta({
 			</div>
 
 			<EntitiesConditionsBlock
-					v-if="data?.includedInThePrice?.length"
-					:included="data?.includedInThePrice?.map((x) => x?.serviceName)"
-					included-title="Включено"
-					title="В Стоимость входит"
-				/>
+				v-if="data?.includedInThePrice?.length"
+				:included="data?.includedInThePrice?.map((x) => x?.serviceName)"
+				included-title="Включено"
+				title="В Стоимость входит"
+			/>
 
 			<div
 				v-if="data?.tours?.length"

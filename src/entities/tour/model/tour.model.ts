@@ -16,4 +16,5 @@ export interface ITourModel {
   seaType: string;
   fileName: string[];
   tours?: IHotelRoomModel[];
+  registryNumber: string;
 }
