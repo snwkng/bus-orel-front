@@ -37,19 +37,25 @@ const orderInfoValues = computed(() => [
 	{
 		iconName: 'footprints',
 		title: 'Расстояние до моря',
-		text: `Примерно ${data.value?.additionalInfo?.beach?.distanceMinutes ?? ''} мин.`,
+		text: data.value?.additionalInfo?.beach?.distanceMinutes
+			? `Примерно ${data.value?.additionalInfo?.beach?.distanceMinutes} мин.`
+			: '',
 		textOnTitle: false
 	},
 	{
 		iconName: 'calendar-clock',
 		title: 'Заселение / Выселение',
-		text: `Заселение с ${data.value?.additionalInfo?.checkInOut.checkIn} / Выселение до ${data.value?.additionalInfo?.checkInOut.checkOut}`,
+		text:
+			data.value?.additionalInfo?.checkInOut.checkIn &&
+			data.value?.additionalInfo?.checkInOut.checkOut
+				? `Заселение с ${data.value?.additionalInfo?.checkInOut.checkIn} / Выселение до ${data.value?.additionalInfo?.checkInOut.checkOut}`
+				: '',
 		textOnTitle: false
 	},
 	{
 		iconName: 'utensils-crossed',
 		title: 'Питание',
-		text: `${data.value?.additionalInfo?.food?.included ?? ''} / ${data.value?.additionalInfo?.food?.type ?? ''}`,
+		text: data.value?.additionalInfo?.food?.type ?? '',
 		textOnTitle: false
 	}
 ]);

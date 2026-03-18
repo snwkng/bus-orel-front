@@ -16,7 +16,7 @@ withDefaults(defineProps<IProps>(), {
 </script>
 
 <template>
-	<div class="flex flex-col items-start gap-1">
+	<div v-if="text" class="flex flex-col items-start gap-1">
 		<div class="flex items-center gap-1">
 			<ClientOnly>
 				<div class="w-fit h-fit flex items-start">
@@ -28,16 +28,15 @@ withDefaults(defineProps<IProps>(), {
 				</div>
 			</ClientOnly>
 			<SharedFontsText
-				v-if="title"
 				:variant="textOnTitle ? 'body-lg' : 'body-sm'"
 				:color="textOnTitle ? 'default' : 'muted'"
 				:weight="textOnTitle ? 'semibold' : 'medium'"
 			>
-				{{ title }}
+				{{ title && !textOnTitle ? title : text }}
 			</SharedFontsText>
 		</div>
 		<SharedFontsText
-			v-if="text"
+			v-if="!textOnTitle"
 			variant="body-lg"
 			weight="semibold"
 		>
