@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
 	<div
-		class="grid h-[300px] w-full auto-cols-fr gap-2 overflow-hidden rounded-xl grid-areas-gallery-desktop md:h-[450px]"
+		class="grid h-[350px] w-full auto-cols-fr gap-2 overflow-hidden rounded-xl grid-areas-gallery-desktop md:h-[500px]"
 	>
 		<div
 			v-for="(area, idx) in AREAS"

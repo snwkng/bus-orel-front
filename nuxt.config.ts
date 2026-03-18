@@ -76,26 +76,26 @@ export default defineNuxtConfig({
 		middleware: 'shared/config/middleware',
 	},
 	components: [
-    { path: 'shared/ui', prefix: 'Shared' },
-    {
-      path: 'widgets',
-      pattern: '*/ui/*.vue',
-      pathPrefix: false,
-      prefix: 'Widgets',
-    },
-    {
-      path: 'entities',
-      pattern: '*/ui/*.vue',
-      pathPrefix: false,
-      prefix: 'Entities',
-    },
-    {
-      path: 'features',
-      pattern: '*/ui/*.vue',
-      pathPrefix: false,
-      prefix: 'Features',
-    }
-  ],
+		{ path: 'shared/ui', prefix: 'Shared' },
+		{
+			path: 'widgets',
+			pattern: '*/ui/*.vue',
+			pathPrefix: false,
+			prefix: 'Widgets',
+		},
+		{
+			path: 'entities',
+			pattern: '*/ui/*.vue',
+			pathPrefix: false,
+			prefix: 'Entities',
+		},
+		{
+			path: 'features',
+			pattern: '*/ui/*.vue',
+			pathPrefix: false,
+			prefix: 'Features',
+		}
+	],
 
 	imports: {
 		dirs: [
@@ -135,7 +135,8 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'nuxt-viewport',
 		'@nuxt/icon',
-		'@vueuse/nuxt'
+		'@vueuse/nuxt',
+		'nuxt-svgo-loader'
 	],
 
 	pinia: {
@@ -175,11 +176,6 @@ export default defineNuxtConfig({
 		},
 		config: {},
 		viewer: true
-	},
-
-	svgo: {
-		autoImportPath: 'app/assets/images/icons/',
-		componentPrefix: 'i'
 	},
 
 	icon: {

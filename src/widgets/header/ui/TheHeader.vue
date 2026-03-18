@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside } from '@vueuse/core';
 
-const target = useTemplateRef('target')
+const target = useTemplateRef('target');
 
-onClickOutside(target, () => close())
+onClickOutside(target, () => close());
 
 onMounted(() => {
 	window.addEventListener('scroll', handleScroll);
 	handleScroll();
 });
-
 
 onUnmounted(() => {
 	window.removeEventListener('scroll', handleScroll);
@@ -17,7 +16,7 @@ onUnmounted(() => {
 
 const { $viewport } = useNuxtApp();
 
-const isDesktop = computed(() => $viewport.isGreaterThan('md'))
+const isDesktop = computed(() => $viewport.isGreaterThan('md'));
 
 const route = useRoute();
 
@@ -80,7 +79,8 @@ const toggleMenu = () => {
 						class="btn-hover"
 						@click="toggleMenu"
 					>
-						<i-menu
+						<SvgoIcon
+							name="menu"
 							filled
 							:font-controlled="false"
 							class="h-6 w-6 fill-white"

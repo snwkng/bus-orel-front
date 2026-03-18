@@ -142,10 +142,11 @@ useSeoMeta({
 					<hr />
 				</div>
 
-				<div class="order-1 w-full md:order-2 md:w-96 min-h-20">
+				<div class="order-1 min-h-20 w-full md:order-2 md:w-96">
 					<SharedAlertsBaseAlert
 						v-if="data?.registryNumber"
 						icon-name="badge-check"
+						mode="success"
 						class="mb-5"
 					>
 						<SharedFontsText variant="body-md">
@@ -155,14 +156,20 @@ useSeoMeta({
 								class="link"
 								href="https://tourism.fsa.gov.ru/ru/resorts/showcase/hotels"
 								target="_blank"
-								>в едином реестре объектов классификации в сфере туристской
-								индустрии</a
+								rel="noopener noreferrer nofollow"
+								aria-label="в едином реестре объектов классификации в сфере туристской индустрии"
 							>
+								в едином реестре объектов классификации в сфере туристской
+								индустрии
+							</a>
 						</SharedFontsText>
 					</SharedAlertsBaseAlert>
 
-					<div class="sticky z-10 top-20 flex flex-col gap-5">
-						<SharedAlertsBaseAlert icon-name="circle-alert">
+					<div class="sticky top-20 z-10 flex flex-col gap-5">
+						<SharedAlertsBaseAlert
+							icon-name="circle-alert"
+							mode="warning"
+						>
 							<SharedFontsText variant="body-md">
 								УВАЖАЕМЫЕ ТУРИСТЫ! ОБРАЩАЕМ ВАШЕ ВНИМАНИЕ, ВО МНОГИХ ОТЕЛЯХ
 								ДИНАМИЧЕСКОЕ ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ, ПОЖАЛУЙСТА,
@@ -170,7 +177,7 @@ useSeoMeta({
 								КОНСУЛЬТАЦИЯ И БРОНИРОВАНИЕ:
 								<a
 									href="tel:+74862780958"
-									class="base-link cursor-pointer text-primary-700 hover:text-primary-900 dark:text-primary-300 dark:hover:text-primary-600"
+									class="base-link"
 								>
 									+7(4862)78-09-58
 								</a>
