@@ -8,7 +8,7 @@ export interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
 	width: '32px',
 	height: '32px',
-	color: 'stroke-deep-orange'
+	color: 'stroke-primary-500'
 });
 </script>
 <template>

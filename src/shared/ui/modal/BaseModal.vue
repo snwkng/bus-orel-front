@@ -1,154 +1,121 @@
 <script setup lang="ts">
-interface IProps {
-	title?: string;
-}
+import { useScrollLock } from '@vueuse/core';
 
-withDefaults(defineProps<IProps>(), {
-	title: ''
+const emit = defineEmits(['close']);
+
+const isLocked = useScrollLock(document.body);
+
+// Локальное состояние для запуска анимации
+const isMounted = ref(false);
+
+const handleKeyDown = (e: KeyboardEvent) => {
+	if (e.key === 'Escape') handleClose();
+};
+
+onMounted(() => {
+	isMounted.value = true;
+	isLocked.value = true;
+	window.addEventListener('keydown', handleKeyDown);
 });
-
-const model = defineModel<boolean>({ default: false });
-
-const dialogRef = ref<HTMLDialogElement | null>(null);
-const modalRef = ref<HTMLElement | null>(null);
-
-const closeModal = () => {
-	if (dialogRef.value) {
-		dialogRef.value.close();
-		model.value = false;
-	}
-};
-
-const handleBackdropClick = (e: MouseEvent) => {
-	if (e.target === dialogRef.value) {
-		closeModal();
-	}
-};
-
-watch(
-	() => model.value,
-	async (isOpen) => {
-		if (import.meta.client) {
-			if (isOpen) {
-				document.body.classList.add('lock');
-			} else {
-				document.body.classList.remove('lock');
-			}
-		}
-
-		await nextTick();
-
-		if (isOpen && dialogRef.value) {
-			try {
-				if (!dialogRef.value.open) {
-					dialogRef.value.showModal();
-				}
-				focusFirstElement();
-			} catch (error) {
-				console.warn('Ошибка при открытии диалога:', error);
-			}
-		}
-	},
-	{ immediate: true }
-);
-
-const focusFirstElement = () => {
-	if (modalRef.value) {
-		const focusableElements = modalRef.value.querySelectorAll(
-			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-		);
-
-		if (focusableElements.length > 0) {
-			(focusableElements[0] as HTMLElement).focus();
-		}
-	}
-};
 
 onUnmounted(() => {
-	document.body.classList.remove('lock');
+	isLocked.value = false;
+	window.removeEventListener('keydown', handleKeyDown);
 });
+
+// Метод для плавного закрытия
+const handleClose = () => {
+	isMounted.value = false;
+	// Ждем окончания анимации (например, 300ms) перед тем как удалить из стора
+	setTimeout(() => emit('close'), 300);
+};
 </script>
+
 <template>
 	<ClientOnly>
 		<Teleport to="body">
-			<dialog
-				ref="dialogRef"
-				class="mx-auto my-8 w-full max-w-md border-0 bg-transparent p-0 backdrop:bg-black/50"
-				@click="handleBackdropClick"
-				@cancel="closeModal"
-			>
-				<div
-					ref="modalRef"
-					class="relative flex max-h-[90vh] w-full flex-col rounded-lg bg-white shadow-2xl dark:bg-gray-800 dark:text-white"
+			<div class="fixed inset-0 z-[1000] flex items-center justify-center">
+				<Transition
+					name="fade"
+					appear
 				>
-					<!-- Header -->
-					<header class="flex items-center justify-between border-b p-4">
-						<h2
-							v-if="title"
-							id="modal-title"
-							class="text-xl font-semibold"
+					<div
+						v-if="isMounted"
+						class="absolute inset-0 bg-black/40 backdrop-blur-sm"
+						@click="handleClose"
+					/>
+				</Transition>
+				<Transition
+					name="slide-fade"
+					appear
+				>
+					<!-- modal-container -->
+					<div
+						v-if="isMounted"
+						class="fixed bottom-0 left-0 right-0 z-[1001] p-0 md:relative md:bottom-auto md:left-auto md:right-auto md:w-fit md:max-w-[500px] md:p-5"
+					>
+						<!-- modal-content -->
+						<div
+							class="relative h-fit max-h-[30vh] md:rounded-xl rounded-t-xl bg-white dark:bg-gray-700 p-6"
 						>
-							{{ title }}
-						</h2>
-						<button
-							type="button"
-							class="rounded-full p-1 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:text-gray-300 dark:hover:text-gray-100"
-							aria-label="Закрыть модальное окно"
-							@click="closeModal"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="h-6 w-6"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
+							<button
+								class="absolute right-2 top-2 flex cursor-pointer items-center justify-center rounded-full p-2 transition-all hover:bg-neutral-200"
+								aria-label="Close"
+								@click="handleClose"
 							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M6 18L18 6M6 6l12 12"
+								<Icon
+									name="lucide:x"
+									size="24"
 								/>
-							</svg>
-						</button>
-					</header>
-
-					<!-- Main Content -->
-					<main
-						id="modal-description"
-						class="flex-grow overflow-y-auto p-4"
-					>
-						<slot />
-					</main>
-
-					<!-- Footer -->
-					<footer
-						v-if="$slots.footer"
-						class="border-t p-4"
-					>
-						<slot name="footer" />
-					</footer>
-				</div>
-			</dialog>
+							</button>
+							<slot :close="handleClose" />
+						</div>
+					</div>
+				</Transition>
+			</div>
 		</Teleport>
 	</ClientOnly>
 </template>
+
 <style scoped>
-dialog {
-	animation: fadeIn 0.2s ease-out;
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+	transform: translateY(100%); /* На мобилках выезжает из-за края экрана */
+	opacity: 1; /* Оставляем непрозрачным для эффекта шторки */
 }
 
-dialog::backdrop {
-	background-color: rgba(0, 0, 0, 0.5);
-	animation: fadeIn 0.2s ease-out;
-}
-
-@keyframes fadeIn {
-	from {
+@media (min-width: 768px) {
+	.slide-fade-enter-from {
+		transform: translateY(40px);
 		opacity: 0;
 	}
-	to {
-		opacity: 1;
+	.slide-fade-leave-to {
+		transform: translateY(60px);
+		opacity: 0;
 	}
+}
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+
+/* Анимация Контента (Всплытие снизу + Fade) */
+.slide-fade-enter-active {
+	transition: all 0.3s ease-out;
+}
+.slide-fade-leave-active {
+	transition: all 0.25s ease-in;
+}
+.slide-fade-enter-from {
+	transform: translateY(40px);
+	opacity: 0;
+}
+.slide-fade-leave-to {
+	transform: translateY(60px);
+	opacity: 0;
 }
 </style>

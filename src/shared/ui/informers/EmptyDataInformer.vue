@@ -11,7 +11,7 @@ defineProps<IProps>();
 			{{ text || 'Нет данных' }}, уточните информацию по телефону указанному в
 			<NuxtLink
 				:to="{ hash: '#contacts' }"
-				class="base-link dark:text-ligth-blue dark:hover:text-deep-blue"
+				class="base-link"
 			>
 				контактах
 			</NuxtLink>
@@ -21,12 +21,11 @@ defineProps<IProps>();
 			Или напишите нам в сообществе в
 			<a
 				href="https://vk.com/gtorel"
-				rel="noopener noreferrer"
-				class="base-link cursor-pointer dark:text-ligth-blue dark:hover:text-deep-blue"
+				class="base-link cursor-pointer"
 				target="_blank"
 				aria-label="vk"
 			>
-				VK
+				ВК
 			</a>
 		</span>
 	</div>

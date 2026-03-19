@@ -1,7 +1,6 @@
 declare type SelectItem = {
-	name?: string;
-	_id?: string | number;
-	id?: string | number;
+	id: number;
+	name: string;
 };
 
 declare type ApiResponse<T> = {

@@ -6,7 +6,7 @@ const toggleTheme = () => {
 </script>
 <template>
 	<div class="btn-hover flex flex-row items-center justify-center">
-		<SharedUiIconsNightIcon
+		<SharedIconsNightIcon
 			v-show="colorMode?.preference === 'light'"
 			width="24"
 			height="24"
@@ -14,7 +14,7 @@ const toggleTheme = () => {
 			class="cursor-pointer"
 			@click="toggleTheme"
 		/>
-		<SharedUiIconsSunIcon
+		<SharedIconsSunIcon
 			v-show="colorMode?.preference === 'dark'"
 			width="24"
 			height="24"
