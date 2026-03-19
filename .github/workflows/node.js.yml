@@ -16,8 +16,6 @@ jobs:
       BASE_URL: ${{secrets.BASE_URL}}
     steps:
       - uses: actions/checkout@v4
-        with:
-          lfs: true
       - name: Check file before build
         run: |
           ls -l public/images/mercedessprinter.webp
