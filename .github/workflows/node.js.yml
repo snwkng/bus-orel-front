@@ -39,5 +39,3 @@ jobs:
 
       - name: Restart PM2
         run: pm2 restart front --update-env
-      - name: Reload nginx
-        run: sudo nginx -t && sudo systemctl reload nginx
