@@ -7,31 +7,44 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-
     strategy:
       matrix:
         node-version: [24.11.0]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     env:
       BASE_URL: ${{secrets.BASE_URL}}
     steps:
+      - name: Configure Git for binary files
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Полная история
+
       - name: Check file before build
         run: |
-          ls -l public/images/mercedessprinter.webp
+          echo "=== File info ==="
+          ls -lh public/images/mercedessprinter.webp
           file public/images/mercedessprinter.webp
+          echo "=== SHA256 ==="
+          sha256sum public/images/mercedessprinter.webp
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Create .env file
         run: |
           touch .env
           echo "BASE_URL=${{secrets.BASE_URL}}" >> .env
+
       - name: Clean and Build
         run: |
           rm -rf .nuxt .output
           npm ci
           npm run build
+
       - name: Restart PM2
         run: pm2 restart front --update-env
