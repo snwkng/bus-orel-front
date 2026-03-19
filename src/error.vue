@@ -14,8 +14,8 @@ useSeoMeta({
 	<div
 		class="flex h-[100vh] w-full flex-col items-center justify-center gap-4 md:gap-6"
 	>
-		<img v-if="error?.status === 404" src="/404.png" alt="404 - error" class="object-contain w-full h-[500px]" />
-		<h1 v-if="error?.status !== 404" class="text-3xl font-bold text-slate-600 md:text-7xl lg:text-9xl">
+		<img v-if="error?.status === 404" src="/images/404.png" alt="404 - error" class="object-contain w-full h-[500px]" />
+		<h1 v-else class="text-3xl font-bold text-slate-600 md:text-7xl lg:text-9xl">
 			{{ error?.status }}
 		</h1>
 		<p class="text-3xl md:text-4xl lg:text-6xl">
