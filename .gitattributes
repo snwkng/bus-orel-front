@@ -1,7 +1,21 @@
 * text eol=crlf
+# === IMAGES: force binary mode ===
 *.png binary
 *.jpg binary
 *.jpeg binary
 *.webp binary
 *.gif binary
 *.svg binary
+*.ico binary
+*.avif binary
+
+# === FONTS ===
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# === OTHER BINARY ===
+*.lock binary
+*.pdf binary
+*.zip binary
