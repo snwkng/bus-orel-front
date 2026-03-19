@@ -20,8 +20,7 @@ defineProps<{
 				v-if="images[idx]"
 				class="h-full w-full object-cover object-center"
 				:src="`/image/${images[idx]}`"
-				:alt="area"
-				:title="area"
+				:alt="`Изображение ${idx + 1}`"
 				loading="lazy"
 				fit="outside"
 			/>

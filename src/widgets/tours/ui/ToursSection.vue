@@ -16,7 +16,7 @@ const route = useRoute();
 
 const routeRef = computed(() => route.query);
 
-const { data, pending } = getToursCardList(routeRef);
+const { data } = getToursCardList(routeRef);
 
 
 const componentName = computed(() =>

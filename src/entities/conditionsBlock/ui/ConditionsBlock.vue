@@ -21,7 +21,7 @@ withDefaults(defineProps<IProps>(), {
 		<SharedFontsHeading
 			v-if="title"
 			class="mb-4"
-			variant="heading-xl"
+			variant="heading-md"
 		>
 			{{ title }}
 		</SharedFontsHeading>
@@ -30,7 +30,7 @@ withDefaults(defineProps<IProps>(), {
 				<SharedFontsHeading
 					v-if="includedTitle"
 					class="mb-4"
-					variant="heading-lg"
+					variant="heading-sm"
 				>
 					{{ includedTitle }}
 				</SharedFontsHeading>
@@ -43,7 +43,7 @@ withDefaults(defineProps<IProps>(), {
 						icon-name="check"
 						icon-color="text-accent-success"
 						text-on-title
-						:title="include"
+						:text="include"
 					/>
 				</div>
 			</div>
@@ -64,7 +64,7 @@ withDefaults(defineProps<IProps>(), {
 						icon-name="x"
 						icon-color="text-accent-error"
 						text-on-title
-						:title="exclude"
+						:text="exclude"
 					/>
 				</div>
 			</div>

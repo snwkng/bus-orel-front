@@ -15,7 +15,7 @@ defineProps<IProps>();
 				По вопросам бронирования туров и экскурсий звоните (или пишите):
 				<a
 					href="tel:+74862780958"
-					class="base-link cursor-pointer dark:text-secondary-300 dark:hover:text-secondary-500"
+					class="base-link cursor-pointer"
 					>+7(4862)78-09-58</a
 				>
 			</SharedFontsText>
@@ -23,8 +23,7 @@ defineProps<IProps>();
 				Так же можете написать нам в 
 				<a
 					href="https://vk.com/gtorel"
-					rel="noopener noreferrer"
-					class="base-link cursor-pointer dark:text-secondary-300 dark:hover:text-secondary-500"
+					class="base-link cursor-pointer"
 					target="_blank"
 					aria-label="vk"
 				>

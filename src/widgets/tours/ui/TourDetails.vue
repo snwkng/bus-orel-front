@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { getTour } from '@/entities/tour/api/tour.api';
-import { donwloadFile } from '@/shared/lib/download/useLinkDownloadFile';
 import { OrderModal } from '@/features/modals';
 
 const { $modals } = useNuxtApp();
@@ -31,6 +30,12 @@ const orderInfoValues = computed(() => [
 	{
 		iconName: 'waves',
 		title: 'Море',
+		text: data.value?.seaType ?? '',
+		textOnTitle: false
+	},
+	{
+		iconName: 'umbrella',
+		title: 'Тип пляжа',
 		text: data.value?.additionalInfo?.beach?.type ?? '',
 		textOnTitle: false
 	},
@@ -44,7 +49,7 @@ const orderInfoValues = computed(() => [
 	},
 	{
 		iconName: 'calendar-clock',
-		title: 'Заселение / Выселение',
+		title: 'Заселение / Выселение ',
 		text:
 			data.value?.additionalInfo?.checkInOut.checkIn &&
 			data.value?.additionalInfo?.checkInOut.checkOut
@@ -81,124 +86,126 @@ useSeoMeta({
 });
 </script>
 <template>
-	<div class="w-full dark:bg-gray-800">
+	<div class="grid w-full grid-cols-1 gap-4 bg-white pb-4 dark:bg-gray-800">
+		<!-- HEADER -->
 		<div
-			class="max-w-container flex w-full flex-col gap-5 py-10 dark:bg-gray-800"
+			class="max-w-container relative top-[-36px] z-10 order-2 mb-[-36px] rounded-t-3xl bg-inherit pt-4 md:static md:order-1 md:mb-0"
 		>
-			<div
-				class="w-fulll mb-4 flex flex-col items-end justify-between gap-y-2 sm:flex-row sm:gap-y-0"
-			>
-				<SharedFontsHeading
-					variant="display-lg"
-					weight="bold"
-				>
-					{{ tourTitle }}
-				</SharedFontsHeading>
-				<button
-					v-if="data?.fileName?.length && data?.fileName[0]"
-					type="button"
-					class="min-h-14 w-full min-w-40 rounded-xl bg-secondary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-secondary-500/95 md:w-52"
-					@click.prevent="donwloadFile(data?.fileName[0], data?.name)"
-				>
-					Скачать прайс
-				</button>
+			<FeaturesTitleWithDownloadFile
+				:title="tourTitle"
+				:file-name="data?.name ?? ''"
+				:filenames="data?.fileName"
+			/>
+		</div>
+
+		<!-- IMAGES -->
+		<ClientOnly>
+			<template #fallback>
+				<div class="md:max-w-container order-1 md:order-2">
+					<div class="h-[350px] md:h-[500px] md:rounded-xl bg-neutral-300"  />
+				</div>
+			</template>
+			<div class="md:max-w-container order-1 md:order-2">
+				<FeaturesGalleryOrSlider :images="data?.images" />
 			</div>
-			<SharedGalleryBaseGallery :images="data?.images ?? []" />
+		</ClientOnly>
 
-			<!-- CONTENT -->
-			<div class="grid gap-6 md:grid-flow-col">
-				<div class="order-2 flex flex-col gap-4 md:order-1">
-					<SharedFontsHeading
-						class="mb-2"
-						variant="heading-md"
-					>
-						Описание
-					</SharedFontsHeading>
-					<SharedFontsText
-						variant="body-lg"
-						weight="regular"
-					>
-						{{ data?.description }}
-					</SharedFontsText>
+		<!-- CONTENT -->
+		<div class="max-w-container order-3 grid gap-6 md:grid-flow-col">
+			<div class="order-2 flex flex-col gap-4 md:order-1">
+				<SharedFontsHeading
+					class="mb-2"
+					variant="heading-md"
+				>
+					Описание
+				</SharedFontsHeading>
+				<SharedFontsText
+					variant="body-lg"
+					weight="regular"
+				>
+					{{ data?.description }}
+				</SharedFontsText>
 
-					<hr />
+				<hr />
 
-					<SharedFontsHeading
-						class="mb-2"
-						variant="heading-md"
+				<SharedFontsHeading
+					class="mb-2"
+					variant="heading-md"
+				>
+					Размещение
+				</SharedFontsHeading>
+				<div v-if="hasRoomsinfo">
+					<div
+						v-for="(room, roomIndex) in data?.tours"
+						:key="roomIndex"
 					>
-						Размещение
-					</SharedFontsHeading>
-					<div v-if="hasRoomsinfo">
-						<div
-							v-for="(room, roomIndex) in data?.tours"
-							:key="roomIndex"
-						>
-							<div class="py-2 dark:text-slate-200">
-								<strong> {{ room?.roomName }}: </strong>
-								{{ room?.description }}
-							</div>
+						<div class="py-2 dark:text-slate-200">
+							<strong> {{ room?.roomName }}: </strong>
+							{{ room?.description }}
 						</div>
 					</div>
-					<LazySharedInformersEmptyDataInformer
-						v-else
-						text="Данных о номерах пока нет"
-					/>
-
-					<hr />
 				</div>
+				<LazySharedInformersEmptyDataInformer
+					v-else
+					text="Данных о номерах пока нет"
+				/>
 
-				<div class="order-1 min-h-20 w-full md:order-2 md:w-96">
+				<hr />
+			</div>
+
+			<div class="order-1 min-h-20 w-full md:order-2 md:w-96">
+				<SharedAlertsBaseAlert
+					v-if="data?.registryNumber"
+					icon-name="badge-check"
+					mode="success"
+					class="mb-5"
+				>
+					<SharedFontsText variant="body-md">
+						Объект прошёл классификацию. Реестровый номер
+						{{ data.registryNumber }}
+						<a
+							class="base-link"
+							href="https://tourism.fsa.gov.ru/ru/resorts/showcase/hotels"
+							target="_blank"
+							rel="noopener noreferrer nofollow"
+							aria-label="в едином реестре объектов классификации в сфере туристской индустрии"
+						>
+							в едином реестре объектов классификации в сфере туристской
+							индустрии
+						</a>
+					</SharedFontsText>
+				</SharedAlertsBaseAlert>
+
+				<div class="sticky top-20 z-10 flex flex-col gap-5">
 					<SharedAlertsBaseAlert
-						v-if="data?.registryNumber"
-						icon-name="badge-check"
-						mode="success"
-						class="mb-5"
+						icon-name="circle-alert"
+						mode="warning"
 					>
 						<SharedFontsText variant="body-md">
-							Объект прошёл классификацию. Реестровый номер
-							{{ data.registryNumber }}
+							УВАЖАЕМЫЕ ТУРИСТЫ! ОБРАЩАЕМ ВАШЕ ВНИМАНИЕ, ВО МНОГИХ ОТЕЛЯХ
+							ДИНАМИЧЕСКОЕ ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ, ПОЖАЛУЙСТА,
+							УТОЧНИТЕ АКТУАЛЬНЫЙ ПРАЙС. НАДЕЕМСЯ НА ВАШЕ ПОНИМАНИЕ!
+							КОНСУЛЬТАЦИЯ И БРОНИРОВАНИЕ:
 							<a
-								class="link"
-								href="https://tourism.fsa.gov.ru/ru/resorts/showcase/hotels"
-								target="_blank"
-								rel="noopener noreferrer nofollow"
-								aria-label="в едином реестре объектов классификации в сфере туристской индустрии"
+								href="tel:+74862780958"
+								class="base-link"
 							>
-								в едином реестре объектов классификации в сфере туристской
-								индустрии
+								+7(4862)78-09-58
 							</a>
 						</SharedFontsText>
 					</SharedAlertsBaseAlert>
 
-					<div class="sticky top-20 z-10 flex flex-col gap-5">
-						<SharedAlertsBaseAlert
-							icon-name="circle-alert"
-							mode="warning"
-						>
-							<SharedFontsText variant="body-md">
-								УВАЖАЕМЫЕ ТУРИСТЫ! ОБРАЩАЕМ ВАШЕ ВНИМАНИЕ, ВО МНОГИХ ОТЕЛЯХ
-								ДИНАМИЧЕСКОЕ ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ, ПОЖАЛУЙСТА,
-								УТОЧНИТЕ АКТУАЛЬНЫЙ ПРАЙС. НАДЕЕМСЯ НА ВАШЕ ПОНИМАНИЕ!
-								КОНСУЛЬТАЦИЯ И БРОНИРОВАНИЕ:
-								<a
-									href="tel:+74862780958"
-									class="base-link"
-								>
-									+7(4862)78-09-58
-								</a>
-							</SharedFontsText>
-						</SharedAlertsBaseAlert>
-
-						<FeaturesOrderWithInfo
-							:price="data?.minPrice"
-							:info-values="orderInfoValues"
-							@click-order="toggleModal"
-						/>
-					</div>
+					<FeaturesOrderWithInfo
+						:price="data?.minPrice"
+						:info-values="orderInfoValues"
+						@click-order="toggleModal"
+					/>
 				</div>
 			</div>
+		</div>
 
+		<!-- ADDITIONAL -->
+		<div class="max-w-container order-4">
 			<EntitiesConditionsBlock
 				v-if="data?.includedInThePrice?.length"
 				:included="data?.includedInThePrice?.map((x) => x?.serviceName)"

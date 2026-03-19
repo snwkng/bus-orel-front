@@ -52,7 +52,7 @@ const handleClose = () => {
 					<!-- modal-container -->
 					<div
 						v-if="isMounted"
-						class="fixed bottom-0 left-0 right-0 z-[1001] p-0 sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:w-fit sm:max-w-[500px] sm:p-5"
+						class="fixed bottom-0 left-0 right-0 z-[1001] p-0 md:relative md:bottom-auto md:left-auto md:right-auto md:w-fit md:max-w-[500px] md:p-5"
 					>
 						<!-- modal-content -->
 						<div

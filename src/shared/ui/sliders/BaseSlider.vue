@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 interface IProps {
 	showIndicators?: boolean;
+	fullWidth?: boolean;
 }
 
 withDefaults(defineProps<IProps>(), {
-	showIndicators: false
+	showIndicators: false,
+	fullWidth: false
 });
 
 const sliderRef = useTemplateRef('slider');
@@ -39,7 +41,7 @@ const {
 <template>
 	<div class="relative">
 		<slot name="controls">
-			<div class="hidden gap-3 absolute right-0 top-[-60px] md:flex">
+			<div class="absolute right-0 top-[-60px] hidden gap-3 md:flex">
 				<button
 					ref="prev"
 					type="button"
@@ -74,7 +76,7 @@ const {
 
 		<div
 			ref="slider"
-			class="slider-wrapper"
+			:class="['slider-wrapper', { 'slider-wrapper-full': fullWidth }]"
 			aria-label="Горизонтальный слайдер"
 		>
 			<slot />
@@ -97,7 +99,6 @@ const {
 </template>
 
 <style lang="scss" scoped>
-
 .slider-wrapper {
 	display: grid;
 	grid-auto-flow: column;
@@ -107,18 +108,25 @@ const {
 	scroll-behavior: smooth;
 	user-select: none;
 
-	grid-auto-columns: calc((100% - 24px) / 2);
+	&:not(.slider-wrapper-full) {
+		grid-auto-columns: calc((100% - 24px) / 2);
 
-	@media (min-width: 1024px) {
-		grid-auto-columns: calc((100% - 24px * 2) / 3);
+		@media (min-width: 1024px) {
+			grid-auto-columns: calc((100% - 24px * 2) / 3);
+		}
+
+		@media (min-width: 1200px) {
+			grid-auto-columns: calc((100% - 24px * 4) / 5);
+		}
+
+		@media (min-width: 1600px) {
+			grid-auto-columns: calc((100% - 24px * 5) / 6);
+		}
 	}
 
-	@media (min-width: 1200px) {
-		grid-auto-columns: calc((100% - 24px * 4) / 5);
-	}
-
-	@media (min-width: 1600px) {
-		grid-auto-columns: calc((100% - 24px * 5) / 6);
+	&.slider-wrapper-full {
+		grid-auto-columns: 100%;
+		gap: 0;
 	}
 
 	// Скрываем скроллбар

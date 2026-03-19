@@ -33,7 +33,7 @@ const formattedDate = computed(() =>
 		>
 			<div class="relative mb-1">
 				<NuxtImg
-					class="h-[250px] w-full rounded-3xl object-cover brightness-100"
+					class="h-[250px] w-full rounded-3xl object-cover brightness-100 bg-neutral-300"
 					:src="`/image/${imageLink}`"
 					:alt="title"
 					:title="title"

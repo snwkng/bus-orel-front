@@ -1,9 +1,9 @@
-import type { IDatesAndPrices } from '../model/types';
+import type { IDatesAndPricesDto } from './datesAndPrices.dto';
 
 export interface IHotelRoomDto {
   type: string;
   roomName: string;
   beds: number;
   description: string;
-  availability: IDatesAndPrices[];
+  availability: IDatesAndPricesDto[];
 }

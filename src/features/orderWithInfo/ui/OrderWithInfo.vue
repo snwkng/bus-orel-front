@@ -20,7 +20,7 @@ const emit = defineEmits<(event: 'clickOrder') => void>();
 
 <template>
 	<div
-		class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 shadow-xl dark:bg-gray-700"
+		class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 md:shadow-xl dark:bg-gray-700"
 	>
 		<SharedLayoutsIconWithInfo
       v-for="(value, idx) in infoValues"

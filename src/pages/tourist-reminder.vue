@@ -64,7 +64,23 @@ const accordionItems = ref([
 <template>
 	<div class="dark:bg-gray-800 dark:text-slate-200">
 		<section class="max-w-container m-auto flex w-full flex-col gap-5 py-10">
-			<SharedAccordionsTheAccordion :items="accordionItems" />
+			<div
+				v-for="(value, idx) in accordionItems"
+				:key="idx"
+			>
+				<SharedFontsHeading
+					class="mb-2"
+					variant="heading-md"
+				>
+					{{ value.title }}
+				</SharedFontsHeading>
+				<SharedFontsText
+					variant="body-lg"
+					weight="regular"
+				>
+					{{ value.content }}
+				</SharedFontsText>
+			</div>
 		</section>
 	</div>
 </template>

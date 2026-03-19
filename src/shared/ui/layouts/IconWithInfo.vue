@@ -19,6 +19,9 @@ withDefaults(defineProps<IProps>(), {
 	<div v-if="text" class="flex flex-col items-start gap-1">
 		<div class="flex items-center gap-1">
 			<ClientOnly>
+				<template #fallback>
+					<div class="flex items-start w-6 h-6 bg-neutral-300 rounded-full" />
+				</template>
 				<div class="w-fit h-fit flex items-start">
 					<Icon
 						:name="`lucide:${iconName}`"

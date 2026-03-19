@@ -68,9 +68,7 @@ export default defineNuxtConfig({
 	srcDir: 'src/',
 
 	dir: {
-		// app: 'src/app',
 		layouts: 'app/layouts',
-		// pages: 'src/pages',
 		assets: 'shared/assets',
 		plugins: 'shared/lib/plugins',
 		middleware: 'shared/config/middleware',
@@ -149,21 +147,21 @@ export default defineNuxtConfig({
 
 	viewport: {
 		breakpoints: {
-			xs: 320,
-			sm: 640,
-			md: 768,
-			lg: 1024,
-			xl: 1280,
-			'2xl': 1536
-		},
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      '2xl': 1536,
+    },
 
-		defaultBreakpoints: {
-			desktop: 'lg',
-			mobile: 'xs',
-			tablet: 'md'
-		},
+    defaultBreakpoints: {
+      desktop: 'lg',
+      mobile: 'xs',
+      tablet: 'md',
+    },
 
-		fallbackBreakpoint: 'lg'
+    fallbackBreakpoint: 'lg'
 	},
 
 	css: ['~/app/assets/styles/tailwind.css'],

@@ -38,9 +38,9 @@ const tag = computed(() => {
 const classes = computed(() => {
 	const variantClasses: Record<string, string> = {
 		// Display
-		'display-xl': 'text-5xl leading-tight tracking-tight',
-		'display-lg': 'text-4xl leading-tight tracking-tight',
-		'display-md': 'text-3xl leading-snug',
+		'display-xl': 'text-4xl leading-tight tracking-tight',
+		'display-lg': 'text-3xl leading-tight tracking-tight',
+		'display-md': 'text-2xl leading-snug',
 
 		// Heading
 		'heading-xl': 'text-2xl leading-snug',
