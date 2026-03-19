@@ -16,6 +16,8 @@ jobs:
       BASE_URL: ${{secrets.BASE_URL}}
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
       - name: Check file before build
         run: |
           ls -l public/images/mercedessprinter.webp
@@ -30,7 +32,7 @@ jobs:
           echo "BASE_URL=${{secrets.BASE_URL}}" >> .env
       - name: Clean and Build
         run: |
-          rm -rf .nuxt .output # Полная очистка перед билдом
+          rm -rf .nuxt .output
           npm ci
           npm run build
       - name: Restart PM2

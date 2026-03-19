@@ -62,7 +62,8 @@ export default defineNuxtConfig({
 	},
 
 	routeRules: {
-		'/api/**': { proxy: `${import.meta.env.BASE_URL}/api/**` }
+		'/api/**': { proxy: `${import.meta.env.BASE_URL}/api/**` },
+		'/images/**': { static: true }
 	},
 
 	srcDir: 'src/',
@@ -147,21 +148,21 @@ export default defineNuxtConfig({
 
 	viewport: {
 		breakpoints: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      '2xl': 1536,
-    },
+			xs: 320,
+			sm: 640,
+			md: 768,
+			lg: 1024,
+			xl: 1280,
+			'2xl': 1536,
+		},
 
-    defaultBreakpoints: {
-      desktop: 'lg',
-      mobile: 'xs',
-      tablet: 'md',
-    },
+		defaultBreakpoints: {
+			desktop: 'lg',
+			mobile: 'xs',
+			tablet: 'md',
+		},
 
-    fallbackBreakpoint: 'lg'
+		fallbackBreakpoint: 'lg'
 	},
 
 	css: ['~/app/assets/styles/tailwind.css'],
