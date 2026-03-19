@@ -15,7 +15,7 @@ module.exports = {
 				'main-screen': '500px'
 			},
 			backgroundImage: {
-				sprinter: "url('/mercedessprinter.webp')"
+				sprinter: "url('/images/mercedessprinter.webp')"
 			},
 			rotate: {
 				270: '270deg'
