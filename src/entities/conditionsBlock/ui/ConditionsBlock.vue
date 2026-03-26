@@ -20,7 +20,7 @@ withDefaults(defineProps<IProps>(), {
 	<div>
 		<SharedFontsHeading
 			v-if="title"
-			class="mb-4"
+			class="mb-2"
 			variant="heading-md"
 		>
 			{{ title }}
@@ -29,7 +29,7 @@ withDefaults(defineProps<IProps>(), {
 			<div v-if="included.length">
 				<SharedFontsHeading
 					v-if="includedTitle"
-					class="mb-4"
+					class="mb-2"
 					variant="heading-sm"
 				>
 					{{ includedTitle }}
@@ -50,8 +50,8 @@ withDefaults(defineProps<IProps>(), {
 			<div v-if="excluded.length">
 				<SharedFontsHeading
 					v-if="excludedTitle"
-					class="mb-4"
-					variant="heading-lg"
+					class="mb-2"
+					variant="heading-sm"
 				>
 					{{ excludedTitle }}
 				</SharedFontsHeading>
