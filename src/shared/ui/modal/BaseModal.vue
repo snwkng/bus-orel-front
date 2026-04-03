@@ -15,12 +15,12 @@ const handleKeyDown = (e: KeyboardEvent) => {
 onMounted(() => {
 	isMounted.value = true;
 	isLocked.value = true;
-	window.addEventListener('keydown', handleKeyDown);
+	globalThis.addEventListener('keydown', handleKeyDown);
 });
 
 onUnmounted(() => {
 	isLocked.value = false;
-	window.removeEventListener('keydown', handleKeyDown);
+	globalThis.removeEventListener('keydown', handleKeyDown);
 });
 
 // Метод для плавного закрытия

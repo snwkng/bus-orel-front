@@ -6,12 +6,12 @@ const target = useTemplateRef('target');
 onClickOutside(target, () => close());
 
 onMounted(() => {
-	window.addEventListener('scroll', handleScroll);
+	globalThis.addEventListener('scroll', handleScroll);
 	handleScroll();
 });
 
 onUnmounted(() => {
-	window.removeEventListener('scroll', handleScroll);
+	globalThis.removeEventListener('scroll', handleScroll);
 });
 
 const { $viewport } = useNuxtApp();
@@ -24,7 +24,7 @@ const toggle = ref(false);
 const scroll = ref(false);
 
 const handleScroll = () => {
-	scroll.value = window.scrollY > 400;
+	scroll.value = globalThis.scrollY > 400;
 };
 
 const showShadow = computed(

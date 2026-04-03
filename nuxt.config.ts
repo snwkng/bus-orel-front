@@ -58,7 +58,8 @@ export default defineNuxtConfig({
 		fallback: 'light'
 	},
 	nitro: {
-		preset: 'node-server'
+		preset: 'node-server',
+		devProxy: { host: '::' } // IPv6
 	},
 
 	routeRules: {

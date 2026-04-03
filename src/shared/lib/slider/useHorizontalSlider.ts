@@ -152,10 +152,10 @@ export const useHorizontalSlider = (
     updateState();
 
     sliderRef.value?.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
+    globalThis.addEventListener('resize', onResize);
 
     if (opts.enableKeyboard) {
-      window.addEventListener('keydown', onKeyDown);
+      globalThis.addEventListener('keydown', onKeyDown);
       sliderRef.value?.addEventListener('focusin', onFocusIn);
       sliderRef.value?.addEventListener('focusout', onFocusOut);
     }
@@ -163,8 +163,8 @@ export const useHorizontalSlider = (
 
   onBeforeUnmount(() => {
     sliderRef.value?.removeEventListener('scroll', onScroll);
-    window.removeEventListener('resize', onResize);
-    window.removeEventListener('keydown', onKeyDown);
+    globalThis.removeEventListener('resize', onResize);
+    globalThis.removeEventListener('keydown', onKeyDown);
 
     sliderRef.value?.removeEventListener('focusin', onFocusIn);
     sliderRef.value?.removeEventListener('focusout', onFocusOut);
