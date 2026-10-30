@@ -26,7 +26,7 @@ const iconColorClasses = computed(() => ({
 
 <template>
 	<div
-		class="border rounded-xl px-5 py-3 font-semibold shadow-md"
+		class="rounded-xl border px-5 py-3 font-semibold shadow-md"
 		:class="colorClasses[mode]"
 	>
 		<div class="flex items-start justify-between gap-2">

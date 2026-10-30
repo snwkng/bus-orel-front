@@ -1,1 +1,1 @@
-export { default } from './ui/ConditionsBlock.vue'
+export { default } from './ui/ConditionsBlock.vue';

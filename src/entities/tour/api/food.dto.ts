@@ -1,4 +1,4 @@
 export interface IFoodDto {
-  included: boolean;
-  type: string;
-};
+	included: boolean;
+	type: string;
+}

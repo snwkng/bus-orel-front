@@ -1,1 +1,1 @@
-export { default } from './ui/TitleWithDownloadFile.vue'
+export { default } from './ui/TitleWithDownloadFile.vue';

@@ -9,7 +9,7 @@
 
 @layer components {
 	.max-w-container {
-		@apply mx-auto px-6 md:px-10 lg:px-20 w-full 2xl:max-w-[calc(1440px+160px)];
+		@apply mx-auto w-full px-6 md:px-10 lg:px-20 2xl:max-w-[calc(1440px+160px)];
 	}
 
 	.max-w-container-rent {
@@ -49,9 +49,9 @@
 
 	/* sliders */
 	.slider-btn {
-		@apply flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all
+		@apply flex items-center justify-center rounded-full bg-neutral-100 p-2 transition-all;
 	}
 	.slider-btn:hover:not(:disabled) {
-    @apply scale-105 shadow-md
-  }
+		@apply scale-105 shadow-md;
+	}
 }

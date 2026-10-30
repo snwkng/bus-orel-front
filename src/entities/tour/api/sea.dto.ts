@@ -1,4 +1,4 @@
 export interface ISeaDto {
-  id: number,
-  name: string,
+	id: number;
+	name: string;
 }

@@ -7,9 +7,7 @@ interface IProps {
 defineProps<IProps>();
 </script>
 <template>
-	<div
-		class="relative flex gap-4"
-	>
+	<div class="relative flex gap-4">
 		<div
 			class="relative z-10 flex h-fit w-fit flex-nowrap items-center justify-center rounded-xl bg-neutral-200 p-4 lg:p-8"
 		>
@@ -24,8 +22,8 @@ defineProps<IProps>();
 		<SharedFontsText
 			variant="body-lg"
 			weight="regular"
-			>
+		>
 			{{ text }}
-			</SharedFontsText>
+		</SharedFontsText>
 	</div>
 </template>

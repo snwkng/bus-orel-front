@@ -1,1 +1,1 @@
-export {default} from './ui/SearchForm.vue'
+export { default } from './ui/SearchForm.vue';

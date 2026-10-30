@@ -1,4 +1,4 @@
 export interface IIncludedInThePriceModel {
-  serviceName: string;
-  icon?: string;
+	serviceName: string;
+	icon?: string;
 }

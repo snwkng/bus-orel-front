@@ -2,21 +2,18 @@
 import { donwloadFile } from '@/shared/lib/download/useLinkDownloadFile';
 
 interface IProps {
-  title: string,
-  fileName: string
-  filenames?: string[],
+	title: string;
+	fileName: string;
+	filenames?: string[];
 }
 
 withDefaults(defineProps<IProps>(), {
-  filenames: () => []
-})
-
+	filenames: () => []
+});
 </script>
 
 <template>
-	<div
-		class="flex w-full items-baseline gap-x-2"
-	>
+	<div class="flex w-full items-baseline gap-x-2">
 		<SharedFontsHeading
 			class="text-center"
 			variant="display-lg"

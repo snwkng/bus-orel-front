@@ -1,4 +1,4 @@
 export interface IBeachDto {
-  type: string;
-  distanceMinutes?: number;
+	type: string;
+	distanceMinutes?: number;
 }

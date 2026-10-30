@@ -1,4 +1,4 @@
 export interface ICitiesDto {
-  id: number,
-  name: string,
+	id: number;
+	name: string;
 }

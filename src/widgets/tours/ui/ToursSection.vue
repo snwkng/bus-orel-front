@@ -7,7 +7,7 @@ export interface IProps {
 	type: 'slider' | 'grid';
 	title?: string;
 	emptyText?: string;
-	iconLink?: string
+	iconLink?: string;
 }
 
 const props = defineProps<IProps>();
@@ -18,7 +18,6 @@ const routeRef = computed(() => route.query);
 
 const { data } = getToursCardList(routeRef);
 
-
 const componentName = computed(() =>
 	props.type === 'slider' ? BaseSlider : TheGrid
 );
@@ -28,7 +27,11 @@ const componentName = computed(() =>
 		v-if="data?.length || emptyText"
 		class="max-w-container"
 	>
-		<div v-if="title || (emptyText && !data?.length)" class="mb-6 flex items-baseline gap-4" :class="{'justify-center': emptyText}">
+		<div
+			v-if="title || (emptyText && !data?.length)"
+			class="mb-6 flex items-baseline gap-4"
+			:class="{ 'justify-center': emptyText }"
+		>
 			<SharedFontsHeading
 				variant="heading-xl"
 				color="default"

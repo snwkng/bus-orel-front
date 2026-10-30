@@ -91,7 +91,9 @@ useSeoMeta({
 		<!-- IMAGES -->
 		<ClientOnly>
 			<template #fallback>
-				<div class="h-[350px] md:h-[500px] bg-neutral-300 md:max-w-container order-1 md:order-2"  />
+				<div
+					class="md:max-w-container order-1 h-[350px] bg-neutral-300 md:order-2 md:h-[500px]"
+				/>
 			</template>
 			<div class="md:max-w-container order-1 md:order-2">
 				<FeaturesGalleryOrSlider :images="data?.images" />
@@ -130,7 +132,7 @@ useSeoMeta({
 		</div>
 
 		<div class="max-w-container order-4 grid grid-cols-1 gap-y-4">
-			<hr class="m-y-3 w-full bg-neutral-200" >
+			<hr class="m-y-3 w-full bg-neutral-200" />
 
 			<EntitiesConditionsBlock
 				:included="data?.thePriceIncludes"
@@ -140,7 +142,7 @@ useSeoMeta({
 				title="Условия тура"
 			/>
 
-			<hr class="m-y-3 w-full bg-neutral-200" >
+			<hr class="m-y-3 w-full bg-neutral-200" />
 
 			<SharedFontsText variant="body-lg">
 				Компания организатор оставляет за собой право вносить некоторые

@@ -9,7 +9,7 @@ export interface IProps {
 
 withDefaults(defineProps<IProps>(), {
 	label: '',
-	list: () => [],
+	list: () => []
 });
 
 const model = defineModel<SelectItem>();
@@ -43,7 +43,7 @@ const clearModel = () => {
 		<span
 			v-if="model?.name"
 			:title="model?.name"
-			class="truncate w-[calc(100%-60px)]"
+			class="w-[calc(100%-60px)] truncate"
 		>
 			{{ model.name }}
 		</span>
@@ -82,7 +82,7 @@ const clearModel = () => {
 				v-show="showSelect"
 				class="absolute right-0 top-[60px] z-10 flex max-h-[200px] w-full flex-col overflow-hidden rounded-xl bg-inherit pr-2 shadow-2xl"
 			>
-				<div class="overflow-y-auto mr-[-8px]">
+				<div class="mr-[-8px] overflow-y-auto">
 					<slot>
 						<div
 							v-for="item in list"

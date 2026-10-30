@@ -1,1 +1,1 @@
-export { default } from './ui/TourBooking.vue'
+export { default } from './ui/TourBooking.vue';

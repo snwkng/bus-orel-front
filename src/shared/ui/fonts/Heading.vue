@@ -8,7 +8,14 @@ interface IProps {
 		| 'heading-lg'
 		| 'heading-md'
 		| 'heading-sm';
-	color?: 'default' | 'primary' | 'secondary' | 'muted' | 'disabled' | 'dark' | 'white';
+	color?:
+		| 'default'
+		| 'primary'
+		| 'secondary'
+		| 'muted'
+		| 'disabled'
+		| 'dark'
+		| 'white';
 	align?: 'left' | 'center' | 'right';
 	weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
 }
@@ -46,7 +53,7 @@ const classes = computed(() => {
 		'heading-xl': 'text-2xl leading-snug',
 		'heading-lg': 'text-xl leading-snug',
 		'heading-md': 'text-lg leading-normal',
-		'heading-sm': 'text-base leading-normal',
+		'heading-sm': 'text-base leading-normal'
 	};
 
 	const weightClasses: Record<string, string> = {
@@ -63,7 +70,7 @@ const classes = computed(() => {
 		secondary: 'text-secondary-600 dark:text-secondary-400',
 		muted: 'text-neutral-600 dark:text-neutral-400',
 		disabled: 'text-neutral-400 dark:text-neutral-500',
-    dark: 'text-gray-600 dark:text-gray-300'
+		dark: 'text-gray-600 dark:text-gray-300'
 	};
 
 	const alignClasses: Record<string, string> = {

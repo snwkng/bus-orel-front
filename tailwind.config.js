@@ -2,13 +2,13 @@
 module.exports = {
 	darkMode: 'class',
 	content: [
-		"./src/**/*.{vue,js,ts,jsx,tsx}", // Охватывает все подпапки в src
-		"./app.vue"
+		'./src/**/*.{vue,js,ts,jsx,tsx}', // Охватывает все подпапки в src
+		'./app.vue'
 	],
 	theme: {
 		extend: {
 			gridTemplateAreas: {
-				'gallery-desktop': '"a a b c" "a a d e"',
+				'gallery-desktop': '"a a b c" "a a d e"'
 			},
 			height: {
 				header: '50px',
@@ -33,7 +33,7 @@ module.exports = {
 				}
 			},
 			colors: {
-				'primary': {
+				primary: {
 					50: '#FFAB91',
 					100: '#FF9A7A',
 					200: '#FF8964',
@@ -43,10 +43,10 @@ module.exports = {
 					600: '#E64E1F',
 					700: '#CC461B',
 					800: '#B33D18',
-					900: '#993414',
+					900: '#993414'
 				},
 
-				'secondary': {
+				secondary: {
 					50: '#80B6F8',
 					100: '#66A7F6',
 					200: '#4D99F5',
@@ -56,10 +56,10 @@ module.exports = {
 					600: '#0062D8',
 					700: '#0057C0',
 					800: '#004CA8',
-					900: '#004190',
+					900: '#004190'
 				},
 
-				'neutral': {
+				neutral: {
 					50: '#FAFAFA',
 					100: '#F5F5F5',
 					200: '#EEEEEE',
@@ -69,25 +69,25 @@ module.exports = {
 					600: '#757575',
 					700: '#616161',
 					800: '#424242',
-					900: '#212121',
+					900: '#212121'
 				},
 
-				'accent': {
-					'success': '#4CAF50',
-					'warning': '#FFC107',
-					'error': '#F44336',
-					'info': '#2196F3',
-				},
-			},
+				accent: {
+					success: '#4CAF50',
+					warning: '#FFC107',
+					error: '#F44336',
+					info: '#2196F3'
+				}
+			}
 		}
 	},
 	safelist: [
 		{
-      pattern: /^grid-in-/,
-    },
+			pattern: /^grid-in-/
+		}
 	],
 	plugins: [
-		(function ({ addUtilities, theme }) {
+		function ({ addUtilities, theme }) {
 			const areas = theme('gridTemplateAreas');
 			const utils = {};
 
@@ -100,7 +100,9 @@ module.exports = {
 
 				// 2. Генерируем классы элементов: .grid-in-main, .grid-in-a и т.д.
 				const rawValues = Array.isArray(value) ? value.join(' ') : value;
-				const uniqueAreas = [...new Set(rawValues.split(/\s+/).map(a => a.replaceAll('"', '')))];
+				const uniqueAreas = [
+					...new Set(rawValues.split(/\s+/).map((a) => a.replaceAll('"', '')))
+				];
 
 				uniqueAreas.forEach((area) => {
 					utils[`.grid-in-${area}`] = { 'grid-area': area };
@@ -108,6 +110,6 @@ module.exports = {
 			});
 
 			addUtilities(utils);
-		}),
-	],
+		}
+	]
 };

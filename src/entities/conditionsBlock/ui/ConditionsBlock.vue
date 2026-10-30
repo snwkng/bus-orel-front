@@ -25,7 +25,7 @@ withDefaults(defineProps<IProps>(), {
 		>
 			{{ title }}
 		</SharedFontsHeading>
-		<div class="grid md:grid-cols-2 gap-4">
+		<div class="grid gap-4 md:grid-cols-2">
 			<div v-if="included.length">
 				<SharedFontsHeading
 					v-if="includedTitle"

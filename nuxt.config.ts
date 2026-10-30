@@ -49,8 +49,8 @@ export default defineNuxtConfig({
 
 	router: {
 		options: {
-			scrollBehaviorType: 'smooth',
-		},
+			scrollBehaviorType: 'smooth'
+		}
 	},
 	colorMode: {
 		classSuffix: '',
@@ -73,7 +73,7 @@ export default defineNuxtConfig({
 		layouts: 'app/layouts',
 		assets: 'shared/assets',
 		plugins: 'shared/lib/plugins',
-		middleware: 'shared/config/middleware',
+		middleware: 'shared/config/middleware'
 	},
 	components: [
 		{ path: 'shared/ui', prefix: 'Shared' },
@@ -81,19 +81,19 @@ export default defineNuxtConfig({
 			path: 'widgets',
 			pattern: '*/ui/*.vue',
 			pathPrefix: false,
-			prefix: 'Widgets',
+			prefix: 'Widgets'
 		},
 		{
 			path: 'entities',
 			pattern: '*/ui/*.vue',
 			pathPrefix: false,
-			prefix: 'Entities',
+			prefix: 'Entities'
 		},
 		{
 			path: 'features',
 			pattern: '*/ui/*.vue',
 			pathPrefix: false,
-			prefix: 'Features',
+			prefix: 'Features'
 		}
 	],
 
@@ -109,11 +109,7 @@ export default defineNuxtConfig({
 
 	typescript: {
 		tsConfig: {
-			include: [
-				'./shared/**/*',
-				'./entities/**/*',
-				'./features/**/*'
-			]
+			include: ['./shared/**/*', './entities/**/*', './features/**/*']
 		}
 	},
 
@@ -154,13 +150,13 @@ export default defineNuxtConfig({
 			md: 768,
 			lg: 1024,
 			xl: 1280,
-			'2xl': 1536,
+			'2xl': 1536
 		},
 
 		defaultBreakpoints: {
 			desktop: 'lg',
 			mobile: 'xs',
-			tablet: 'md',
+			tablet: 'md'
 		},
 
 		fallbackBreakpoint: 'lg'

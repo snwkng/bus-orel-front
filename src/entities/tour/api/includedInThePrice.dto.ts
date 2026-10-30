@@ -1,4 +1,4 @@
 export interface IIncludedInThePriceDto {
-  serviceName: string;
-  icon?: string;
+	serviceName: string;
+	icon?: string;
 }

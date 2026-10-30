@@ -55,7 +55,6 @@ onMounted(() => {
 			icon-link="excursions"
 		/>
 
-
 		<WidgetsBusRentSection />
 
 		<div

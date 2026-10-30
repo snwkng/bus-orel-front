@@ -11,25 +11,25 @@ interface IProps {
 }
 
 withDefaults(defineProps<IProps>(), {
-  price: undefined,
-  infoValues: () => []
-})
+	price: undefined,
+	infoValues: () => []
+});
 
 const emit = defineEmits<(event: 'clickOrder') => void>();
 </script>
 
 <template>
 	<div
-		class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 md:shadow-xl dark:bg-gray-700"
+		class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 dark:bg-gray-700 md:shadow-xl"
 	>
 		<SharedLayoutsIconWithInfo
-      v-for="(value, idx) in infoValues"
-      :key="idx"
+			v-for="(value, idx) in infoValues"
+			:key="idx"
 			:icon-name="value.iconName"
 			:title="value.title"
 			:text="value.text"
-      :icon-color="value.iconColor"
-      :text-on-title="value.textOnTitle"
+			:icon-color="value.iconColor"
+			:text-on-title="value.textOnTitle"
 		/>
 
 		<div

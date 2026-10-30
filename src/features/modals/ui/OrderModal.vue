@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface IProps {
-  title?: string
+	title?: string;
 }
 defineEmits<(e: 'close') => void>();
 
@@ -10,7 +10,7 @@ defineProps<IProps>();
 <template>
 	<SharedModalBaseModal @close="$emit('close')">
 		<div>
-      <h3 v-if="title">{{ title }}</h3>
+			<h3 v-if="title">{{ title }}</h3>
 			<SharedFontsText variant="body-lg">
 				По вопросам бронирования туров и экскурсий звоните (или пишите):
 				<a
@@ -20,7 +20,7 @@ defineProps<IProps>();
 				>
 			</SharedFontsText>
 			<SharedFontsText variant="body-lg">
-				Так же можете написать нам в 
+				Так же можете написать нам в
 				<a
 					href="https://vk.com/gtorel"
 					class="base-link cursor-pointer"

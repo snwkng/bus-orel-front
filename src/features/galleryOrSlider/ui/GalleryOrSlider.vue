@@ -1,11 +1,11 @@
 <script setup lang="ts">
 interface IProps {
-  images?: string[]
+	images?: string[];
 }
 
 withDefaults(defineProps<IProps>(), {
-  images: () => []
-})
+	images: () => []
+});
 const viewport = useViewport();
 </script>
 
@@ -13,21 +13,20 @@ const viewport = useViewport();
 	<div>
 		<SharedGalleryBaseGallery
 			v-if="viewport.isGreaterThan('sm')"
-      key="desktop-view"
+			key="desktop-view"
 			:images="images"
-      
 		/>
 
 		<SharedSlidersBaseSlider
 			v-if="viewport.isLessThan('md')"
-      key="mobile-view"
+			key="mobile-view"
 			full-width
 		>
 			<NuxtImg
 				v-for="(value, idx) in images"
 				:key="value"
 				:src="`/image/${value}`"
-				class="h-[350px] w-full object-cover brightness-100 bg-neutral-50"
+				class="h-[350px] w-full bg-neutral-50 object-cover brightness-100"
 				:alt="`Изображение ${idx + 1}`"
 				height="350"
 				loading="lazy"

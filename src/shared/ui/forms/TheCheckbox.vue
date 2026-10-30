@@ -31,7 +31,7 @@ const model = computed({
 			type="checkbox"
 			:value="value"
 			class="size-4"
-		>
+		/>
 		<label
 			:for="checkboxId"
 			class="flex text-lg font-semibold"

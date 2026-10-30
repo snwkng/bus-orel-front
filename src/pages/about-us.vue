@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 useSeoMeta({
 	title: 'Галатур Орел - О компании',
 	ogTitle: 'Галатур Орел - О компании',

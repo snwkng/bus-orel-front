@@ -166,7 +166,7 @@ useSeoMeta({
 					{{ data?.description }}
 				</SharedFontsText>
 
-				<hr >
+				<hr />
 
 				<SharedFontsHeading
 					class="mb-2"
@@ -190,7 +190,7 @@ useSeoMeta({
 					text="Данных о номерах пока нет"
 				/>
 
-				<hr >
+				<hr />
 			</div>
 
 			<div class="order-1 min-h-20 w-full md:order-2 md:w-96">

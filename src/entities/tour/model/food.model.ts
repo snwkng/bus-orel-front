@@ -1,4 +1,4 @@
 export interface IFoodModel {
-  included: boolean;
-  type: string;
-};
+	included: boolean;
+	type: string;
+}
