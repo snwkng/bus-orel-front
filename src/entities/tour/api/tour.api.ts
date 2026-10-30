@@ -7,12 +7,14 @@ import {
 	tourConverterOneListItem
 } from '../lib/converter';
 import type { LocationQuery } from 'vue-router';
+import { unwrapApiList } from '@/shared/lib/converter';
 
 export const getToursCardList = (params: Ref<LocationQuery>) => {
 	return useFetch('/api/hotels', {
 		query: computed(() => params.value),
 		lazy: import.meta.client,
-		transform: (res: ApiResponse<ITourDto[]>) => tourConverterCardList(res.data)
+		transform: (res: ApiResponse<ITourDto[] | { items?: ITourDto[] }>) =>
+			tourConverterCardList(unwrapApiList(res.data))
 	});
 };
 
