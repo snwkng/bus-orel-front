@@ -131,8 +131,19 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'nuxt-viewport',
 		'@nuxt/icon',
-		'@vueuse/nuxt'
+		'@vueuse/nuxt',
+		'@nuxtjs/sitemap',
+		'@nuxtjs/robots'
 	],
+
+	site: {
+		url: import.meta.env.SITE_URL ?? 'https://bus-orel.ru',
+		name: 'Туристическое агентство ГалаТур - Орёл'
+	},
+
+	sitemap: {
+		sources: ['/__sitemap__/urls']
+	},
 
 	pinia: {
 		storesDirs: [
