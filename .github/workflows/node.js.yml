@@ -39,3 +39,4 @@ jobs:
 
       - name: Restart PM2
         run: pm2 restart front --update-env
+      - run: rm -rf node_modules

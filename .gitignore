@@ -19,6 +19,14 @@ logs
 .idea
 
 # Local env files
+*.tsbuildinfo
 .env
 .env.*
 !.env.example
+
+
+AGENTS.md
+BACKLOG.md
+swagger.json
+.agents
+skills-lock.json
