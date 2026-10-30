@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { BASE_URL } = useRuntimeConfig().public;
+const { url: siteUrl } = useSiteConfig();
 const { $modals } = useNuxtApp();
 
 const route = useRoute();
@@ -16,7 +16,7 @@ useHead({
 	link: [
 		{
 			rel: 'canonical',
-			href: computed(() => BASE_URL + (route.path === '/' ? '' : route.path))
+			href: computed(() => siteUrl + (route.path === '/' ? '' : route.path))
 		}
 	]
 });
