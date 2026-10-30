@@ -131,8 +131,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'nuxt-viewport',
 		'@nuxt/icon',
-		'@vueuse/nuxt',
-		'nuxt-svgo-loader'
+		'@vueuse/nuxt'
 	],
 
 	pinia: {
