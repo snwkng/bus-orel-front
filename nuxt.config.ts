@@ -136,6 +136,10 @@ export default defineNuxtConfig({
 		'@nuxtjs/robots'
 	],
 
+	svgo: {
+		autoImportPath: './app/assets/images/icons'
+	},
+
 	site: {
 		url: import.meta.env.SITE_URL ?? 'https://bus-orel.ru',
 		name: 'Туристическое агентство ГалаТур - Орёл'

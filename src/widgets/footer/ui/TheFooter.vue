@@ -44,8 +44,7 @@ const fullYear: number = new Date().getFullYear();
 								aria-label="vk"
 								itemprop="sameAs"
 							>
-								<SvgoIcon
-									name="vk"
+								<SvgoVk
 									filled
 									:font-controlled="false"
 									class="h-6 w-6"
@@ -61,8 +60,7 @@ const fullYear: number = new Date().getFullYear();
 								aria-label="одноклассники"
 								itemprop="sameAs"
 							>
-								<SvgoIcon
-									name="okru"
+								<SvgoOkru
 									filled
 									:font-controlled="false"
 									class="h-6 w-6"

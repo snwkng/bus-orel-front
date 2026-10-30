@@ -79,8 +79,7 @@ const toggleMenu = () => {
 						class="btn-hover"
 						@click="toggleMenu"
 					>
-						<SvgoIcon
-							name="menu"
+						<SvgoMenu
 							filled
 							:font-controlled="false"
 							class="h-6 w-6 fill-white"
