@@ -130,7 +130,7 @@ useSeoMeta({
 		</div>
 
 		<div class="max-w-container order-4 grid grid-cols-1 gap-y-4">
-			<hr class="m-y-3 w-full bg-neutral-200" />
+			<hr class="m-y-3 w-full bg-neutral-200" >
 
 			<EntitiesConditionsBlock
 				:included="data?.thePriceIncludes"
@@ -140,7 +140,7 @@ useSeoMeta({
 				title="Условия тура"
 			/>
 
-			<hr class="m-y-3 w-full bg-neutral-200" />
+			<hr class="m-y-3 w-full bg-neutral-200" >
 
 			<SharedFontsText variant="body-lg">
 				Компания организатор оставляет за собой право вносить некоторые

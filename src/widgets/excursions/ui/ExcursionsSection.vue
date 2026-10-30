@@ -16,7 +16,7 @@ const route = useRoute();
 
 const routeRef = computed(() => route.query);
 
-const { data, pending } = getExcursionsCardList(routeRef);
+const { data } = getExcursionsCardList(routeRef);
 
 const componentName = computed(() =>
 	props.type === 'slider' ? BaseSlider : TheGrid

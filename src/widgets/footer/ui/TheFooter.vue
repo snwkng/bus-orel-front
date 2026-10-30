@@ -111,7 +111,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="1"
-									/>
+									>
 								</li>
 								<li
 									class="mt-3"
@@ -129,7 +129,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="2"
-									/>
+									>
 								</li>
 							</ul>
 						</nav>
@@ -169,7 +169,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="1"
-									/>
+									>
 								</li>
 								<li
 									class="mt-3"
@@ -189,7 +189,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="2"
-									/>
+									>
 								</li>
 								<li
 									class="mt-3"
@@ -207,7 +207,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="3"
-									/>
+									>
 								</li>
 							</ul>
 						</nav>
@@ -247,7 +247,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="1"
-									/>
+									>
 								</li>
 								<li
 									class="mt-3"
@@ -265,7 +265,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="2"
-									/>
+									>
 								</li>
 								<li
 									class="mt-3"
@@ -283,7 +283,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="3"
-									/>
+									>
 								</li>
 								<li
 									class="mt-3"
@@ -301,7 +301,7 @@ const fullYear: number = new Date().getFullYear();
 									<meta
 										itemprop="position"
 										content="4"
-									/>
+									>
 								</li>
 							</ul>
 						</nav>
