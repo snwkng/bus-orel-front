@@ -223,7 +223,7 @@ useSeoMeta({
 				>
 					Даты и цены
 				</SharedFontsHeading>
-				<SharedTableBusTourTable :tours="data.tours" />
+				<EntitiesBusTourTable :tours="data.tours" />
 			</div>
 		</div>
 	</div>

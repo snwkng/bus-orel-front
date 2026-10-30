@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { donwloadFile } from '@/shared/lib/download/useLinkDownloadFile';
+import { downloadFile } from '@/shared/lib/download/useLinkDownloadFile';
 
 interface IProps {
 	title: string;
@@ -25,7 +25,7 @@ withDefaults(defineProps<IProps>(), {
 			v-if="filenames.length && filenames[0]"
 			class="flex cursor-pointer items-center justify-center rounded-full bg-neutral-100 p-2 shadow-md transition-all hover:scale-105 hover:bg-neutral-200"
 			title="Скачать прайс"
-			@click.prevent="donwloadFile(filenames[0], fileName)"
+			@click.prevent="downloadFile(filenames[0], fileName)"
 		>
 			<Icon
 				name="lucide:file-down"

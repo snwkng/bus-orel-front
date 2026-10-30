@@ -56,7 +56,7 @@ const handleClose = () => {
 					>
 						<!-- modal-content -->
 						<div
-							class="relative h-fit max-h-[30vh] rounded-t-xl bg-white p-6 dark:bg-gray-700 md:rounded-xl"
+							class="relative h-fit max-h-[80vh] overflow-y-auto rounded-t-xl bg-white p-6 dark:bg-gray-700 md:rounded-xl"
 						>
 							<button
 								class="absolute right-2 top-2 flex cursor-pointer items-center justify-center rounded-full p-2 transition-all hover:bg-neutral-200"
@@ -109,13 +109,5 @@ const handleClose = () => {
 }
 .slide-fade-leave-active {
 	transition: all 0.25s ease-in;
-}
-.slide-fade-enter-from {
-	transform: translateY(40px);
-	opacity: 0;
-}
-.slide-fade-leave-to {
-	transform: translateY(60px);
-	opacity: 0;
 }
 </style>

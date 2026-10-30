@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { IHotelRoomInfo } from '~/entities/tour/model/types';
+import type { IHotelRoomModel } from '../model/hotelRoom.model';
 
 export interface Props {
-	tours?: IHotelRoomInfo[];
+	tours?: IHotelRoomModel[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -11,22 +11,18 @@ const props = withDefaults(defineProps<Props>(), {
 
 const selectedRooms = ref(
 	props.tours
-		?.filter((x: IHotelRoomInfo) => x.availability?.length)
-		.map((x: IHotelRoomInfo) => x.roomName)
+		?.filter((x) => x.availability?.length)
+		.map((x) => x.roomName)
 );
 
-const rooms = computed(() =>
-	props.tours.map((x: IHotelRoomInfo) => x.roomName)
-);
+const rooms = computed(() => props.tours.map((x) => x.roomName));
 
 const filteredTours = computed(() =>
-	props.tours.filter((x: IHotelRoomInfo) =>
-		selectedRooms.value.includes(x.roomName as string)
-	)
+	props.tours.filter((x) => selectedRooms.value.includes(x.roomName))
 );
 
 const hasAvailability = computed(() =>
-	props.tours.some((x: IHotelRoomInfo) => x.availability?.length)
+	props.tours.some((x) => x.availability?.length)
 );
 </script>
 <template>

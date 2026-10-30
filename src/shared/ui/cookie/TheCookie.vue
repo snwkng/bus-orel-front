@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const cookie = useCookie('cookie_agree');
+const cookie = useCookieAgree();
 </script>
 <template>
 	<div

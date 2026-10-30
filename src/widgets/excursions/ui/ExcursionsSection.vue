@@ -24,7 +24,7 @@ const componentName = computed(() =>
 </script>
 <template>
 	<div
-		v-if="data?.length"
+		v-if="data?.length || emptyText"
 		class="max-w-container"
 	>
 		<div
