@@ -1,376 +1,178 @@
 <script setup lang="ts">
 const fullYear: number = new Date().getFullYear();
 </script>
+
 <template>
-	<div
-		class="flex w-full items-end bg-slate-100 text-slate-700 dark:bg-gray-800 dark:text-slate-200"
+	<footer
+		class="border-t border-neutral-100 bg-neutral-50"
+		itemscope
+		itemtype="https://schema.org/Organization"
 	>
-		<footer
-			class="body-font w-full"
-			itemscope
-			itemtype="https://schema.org/Organization"
+		<div
+			class="mx-auto grid w-full max-w-[1200px] gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4"
 		>
-			<div
-				class="max-w-container flex w-full flex-col items-center justify-center py-24 md:items-start md:justify-start lg:flex-row"
-			>
-				<div
-					class="w-64 flex-shrink-0 text-center md:text-left"
+			<div>
+				<div class="mb-4 flex items-center gap-2">
+					<span
+						class="bg-primary-500 flex size-8 items-center justify-center rounded-lg text-lg font-bold text-white"
+						>Г</span
+					>
+					<span
+						class="text-lg font-semibold tracking-tight"
+						itemprop="name"
+						>ГалаТур</span
+					>
+				</div>
+				<p
+					class="typo-small max-w-[28ch] text-neutral-500"
 					itemprop="description"
 				>
-					<NuxtLink
-						:to="{ name: 'index' }"
-						itemprop="name"
+					Турагентство из Орла. Возим к морю на своих автобусах, возим на
+					экскурсии, сдаём микроавтобусы в аренду.
+				</p>
+				<div class="mt-4 flex items-center gap-3">
+					<a
+						href="https://vk.com/gtorel"
+						rel="noopener noreferrer"
+						target="_blank"
+						aria-label="Мы во ВКонтакте"
+						itemprop="sameAs"
+						class="flex size-9 items-center justify-center rounded-full bg-[#0077FF] text-xs font-black text-white transition-transform hover:scale-105"
 					>
-						<strong class="text-primary-500">Г</strong>
-						<span
-							class="h-5 w-auto fill-current text-slate-900 dark:text-slate-100"
-							>алатур</span
-						>
-					</NuxtLink>
-					<p
-						class="mt-2 text-sm text-slate-500 dark:text-slate-300 dark:hover:text-slate-100"
+						VK
+					</a>
+					<a
+						href="https://ok.ru/gtorel"
+						rel="noopener noreferrer"
+						target="_blank"
+						aria-label="Мы в Одноклассниках"
+						itemprop="sameAs"
+						class="flex size-9 items-center justify-center rounded-full bg-[#F97400] text-xs font-black text-white transition-transform hover:scale-105"
 					>
-						Туристическое агентство в Орле!
-					</p>
-					<div class="mt-4">
-						<div
-							class="mt-2 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start"
-						>
-							<a
-								href="https://vk.com/gtorel"
-								rel="noopener noreferrer"
-								class="cursor-pointer"
-								target="_blank"
-								aria-label="vk"
-								itemprop="sameAs"
-							>
-								<SvgoVk
-									filled
-									:font-controlled="false"
-									class="h-6 w-6"
-									alt="vk"
-									title="vk"
-								/>
-							</a>
-							<a
-								href="https://ok.ru/gtorel"
-								rel="noopener noreferrer"
-								class="ml-3 cursor-pointer"
-								target="_blank"
-								aria-label="одноклассники"
-								itemprop="sameAs"
-							>
-								<SvgoOkru
-									filled
-									:font-controlled="false"
-									class="h-6 w-6"
-									alt="одноклассники"
-									title="одноклассники"
-								/>
-							</a>
-						</div>
-					</div>
+						OK
+					</a>
 				</div>
-				<div
-					class="mb-10 mt-10 grid gap-5 text-center md:grid-cols-2 md:text-left lg:mt-0 xl:grid-cols-4"
+			</div>
+			<div>
+				<p class="typo-small mb-3 font-semibold">Направления</p>
+				<ul class="typo-small space-y-2 text-neutral-500">
+					<li>
+						<NuxtLink
+							to="/bus-tours"
+							class="transition-colors hover:text-neutral-900"
+							>Автобусные туры к морю</NuxtLink
+						>
+					</li>
+					<li>
+						<NuxtLink
+							to="/excursions"
+							class="transition-colors hover:text-neutral-900"
+							>Экскурсионные туры</NuxtLink
+						>
+					</li>
+					<li>
+						<NuxtLink
+							:to="{ name: 'index', hash: '#bus-rent' }"
+							class="transition-colors hover:text-neutral-900"
+							>Аренда микроавтобусов</NuxtLink
+						>
+					</li>
+					<li>
+						<NuxtLink
+							:to="{ name: 'index', hash: '#tour-selection' }"
+							class="transition-colors hover:text-neutral-900"
+							>Подбор тура</NuxtLink
+						>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<p class="typo-small mb-3 font-semibold">Компания</p>
+				<ul class="typo-small space-y-2 text-neutral-500">
+					<li>
+						<NuxtLink
+							:to="{ name: 'about-us' }"
+							class="transition-colors hover:text-neutral-900"
+							>О нас</NuxtLink
+						>
+					</li>
+					<li>
+						<NuxtLink
+							:to="{ name: 'tourist-reminder' }"
+							class="transition-colors hover:text-neutral-900"
+							>Памятка туристу</NuxtLink
+						>
+					</li>
+					<li>
+						<NuxtLink
+							:to="{ name: 'agreement' }"
+							class="transition-colors hover:text-neutral-900"
+							>Соглашения</NuxtLink
+						>
+					</li>
+					<li>
+						<NuxtLink
+							:to="{ name: 'privacy-policy' }"
+							class="transition-colors hover:text-neutral-900"
+							>Политика персональных данных</NuxtLink
+						>
+					</li>
+				</ul>
+			</div>
+			<div id="contacts">
+				<p
+					id="contacts-focus"
+					class="typo-small mb-3 font-semibold"
 				>
-					<div class="w-full">
-						<h2
-							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
-							itemprop="department"
-							itemscope
-							itemtype="https://schema.org/Organization "
+					Контакты
+				</p>
+				<ul class="typo-small space-y-2 text-neutral-500">
+					<li>
+						<a
+							href="tel:+74862780958"
+							class="hover:text-primary-600 font-semibold text-neutral-900 transition-colors"
+							itemprop="telephone"
+							>+7 (4862) 78-09-58</a
 						>
-							<span itemprop="name">Компания</span>
-						</h2>
-						<nav
-							class="mb-10 list-none"
-							aria-label="Company"
-							itemscope
-							itemtype="https://schema.org/SiteNavigationElement"
+					</li>
+					<li>
+						<a
+							href="mailto:avtobus-orel.petlaj@yandex.ru"
+							class="break-all transition-colors hover:text-neutral-900"
+							itemprop="email"
+							>avtobus-orel.petlaj@yandex.ru</a
 						>
-							<ul
-								itemscope
-								itemtype="https://schema.org/ItemList"
-							>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<NuxtLink
-										:to="{ name: 'about-us' }"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name">О нас</span>
-									</NuxtLink>
-									<meta
-										itemprop="position"
-										content="1"
-									/>
-								</li>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<NuxtLink
-										:to="{ name: 'tourist-reminder' }"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name">Памятка туристу</span>
-									</NuxtLink>
-									<meta
-										itemprop="position"
-										content="2"
-									/>
-								</li>
-							</ul>
-						</nav>
-					</div>
-					<div class="w-full">
-						<h2
-							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
-							itemprop="department"
-							itemscope
-							itemtype="https://schema.org/Organization"
+					</li>
+					<li>
+						<a
+							href="https://yandex.ru/maps/org/turisticheskoye_agentstvo_galatur/1067897790/?ll=36.060826%2C52.953087&z=14.36"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="transition-colors hover:text-neutral-900"
+							itemprop="address"
+							>г. Орёл, ул. Комсомольская 88, оф. 6</a
 						>
-							<span itemprop="name">Информация</span>
-						</h2>
-						<nav
-							class="mb-10 list-none"
-							aria-label="Information"
-							itemscope
-							itemtype="https://schema.org/SiteNavigationElement"
-						>
-							<ul
-								itemscope
-								itemtype="https://schema.org/ItemList"
-							>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<NuxtLink
-										:to="{ name: 'agreement' }"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name">Соглашения</span>
-									</NuxtLink>
-									<meta
-										itemprop="position"
-										content="1"
-									/>
-								</li>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<NuxtLink
-										:to="{ name: 'privacy-policy' }"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name"
-											>Политика в отношении персональных данных</span
-										>
-									</NuxtLink>
-									<meta
-										itemprop="position"
-										content="2"
-									/>
-								</li>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<a
-										href="/sitemap.xml"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name">Карта сайта</span>
-									</a>
-									<meta
-										itemprop="position"
-										content="3"
-									/>
-								</li>
-							</ul>
-						</nav>
-					</div>
-					<div class="w-full">
-						<h2
-							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
-							itemprop="department"
-							itemscope
-							itemtype="https://schema.org/Organization"
-						>
-							<span itemprop="name">Услуги</span>
-						</h2>
-						<nav
-							class="mb-10 list-none"
-							aria-label="Service"
-							itemscope
-							itemtype="https://schema.org/SiteNavigationElement"
-						>
-							<ul
-								itemscope
-								itemtype="https://schema.org/ItemList"
-							>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<NuxtLink
-										to="/bus-tours"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name">Автобусные туры к морю из Орла</span>
-									</NuxtLink>
-									<meta
-										itemprop="position"
-										content="1"
-									/>
-								</li>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<NuxtLink
-										to="/excursions"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name">Экскурсионные туры из Орла</span>
-									</NuxtLink>
-									<meta
-										itemprop="position"
-										content="2"
-									/>
-								</li>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<NuxtLink
-										:to="{ name: 'index', hash: '#bus-rent' }"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name">Аренда микроавтобусов</span>
-									</NuxtLink>
-									<meta
-										itemprop="position"
-										content="3"
-									/>
-								</li>
-								<li
-									class="mt-3"
-									itemprop="itemListElement"
-									itemscope
-									itemtype="https://schema.org/ListItem"
-								>
-									<NuxtLink
-										:to="{ name: 'index', hash: '#tour-selection' }"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="url"
-									>
-										<span itemprop="name">Подбор туров</span>
-									</NuxtLink>
-									<meta
-										itemprop="position"
-										content="4"
-									/>
-								</li>
-							</ul>
-						</nav>
-					</div>
-					<div
-						id="contacts"
-						class="w-full"
-					>
-						<h2
-							id="contacts-focus"
-							class="title-font mb-3 text-sm font-medium uppercase tracking-widest text-slate-900 dark:text-slate-100"
-						>
-							Контакты
-						</h2>
-						<nav
-							class="mb-10 list-none"
-							aria-label="Contacts"
-							itemscope
-							itemtype="https://schema.org/ContactPoint"
-						>
-							<ul>
-								<li class="mt-3">
-									<a
-										href="mailto:avtobus-orel.petlaj@yandex.ru"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="email"
-									>
-										avtobus-orel.petlaj@yandex.ru
-									</a>
-								</li>
-								<li class="mt-3">
-									<a
-										href="tel:+74862780958"
-										class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-										itemprop="telephone"
-									>
-										+7(4862)78-09-58
-									</a>
-								</li>
-							</ul>
-						</nav>
-
-						<!-- Адрес (PostalAddress), связанный с Organization -->
-						<div
-							itemscope
-							itemtype="https://schema.org/PostalAddress "
-						>
-							<a
-								href="https://yandex.ru/maps/org/turisticheskoye_agentstvo_galatur/1067897790/?ll=36.060826%2C52.953087&z=14.36"
-								class="cursor-pointer text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-								target="_blank"
-								rel="noopener noreferrer"
-								itemprop="streetAddress"
-							>
-								г. Орёл, ул. Комсомольская 88, оф. 6
-							</a>
-							<span class="font-medium">
-								(Внимание! Офис работает только по предварительной записи)
-							</span>
-						</div>
-					</div>
-				</div>
+					</li>
+					<li class="typo-caption text-neutral-400">
+						Офис работает по предварительной записи
+					</li>
+				</ul>
 			</div>
-			<div class="w-full bg-slate-300 dark:bg-gray-900">
-				<div class="container mx-auto px-5 py-4">
-					<p class="text-sm text-slate-700 dark:text-slate-300 xl:text-center">
-						© {{ fullYear }} Информация на сайте носит ознакомительный характер
-						и не является публичной офертой
-					</p>
-				</div>
+		</div>
+		<div class="border-t border-neutral-200/60">
+			<div
+				class="typo-caption mx-auto flex w-full max-w-[1200px] flex-col gap-2 px-6 py-5 text-neutral-400 sm:flex-row sm:items-center sm:justify-between"
+			>
+				<span>© {{ fullYear }} ГалаТур, Орёл</span>
+				<span
+					>Информация на сайте не является публичной офертой ·
+					<a
+						href="/sitemap.xml"
+						class="underline-offset-2 transition-colors hover:text-neutral-600 hover:underline"
+						>Карта сайта</a
+					></span
+				>
 			</div>
-		</footer>
-	</div>
+		</div>
+	</footer>
 </template>

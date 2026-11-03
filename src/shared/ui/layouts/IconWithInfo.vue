@@ -8,7 +8,7 @@ interface IProps {
 }
 
 withDefaults(defineProps<IProps>(), {
-	iconColor: 'text-primary-500',
+	iconColor: 'text-secondary-600',
 	title: '',
 	text: '',
 	textOnTitle: false
@@ -18,35 +18,26 @@ withDefaults(defineProps<IProps>(), {
 <template>
 	<div
 		v-if="text"
-		class="flex flex-col items-start gap-1"
+		class="flex items-start gap-2.5"
 	>
-		<div class="flex items-center gap-1">
-			<ClientOnly>
-				<template #fallback>
-					<div class="flex h-6 w-6 items-start rounded-full bg-neutral-300" />
-				</template>
-				<div class="flex h-fit w-fit items-start">
-					<Icon
-						:name="`lucide:${iconName}`"
-						size="24"
-						:class="`${iconColor}`"
-					/>
-				</div>
-			</ClientOnly>
-			<SharedFontsText
-				:variant="textOnTitle ? 'body-lg' : 'body-sm'"
-				:color="textOnTitle ? 'default' : 'muted'"
-				:weight="textOnTitle ? 'semibold' : 'medium'"
+		<Icon
+			:name="`lucide:${iconName}`"
+			class="mt-0.5 size-4.5 shrink-0"
+			:class="iconColor"
+		/>
+		<div class="min-w-0">
+			<p
+				v-if="title && !textOnTitle"
+				class="typo-caption font-semibold text-neutral-500"
 			>
-				{{ title && !textOnTitle ? title : text }}
-			</SharedFontsText>
+				{{ title }}
+			</p>
+			<p
+				class="typo-small"
+				:class="textOnTitle ? 'text-neutral-600' : 'font-medium'"
+			>
+				{{ text }}
+			</p>
 		</div>
-		<SharedFontsText
-			v-if="!textOnTitle"
-			variant="body-lg"
-			weight="semibold"
-		>
-			{{ text }}
-		</SharedFontsText>
 	</div>
 </template>

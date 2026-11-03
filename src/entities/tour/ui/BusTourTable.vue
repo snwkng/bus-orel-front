@@ -10,9 +10,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const selectedRooms = ref(
-	props.tours
-		?.filter((x) => x.availability?.length)
-		.map((x) => x.roomName)
+	props.tours?.filter((x) => x.availability?.length).map((x) => x.roomName)
 );
 
 const rooms = computed(() => props.tours.map((x) => x.roomName));
@@ -24,58 +22,75 @@ const filteredTours = computed(() =>
 const hasAvailability = computed(() =>
 	props.tours.some((x) => x.availability?.length)
 );
+
+const toggleRoom = (room: string): void => {
+	const index = selectedRooms.value.indexOf(room);
+	if (index === -1) {
+		selectedRooms.value.push(room);
+	} else {
+		selectedRooms.value.splice(index, 1);
+	}
+};
+
+const formatPrice = (price?: number): string =>
+	price ? `от ${new Intl.NumberFormat('ru-RU').format(price)} ₽` : '';
 </script>
 <template>
-	<div
-		v-if="hasAvailability"
-		class="grid"
-	>
+	<div v-if="hasAvailability">
 		<div
-			class="mb-6 flex gap-2 rounded-xl bg-slate-100 px-6 py-4 dark:bg-gray-700 dark:text-slate-200"
+			v-if="rooms.length > 1"
+			class="mb-5 flex flex-wrap gap-2"
 		>
-			<div
+			<button
 				v-for="(room, index) in rooms"
 				:key="index"
+				type="button"
+				class="typo-small rounded-full border px-3.5 py-1.5 font-medium transition-all active:scale-95"
+				:class="
+					selectedRooms.includes(room)
+						? 'border-secondary-600 bg-secondary-600 text-white'
+						: 'border-neutral-300 text-neutral-600 hover:border-neutral-900 hover:text-neutral-900'
+				"
+				@click="toggleRoom(room)"
 			>
-				<SharedFormsTheCheckbox
-					v-model="selectedRooms"
-					:checkbox-id="`${room}_${index}`"
-					:label="room || ''"
-					:value="room || ''"
-				/>
-			</div>
+				{{ room }}
+			</button>
 		</div>
-		<div class="flex flex-col gap-2">
-			<div
+
+		<div class="overflow-hidden rounded-2xl border border-neutral-200">
+			<template
 				v-for="(tour, index) in filteredTours"
 				:key="index"
-				class="flex flex-col gap-2"
 			>
 				<div
 					v-for="(datesAndPrices, dataIndex) in tour.availability"
 					:key="dataIndex"
-					class="flex items-center justify-between gap-2 rounded-xl bg-slate-200 p-4 transition-all hover:bg-slate-300 dark:bg-gray-700 dark:text-slate-200 hover:dark:bg-gray-500"
+					class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-5 py-4"
+					:class="dataIndex % 2 === 0 ? 'bg-white' : 'bg-neutral-50'"
 				>
-					<div class="flex items-center gap-2">
-						<div class="mr-6 font-semibold">
-							{{ $dayjs(datesAndPrices.startDate).format('DD.MM.YYYY') }} -
+					<div>
+						<p class="typo-body font-semibold">
+							{{ $dayjs(datesAndPrices.startDate).format('DD.MM.YYYY') }} —
 							{{ $dayjs(datesAndPrices.endDate).format('DD.MM.YYYY') }}
-						</div>
-						<div>{{ tour.roomName }}</div>
-					</div>
-					<div
-						class="rounded-xl bg-secondary-500 p-2 text-center font-semibold text-white"
-					>
-						<span v-if="datesAndPrices?.pricePerPerson"
-							>от {{ datesAndPrices.pricePerPerson }}&#8381;</span
+						</p>
+						<p
+							v-if="tour.roomName"
+							class="typo-small text-neutral-500"
 						>
-						<span v-else>Уточните по телефону</span>
+							{{ tour.roomName }}
+						</p>
 					</div>
+					<p class="typo-body font-bold">
+						{{
+							formatPrice(datesAndPrices?.pricePerPerson) ||
+							'Цену уточняйте по телефону'
+						}}
+					</p>
 				</div>
-			</div>
+			</template>
 		</div>
 	</div>
-	<LazySharedInformersEmptyDataInformer
+	<SharedInformersEmptyDataInformer
 		v-else
 		text="Данных о датах и ценах пока нет"
 	/>

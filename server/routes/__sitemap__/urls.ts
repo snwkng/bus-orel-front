@@ -24,7 +24,10 @@ export default defineEventHandler(async (event) => {
 	]);
 
 	return [
-		...hotels.map((h) => ({ loc: `/bus-tours/${h._id}`, lastmod: h.updatedAt })),
+		...hotels.map((h) => ({
+			loc: `/bus-tours/${h._id}`,
+			lastmod: h.updatedAt
+		})),
 		...excursions.map((e) => ({
 			loc: `/excursions/${e._id}`,
 			lastmod: e.updatedAt

@@ -1,12 +1,5 @@
 <script setup lang="ts">
 import { getExcursion } from '@/entities/excursion/api/excursion.api';
-import { OrderModal } from '@/features/modals';
-
-const { $modals } = useNuxtApp();
-
-const toggleModal = () => {
-	$modals.open(OrderModal);
-};
 
 const route = useRoute();
 
@@ -58,6 +51,8 @@ const dates = computed(
 			?.join(', ') ?? ''
 );
 
+const contactMode = ref<'booking' | 'question' | null>(null);
+
 // перекидываем на 404, если бэк выловил невалидный id
 if (error.value) {
 	throw createError({
@@ -76,84 +71,117 @@ useSeoMeta({
 });
 </script>
 <template>
-	<div class="grid w-full grid-cols-1 gap-y-4 bg-white pb-4 dark:bg-gray-800">
-		<!-- HEADER -->
-		<div
-			class="max-w-container relative top-[-36px] z-10 order-2 mb-[-36px] rounded-t-3xl bg-inherit pt-4 md:static md:order-1 md:mb-0"
+	<section class="mx-auto w-full max-w-[1200px] px-6 pt-8 pb-16">
+		<!-- Breadcrumbs -->
+		<nav
+			class="typo-small mb-5 flex items-center gap-1.5 text-neutral-500"
+			aria-label="Хлебные крошки"
 		>
+			<NuxtLink
+				:to="{ name: 'index' }"
+				class="transition-colors hover:text-neutral-900"
+				>Главная</NuxtLink
+			>
+			<Icon
+				name="lucide:chevron-right"
+				class="size-3.5"
+			/>
+			<NuxtLink
+				:to="{ name: 'excursions' }"
+				class="transition-colors hover:text-neutral-900"
+				>Экскурсии</NuxtLink
+			>
+			<Icon
+				name="lucide:chevron-right"
+				class="size-3.5"
+			/>
+			<span class="truncate text-neutral-900">{{ data?.name }}</span>
+		</nav>
+
+		<!-- Title -->
+		<div class="mb-6">
 			<FeaturesTitleWithDownloadFile
 				:title="data?.name ?? ''"
 				:file-name="data?.name ?? ''"
 				:filenames="data?.fileName"
 			/>
+			<p
+				v-if="data?.cities?.length"
+				class="typo-small mt-2 flex items-center gap-1.5 text-neutral-500"
+			>
+				<Icon
+					name="lucide:map-pin"
+					class="text-secondary-600 size-4"
+				/>
+				{{ data.cities.join(', ') }}
+			</p>
 		</div>
 
-		<!-- IMAGES -->
+		<!-- Gallery -->
 		<ClientOnly>
 			<template #fallback>
-				<div
-					class="md:max-w-container order-1 h-[350px] bg-neutral-300 md:order-2 md:h-[500px]"
-				/>
+				<div class="mb-10 h-[350px] rounded-2xl bg-neutral-100 md:h-[500px]" />
 			</template>
-			<div class="md:max-w-container order-1 md:order-2">
-				<FeaturesGalleryOrSlider :images="data?.images" />
-			</div>
+			<FeaturesGalleryOrSlider
+				:images="data?.images"
+				class="mb-10"
+			/>
 		</ClientOnly>
 
-		<div class="max-w-container order-3 grid gap-6 md:grid-flow-col">
-			<div class="order-2 flex flex-col gap-4 md:order-1">
-				<SharedFontsHeading
-					class="mb-2"
-					variant="heading-md"
+		<div class="grid gap-12 lg:grid-cols-[1fr_360px]">
+			<!-- Content -->
+			<div class="min-w-0">
+				<section
+					v-if="data?.description?.length"
+					class="mb-10"
 				>
-					Программа тура
-				</SharedFontsHeading>
-				<div
-					v-for="(dayContent, index) in data?.description"
-					:key="index"
-					class="mb-8 flex"
-				>
+					<h2 class="typo-h2 mb-4">Программа тура</h2>
 					<EntitiesExcursionDayContent
+						v-for="(dayContent, index) in data.description"
+						:key="index"
 						:day="index + 1"
 						:text="dayContent"
 					/>
-				</div>
-			</div>
+				</section>
 
-			<div class="order-1 w-full md:order-2 md:w-96">
-				<div class="sticky top-20">
-					<FeaturesOrderWithInfo
-						:price="data?.price"
-						:info-values="orderInfoValues"
-						@click-order="toggleModal"
+				<section class="mb-10">
+					<EntitiesConditionsBlock
+						:included="data?.thePriceIncludes"
+						:excluded="data?.additionallyPaid"
+						included-title="В стоимость включено"
+						excluded-title="Оплачивается отдельно"
+						title="Условия тура"
 					/>
-				</div>
+				</section>
+
+				<p class="typo-small text-neutral-500">
+					Компания организатор оставляет за собой право вносить некоторые
+					изменения в программу тура без уменьшения общего объема и качества
+					услуг, в том числе предоставлять замену отеля на равнозначный.
+					Компания организатор не несет ответственности за задержки, возникшие в
+					результате пробок на дорогах, в случае тяжелой дорожной ситуации
+					возможны поздние приезды в отели, объекты экскурсий. В случае особых
+					непредвиденных ситуаций возможны изменения в порядке проведения
+					экскурсий, объем программы при этом не меняется.
+				</p>
 			</div>
+
+			<!-- Booking card -->
+			<aside class="lg:sticky lg:top-24 lg:self-start">
+				<FeaturesOrderWithInfo
+					:price="data?.price"
+					:info-values="orderInfoValues"
+					@click-order="contactMode = 'booking'"
+					@click-question="contactMode = 'question'"
+				/>
+			</aside>
 		</div>
 
-		<div class="max-w-container order-4 grid grid-cols-1 gap-y-4">
-			<hr class="m-y-3 w-full bg-neutral-200" />
-
-			<EntitiesConditionsBlock
-				:included="data?.thePriceIncludes"
-				:excluded="data?.additionallyPaid"
-				included-title="Включено"
-				excluded-title="Оплачивается отдельно"
-				title="Условия тура"
-			/>
-
-			<hr class="m-y-3 w-full bg-neutral-200" />
-
-			<SharedFontsText variant="body-lg">
-				Компания организатор оставляет за собой право вносить некоторые
-				изменения в программу тура без уменьшения общего объема и качества
-				услуг, в том числе предоставлять замену отеля на равнозначный. Компания
-				организатор не несет ответственности за задержки, возникшие в результате
-				пробок на дорогах, в случае тяжелой дорожной ситуации возможны поздние
-				приезды в отели, объекты экскурсий. В случае особых непредвиденных
-				ситуаций возможны изменения в порядке проведения экскурсий, объем
-				программы при этом не меняется.
-			</SharedFontsText>
-		</div>
-	</div>
+		<FeaturesContactModal
+			v-if="contactMode"
+			:mode="contactMode"
+			:context="data?.name"
+			@close="contactMode = null"
+		/>
+	</section>
 </template>

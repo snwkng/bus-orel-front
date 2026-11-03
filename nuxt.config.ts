@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite';
+
 export default defineNuxtConfig({
 	app: {
 		head: {
@@ -51,11 +53,6 @@ export default defineNuxtConfig({
 		options: {
 			scrollBehaviorType: 'smooth'
 		}
-	},
-	colorMode: {
-		classSuffix: '',
-		preference: 'light',
-		fallback: 'light'
 	},
 	nitro: {
 		preset: 'node-server',
@@ -122,11 +119,9 @@ export default defineNuxtConfig({
 	},
 
 	modules: [
-		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
 		'nuxt-svgo',
 		'dayjs-nuxt',
-		'@nuxtjs/color-mode',
 		'@nuxt/eslint',
 		'@nuxt/image',
 		'nuxt-viewport',
@@ -178,14 +173,8 @@ export default defineNuxtConfig({
 
 	css: ['~/app/assets/styles/tailwind.css'],
 
-	tailwindcss: {
-		// cssPath: ['app/assets/styles/tailwind.css', { injectPosition: 'first' }],
-		configPath: 'tailwind.config',
-		exposeConfig: {
-			level: 2
-		},
-		config: {},
-		viewer: true
+	vite: {
+		plugins: [tailwindcss()]
 	},
 
 	icon: {

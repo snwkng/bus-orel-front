@@ -7,23 +7,20 @@ interface IProps {
 defineProps<IProps>();
 </script>
 <template>
-	<div class="relative flex gap-4">
-		<div
-			class="relative z-10 flex h-fit w-fit flex-nowrap items-center justify-center rounded-xl bg-neutral-200 p-4 lg:p-8"
-		>
-			<SharedFontsText
-				variant="caption-lg"
-				weight="bold"
-				color="dark-only"
-				class="whitespace-nowrap uppercase"
-				>{{ day }} День</SharedFontsText
+	<div class="relative flex gap-5 pb-6 last:pb-0">
+		<div class="flex flex-col items-center">
+			<span
+				class="bg-secondary-600 typo-small z-10 flex size-9 shrink-0 items-center justify-center rounded-full font-bold text-white"
 			>
+				{{ day }}
+			</span>
+			<span class="bg-secondary-200 w-px flex-1 last:hidden" />
 		</div>
-		<SharedFontsText
-			variant="body-lg"
-			weight="regular"
-		>
-			{{ text }}
-		</SharedFontsText>
+		<div class="pt-1.5 pb-1">
+			<p class="typo-body font-semibold">День {{ day }}</p>
+			<p class="typo-small mt-1 max-w-[64ch] text-neutral-600">
+				{{ text }}
+			</p>
+		</div>
 	</div>
 </template>

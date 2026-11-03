@@ -10,54 +10,71 @@ interface IProps {
 	}[];
 }
 
-withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<IProps>(), {
 	price: undefined,
 	infoValues: () => []
 });
 
-const emit = defineEmits<(event: 'clickOrder') => void>();
+const emit = defineEmits<{
+	(event: 'clickOrder' | 'clickQuestion'): void;
+}>();
+
+const formattedPrice = computed(() =>
+	props.price ? new Intl.NumberFormat('ru-RU').format(props.price) : ''
+);
 </script>
 
 <template>
 	<div
-		class="flex h-fit w-full flex-col gap-3 rounded-xl p-4 dark:bg-gray-700 md:shadow-xl"
+		class="flex w-full flex-col gap-5 rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
 	>
-		<SharedLayoutsIconWithInfo
-			v-for="(value, idx) in infoValues"
-			:key="idx"
-			:icon-name="value.iconName"
-			:title="value.title"
-			:text="value.text"
-			:icon-color="value.iconColor"
-			:text-on-title="value.textOnTitle"
-		/>
-
-		<div
-			v-if="price"
-			class="flex flex-col items-center justify-center"
-		>
-			<div class="rounded-xl bg-primary-50 px-4 py-2">
-				<SharedFontsText
-					variant="body-2xl"
-					color="dark-only"
-				>
-					от {{ price }}₽
-				</SharedFontsText>
-			</div>
-			<SharedFontsText
-				variant="caption-lg"
-				color="muted"
-			>
-				Минимально возможная цена за человека
-			</SharedFontsText>
+		<div v-if="price">
+			<p class="typo-small mb-1 text-neutral-500">от</p>
+			<p class="text-3xl font-bold tracking-tight">
+				{{ formattedPrice }} ₽
+				<span class="typo-body font-medium text-neutral-500">/ человек</span>
+			</p>
 		</div>
 
-		<button
-			type="button"
-			class="min-h-14 w-full rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95"
-			@click="emit('clickOrder')"
+		<div
+			v-if="infoValues.length"
+			class="flex flex-col gap-3 border-t border-neutral-100 pt-4"
 		>
-			Забронировать
-		</button>
+			<SharedLayoutsIconWithInfo
+				v-for="(value, idx) in infoValues"
+				:key="idx"
+				:icon-name="value.iconName"
+				:title="value.title"
+				:text="value.text"
+				:icon-color="value.iconColor"
+				:text-on-title="value.textOnTitle"
+			/>
+		</div>
+
+		<div class="flex flex-col gap-2.5">
+			<button
+				type="button"
+				class="bg-primary-500 hover:bg-primary-600 typo-button w-full rounded-full py-3 text-white transition-all active:scale-95"
+				@click="emit('clickOrder')"
+			>
+				Забронировать
+			</button>
+			<button
+				type="button"
+				class="bg-secondary-600 hover:bg-secondary-700 typo-button w-full rounded-full py-3 text-white transition-all active:scale-95"
+				@click="emit('clickQuestion')"
+			>
+				Задать вопрос
+			</button>
+		</div>
+
+		<p class="typo-caption flex items-start gap-2 text-neutral-400">
+			<Icon
+				name="lucide:shield-check"
+				class="text-secondary-500 mt-0.5 size-3.5 shrink-0"
+			/>
+			Бронь бесплатна и ни к чему не обязывает: менеджер перезвонит, ответит на
+			вопросы и зафиксирует цену.
+		</p>
 	</div>
 </template>

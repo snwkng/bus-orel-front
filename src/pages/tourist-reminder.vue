@@ -62,25 +62,18 @@ const accordionItems = ref([
 ]);
 </script>
 <template>
-	<div class="dark:bg-gray-800 dark:text-slate-200">
-		<section class="max-w-container m-auto flex w-full flex-col gap-5 py-10">
+	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
+		<h1 class="typo-h1 mb-8">Памятка туристу</h1>
+		<div class="max-w-[68ch] space-y-8">
 			<div
 				v-for="(value, idx) in accordionItems"
 				:key="idx"
 			>
-				<SharedFontsHeading
-					class="mb-2"
-					variant="heading-md"
-				>
-					{{ value.title }}
-				</SharedFontsHeading>
-				<SharedFontsText
-					variant="body-lg"
-					weight="regular"
-				>
+				<h2 class="typo-h3 mb-3">{{ value.title }}</h2>
+				<p class="typo-body text-neutral-600">
 					{{ value.content }}
-				</SharedFontsText>
+				</p>
 			</div>
-		</section>
-	</div>
+		</div>
+	</section>
 </template>

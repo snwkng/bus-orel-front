@@ -8,17 +8,15 @@ useSeoMeta({
 });
 </script>
 <template>
-	<div class="dark:bg-gray-800 dark:text-slate-200">
-		<section class="max-w-container m-auto flex w-full flex-col gap-5 py-10">
+	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
+		<div class="typo-body max-w-[76ch] space-y-5 text-neutral-600">
 			<div
-				class="items-startsm:items-center flex flex-col justify-start gap-y-2 sm:flex-row sm:justify-between sm:gap-y-0"
+				class="flex flex-col items-start justify-start gap-y-2 sm:flex-row sm:items-center sm:justify-between sm:gap-y-0"
 			>
-				<h1
-					class="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:text-3xl"
-				>
+				<h1 class="typo-h1 text-neutral-900">
 					ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ в отношении обработки персональных данных
 				</h1>
-				<span class="text-slate-300 dark:text-slate-600">21.08.2025</span>
+				<span class="typo-caption shrink-0 text-neutral-400">21.08.2025</span>
 			</div>
 			<p>
 				<strong>1. Общие положения</strong>
@@ -727,6 +725,6 @@ useSeoMeta({
 					>https://www.bus-orel.ru/privacy-policy</NuxtLink
 				>
 			</p>
-		</section>
-	</div>
+		</div>
+	</section>
 </template>

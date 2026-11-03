@@ -3,12 +3,12 @@ const cookie = useCookieAgree();
 </script>
 <template>
 	<div
-		class="fixed bottom-0 z-10 w-full border-t border-slate-400 bg-white py-4 text-sm dark:border-slate-700 dark:bg-gray-800"
+		class="fixed bottom-0 z-10 w-full border-t border-neutral-200 bg-white py-4"
 	>
 		<div
-			class="max-w-container flex min-h-10 flex-col items-center justify-between gap-5 md:flex-row"
+			class="mx-auto flex w-full max-w-[1200px] flex-col items-center justify-between gap-4 px-6 md:flex-row"
 		>
-			<div class="text-slate-500 dark:text-slate-200">
+			<p class="typo-small text-neutral-500">
 				Данный веб-сайт использует файлы cookie с целью повышения удобства и
 				эффективности работы пользователя. Нажимая на кнопку «Подтвердить», Вы
 				соглашаетесь с
@@ -21,10 +21,10 @@ const cookie = useCookieAgree();
 				</NuxtLink>
 				В случае несогласия с обработкой файлов cookie, Вы должны покинуть сайт
 				или произвести соответствующие настройки.
-			</div>
+			</p>
 			<button
 				type="button"
-				class="rounded-xl bg-secondary-500 px-3 py-1 text-white transition-colors hover:bg-secondary-300"
+				class="bg-primary-500 hover:bg-primary-600 typo-button shrink-0 rounded-full px-5 py-2.5 text-white transition-all active:scale-95"
 				@click="cookie = 'true'"
 			>
 				Подтвердить

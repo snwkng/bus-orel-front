@@ -6,7 +6,7 @@ interface IProps {
 defineProps<IProps>();
 </script>
 <template>
-	<div class="dark:text-slate-200">
+	<div class="typo-body text-neutral-600">
 		<span>
 			{{ text || 'Нет данных' }}, уточните информацию по телефону указанному в
 			<NuxtLink

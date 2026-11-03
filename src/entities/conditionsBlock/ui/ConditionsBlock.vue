@@ -11,62 +11,57 @@ withDefaults(defineProps<IProps>(), {
 	included: () => [],
 	excluded: () => [],
 	title: '',
-	includedTitle: '',
-	excludedTitle: ''
+	includedTitle: 'В стоимость включено',
+	excludedTitle: 'Оплачивается отдельно'
 });
 </script>
 
 <template>
 	<div>
-		<SharedFontsHeading
+		<h2
 			v-if="title"
-			class="mb-2"
-			variant="heading-md"
+			class="typo-h2 mb-4"
 		>
 			{{ title }}
-		</SharedFontsHeading>
-		<div class="grid gap-4 md:grid-cols-2">
-			<div v-if="included.length">
-				<SharedFontsHeading
-					v-if="includedTitle"
-					class="mb-2"
-					variant="heading-sm"
-				>
-					{{ includedTitle }}
-				</SharedFontsHeading>
-				<div
-					v-for="include in included"
-					:key="include"
-					class="flex w-full flex-row items-start gap-y-4"
-				>
-					<SharedLayoutsIconWithInfo
-						icon-name="check"
-						icon-color="text-accent-success"
-						text-on-title
-						:text="include"
-					/>
-				</div>
+		</h2>
+		<div class="grid gap-6 sm:grid-cols-2">
+			<div
+				v-if="included.length"
+				class="rounded-2xl bg-neutral-50 p-5"
+			>
+				<h3 class="typo-h4 mb-3">{{ includedTitle }}</h3>
+				<ul class="typo-small space-y-2.5 text-neutral-600">
+					<li
+						v-for="include in included"
+						:key="include"
+						class="flex gap-2.5"
+					>
+						<Icon
+							name="lucide:check"
+							class="text-secondary-600 mt-0.5 size-4 shrink-0"
+						/>
+						{{ include }}
+					</li>
+				</ul>
 			</div>
-			<div v-if="excluded.length">
-				<SharedFontsHeading
-					v-if="excludedTitle"
-					class="mb-2"
-					variant="heading-sm"
-				>
-					{{ excludedTitle }}
-				</SharedFontsHeading>
-				<div
-					v-for="exclude in excluded"
-					:key="exclude"
-					class="flex w-full flex-row items-start gap-y-4"
-				>
-					<SharedLayoutsIconWithInfo
-						icon-name="x"
-						icon-color="text-accent-error"
-						text-on-title
-						:text="exclude"
-					/>
-				</div>
+			<div
+				v-if="excluded.length"
+				class="rounded-2xl bg-neutral-50 p-5"
+			>
+				<h3 class="typo-h4 mb-3">{{ excludedTitle }}</h3>
+				<ul class="typo-small space-y-2.5 text-neutral-600">
+					<li
+						v-for="exclude in excluded"
+						:key="exclude"
+						class="flex gap-2.5"
+					>
+						<Icon
+							name="lucide:minus"
+							class="mt-0.5 size-4 shrink-0 text-neutral-400"
+						/>
+						{{ exclude }}
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

@@ -26,19 +26,19 @@ const iconColorClasses = computed(() => ({
 
 <template>
 	<div
-		class="rounded-xl border px-5 py-3 font-semibold shadow-md"
+		class="typo-small rounded-2xl border px-5 py-4"
 		:class="colorClasses[mode]"
 	>
-		<div class="flex items-start justify-between gap-2">
-			<div>
-				<Icon
-					v-if="iconName"
-					:name="`lucide:${iconName}`"
-					size="24"
-					:class="iconColorClasses[mode]"
-				/>
+		<div class="flex items-start gap-3">
+			<Icon
+				v-if="iconName"
+				:name="`lucide:${iconName}`"
+				class="mt-0.5 size-5 shrink-0"
+				:class="iconColorClasses[mode]"
+			/>
+			<div class="min-w-0">
+				<slot />
 			</div>
-			<slot />
 		</div>
 	</div>
 </template>

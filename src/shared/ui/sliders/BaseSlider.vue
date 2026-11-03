@@ -41,19 +41,18 @@ const {
 <template>
 	<div class="relative">
 		<slot name="controls">
-			<div class="absolute right-0 top-[-60px] hidden gap-3 md:flex">
+			<div class="absolute top-[-60px] right-0 hidden gap-3 md:flex">
 				<button
 					ref="prev"
 					type="button"
 					:disabled="isStart"
-					class="slider-btn disabled:cursor-not-allowed disabled:opacity-40"
+					class="flex size-10 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:hover:shadow-sm"
 					aria-label="Предыдущие слайды"
 					@click="scroll('prev')"
 				>
 					<Icon
 						name="lucide:chevron-left"
-						size="24"
-						class="text-neutral-800"
+						class="size-5 text-neutral-800"
 					/>
 				</button>
 
@@ -61,14 +60,13 @@ const {
 					ref="next"
 					type="button"
 					:disabled="isEnd"
-					class="slider-btn disabled:cursor-not-allowed disabled:opacity-40"
+					class="flex size-10 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:hover:shadow-sm"
 					aria-label="Следующие слайды"
 					@click="scroll('next')"
 				>
 					<Icon
 						name="lucide:chevron-right"
-						size="24"
-						class="text-neutral-800"
+						class="size-5 text-neutral-800"
 					/>
 				</button>
 			</div>

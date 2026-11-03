@@ -13,25 +13,20 @@ withDefaults(defineProps<IProps>(), {
 </script>
 
 <template>
-	<div class="flex w-full items-baseline gap-x-2">
-		<SharedFontsHeading
-			class="text-center"
-			variant="display-lg"
-			weight="bold"
-		>
-			{{ title }}
-		</SharedFontsHeading>
-		<div
+	<div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+		<h1 class="typo-h1 max-w-[24ch]">{{ title }}</h1>
+		<button
 			v-if="filenames.length && filenames[0]"
-			class="flex cursor-pointer items-center justify-center rounded-full bg-neutral-100 p-2 shadow-md transition-all hover:scale-105 hover:bg-neutral-200"
+			type="button"
+			class="flex size-10 cursor-pointer items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm transition-all hover:scale-105 hover:shadow-md"
 			title="Скачать прайс"
+			aria-label="Скачать прайс"
 			@click.prevent="downloadFile(filenames[0], fileName)"
 		>
 			<Icon
 				name="lucide:file-down"
-				size="24"
-				class="text-secondary-500"
+				class="text-secondary-600 size-5"
 			/>
-		</div>
+		</button>
 	</div>
 </template>

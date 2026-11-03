@@ -11,17 +11,35 @@ useSeoMeta({
 });
 </script>
 <template>
-	<div>
-		<WidgetsSearchSection
-			title="Автобусные туры к морю из Орла"
-			search-control="tour"
-		/>
-		<div class="w-full py-8 dark:bg-gray-800">
-			<WidgetsToursSection
-				class="pb-11"
-				type="grid"
-				empty-text="Автобусных туров к морю пока нет"
+	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
+		<nav
+			class="typo-small mb-5 flex items-center gap-1.5 text-neutral-500"
+			aria-label="Хлебные крошки"
+		>
+			<NuxtLink
+				:to="{ name: 'index' }"
+				class="transition-colors hover:text-neutral-900"
+				>Главная</NuxtLink
+			>
+			<Icon
+				name="lucide:chevron-right"
+				class="size-3.5"
 			/>
+			<span class="text-neutral-900">Туры к морю</span>
+		</nav>
+
+		<div class="mb-8">
+			<h1 class="typo-h1">Автобусные туры к морю из Орла</h1>
+			<p class="typo-body mt-2 text-neutral-500">
+				Выезд из Орла на наших автобусах, без пересадок
+			</p>
 		</div>
-	</div>
+
+		<FeaturesSearchPill
+			type="tour"
+			class="mb-10"
+		/>
+
+		<WidgetsToursSection empty-text="Автобусных туров к морю пока нет" />
+	</section>
 </template>

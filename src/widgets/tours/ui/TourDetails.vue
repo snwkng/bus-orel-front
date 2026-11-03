@@ -1,12 +1,5 @@
 <script setup lang="ts">
 import { getTour } from '@/entities/tour/api/tour.api';
-import { OrderModal } from '@/features/modals';
-
-const { $modals } = useNuxtApp();
-
-const toggleModal = () => {
-	$modals.open(OrderModal);
-};
 
 const route = useRoute();
 
@@ -65,7 +58,9 @@ const orderInfoValues = computed(() => [
 	}
 ]);
 
-const hasRoomsinfo = computed(() => data.value?.tours?.some((x) => x.roomName));
+const hasRoomsInfo = computed(() => data.value?.tours?.some((x) => x.roomName));
+
+const contactMode = ref<'booking' | 'question' | null>(null);
 
 if (error.value) {
 	throw createError({
@@ -86,145 +81,163 @@ useSeoMeta({
 });
 </script>
 <template>
-	<div class="grid w-full grid-cols-1 gap-4 bg-white pb-4 dark:bg-gray-800">
-		<!-- HEADER -->
-		<div
-			class="max-w-container relative top-[-36px] z-10 order-2 mb-[-36px] rounded-t-3xl bg-inherit pt-4 md:static md:order-1 md:mb-0"
+	<section class="mx-auto w-full max-w-[1200px] px-6 pt-8 pb-16">
+		<!-- Breadcrumbs -->
+		<nav
+			class="typo-small mb-5 flex items-center gap-1.5 text-neutral-500"
+			aria-label="Хлебные крошки"
 		>
+			<NuxtLink
+				:to="{ name: 'index' }"
+				class="transition-colors hover:text-neutral-900"
+				>Главная</NuxtLink
+			>
+			<Icon
+				name="lucide:chevron-right"
+				class="size-3.5"
+			/>
+			<NuxtLink
+				:to="{ name: 'bus-tours' }"
+				class="transition-colors hover:text-neutral-900"
+				>Туры к морю</NuxtLink
+			>
+			<Icon
+				name="lucide:chevron-right"
+				class="size-3.5"
+			/>
+			<span class="truncate text-neutral-900">{{ tourTitle }}</span>
+		</nav>
+
+		<!-- Title -->
+		<div class="mb-6">
 			<FeaturesTitleWithDownloadFile
 				:title="tourTitle"
 				:file-name="data?.name ?? ''"
 				:filenames="data?.fileName"
 			/>
+			<p
+				v-if="data?.address?.fullAddress"
+				class="typo-small mt-2 flex items-center gap-1.5 text-neutral-500"
+			>
+				<Icon
+					name="lucide:map-pin"
+					class="text-secondary-600 size-4"
+				/>
+				{{ data.address.fullAddress }}
+			</p>
 		</div>
 
-		<!-- IMAGES -->
+		<!-- Gallery -->
 		<ClientOnly>
 			<template #fallback>
-				<div class="md:max-w-container order-1 md:order-2">
-					<div class="h-[350px] bg-neutral-300 md:h-[500px] md:rounded-xl" />
-				</div>
+				<div class="mb-10 h-[350px] rounded-2xl bg-neutral-100 md:h-[500px]" />
 			</template>
-			<div class="md:max-w-container order-1 md:order-2">
-				<FeaturesGalleryOrSlider :images="data?.images" />
-			</div>
+			<FeaturesGalleryOrSlider
+				:images="data?.images"
+				class="mb-10"
+			/>
 		</ClientOnly>
 
-		<!-- CONTENT -->
-		<div class="max-w-container order-3 grid gap-6 md:grid-flow-col">
-			<div class="order-2 flex flex-col gap-4 md:order-1">
+		<div class="grid gap-12 lg:grid-cols-[1fr_360px]">
+			<!-- Content -->
+			<div class="min-w-0">
 				<SharedAlertsBaseAlert
 					v-if="data?.registryNumber"
 					icon-name="badge-check"
 					mode="success"
-					class="mb-5"
+					class="mb-4"
 				>
-					<SharedFontsText variant="body-md">
-						Объект прошёл классификацию. Реестровый номер
-						{{ data.registryNumber }}
-						<a
-							class="base-link"
-							href="https://tourism.fsa.gov.ru/ru/resorts/showcase/hotels"
-							target="_blank"
-							rel="noopener noreferrer nofollow"
-							aria-label="в едином реестре объектов классификации в сфере туристской индустрии"
-						>
-							в едином реестре объектов классификации в сфере туристской
-							индустрии
-						</a>
-					</SharedFontsText>
+					Объект прошёл классификацию. Реестровый номер
+					{{ data.registryNumber }}
+					<a
+						class="base-link"
+						href="https://tourism.fsa.gov.ru/ru/resorts/showcase/hotels"
+						target="_blank"
+						rel="noopener noreferrer nofollow"
+						aria-label="в едином реестре объектов классификации в сфере туристской индустрии"
+					>
+						в едином реестре объектов классификации в сфере туристской индустрии
+					</a>
 				</SharedAlertsBaseAlert>
 
 				<SharedAlertsBaseAlert
 					icon-name="circle-alert"
 					mode="warning"
+					class="mb-10"
 				>
-					<SharedFontsText variant="body-md">
-						УВАЖАЕМЫЕ ТУРИСТЫ! ОБРАЩАЕМ ВАШЕ ВНИМАНИЕ, ВО МНОГИХ ОТЕЛЯХ
-						ДИНАМИЧЕСКОЕ ЦЕНООБРАЗОВАНИЕ, ПЕРЕД БРОНИРОВАНИЕМ, ПОЖАЛУЙСТА,
-						УТОЧНИТЕ АКТУАЛЬНЫЙ ПРАЙС. НАДЕЕМСЯ НА ВАШЕ ПОНИМАНИЕ! КОНСУЛЬТАЦИЯ
-						И БРОНИРОВАНИЕ:
-						<a
-							href="tel:+74862780958"
-							class="base-link"
-						>
-							+7(4862)78-09-58
-						</a>
-					</SharedFontsText>
+					Во многих отелях динамическое ценообразование — перед бронированием
+					уточните актуальный прайс по телефону
+					<a
+						href="tel:+74862780958"
+						class="base-link font-semibold"
+					>
+						+7 (4862) 78-09-58 </a
+					>.
 				</SharedAlertsBaseAlert>
 
-				<SharedFontsHeading
-					class="mb-2"
-					variant="heading-md"
+				<section
+					v-if="data?.description"
+					class="mb-10"
 				>
-					Описание
-				</SharedFontsHeading>
-				<SharedFontsText
-					variant="body-lg"
-					weight="regular"
-				>
-					{{ data?.description }}
-				</SharedFontsText>
+					<h2 class="typo-h2 mb-4">О туре</h2>
+					<p class="typo-body max-w-[68ch] text-neutral-600">
+						{{ data.description }}
+					</p>
+				</section>
 
-				<hr />
-
-				<SharedFontsHeading
-					class="mb-2"
-					variant="heading-md"
-				>
-					Размещение
-				</SharedFontsHeading>
-				<div v-if="hasRoomsinfo">
-					<div
-						v-for="(room, roomIndex) in data?.tours"
-						:key="roomIndex"
+				<section class="mb-10">
+					<h2 class="typo-h2 mb-4">Размещение</h2>
+					<dl
+						v-if="hasRoomsInfo"
+						class="space-y-3"
 					>
-						<div class="py-2 dark:text-slate-200">
-							<strong> {{ room?.roomName }}: </strong>
-							{{ room?.description }}
+						<div
+							v-for="(room, roomIndex) in data?.tours"
+							:key="roomIndex"
+							class="typo-body"
+						>
+							<dt class="inline font-semibold">{{ room?.roomName }}:</dt>
+							<dd class="inline text-neutral-600">{{ room?.description }}</dd>
 						</div>
-					</div>
-				</div>
-				<LazySharedInformersEmptyDataInformer
-					v-else
-					text="Данных о номерах пока нет"
-				/>
-
-				<hr />
-			</div>
-
-			<div class="order-1 min-h-20 w-full md:order-2 md:w-96">
-				<div class="sticky top-20 z-10 flex flex-col gap-5">
-					<FeaturesOrderWithInfo
-						:price="data?.minPrice"
-						:info-values="orderInfoValues"
-						@click-order="toggleModal"
+					</dl>
+					<SharedInformersEmptyDataInformer
+						v-else
+						text="Данных о номерах пока нет"
 					/>
-				</div>
-			</div>
-		</div>
+				</section>
 
-		<!-- ADDITIONAL -->
-		<div class="max-w-container order-4">
-			<EntitiesConditionsBlock
-				v-if="data?.includedInThePrice?.length"
-				:included="data?.includedInThePrice?.map((x) => x?.serviceName)"
-				included-title="Включено"
-				title="В Стоимость входит"
-			/>
-
-			<div
-				v-if="data?.tours?.length"
-				class=""
-			>
-				<SharedFontsHeading
-					class="mb-2"
-					variant="heading-md"
+				<section
+					v-if="data?.includedInThePrice?.length"
+					class="mb-10"
 				>
-					Даты и цены
-				</SharedFontsHeading>
-				<EntitiesBusTourTable :tours="data.tours" />
+					<EntitiesConditionsBlock
+						:included="data.includedInThePrice.map((x) => x?.serviceName)"
+						title="В стоимость входит"
+					/>
+				</section>
+
+				<section v-if="data?.tours?.length">
+					<h2 class="typo-h2 mb-4">Даты и цены</h2>
+					<EntitiesBusTourTable :tours="data.tours" />
+				</section>
 			</div>
+
+			<!-- Booking card -->
+			<aside class="lg:sticky lg:top-24 lg:self-start">
+				<FeaturesOrderWithInfo
+					:price="data?.minPrice"
+					:info-values="orderInfoValues"
+					@click-order="contactMode = 'booking'"
+					@click-question="contactMode = 'question'"
+				/>
+			</aside>
 		</div>
-	</div>
+
+		<FeaturesContactModal
+			v-if="contactMode"
+			:mode="contactMode"
+			:context="tourTitle"
+			@close="contactMode = null"
+		/>
+	</section>
 </template>

@@ -8,13 +8,13 @@ defineProps<{
 
 <template>
 	<div
-		class="grid h-[350px] w-full auto-cols-fr gap-2 overflow-hidden rounded-xl grid-areas-gallery-desktop md:h-[500px]"
+		class="grid-areas-gallery-desktop grid h-[350px] w-full auto-cols-fr gap-2 overflow-hidden rounded-xl md:h-[500px]"
 	>
 		<div
 			v-for="(area, idx) in AREAS"
 			:key="area"
-			class="relative h-full w-full overflow-hidden bg-neutral-300 transition-opacity hover:opacity-90"
-			:class="`grid-in-${area}`"
+			class="relative h-full w-full overflow-hidden bg-neutral-100 transition-opacity hover:opacity-90"
+			:style="{ gridArea: area }"
 		>
 			<NuxtImg
 				v-if="images[idx]"

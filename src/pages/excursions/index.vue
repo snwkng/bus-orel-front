@@ -11,17 +11,37 @@ useSeoMeta({
 });
 </script>
 <template>
-	<div>
-		<WidgetsSearchSection
-			title="Экскурсионные туры из Орла"
-			search-control="excursion"
-		/>
-		<div class="py-8 dark:bg-gray-800">
-			<WidgetsExcursionsSection
-				class="pb-11"
-				type="grid"
-				empty-text="Экскурсионных туров пока нет"
+	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
+		<nav
+			class="typo-small mb-5 flex items-center gap-1.5 text-neutral-500"
+			aria-label="Хлебные крошки"
+		>
+			<NuxtLink
+				:to="{ name: 'index' }"
+				class="transition-colors hover:text-neutral-900"
+				>Главная</NuxtLink
+			>
+			<Icon
+				name="lucide:chevron-right"
+				class="size-3.5"
 			/>
+			<span class="text-neutral-900">Экскурсии</span>
+		</nav>
+
+		<div class="mb-8">
+			<h1 class="typo-h1">Экскурсионные туры из Орла</h1>
+			<p class="typo-body mt-2 text-neutral-500">
+				Однодневные и многодневные поездки на комфортабельном автобусе
+			</p>
 		</div>
-	</div>
+
+		<FeaturesSearchPill
+			type="excursion"
+			class="mb-6"
+		/>
+
+		<FeaturesExcursionTypeFilter class="mb-10" />
+
+		<WidgetsExcursionsSection empty-text="Экскурсионных туров пока нет" />
+	</section>
 </template>

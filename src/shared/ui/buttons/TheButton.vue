@@ -11,7 +11,7 @@ withDefaults(defineProps<IProps>(), {
 <template>
 	<button
 		:type="btnType"
-		class="min-h-14 min-w-40 rounded-xl bg-primary-500 px-4 py-2 text-xl font-semibold text-white transition-all hover:bg-primary-500/95"
+		class="bg-primary-500 hover:bg-primary-500/95 min-h-14 min-w-40 rounded-xl px-4 py-2 text-xl font-semibold text-white transition-all"
 	>
 		<slot />
 	</button>

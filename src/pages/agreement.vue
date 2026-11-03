@@ -8,13 +8,9 @@ useSeoMeta({
 });
 </script>
 <template>
-	<div class="dark:bg-gray-800 dark:text-slate-200">
-		<section class="max-w-container m-auto flex w-full flex-col gap-5 py-10">
-			<h1
-				class="text-2xl font-bold text-slate-900 dark:text-slate-200 sm:text-3xl"
-			>
-				Пользовательское соглашение
-			</h1>
+	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
+		<div class="typo-body max-w-[76ch] space-y-5 text-neutral-600">
+			<h1 class="typo-h1 text-neutral-900">Пользовательское соглашение</h1>
 
 			<p>
 				1. ОБЩИЕ ПОЛОЖЕНИЯ<br />
@@ -117,7 +113,7 @@ useSeoMeta({
 				– по телефону
 				<a
 					href="tel:+74862780958"
-					class="base-link cursor-pointer dark:text-secondary-300 dark:hover:text-secondary-500"
+					class="base-link cursor-pointer"
 					>+7(4862)78-09-58</a
 				><br />
 				– по электронной почте:
@@ -276,6 +272,6 @@ useSeoMeta({
 				конфиденциальной информацией и могут быть использованы Администрацией
 				сайта без ограничений.
 			</p>
-		</section>
-	</div>
+		</div>
+	</section>
 </template>
