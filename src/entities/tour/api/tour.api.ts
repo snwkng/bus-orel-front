@@ -18,6 +18,17 @@ export const getToursCardList = (params: Ref<LocationQuery>) => {
 	});
 };
 
+export const fetchToursCardPage = async (query: LocationQuery) => {
+	const res = await $fetch<ApiResponse<ITourDto[] | { items?: ITourDto[] }>>(
+		'/api/hotels',
+		{ query }
+	);
+	return {
+		items: tourConverterCardList(unwrapApiList(res.data)),
+		pagination: res.meta.pagination ?? null
+	};
+};
+
 export const getTour = (id: Ref<string>) => {
 	return useFetch(`/api/hotels/${id.value}`, {
 		key: `tour-${id.value}`,

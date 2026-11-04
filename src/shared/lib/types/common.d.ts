@@ -3,6 +3,13 @@ declare type SelectItem = {
 	name: string;
 };
 
+declare type ApiPagination = {
+	total: number;
+	page: number;
+	limit: number;
+	lastPage: number;
+};
+
 declare type ApiResponse<T> = {
 	success: boolean;
 	data: T;
@@ -10,5 +17,6 @@ declare type ApiResponse<T> = {
 		timestamp: Date;
 		path: string;
 		statusCode: number;
+		pagination?: ApiPagination;
 	};
 };

@@ -18,6 +18,16 @@ export const getExcursionsCardList = (params: Ref<LocationQuery>) => {
 	});
 };
 
+export const fetchExcursionsCardPage = async (query: LocationQuery) => {
+	const res = await $fetch<
+		ApiResponse<IExcursionDto[] | { items?: IExcursionDto[] }>
+	>('/api/excursions', { query });
+	return {
+		items: excursionConverterCardList(unwrapApiList(res.data)),
+		pagination: res.meta.pagination ?? null
+	};
+};
+
 export const getExcursion = (id: Ref<string>) => {
 	return useFetch(`/api/excursions/${id.value}`, {
 		key: `excursion-${id.value}`,
