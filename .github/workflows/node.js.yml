@@ -2,10 +2,46 @@ name: bus-orel-front
 
 on:
   push:
-    branches: ['master']
+    branches: ['master', 'develop']
+  pull_request:
+    branches: ['master', 'develop']
 
 jobs:
-  build:
+  checks:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        node-version: [24.11.0]
+    env:
+      BASE_URL: ${{secrets.BASE_URL}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Полная история
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "BASE_URL=${{secrets.BASE_URL}}" >> .env
+
+      - name: Install and check
+        run: |
+          npm ci
+          npm run lint:js
+          npm run typecheck
+          npm run build
+
+      - name: Cleanup
+        if: always()
+        run: rm -rf node_modules .nuxt .output
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: checks
     runs-on: self-hosted
     strategy:
       matrix:
@@ -30,10 +66,11 @@ jobs:
         run: |
           rm -rf .nuxt .output
           npm ci
-          npm run lint:js
-          npm run typecheck
           npm run build
 
       - name: Restart PM2
         run: pm2 restart front --update-env
-      - run: rm -rf node_modules
+
+      - name: Cleanup
+        if: always()
+        run: rm -rf node_modules
