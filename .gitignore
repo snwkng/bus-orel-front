@@ -22,3 +22,8 @@ logs
 .env
 .env.*
 !.env.example
+AGENTS.md
+BACKLOG.md
+swagger.json
+.agents
+skills-lock.json
