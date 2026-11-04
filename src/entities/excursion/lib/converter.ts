@@ -14,6 +14,7 @@ const converterCardItem: Converter<IExcursionDto, ICardModel> = (dto) => ({
 	subtitle: dto.cities?.map((x: string) => x).join(', '),
 	price: dto.price,
 	image: dto.images?.[0] ?? '',
+	images: toArray(dto.images),
 	date:
 		dto?.excursionStartDates?.find((date) => new Date(date) >= new Date()) ?? ''
 });

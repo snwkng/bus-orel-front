@@ -108,7 +108,8 @@ const converterCardItem: Converter<ITourDto, ICardModel> = (dto) => ({
 	title: dto.name,
 	subtitle: dto.address?.city ?? '',
 	price: dto.minPrice,
-	image: dto.images?.[0] ?? ''
+	image: dto.images?.[0] ?? '',
+	images: toArray(dto.images)
 });
 
 export const tourConverterOneListItem: Converter<ITourDto, ITourModel> = (

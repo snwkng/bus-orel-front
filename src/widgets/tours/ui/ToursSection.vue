@@ -39,7 +39,7 @@ const { data, status } = getToursCardList(routeRef);
 			:price="item.price"
 			:date="item?.date ?? ''"
 			:subtitle="item.subtitle"
-			:image-link="item.image"
+			:images="item.images"
 		/>
 	</div>
 	<SharedInformersEmptyDataInformer

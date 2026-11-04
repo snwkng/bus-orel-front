@@ -128,15 +128,12 @@ useSeoMeta({
 		</div>
 
 		<!-- Gallery -->
-		<ClientOnly>
-			<template #fallback>
-				<div class="mb-10 h-[350px] rounded-2xl bg-neutral-100 md:h-[500px]" />
-			</template>
-			<FeaturesGalleryOrSlider
-				:images="data?.images"
-				class="mb-10"
-			/>
-		</ClientOnly>
+		<FeaturesGalleryOrSlider
+			:images="data?.images"
+			:alt="tourTitle"
+			icon="lucide:palmtree"
+			class="mb-10"
+		/>
 
 		<div class="grid gap-12 lg:grid-cols-[1fr_360px]">
 			<!-- Content -->

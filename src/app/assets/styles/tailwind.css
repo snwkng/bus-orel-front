@@ -68,10 +68,6 @@
 	}
 }
 
-@utility grid-areas-gallery-desktop {
-	grid-template-areas: 'a a b c' 'a a d e';
-}
-
 @layer base {
 	body {
 		@apply bg-white font-sans text-neutral-900;
