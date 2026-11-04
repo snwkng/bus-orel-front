@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getToursCardList } from '~/entities/tour/api/tour.api';
+import { getToursCardList } from '@/entities/tour/api/tour.api';
 
 const route = useRoute();
 const routeRef = computed(() => route.query);

@@ -13,11 +13,6 @@ jobs:
     env:
       BASE_URL: ${{secrets.BASE_URL}}
     steps:
-      - name: Configure Git for binary files
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
-
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Полная история
