@@ -6,7 +6,6 @@ useSeoMeta({
 	ogTitle: `Галатур Орел - Ошибка ${error.value?.status || ''}`,
 	description: `Галатур Орел - Ошибка ${error.value?.status || ''}`,
 	ogDescription: `Галатур Орел - Ошибка ${error.value?.status || ''}`,
-	keywords: '',
 	robots: { noindex: true, nofollow: true }
 });
 </script>

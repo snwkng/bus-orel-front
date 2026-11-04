@@ -6,6 +6,7 @@
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "nuxt dev",
+		"typecheck": "nuxi typecheck",
 		"start": "node .output/server/index.mjs",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
@@ -27,7 +28,8 @@
 		"sass": "^1.98.0",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^5.9.3",
-		"vue-component-type-helpers": "^3.2.6"
+		"vue-component-type-helpers": "^3.2.6",
+		"vue-tsc": "^3.3.14"
 	},
 	"dependencies": {
 		"@nuxt/icon": "^2.2.1",

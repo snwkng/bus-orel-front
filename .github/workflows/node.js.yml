@@ -35,6 +35,8 @@ jobs:
         run: |
           rm -rf .nuxt .output
           npm ci
+          npm run lint:js
+          npm run typecheck
           npm run build
 
       - name: Restart PM2
