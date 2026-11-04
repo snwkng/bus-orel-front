@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface IProps {
-	modelValue: SelectItem;
+	modelValue: SelectItem | null;
 	list?: SelectItem[];
 	label: string;
 	anyLabel?: string;
@@ -11,7 +11,8 @@ const props = withDefaults(defineProps<IProps>(), {
 	anyLabel: 'Любое'
 });
 
-const emit = defineEmits<(e: 'update:modelValue', value: SelectItem) => void>();
+const emit =
+	defineEmits<(e: 'update:modelValue', value: SelectItem | null) => void>();
 
 const open = ref(false);
 
@@ -27,14 +28,14 @@ const onKeydown = (e: KeyboardEvent): void => {
 onMounted(() => globalThis.addEventListener('keydown', onKeydown));
 onBeforeUnmount(() => globalThis.removeEventListener('keydown', onKeydown));
 
-const options = computed<SelectItem[]>(() => [{} as SelectItem, ...props.list]);
+const options = computed<(SelectItem | null)[]>(() => [null, ...props.list]);
 
 const displayValue = computed(() => props.modelValue?.name || props.anyLabel);
 
-const isSelected = (item: SelectItem): boolean =>
-	(item.name || props.anyLabel) === (props.modelValue?.name || props.anyLabel);
+const isSelected = (item: SelectItem | null): boolean =>
+	(item?.name || props.anyLabel) === (props.modelValue?.name || props.anyLabel);
 
-const choose = (item: SelectItem): void => {
+const choose = (item: SelectItem | null): void => {
 	emit('update:modelValue', item);
 	open.value = false;
 };
@@ -79,7 +80,7 @@ const choose = (item: SelectItem): void => {
 			>
 				<button
 					v-for="(opt, i) in options"
-					:key="opt.id ?? opt.name ?? i"
+					:key="opt?.id ?? opt?.name ?? i"
 					type="button"
 					role="option"
 					:aria-selected="isSelected(opt)"
@@ -91,7 +92,7 @@ const choose = (item: SelectItem): void => {
 					"
 					@click="choose(opt)"
 				>
-					<span class="truncate">{{ opt.name || anyLabel }}</span>
+					<span class="truncate">{{ opt?.name || anyLabel }}</span>
 					<Icon
 						v-if="isSelected(opt)"
 						name="lucide:check"

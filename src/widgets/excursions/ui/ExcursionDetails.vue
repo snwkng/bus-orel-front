@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getExcursion } from '@/entities/excursion/api/excursion.api';
+import type { IOrderInfoValue } from '@/features/orderWithInfo/model/order-info.model';
 
 const route = useRoute();
 
@@ -9,7 +10,7 @@ const excursionId = computed(() => route.params.id as string);
 
 const { data, error } = await getExcursion(excursionId);
 
-const orderInfoValues = computed(() => [
+const orderInfoValues = computed<IOrderInfoValue[]>(() => [
 	{
 		iconName: 'map-pin',
 		title: 'Город(-а)',

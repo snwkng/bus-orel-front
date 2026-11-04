@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getTour } from '@/entities/tour/api/tour.api';
+import type { IOrderInfoValue } from '@/features/orderWithInfo/model/order-info.model';
 
 const route = useRoute();
 
@@ -13,7 +14,7 @@ const tourTitle = computed(() =>
 		: ''
 );
 
-const orderInfoValues = computed(() => [
+const orderInfoValues = computed<IOrderInfoValue[]>(() => [
 	{
 		iconName: 'map-pin',
 		title: 'Адрес',

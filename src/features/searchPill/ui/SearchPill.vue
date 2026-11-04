@@ -62,28 +62,29 @@ const { data: tourSeaList } = await getToursSeaList();
 const { data: excursionCitiesList } = await getExcursionsCitiesList();
 const { data: excursionTypesList } = await getExcursionsTypesList();
 
-const selectedSea = ref<SelectItem>({
-	name: queryParam('seaType')
-} as SelectItem);
+const queryItem = (key: string): SelectItem | null => {
+	const name = queryParam(key);
+	return name ? ({ name } as SelectItem) : null;
+};
+
+const selectedSea = ref<SelectItem | null>(queryItem('seaType'));
 const { data: tourCitiesList } = await getToursCitiesList(selectedSea);
 
 const isTourTab = activeTab.value === 'tour';
-const selectedTourCity = ref<SelectItem>({
-	name: isTourTab ? queryParam('city') : ''
-} as SelectItem);
-const selectedExcursionCity = ref<SelectItem>({
-	name: isTourTab ? '' : queryParam('city')
-} as SelectItem);
-const selectedExcursionType = ref<SelectItem>({
-	name: queryParam('type')
-} as SelectItem);
+const selectedTourCity = ref<SelectItem | null>(
+	isTourTab ? queryItem('city') : null
+);
+const selectedExcursionCity = ref<SelectItem | null>(
+	isTourTab ? null : queryItem('city')
+);
+const selectedExcursionType = ref<SelectItem | null>(queryItem('type'));
 
 watch(tourCitiesList, (val) => {
 	const isValid = val?.some(
-		(c) => c.name?.toLowerCase() === selectedTourCity.value.name?.toLowerCase()
+		(c) => c.name?.toLowerCase() === selectedTourCity.value?.name?.toLowerCase()
 	);
 	if (!isValid) {
-		selectedTourCity.value = {} as SelectItem;
+		selectedTourCity.value = null;
 	}
 });
 
@@ -92,8 +93,8 @@ const submit = (): void => {
 		router.push({
 			name: 'excursions',
 			query: {
-				city: selectedExcursionCity.value.name || undefined,
-				type: selectedExcursionType.value.name || undefined
+				city: selectedExcursionCity.value?.name || undefined,
+				type: selectedExcursionType.value?.name || undefined
 			}
 		});
 	} else {

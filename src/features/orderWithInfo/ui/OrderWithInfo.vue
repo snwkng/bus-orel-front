@@ -1,13 +1,9 @@
 <script setup lang="ts">
+import type { IOrderInfoValue } from '../model/order-info.model';
+
 interface IProps {
 	price?: number;
-	infoValues?: {
-		iconName: string;
-		iconColor?: string;
-		title?: string;
-		text?: string;
-		textOnTitle?: boolean;
-	}[];
+	infoValues?: IOrderInfoValue[];
 }
 
 const props = withDefaults(defineProps<IProps>(), {

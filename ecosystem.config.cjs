@@ -7,7 +7,7 @@ module.exports = {
 			instances: 'max',
 			script: './.output/server/index.mjs',
 			exp_backoff_restart_delay: 100,
-			watch: true
+			watch: false
 		}
 	]
 };

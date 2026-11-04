@@ -27,7 +27,7 @@ export const getTour = (id: Ref<string>) => {
 	});
 };
 
-export const getToursCitiesList = (seaType: Ref<SelectItem>) => {
+export const getToursCitiesList = (seaType: Ref<SelectItem | null>) => {
 	// TODO: разобраться почему не работает автоматический request cancelled
 	return useFetch('/api/hotels/cities-list', {
 		query: {
