@@ -12,14 +12,17 @@ export default defineNuxtConfig({
 				{ 'http-equiv': 'Content-Type', content: 'text/html; charset=utf-8' },
 				{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' }
 			],
-			script: [
-				{
-					type: 'text/javascript',
-					src: import.meta.env.NODE_ENV === 'production' ? '/metrika.js' : '',
-					async: true,
-					defer: true
-				}
-			],
+			script:
+				import.meta.env.NODE_ENV === 'production'
+					? [
+							{
+								type: 'text/javascript',
+								src: '/metrika.js',
+								async: true,
+								defer: true
+							}
+						]
+					: [],
 			link: [
 				{
 					rel: 'icon',
@@ -193,7 +196,7 @@ export default defineNuxtConfig({
 		},
 		screens: {
 			sm: 640,
-			ma: 768,
+			md: 768,
 			lg: 1024,
 			xl: 1280
 		}
