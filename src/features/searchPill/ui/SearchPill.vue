@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { getExcursionsCitiesList } from '@/entities/excursion/api/excursion.api';
+import {
+	getExcursionsCitiesList,
+	getExcursionsTypesList
+} from '@/entities/excursion/api/excursion.api';
 import {
 	getToursCitiesList,
 	getToursSeaList
@@ -17,6 +20,12 @@ const props = withDefaults(defineProps<IProps>(), {
 });
 
 const router = useRouter();
+const route = useRoute();
+
+const queryParam = (key: string): string => {
+	const value = route.query[key];
+	return typeof value === 'string' ? value : '';
+};
 
 const activeTab = ref<SearchTab>(props.type ?? 'tour');
 
@@ -25,7 +34,7 @@ const tabs: { id: SearchTab; label: string }[] = [
 	{ id: 'excursion', label: 'Экскурсии' }
 ];
 
-const tabsRef = useTemplateRef('tabs');
+const tabsRef = useTemplateRef('tabsEl');
 const indicator = ref({ left: 0, width: 0 });
 
 const updateIndicator = async (): Promise<void> => {
@@ -51,12 +60,23 @@ onBeforeUnmount(() => {
 
 const { data: tourSeaList } = await getToursSeaList();
 const { data: excursionCitiesList } = await getExcursionsCitiesList();
+const { data: excursionTypesList } = await getExcursionsTypesList();
 
-const selectedSea = ref<SelectItem>({} as SelectItem);
+const selectedSea = ref<SelectItem>({
+	name: queryParam('seaType')
+} as SelectItem);
 const { data: tourCitiesList } = await getToursCitiesList(selectedSea);
 
-const selectedTourCity = ref<SelectItem>({} as SelectItem);
-const selectedExcursionCity = ref<SelectItem>({} as SelectItem);
+const isTourTab = activeTab.value === 'tour';
+const selectedTourCity = ref<SelectItem>({
+	name: isTourTab ? queryParam('city') : ''
+} as SelectItem);
+const selectedExcursionCity = ref<SelectItem>({
+	name: isTourTab ? '' : queryParam('city')
+} as SelectItem);
+const selectedExcursionType = ref<SelectItem>({
+	name: queryParam('type')
+} as SelectItem);
 
 watch(tourCitiesList, (val) => {
 	const isValid = val?.some(
@@ -71,7 +91,10 @@ const submit = (): void => {
 	if (activeTab.value === 'excursion') {
 		router.push({
 			name: 'excursions',
-			query: { city: selectedExcursionCity.value.name || undefined }
+			query: {
+				city: selectedExcursionCity.value.name || undefined,
+				type: selectedExcursionType.value.name || undefined
+			}
 		});
 	} else {
 		router.push({
@@ -89,7 +112,7 @@ const submit = (): void => {
 	<div class="max-w-[720px]">
 		<div
 			v-if="!type"
-			ref="tabs"
+			ref="tabsEl"
 			class="relative mb-3 inline-flex rounded-full border border-neutral-200 bg-neutral-100 p-1"
 		>
 			<span
@@ -158,6 +181,20 @@ const submit = (): void => {
 				any-label="Любой город"
 				:list="excursionCitiesList ?? []"
 			/>
+
+			<template v-if="activeTab === 'excursion'">
+				<div
+					class="hidden w-px shrink-0 bg-neutral-200 md:my-2 md:block"
+					aria-hidden="true"
+				/>
+
+				<SharedFormsDropdownSelect
+					v-model="selectedExcursionType"
+					label="Тип экскурсии"
+					any-label="Любой"
+					:list="excursionTypesList ?? []"
+				/>
+			</template>
 
 			<button
 				type="submit"

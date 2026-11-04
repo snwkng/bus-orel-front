@@ -37,7 +37,7 @@ const fullYear: number = new Date().getFullYear();
 						target="_blank"
 						aria-label="Мы во ВКонтакте"
 						itemprop="sameAs"
-						class="flex size-9 items-center justify-center rounded-full bg-neutral-500 transition-all hover:bg-[#0077FF]"
+						class="flex items-center justify-center rounded-full bg-neutral-500 p-2 transition-all hover:bg-[#0077FF]"
 					>
 						<SvgoVk
 							:font-controlled="false"
@@ -50,11 +50,11 @@ const fullYear: number = new Date().getFullYear();
 						target="_blank"
 						aria-label="Мы в Одноклассниках"
 						itemprop="sameAs"
-						class="flex size-9 items-center justify-center rounded-full bg-neutral-500 transition-all hover:bg-[#F97400]"
+						class="flex items-center justify-center rounded-full bg-neutral-500 p-2 transition-all hover:bg-[#F97400]"
 					>
 						<SvgoOkru
 							:font-controlled="false"
-							class="size-7 text-white"
+							class="ml-px size-6 text-white"
 						/>
 					</a>
 				</div>
@@ -159,7 +159,7 @@ const fullYear: number = new Date().getFullYear();
 							>г. Орёл, ул. Комсомольская 88, оф. 6</a
 						>
 					</li>
-					<li class="typo-caption text-neutral-400">
+					<li class="typo-caption text-secondary-900">
 						Офис работает по предварительной записи
 					</li>
 				</ul>

@@ -41,22 +41,24 @@ const placeholderIcon = computed(() =>
 			:to="link"
 			class="block"
 		>
-			<div class="relative mb-3">
+			<div
+				class="relative mb-3 overflow-hidden rounded-xl bg-neutral-100 transition-shadow duration-300 group-hover:shadow-md"
+			>
 				<NuxtImg
 					v-if="imageLink"
 					:src="`/image/${imageLink}`"
 					:alt="title"
-					class="aspect-[4/3] w-full rounded-xl bg-neutral-100 object-cover transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-md"
+					class="aspect-[4/3] w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
 					fit="inside"
 					loading="lazy"
 				/>
 				<div
 					v-else
-					class="flex aspect-[4/3] w-full flex-col items-center justify-center gap-2 rounded-xl bg-neutral-100 transition-shadow duration-300 group-hover:shadow-md"
+					class="flex aspect-[4/3] w-full flex-col items-center justify-center gap-2"
 				>
 					<Icon
 						:name="placeholderIcon"
-						class="text-secondary-300 size-8 transition-transform duration-300 group-hover:scale-110"
+						class="text-secondary-300 size-8 transition-transform duration-300 ease-out group-hover:scale-110"
 					/>
 					<span class="text-sm font-semibold text-neutral-300">ГалаТур</span>
 				</div>

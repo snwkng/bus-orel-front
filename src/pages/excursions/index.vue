@@ -37,10 +37,8 @@ useSeoMeta({
 
 		<FeaturesSearchPill
 			type="excursion"
-			class="mb-6"
+			class="mb-10"
 		/>
-
-		<FeaturesExcursionTypeFilter class="mb-10" />
 
 		<WidgetsExcursionsSection empty-text="Экскурсионных туров пока нет" />
 	</section>

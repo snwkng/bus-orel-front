@@ -39,13 +39,13 @@ const contactOpen = ref(false);
 		>
 			<NuxtLink
 				:to="{ name: 'index' }"
-				class="group flex items-center gap-2"
+				class="group flex items-baseline gap-1"
 			>
 				<span
 					class="bg-primary-500 flex size-8 items-center justify-center rounded-lg text-lg font-bold text-white transition-transform duration-300 group-hover:rotate-6"
 					>Г</span
 				>
-				<span class="text-lg font-semibold tracking-tight">ГалаТур</span>
+				<span class="text-lg font-semibold tracking-tight">алаТур</span>
 			</NuxtLink>
 			<nav class="hidden items-center gap-7 lg:flex">
 				<NuxtLink
