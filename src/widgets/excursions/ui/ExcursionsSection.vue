@@ -39,7 +39,7 @@ const { data, status } = getExcursionsCardList(routeRef);
 			:price="item.price"
 			:date="item?.date ?? ''"
 			:subtitle="item.subtitle"
-			:images="item.images"
+			:image-link="item.image"
 		/>
 	</div>
 	<SharedInformersEmptyDataInformer

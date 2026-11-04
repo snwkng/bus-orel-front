@@ -3,7 +3,6 @@ export interface ICardModel {
 	title: string;
 	subtitle: string;
 	image: string;
-	images: string[];
 	price: number;
 	date?: string;
 }
