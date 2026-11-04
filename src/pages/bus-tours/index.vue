@@ -40,6 +40,6 @@ useSeoMeta({
 			class="mb-10"
 		/>
 
-		<WidgetsToursSection empty-text="Автобусных туров к морю пока нет" />
+		<WidgetsCatalogSection kind="tour" />
 	</section>
 </template>

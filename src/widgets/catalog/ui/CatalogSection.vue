@@ -1,19 +1,35 @@
 <script setup lang="ts">
-import { getToursCardList } from '~/entities/tour/api/tour.api';
+import { getToursCardList } from '@/entities/tour/api/tour.api';
+import { getExcursionsCardList } from '@/entities/excursion/api/excursion.api';
 
-export interface IProps {
+interface IProps {
+	kind: 'tour' | 'excursion';
 	emptyText?: string;
 }
 
-withDefaults(defineProps<IProps>(), {
-	emptyText: 'Автобусных туров к морю пока нет'
+const props = withDefaults(defineProps<IProps>(), {
+	emptyText: undefined
 });
 
 const route = useRoute();
-
 const routeRef = computed(() => route.query);
 
-const { data, status } = getToursCardList(routeRef);
+const { data, status } =
+	props.kind === 'tour'
+		? getToursCardList(routeRef)
+		: getExcursionsCardList(routeRef);
+
+const cardType = computed(() =>
+	props.kind === 'tour' ? 'bus-tour' : 'excursion'
+);
+
+const text = computed(
+	() =>
+		props.emptyText ??
+		(props.kind === 'tour'
+			? 'Автобусных туров к морю пока нет'
+			: 'Экскурсионных туров пока нет')
+);
 </script>
 <template>
 	<div
@@ -34,7 +50,7 @@ const { data, status } = getToursCardList(routeRef);
 			v-for="item in data"
 			:id="item.id"
 			:key="item.id"
-			type="bus-tour"
+			:type="cardType"
 			:title="item.title"
 			:price="item.price"
 			:date="item?.date ?? ''"
@@ -44,6 +60,6 @@ const { data, status } = getToursCardList(routeRef);
 	</div>
 	<SharedInformersEmptyDataInformer
 		v-else
-		:text="emptyText"
+		:text="text"
 	/>
 </template>
