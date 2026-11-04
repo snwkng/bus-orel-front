@@ -27,8 +27,8 @@ const fullYear: number = new Date().getFullYear();
 					class="typo-small max-w-[28ch] text-neutral-500"
 					itemprop="description"
 				>
-					Турагентство из Орла. Возим к морю на своих автобусах, возим на
-					экскурсии, сдаём микроавтобусы в аренду.
+					Турагентство из Орла. Подбираем туры к морю и за границу, организуем
+					экскурсии, сдаём в аренду автобусы и микроавтобусы.
 				</p>
 				<div class="mt-4 flex items-center gap-3">
 					<a
@@ -80,7 +80,7 @@ const fullYear: number = new Date().getFullYear();
 						<NuxtLink
 							:to="{ name: 'index', hash: '#bus-rent' }"
 							class="transition-colors hover:text-neutral-900"
-							>Аренда микроавтобусов</NuxtLink
+							>Аренда автобусов</NuxtLink
 						>
 					</li>
 					<li>

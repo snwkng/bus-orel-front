@@ -19,6 +19,10 @@ const props = withDefaults(defineProps<IProps>(), {
 	type: undefined
 });
 
+const emit = defineEmits<{
+	'update:tab': [tab: SearchTab];
+}>();
+
 const router = useRouter();
 const route = useRoute();
 
@@ -47,7 +51,10 @@ const updateIndicator = async (): Promise<void> => {
 	}
 };
 
-watch(activeTab, updateIndicator);
+watch(activeTab, (tab) => {
+	emit('update:tab', tab);
+	updateIndicator();
+});
 
 onMounted(() => {
 	updateIndicator();

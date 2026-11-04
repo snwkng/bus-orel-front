@@ -14,7 +14,7 @@ const errorText = computed(() => getApiErrorMessage(error.value));
 	<SharedSlidersCarouselSlider
 		v-else-if="data?.length"
 		title="Автобусные туры к морю"
-		subtitle="Выезд из Орла на наших автобусах"
+		subtitle="Выезд из Орла, без пересадок и хлопот"
 		link-to="/bus-tours"
 		link-label="Все туры"
 	>
