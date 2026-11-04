@@ -14,10 +14,12 @@ const props = withDefaults(defineProps<IProps>(), {
 const route = useRoute();
 const routeRef = computed(() => route.query);
 
-const { data, status } =
+const { data, status, error } =
 	props.kind === 'tour'
 		? getToursCardList(routeRef)
 		: getExcursionsCardList(routeRef);
+
+const errorText = computed(() => getApiErrorMessage(error.value));
 
 const cardType = computed(() =>
 	props.kind === 'tour' ? 'bus-tour' : 'excursion'
@@ -58,6 +60,15 @@ const text = computed(
 			:image-link="item.image"
 		/>
 	</div>
+	<SharedAlertsBaseAlert
+		v-else-if="error"
+		mode="error"
+		icon-name="circle-alert"
+	>
+		Не удалось загрузить список{{
+			errorText ? `: ${errorText}` : '. Попробуйте обновить страницу позже'
+		}}
+	</SharedAlertsBaseAlert>
 	<SharedInformersEmptyDataInformer
 		v-else
 		:text="text"

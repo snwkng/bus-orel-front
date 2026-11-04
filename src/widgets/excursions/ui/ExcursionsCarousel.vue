@@ -4,7 +4,9 @@ import { getExcursionsCardList } from '@/entities/excursion/api/excursion.api';
 const route = useRoute();
 const routeRef = computed(() => route.query);
 
-const { data, status } = getExcursionsCardList(routeRef);
+const { data, status, error } = getExcursionsCardList(routeRef);
+
+const errorText = computed(() => getApiErrorMessage(error.value));
 </script>
 
 <template>
@@ -29,4 +31,13 @@ const { data, status } = getExcursionsCardList(routeRef);
 			class="w-[72vw] shrink-0 snap-start sm:w-[calc(50%_-_12px)] lg:w-[calc((100%_-_48px)/3)] xl:w-[calc((100%_-_72px)/4)]"
 		/>
 	</SharedSlidersCarouselSlider>
+	<SharedAlertsBaseAlert
+		v-else-if="error"
+		mode="error"
+		icon-name="circle-alert"
+	>
+		Не удалось загрузить экскурсии{{
+			errorText ? `: ${errorText}` : '. Попробуйте обновить страницу позже'
+		}}
+	</SharedAlertsBaseAlert>
 </template>
