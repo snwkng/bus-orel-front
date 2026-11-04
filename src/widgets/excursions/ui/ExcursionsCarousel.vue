@@ -16,7 +16,7 @@ const { data, status } = getExcursionsCardList(routeRef);
 		link-to="/excursions"
 		link-label="Все экскурсии"
 	>
-		<SharedCardsTourCard
+		<SharedCardsBaseCard
 			v-for="item in data"
 			:id="item.id"
 			:key="item.id"
