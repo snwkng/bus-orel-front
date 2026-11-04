@@ -4,12 +4,13 @@ import { getToursCardList } from '~/entities/tour/api/tour.api';
 const route = useRoute();
 const routeRef = computed(() => route.query);
 
-const { data } = getToursCardList(routeRef);
+const { data, status } = getToursCardList(routeRef);
 </script>
 
 <template>
+	<SharedSkeletonCarousel v-if="status === 'pending' && !data?.length" />
 	<SharedSlidersCarouselSlider
-		v-if="data?.length"
+		v-else-if="data?.length"
 		title="Автобусные туры к морю"
 		subtitle="Выезд из Орла на наших автобусах"
 		link-to="/bus-tours"

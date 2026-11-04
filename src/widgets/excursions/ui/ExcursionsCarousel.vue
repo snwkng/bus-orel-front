@@ -4,12 +4,13 @@ import { getExcursionsCardList } from '@/entities/excursion/api/excursion.api';
 const route = useRoute();
 const routeRef = computed(() => route.query);
 
-const { data } = getExcursionsCardList(routeRef);
+const { data, status } = getExcursionsCardList(routeRef);
 </script>
 
 <template>
+	<SharedSkeletonCarousel v-if="status === 'pending' && !data?.length" />
 	<SharedSlidersCarouselSlider
-		v-if="data?.length"
+		v-else-if="data?.length"
 		title="Экскурсии из Орла"
 		subtitle="Однодневные поездки по выходным"
 		link-to="/excursions"

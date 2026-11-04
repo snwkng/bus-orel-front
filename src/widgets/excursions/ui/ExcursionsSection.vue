@@ -13,11 +13,21 @@ const route = useRoute();
 
 const routeRef = computed(() => route.query);
 
-const { data } = getExcursionsCardList(routeRef);
+const { data, status } = getExcursionsCardList(routeRef);
 </script>
 <template>
 	<div
-		v-if="data?.length"
+		v-if="status === 'pending' && !data?.length"
+		class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
+		aria-hidden="true"
+	>
+		<SharedSkeletonCard
+			v-for="i in 6"
+			:key="i"
+		/>
+	</div>
+	<div
+		v-else-if="data?.length"
 		class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
 	>
 		<SharedCardsTourCard
