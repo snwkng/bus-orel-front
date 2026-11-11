@@ -1,0 +1,30 @@
+# Dev-окружение фронта (Nuxt 4 SSR) в Docker.
+# Требует запущенный бэкенд: docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+# (в репо bus-orel-backend) — он создаёт сеть localnet и сервис nestjs.
+services:
+  nuxt-app:
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+    image: frontend:dev
+    container_name: nuxt
+    environment:
+      NODE_ENV: development
+      # /api/** проксируется Nitro-ом сервер-сайд → адрес бэкенда внутри docker-сети
+      BASE_URL: http://nestjs:3001
+      # polling — чтобы watcher видел изменения через bind-mount на Windows
+      CHOKIDAR_USEPOLLING: 'true'
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/app/src
+      - ./server:/app/server
+      - ./public:/app/public
+      - ./nuxt.config.ts:/app/nuxt.config.ts
+    networks:
+      - localnet
+    restart: unless-stopped
+networks:
+  localnet:
+    external: true
+    name: localnet

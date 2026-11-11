@@ -187,7 +187,7 @@ const fullYear: number = new Date().getFullYear();
 				>
 					<span>ИП Петлай Г.В. · ИНН 572000036383 · ОГРН 304572027400096</span>
 					<span class="flex items-center gap-2">
-						<span>Мы в реестре туроператоров:</span>
+						<span>Мы в реестре турагентов:</span>
 						<a
 							href="https://ev.economy.gov.ru/lk_exp/registry/ta/bf9378f1-bef4-4834-8465-cfe10e86eca7"
 							target="_blank"
