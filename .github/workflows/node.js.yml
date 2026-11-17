@@ -9,10 +9,8 @@ on:
 
 jobs:
   checks:
-    runs-on: self-hosted
-    defaults:
-      run:
-        working-directory: checks
+    # GitHub-hosted: репозиторий публичный, код PR из форков не должен исполняться на VPS (IMP-022)
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [24.11.0]
@@ -20,13 +18,11 @@ jobs:
       BASE_URL: ${{secrets.BASE_URL}}
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Полная история
-          path: checks # изоляция от прода: pm2 запускает .output из корня workspace
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
       - name: Create .env file
         run: |
@@ -39,10 +35,6 @@ jobs:
           npm run lint:js
           npm run typecheck
           npm run build
-
-      - name: Cleanup
-        if: always()
-        run: rm -rf node_modules .nuxt .output
 
   deploy:
     if: >-
