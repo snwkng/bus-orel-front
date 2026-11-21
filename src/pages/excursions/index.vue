@@ -1,4 +1,20 @@
 <script setup lang="ts">
+const { url: siteUrl } = useSiteConfig();
+
+useJsonLd({
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteUrl}/` },
+		{
+			'@type': 'ListItem',
+			position: 2,
+			name: 'Экскурсии',
+			item: `${siteUrl}/excursions`
+		}
+	]
+});
+
 useSeoMeta({
 	title: 'Экскурсионные туры из Орла',
 	ogTitle: 'Экскурсионные туры из Орла',

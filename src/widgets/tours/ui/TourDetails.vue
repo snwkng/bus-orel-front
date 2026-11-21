@@ -98,6 +98,51 @@ useSeoMeta({
 	ogImageWidth: 1200,
 	ogImageHeight: 630
 });
+
+const tourPageUrl = computed(() => `${siteUrl}/bus-tours/${tourId.value}`);
+
+useJsonLd(
+	computed(() => ({
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Главная',
+				item: `${siteUrl}/`
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: 'Туры к морю',
+				item: `${siteUrl}/bus-tours`
+			},
+			{ '@type': 'ListItem', position: 3, name: tourTitle.value }
+		]
+	}))
+);
+
+useJsonLd(
+	computed(() => ({
+		'@context': 'https://schema.org',
+		'@type': 'Product',
+		name: tourTitle.value,
+		description: data.value?.description || tourDescription.value,
+		image:
+			data.value?.images?.map(
+				(img) => `${siteUrl}/_ipx/f_jpg&s_1200x630/image/${img}`
+			) ?? [],
+		url: tourPageUrl.value,
+		offers: {
+			'@type': 'Offer',
+			price: data.value?.minPrice,
+			priceCurrency: 'RUB',
+			availability: 'https://schema.org/InStock',
+			url: tourPageUrl.value
+		}
+	}))
+);
 </script>
 <template>
 	<section class="mx-auto w-full max-w-[1200px] px-6 pt-8 pb-16">

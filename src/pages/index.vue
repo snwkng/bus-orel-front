@@ -1,6 +1,33 @@
 <script setup lang="ts">
 const route = useRoute();
 
+const { url: siteUrl } = useSiteConfig();
+
+useJsonLd({
+	'@context': 'https://schema.org',
+	'@type': 'TravelAgency',
+	name: 'Галатур',
+	description:
+		'Турагентство из Орла. Туры к морю, экскурсии, подбор путешествий по России и за границу, аренда автобусов и микроавтобусов.',
+	url: siteUrl,
+	telephone: '+7 (4862) 78-09-58',
+	email: 'avtobus-orel.petlaj@yandex.ru',
+	image: `${siteUrl}/images/og-image.jpg`,
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: 'ул. Комсомольская 88, оф. 6',
+		addressLocality: 'Орёл',
+		addressRegion: 'Орловская область',
+		addressCountry: 'RU'
+	},
+	geo: {
+		'@type': 'GeoCoordinates',
+		latitude: 52.953087,
+		longitude: 36.060826
+	},
+	sameAs: ['https://vk.com/gtorel', 'https://ok.ru/gtorel']
+});
+
 useSeoMeta({
 	title: 'Турагентство Галатур — туры к морю и экскурсии из Орла',
 	ogTitle: 'Турагентство Галатур — туры к морю и экскурсии из Орла',

@@ -96,6 +96,51 @@ useSeoMeta({
 	ogImageWidth: 1200,
 	ogImageHeight: 630
 });
+
+const excursionPageUrl = computed(() => `${siteUrl}/excursions/${excursionId.value}`);
+
+useJsonLd(
+	computed(() => ({
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Главная',
+				item: `${siteUrl}/`
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: 'Экскурсии',
+				item: `${siteUrl}/excursions`
+			},
+			{ '@type': 'ListItem', position: 3, name: data.value?.name }
+		]
+	}))
+);
+
+useJsonLd(
+	computed(() => ({
+		'@context': 'https://schema.org',
+		'@type': 'Product',
+		name: data.value?.name,
+		description: excursionDescription.value,
+		image:
+			data.value?.images?.map(
+				(img) => `${siteUrl}/_ipx/f_jpg&s_1200x630/image/${img}`
+			) ?? [],
+		url: excursionPageUrl.value,
+		offers: {
+			'@type': 'Offer',
+			price: data.value?.price,
+			priceCurrency: 'RUB',
+			availability: 'https://schema.org/InStock',
+			url: excursionPageUrl.value
+		}
+	}))
+);
 </script>
 <template>
 	<section class="mx-auto w-full max-w-[1200px] px-6 pt-8 pb-16">

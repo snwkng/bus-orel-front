@@ -1,4 +1,20 @@
 <script setup lang="ts">
+const { url: siteUrl } = useSiteConfig();
+
+useJsonLd({
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteUrl}/` },
+		{
+			'@type': 'ListItem',
+			position: 2,
+			name: 'Туры к морю',
+			item: `${siteUrl}/bus-tours`
+		}
+	]
+});
+
 useSeoMeta({
 	title: 'Автобусные туры к морю из Орла',
 	ogTitle: 'Автобусные туры к морю из Орла',
