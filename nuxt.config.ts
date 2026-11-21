@@ -64,7 +64,12 @@ export default defineNuxtConfig({
 
 	routeRules: {
 		'/api/**': { proxy: `${import.meta.env.BASE_URL}/api/**` },
-		'/images/**': { static: true }
+		'/images/**': { static: true },
+		'/_ipx/**': {
+			headers: {
+				'cache-control': 'public, max-age=604800, s-maxage=2592000'
+			}
+		}
 	},
 
 	srcDir: 'src/',

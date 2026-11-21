@@ -40,7 +40,9 @@ const activeIndex = computed(() => {
 					:alt="`${alt} — фото ${i + 1}`"
 					class="h-[300px] w-full shrink-0 snap-start bg-neutral-100 object-cover"
 					height="300"
-					loading="lazy"
+					sizes="100vw"
+					:loading="i === 0 ? 'eager' : 'lazy'"
+					:fetchpriority="i === 0 ? 'high' : 'auto'"
 					fit="inside"
 				/>
 			</div>

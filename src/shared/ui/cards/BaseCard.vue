@@ -50,6 +50,7 @@ const placeholderIcon = computed(() =>
 					:alt="title"
 					class="aspect-[4/3] w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
 					fit="inside"
+					sizes="sm:50vw lg:368px"
 					loading="lazy"
 				/>
 				<div

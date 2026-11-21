@@ -46,7 +46,9 @@ const tileClass = (index: number): string => {
 				:src="`/image/${tile}`"
 				:alt="`${alt} — фото ${i + 1}`"
 				class="h-full w-full object-cover object-center transition duration-300 hover:brightness-90"
-				loading="lazy"
+				sizes="sm:100vw lg:600px"
+				:loading="i === 0 ? 'eager' : 'lazy'"
+				:fetchpriority="i === 0 ? 'high' : 'auto'"
 				fit="outside"
 			/>
 			<div
