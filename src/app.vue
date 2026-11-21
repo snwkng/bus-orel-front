@@ -5,6 +5,15 @@ const route = useRoute();
 
 const cookie = useCookieAgree();
 
+useSeoMeta({
+	ogType: 'website',
+	ogLocale: 'ru_RU',
+	ogSiteName: 'Галатур — туристическое агентство',
+	ogImage: `${siteUrl}/images/og-image.jpg`,
+	ogUrl: computed(() => siteUrl + route.path),
+	twitterCard: 'summary_large_image'
+});
+
 useHead({
 	link: [
 		{

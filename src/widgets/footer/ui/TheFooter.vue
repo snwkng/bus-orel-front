@@ -172,7 +172,7 @@ const fullYear: number = new Date().getFullYear();
 				<div
 					class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
 				>
-					<span>© {{ fullYear }} ГалаТур, Орёл</span>
+					<span>© {{ fullYear }} Галатур, Орёл</span>
 					<span
 						>Информация на сайте не является публичной офертой ·
 						<a

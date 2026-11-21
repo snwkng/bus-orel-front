@@ -60,7 +60,7 @@ const placeholderIcon = computed(() =>
 						:name="placeholderIcon"
 						class="text-secondary-300 size-8 transition-transform duration-300 ease-out group-hover:scale-110"
 					/>
-					<span class="text-sm font-semibold text-neutral-300">ГалаТур</span>
+					<span class="text-sm font-semibold text-neutral-300">Галатур</span>
 				</div>
 				<span
 					v-if="formattedDate"

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 		head: {
 			charset: 'utf-8',
 			viewport: 'width=device-width, initial-scale=1',
-			title: 'Туристическое агентство ГалаТур - Орёл',
+			title: 'Туристическое агентство Галатур — Орёл',
 			htmlAttrs: { lang: 'ru' },
 			meta: [
 				{ 'http-equiv': 'Content-Type', content: 'text/html; charset=utf-8' },
@@ -140,7 +140,7 @@ export default defineNuxtConfig({
 
 	site: {
 		url: import.meta.env.SITE_URL ?? 'https://bus-orel.ru',
-		name: 'Туристическое агентство ГалаТур - Орёл'
+		name: 'Галатур — туристическое агентство в Орле'
 	},
 
 	sitemap: {

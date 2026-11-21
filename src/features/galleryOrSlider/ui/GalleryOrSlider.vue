@@ -52,7 +52,7 @@ const activeIndex = computed(() => {
 					:name="icon"
 					class="text-secondary-300 size-8"
 				/>
-				<span class="text-sm font-semibold text-neutral-300">ГалаТур</span>
+				<span class="text-sm font-semibold text-neutral-300">Галатур</span>
 			</div>
 			<span
 				v-if="images.length > 1"
