@@ -22,11 +22,11 @@ withDefaults(defineProps<IProps>(), {
 			aria-hidden="true"
 		>
 			<path
-				d="M35 62 a25 25 0 0 1 50 0 z"
+				d="M35 58 a25 25 0 0 1 50 0 z"
 				class="fill-primary-500"
 			/>
 			<path
-				d="M25 84 q12 -14 24 0 t24 0 t24 0"
+				d="M25 80 q12 -14 24 0 t24 0 t24 0"
 				fill="none"
 				class="stroke-secondary-600"
 				stroke-width="12"
