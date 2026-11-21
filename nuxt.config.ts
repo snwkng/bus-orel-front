@@ -65,11 +65,6 @@ export default defineNuxtConfig({
 	routeRules: {
 		'/api/**': { proxy: `${import.meta.env.BASE_URL}/api/**` },
 		'/images/**': { static: true },
-		'/_ipx/**': {
-			headers: {
-				'cache-control': 'public, max-age=604800, s-maxage=2592000'
-			}
-		},
 		'/': { swr: 60 },
 		'/bus-tours': { swr: 60 },
 		'/excursions': { swr: 60 },
@@ -201,6 +196,12 @@ export default defineNuxtConfig({
 	image: {
 		format: ['avif', 'webp'],
 		domains: [import.meta.env.BASE_URL],
+		ipx: {
+			// кэш обработанных изображений: 30 дней (браузер и CDN);
+			// http.maxAge — дефолт для источников без cache-control (бэкенд его не отдаёт)
+			maxAge: 2592000,
+			http: { maxAge: 2592000 }
+		},
 		alias: {
 			image: `${import.meta.env.BASE_URL}/api/s3/download`
 		},
