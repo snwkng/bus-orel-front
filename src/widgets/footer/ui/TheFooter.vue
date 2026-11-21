@@ -12,16 +12,8 @@ const fullYear: number = new Date().getFullYear();
 			class="mx-auto grid w-full max-w-[1200px] gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4"
 		>
 			<div>
-				<div class="mb-4 flex items-center gap-1">
-					<span
-						class="bg-primary-500 flex size-8 items-center justify-center rounded-lg text-lg font-bold text-white"
-						>Г</span
-					>
-					<span
-						class="text-lg font-semibold tracking-tight"
-						itemprop="name"
-						>алатур</span
-					>
+				<div class="mb-4">
+					<SharedLogoBaseLogo itemprop="name" />
 				</div>
 				<p
 					class="typo-small max-w-[28ch] text-neutral-500"
