@@ -4,6 +4,8 @@ import type { IOrderInfoValue } from '@/features/orderWithInfo/model/order-info.
 
 const route = useRoute();
 
+const { url: siteUrl } = useSiteConfig();
+
 const tourId = computed(() => route.params.id as string);
 
 const { data, error } = await getTour(tourId);
@@ -71,14 +73,30 @@ if (error.value) {
 	});
 }
 
+const tourDescription = computed(() => {
+	const city = data.value?.address?.city;
+	if (!city || !tourTitle.value) return '';
+	const price = data.value?.minPrice
+		? ` Цены от ${new Intl.NumberFormat('ru-RU').format(data.value.minPrice)} ₽ за человека.`
+		: '';
+	return `Автобусный тур в ${city} из Орла: ${tourTitle.value}.${price} Даты заезда, номера и условия — на странице тура.`;
+});
+
 useSeoMeta({
 	title: computed(
 		() => `Автобусный тур в ${data.value?.address?.city}, ${tourTitle.value}`
 	),
 	ogTitle: () =>
 		`Автобусный тур в ${data.value?.address?.city}, ${tourTitle.value}`,
-	description: () => `Автобусный тур в ${data.value?.address?.city} из Орла.`,
-	ogDescription: () => `Автобусный тур в ${data.value?.address?.city} из Орла.`
+	description: tourDescription,
+	ogDescription: tourDescription,
+	ogImage: computed(() =>
+		data.value?.images?.[0]
+			? `${siteUrl}/_ipx/f_jpg&s_1200x630/image/${data.value.images[0]}`
+			: `${siteUrl}/images/og-image.jpg`
+	),
+	ogImageWidth: 1200,
+	ogImageHeight: 630
 });
 </script>
 <template>

@@ -6,6 +6,8 @@ const route = useRoute();
 
 const dayjs = useDayjs();
 
+const { url: siteUrl } = useSiteConfig();
+
 const excursionId = computed(() => route.params.id as string);
 
 const { data, error } = await getExcursion(excursionId);
@@ -63,12 +65,36 @@ if (error.value) {
 	});
 }
 
+const excursionTitle = computed(() =>
+	data.value?.name ? `${data.value.name} — экскурсия из Орла` : ''
+);
+
+const excursionDescription = computed(() => {
+	if (!data.value?.name) return '';
+	const cities = data.value.cities?.length
+		? ` Маршрут: ${data.value.cities.join(', ')}.`
+		: '';
+	const duration = endWordDayCheck.value
+		? ` Длительность — ${endWordDayCheck.value}.`
+		: '';
+	const price = data.value.price
+		? ` Цена ${new Intl.NumberFormat('ru-RU').format(data.value.price)} ₽.`
+		: '';
+	return `Экскурсия «${data.value.name}» из Орла.${cities}${duration}${price} Программа, даты и условия — на странице экскурсии.`;
+});
+
 useSeoMeta({
-	title: computed(() => data.value?.name),
-	description: () =>
-		`Экскурсия - ${data.value?.name}, Автобусный тур в ${data.value?.cities?.join(', ')} из Орла.`,
-	ogDescription: () =>
-		`Экскурсия - ${data.value?.name}, Автобусный тур в ${data.value?.cities?.join(', ')} из Орла.`
+	title: excursionTitle,
+	ogTitle: excursionTitle,
+	description: excursionDescription,
+	ogDescription: excursionDescription,
+	ogImage: computed(() =>
+		data.value?.images?.[0]
+			? `${siteUrl}/_ipx/f_jpg&s_1200x630/image/${data.value.images[0]}`
+			: `${siteUrl}/images/og-image.jpg`
+	),
+	ogImageWidth: 1200,
+	ogImageHeight: 630
 });
 </script>
 <template>
