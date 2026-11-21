@@ -69,7 +69,12 @@ export default defineNuxtConfig({
 			headers: {
 				'cache-control': 'public, max-age=604800, s-maxage=2592000'
 			}
-		}
+		},
+		'/': { swr: 60 },
+		'/bus-tours': { swr: 60 },
+		'/excursions': { swr: 60 },
+		'/bus-tours/**': { swr: 300 },
+		'/excursions/**': { swr: 300 }
 	},
 
 	srcDir: 'src/',
