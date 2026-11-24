@@ -110,18 +110,10 @@ onMounted(() => {
 		</section>
 
 		<!-- Tours carousel -->
-		<section class="border-t border-neutral-100 bg-neutral-50 py-14">
-			<div class="mx-auto w-full max-w-[1200px] px-6">
-				<WidgetsToursCarousel />
-			</div>
-		</section>
+		<WidgetsToursCarousel />
 
-		<!-- Excursions carousel -->
-		<section class="border-t border-neutral-100 py-14">
-			<div class="mx-auto w-full max-w-[1200px] px-6">
-				<WidgetsExcursionsCarousel />
-			</div>
-		</section>
+		<!-- Excursions carousels by type -->
+		<WidgetsExcursionsTypedCarousels />
 
 		<!-- Bus rent -->
 		<section
@@ -178,8 +170,8 @@ onMounted(() => {
 						останется только собрать чемоданы — остальное мы возьмём на себя.
 					</p>
 					<p>
-						Просто позвоните или напишите нам в соцсетях — бесплатно подберём тур, который
-						запомнится надолго!
+						Просто позвоните или напишите нам в соцсетях — бесплатно подберём
+						тур, который запомнится надолго!
 					</p>
 				</div>
 			</div>

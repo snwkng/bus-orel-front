@@ -7,36 +7,46 @@ const routeRef = computed(() => route.query);
 const { data, status, error } = getToursCardList(routeRef);
 
 const errorText = computed(() => getApiErrorMessage(error.value));
-</script>
 
+const visible = computed(
+	() => status.value === 'pending' || !!data.value?.length || !!error.value
+);
+</script>
 <template>
-	<SharedSkeletonCarousel v-if="status === 'pending' && !data?.length" />
-	<SharedSlidersCarouselSlider
-		v-else-if="data?.length"
-		title="Автобусные туры к морю"
-		subtitle="Выезд из Орла, без пересадок и хлопот"
-		link-to="/bus-tours"
-		link-label="Все туры"
+	<section
+		v-if="visible"
+		class="border-t border-neutral-100 bg-neutral-50 py-14"
 	>
-		<SharedCardsBaseCard
-			v-for="item in data"
-			:id="item.id"
-			:key="item.id"
-			type="bus-tour"
-			:title="item.title"
-			:price="item.price"
-			:subtitle="item.subtitle"
-			:image-link="item.image"
-			class="w-[72vw] shrink-0 snap-start sm:w-[calc(50%_-_12px)] lg:w-[calc((100%_-_48px)/3)] xl:w-[calc((100%_-_72px)/4)]"
-		/>
-	</SharedSlidersCarouselSlider>
-	<SharedAlertsBaseAlert
-		v-else-if="error"
-		mode="error"
-		icon-name="circle-alert"
-	>
-		Не удалось загрузить туры{{
-			errorText ? `: ${errorText}` : '. Попробуйте обновить страницу позже'
-		}}
-	</SharedAlertsBaseAlert>
+		<div class="mx-auto w-full max-w-[1200px] px-6">
+			<SharedSkeletonCarousel v-if="status === 'pending' && !data?.length" />
+			<SharedSlidersCarouselSlider
+				v-else-if="data?.length"
+				title="Автобусные туры к морю"
+				subtitle="Выезд из Орла, без пересадок и хлопот"
+				link-to="/bus-tours"
+				link-label="Все туры"
+			>
+				<SharedCardsBaseCard
+					v-for="item in data"
+					:id="item.id"
+					:key="item.id"
+					type="bus-tour"
+					:title="item.title"
+					:price="item.price"
+					:subtitle="item.subtitle"
+					:image-link="item.image"
+					class="w-[72vw] shrink-0 snap-start sm:w-[calc(50%_-_12px)] lg:w-[calc((100%_-_48px)/3)] xl:w-[calc((100%_-_72px)/4)]"
+				/>
+			</SharedSlidersCarouselSlider>
+			<SharedAlertsBaseAlert
+				v-else-if="error"
+				mode="error"
+				icon-name="circle-alert"
+			>
+				Не удалось загрузить туры{{
+					errorText ? `: ${errorText}` : '. Попробуйте обновить страницу позже'
+				}}
+			</SharedAlertsBaseAlert>
+		</div>
+	</section>
 </template>
