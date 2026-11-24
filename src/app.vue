@@ -28,6 +28,8 @@ useHead({
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>
-		<SharedCookieTheCookie v-if="!cookie" />
+		<ClientOnly>
+			<SharedCookieTheCookie v-if="!cookie" />
+		</ClientOnly>
 	</div>
 </template>
