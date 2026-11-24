@@ -296,6 +296,7 @@ useJsonLd(
 
 		<FeaturesContactModal
 			v-if="contactMode"
+			subject="tour"
 			:mode="contactMode"
 			:context="tourTitle"
 			@close="contactMode = null"

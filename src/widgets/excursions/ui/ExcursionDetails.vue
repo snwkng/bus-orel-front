@@ -97,7 +97,9 @@ useSeoMeta({
 	ogImageHeight: 630
 });
 
-const excursionPageUrl = computed(() => `${siteUrl}/excursions/${excursionId.value}`);
+const excursionPageUrl = computed(
+	() => `${siteUrl}/excursions/${excursionId.value}`
+);
 
 useJsonLd(
 	computed(() => ({
@@ -247,6 +249,7 @@ useJsonLd(
 
 		<FeaturesContactModal
 			v-if="contactMode"
+			subject="excursion"
 			:mode="contactMode"
 			:context="data?.name"
 			@close="contactMode = null"

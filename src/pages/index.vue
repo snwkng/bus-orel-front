@@ -179,6 +179,7 @@ onMounted(() => {
 
 		<FeaturesContactModal
 			v-if="rentModalOpen"
+			subject="rent"
 			mode="question"
 			context="Аренда автобуса"
 			@close="rentModalOpen = false"
