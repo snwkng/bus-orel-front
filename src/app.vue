@@ -18,7 +18,7 @@ useHead({
 	link: [
 		{
 			rel: 'canonical',
-			href: computed(() => siteUrl + (route.path === '/' ? '' : route.path))
+			href: computed(() => siteUrl + (route.path === '/' ? '/' : route.path))
 		}
 	]
 });

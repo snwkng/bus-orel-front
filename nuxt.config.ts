@@ -47,6 +47,11 @@ export default defineNuxtConfig({
 					type: 'image/svg+xml',
 					href: '/favicon_120.svg',
 					sizes: '120x120'
+				},
+				{
+					rel: 'apple-touch-icon',
+					href: '/apple-touch-icon.png',
+					sizes: '180x180'
 				}
 			]
 		}
@@ -144,7 +149,7 @@ export default defineNuxtConfig({
 	},
 
 	site: {
-		url: import.meta.env.SITE_URL ?? 'https://bus-orel.ru',
+		url: import.meta.env.SITE_URL ?? 'https://www.bus-orel.ru',
 		name: 'Галатур — туристическое агентство в Орле'
 	},
 

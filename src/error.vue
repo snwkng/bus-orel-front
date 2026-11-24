@@ -1,11 +1,19 @@
 <script setup lang="ts">
 const error = useError();
 
+const pageTitle = computed(() =>
+	error.value?.status === 404
+		? 'Страница не найдена — Галатур'
+		: `Ошибка ${error.value?.status ?? ''} — Галатур`
+);
+
 useSeoMeta({
-	title: `Галатур Орел - Ошибка ${error.value?.status || ''}`,
-	ogTitle: `Галатур Орел - Ошибка ${error.value?.status || ''}`,
-	description: `Галатур Орел - Ошибка ${error.value?.status || ''}`,
-	ogDescription: `Галатур Орел - Ошибка ${error.value?.status || ''}`,
+	title: pageTitle,
+	ogTitle: pageTitle,
+	description:
+		'Такой страницы на сайте турагентства Галатур нет — вернитесь на главную и продолжите выбор тура.',
+	ogDescription:
+		'Такой страницы на сайте турагентства Галатур нет — вернитесь на главную и продолжите выбор тура.',
 	robots: { noindex: true, nofollow: true }
 });
 </script>
@@ -16,7 +24,7 @@ useSeoMeta({
 		<img
 			v-if="error?.status === 404"
 			src="/images/notFound.webp"
-			alt="404 - error"
+			alt="Страница не найдена"
 			class="h-[500px] w-full object-contain"
 		/>
 		<h1
