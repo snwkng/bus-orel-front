@@ -1,0 +1,18 @@
+/node_modules
+/.nuxt
+/.output
+/.git
+/.github
+/.vscode
+
+# секреты
+.env
+.env.*
+
+# dev-мусор
+*.log
+Dockerfile*
+dockerfile*
+docker-compose*.yml
+.dockerignore
+*.md

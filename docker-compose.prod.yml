@@ -1,0 +1,15 @@
+# Продакшн-стек для VPS (IMP-021). Образ приезжает из GHCR (на сервере ничего не собирается),
+# network_mode: host — контейнер слушает порт 3000 на хосте, конфиг nginx не меняется.
+# BASE_URL запечён в образ на этапе сборки (build-arg в CI), рантайм-переменные не нужны.
+# Раскладка на сервере: ~/apps/front/docker-compose.yml (копия этого файла).
+services:
+  front:
+    image: ghcr.io/snwkng/bus-orel-front:latest
+    container_name: bus-orel-front
+    network_mode: host
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
