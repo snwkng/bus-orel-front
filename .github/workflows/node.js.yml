@@ -1,41 +1,82 @@
+# CI: проверки (lint, build) и сборка образа (пуш в GHCR) — на GitHub-hosted раннере,
+# деплой (docker compose pull + up на VPS) — на self-hosted раннере.
+
 name: bus-orel-front
 
 on:
   push:
     branches: ['master']
+  # ручной запуск (Actions → Run workflow на master) — передеплой без пуша
+  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: self-hosted
+  checks:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [24.11.0]
+        node-version: [24]
     env:
       BASE_URL: ${{secrets.BASE_URL}}
     steps:
-      - name: Configure Git for binary files
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
-
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Полная история
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
 
-      - name: Create .env file
+  build-image:
+    needs: checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./dockerfile
+          push: true
+          build-args: |
+            BASE_URL=${{secrets.BASE_URL}}
+          tags: |
+            ghcr.io/snwkng/bus-orel-front:latest
+            ghcr.io/snwkng/bus-orel-front:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build-image
+    runs-on: self-hosted
+    permissions:
+      packages: read
+    concurrency:
+      group: deploy-front
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync app dir
         run: |
-          touch .env
-          echo "BASE_URL=${{secrets.BASE_URL}}" >> .env
-
-      - name: Clean and Build
+          mkdir -p ~/apps/front
+          cp docker-compose.prod.yml ~/apps/front/docker-compose.yml
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Deploy
         run: |
-          rm -rf .nuxt .output
-          npm ci
-          npm run build
-
-      - name: Restart PM2
-        run: pm2 restart front --update-env
+          cd ~/apps/front
+          docker compose pull
+          docker compose up -d
+      - name: Logout from GHCR
+        if: always()
+        run: docker logout ghcr.io
