@@ -82,6 +82,7 @@ const text = computed(
 				:date="item?.date ?? ''"
 				:subtitle="item.subtitle"
 				:image-link="item.image"
+				:badge="item.badge"
 			/>
 			<template v-if="loadingMore">
 				<SharedSkeletonCard

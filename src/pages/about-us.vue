@@ -19,6 +19,12 @@ useHead({
 </script>
 <template>
 	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
+		<SharedBreadcrumbsBaseBreadcrumbs
+			:items="[
+				{ label: 'Главная', to: { name: 'index' } },
+				{ label: 'О компании' }
+			]"
+		/>
 		<div class="max-w-[68ch]">
 			<h1 class="typo-h1 mb-6">
 				Галатур — ваш проводник в мир увлекательных путешествий!

@@ -5,4 +5,5 @@ export interface ICardModel {
 	image: string;
 	price: number;
 	date?: string;
+	badge?: string;
 }

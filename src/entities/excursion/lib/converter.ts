@@ -15,7 +15,9 @@ const converterCardItem: Converter<IExcursionDto, ICardModel> = (dto) => ({
 	price: dto.price,
 	image: dto.images?.[0] ?? '',
 	date:
-		dto?.excursionStartDates?.find((date) => new Date(date) >= new Date()) ?? ''
+		dto?.excursionStartDates?.find((date) => new Date(date) >= new Date()) ??
+		'',
+	badge: dto.type
 });
 
 const converterCitiesListItem: Converter<ICitiesDto, SelectItem> = (dto) => ({
@@ -29,6 +31,7 @@ export const excursionConverterOneListItem: Converter<
 > = (dto) => ({
 	id: dto._id,
 	name: dto.name,
+	type: dto.type ?? null,
 	description: toArray(dto.description),
 	images: toArray(dto.images),
 	duration: dto.duration,

@@ -1,6 +1,7 @@
 export interface IExcursionModel {
 	id: string;
 	name: string;
+	type: string | null;
 	description: string[];
 	images: string[];
 	duration: number;

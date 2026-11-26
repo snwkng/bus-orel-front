@@ -19,6 +19,12 @@ useHead({
 </script>
 <template>
 	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
+		<SharedBreadcrumbsBaseBreadcrumbs
+			:items="[
+				{ label: 'Главная', to: { name: 'index' } },
+				{ label: 'Пользовательское соглашение' }
+			]"
+		/>
 		<div class="typo-body max-w-[76ch] space-y-5 text-neutral-600">
 			<h1 class="typo-h1 text-neutral-900">Пользовательское соглашение</h1>
 

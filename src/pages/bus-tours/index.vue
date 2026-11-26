@@ -1,20 +1,4 @@
 <script setup lang="ts">
-const { url: siteUrl } = useSiteConfig();
-
-useJsonLd({
-	'@context': 'https://schema.org',
-	'@type': 'BreadcrumbList',
-	itemListElement: [
-		{ '@type': 'ListItem', position: 1, name: 'Главная', item: `${siteUrl}/` },
-		{
-			'@type': 'ListItem',
-			position: 2,
-			name: 'Туры к морю',
-			item: `${siteUrl}/bus-tours`
-		}
-	]
-});
-
 useSeoMeta({
 	title: 'Автобусные туры к морю из Орла',
 	ogTitle: 'Автобусные туры к морю из Орла',
@@ -36,21 +20,12 @@ useHead({
 </script>
 <template>
 	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
-		<nav
-			class="typo-small mb-5 flex items-center gap-1.5 text-neutral-500"
-			aria-label="Хлебные крошки"
-		>
-			<NuxtLink
-				:to="{ name: 'index' }"
-				class="transition-colors hover:text-neutral-900"
-				>Главная</NuxtLink
-			>
-			<Icon
-				name="lucide:chevron-right"
-				class="size-3.5"
-			/>
-			<span class="text-neutral-900">Туры к морю</span>
-		</nav>
+		<SharedBreadcrumbsBaseBreadcrumbs
+			:items="[
+				{ label: 'Главная', to: { name: 'index' } },
+				{ label: 'Туры к морю' }
+			]"
+		/>
 
 		<div class="mb-8">
 			<h1 class="typo-h1">Автобусные туры к морю из Орла</h1>

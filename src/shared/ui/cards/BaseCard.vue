@@ -7,11 +7,13 @@ interface IProps {
 	subtitle: string;
 	date?: string | Date;
 	imageLink?: string;
+	badge?: string;
 }
 
 const props = withDefaults(defineProps<IProps>(), {
 	date: undefined,
-	imageLink: ''
+	imageLink: '',
+	badge: undefined
 });
 
 const dayjs = useDayjs();
@@ -68,6 +70,12 @@ const placeholderIcon = computed(() =>
 					class="typo-caption absolute top-3 left-3 rounded-full bg-white/95 px-2.5 py-1 font-semibold text-neutral-800 shadow-sm"
 				>
 					{{ formattedDate }}
+				</span>
+				<span
+					v-if="badge"
+					class="typo-caption text-secondary-700 absolute top-3 right-3 rounded-full bg-white/95 px-2.5 py-1 font-semibold shadow-sm"
+				>
+					{{ badge }}
 				</span>
 			</div>
 			<h3

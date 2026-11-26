@@ -101,27 +101,11 @@ useSeoMeta({
 
 const tourPageUrl = computed(() => `${siteUrl}/bus-tours/${tourId.value}`);
 
-useJsonLd(
-	computed(() => ({
-		'@context': 'https://schema.org',
-		'@type': 'BreadcrumbList',
-		itemListElement: [
-			{
-				'@type': 'ListItem',
-				position: 1,
-				name: 'Главная',
-				item: `${siteUrl}/`
-			},
-			{
-				'@type': 'ListItem',
-				position: 2,
-				name: 'Туры к морю',
-				item: `${siteUrl}/bus-tours`
-			},
-			{ '@type': 'ListItem', position: 3, name: tourTitle.value }
-		]
-	}))
-);
+const breadcrumbItems = computed(() => [
+	{ label: 'Главная', to: { name: 'index' } },
+	{ label: 'Туры к морю', to: { name: 'bus-tours' } },
+	{ label: tourTitle.value }
+]);
 
 useJsonLd(
 	computed(() => ({
@@ -147,38 +131,11 @@ useJsonLd(
 <template>
 	<section class="mx-auto w-full max-w-[1200px] px-6 pt-8 pb-16">
 		<!-- Breadcrumbs -->
-		<nav
-			class="typo-small mb-5 flex items-center gap-1.5 text-neutral-500"
-			aria-label="Хлебные крошки"
-		>
-			<NuxtLink
-				:to="{ name: 'index' }"
-				class="transition-colors hover:text-neutral-900"
-				>Главная</NuxtLink
-			>
-			<Icon
-				name="lucide:chevron-right"
-				class="size-3.5"
-			/>
-			<NuxtLink
-				:to="{ name: 'bus-tours' }"
-				class="transition-colors hover:text-neutral-900"
-				>Туры к морю</NuxtLink
-			>
-			<Icon
-				name="lucide:chevron-right"
-				class="size-3.5"
-			/>
-			<span class="truncate text-neutral-900">{{ tourTitle }}</span>
-		</nav>
+		<SharedBreadcrumbsBaseBreadcrumbs :items="breadcrumbItems" />
 
 		<!-- Title -->
 		<div class="mb-6">
-			<FeaturesTitleWithDownloadFile
-				:title="tourTitle"
-				:file-name="data?.name ?? ''"
-				:filenames="data?.fileName"
-			/>
+			<h1 class="typo-h1 max-w-[24ch]">{{ tourTitle }}</h1>
 			<p
 				v-if="data?.address?.fullAddress"
 				class="typo-small mt-2 flex items-center gap-1.5 text-neutral-500"
@@ -284,10 +241,12 @@ useJsonLd(
 			</div>
 
 			<!-- Booking card -->
-			<aside class="lg:sticky lg:top-24 lg:self-start">
+			<aside class="order-first lg:order-none lg:sticky lg:top-24 lg:self-start">
 				<FeaturesOrderWithInfo
 					:price="data?.minPrice"
 					:info-values="orderInfoValues"
+					:file-name="data?.name ?? ''"
+					:file-names="data?.fileName"
 					@click-order="contactMode = 'booking'"
 					@click-question="contactMode = 'question'"
 				/>

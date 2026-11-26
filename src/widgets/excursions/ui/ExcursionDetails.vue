@@ -101,27 +101,11 @@ const excursionPageUrl = computed(
 	() => `${siteUrl}/excursions/${excursionId.value}`
 );
 
-useJsonLd(
-	computed(() => ({
-		'@context': 'https://schema.org',
-		'@type': 'BreadcrumbList',
-		itemListElement: [
-			{
-				'@type': 'ListItem',
-				position: 1,
-				name: 'Главная',
-				item: `${siteUrl}/`
-			},
-			{
-				'@type': 'ListItem',
-				position: 2,
-				name: 'Экскурсии',
-				item: `${siteUrl}/excursions`
-			},
-			{ '@type': 'ListItem', position: 3, name: data.value?.name }
-		]
-	}))
-);
+const breadcrumbItems = computed(() => [
+	{ label: 'Главная', to: { name: 'index' } },
+	{ label: 'Экскурсии', to: { name: 'excursions' } },
+	{ label: data.value?.name ?? '' }
+]);
 
 useJsonLd(
 	computed(() => ({
@@ -147,38 +131,17 @@ useJsonLd(
 <template>
 	<section class="mx-auto w-full max-w-[1200px] px-6 pt-8 pb-16">
 		<!-- Breadcrumbs -->
-		<nav
-			class="typo-small mb-5 flex items-center gap-1.5 text-neutral-500"
-			aria-label="Хлебные крошки"
-		>
-			<NuxtLink
-				:to="{ name: 'index' }"
-				class="transition-colors hover:text-neutral-900"
-				>Главная</NuxtLink
-			>
-			<Icon
-				name="lucide:chevron-right"
-				class="size-3.5"
-			/>
-			<NuxtLink
-				:to="{ name: 'excursions' }"
-				class="transition-colors hover:text-neutral-900"
-				>Экскурсии</NuxtLink
-			>
-			<Icon
-				name="lucide:chevron-right"
-				class="size-3.5"
-			/>
-			<span class="truncate text-neutral-900">{{ data?.name }}</span>
-		</nav>
+		<SharedBreadcrumbsBaseBreadcrumbs :items="breadcrumbItems" />
 
 		<!-- Title -->
 		<div class="mb-6">
-			<FeaturesTitleWithDownloadFile
-				:title="data?.name ?? ''"
-				:file-name="data?.name ?? ''"
-				:filenames="data?.fileName"
-			/>
+			<span
+				v-if="data?.type"
+				class="typo-caption bg-secondary-50 text-secondary-700 mb-3 inline-block rounded-full px-3 py-1 font-semibold"
+			>
+				{{ data.type }}
+			</span>
+			<h1 class="typo-h1 max-w-[24ch]">{{ data?.name }}</h1>
 			<p
 				v-if="data?.cities?.length"
 				class="typo-small mt-2 flex items-center gap-1.5 text-neutral-500"
@@ -237,10 +200,12 @@ useJsonLd(
 			</div>
 
 			<!-- Booking card -->
-			<aside class="lg:sticky lg:top-24 lg:self-start">
+			<aside class="order-first lg:order-none lg:sticky lg:top-24 lg:self-start">
 				<FeaturesOrderWithInfo
 					:price="data?.price"
 					:info-values="orderInfoValues"
+					:file-name="data?.name ?? ''"
+					:file-names="data?.fileName"
 					@click-order="contactMode = 'booking'"
 					@click-question="contactMode = 'question'"
 				/>

@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import type { IOrderInfoValue } from '../model/order-info.model';
+import { downloadFile } from '@/shared/lib/download/useLinkDownloadFile';
 
 interface IProps {
 	price?: number;
 	infoValues?: IOrderInfoValue[];
+	fileName?: string;
+	fileNames?: string[];
 }
 
 const props = withDefaults(defineProps<IProps>(), {
 	price: undefined,
-	infoValues: () => []
+	infoValues: () => [],
+	fileName: '',
+	fileNames: () => []
 });
 
 const emit = defineEmits<{
@@ -62,6 +67,18 @@ const formattedPrice = computed(() =>
 			>
 				Задать вопрос
 			</button>
+			<button
+				v-if="fileNames.length && fileNames[0]"
+				type="button"
+				class="typo-button hover:border-secondary-300 hover:bg-secondary-50 flex w-full items-center justify-center gap-2 rounded-full border border-neutral-200 py-3 text-neutral-700 transition-all active:scale-95"
+				@click="downloadFile(fileNames[0], fileName)"
+			>
+				<Icon
+					name="lucide:file-down"
+					class="text-secondary-600 size-4"
+				/>
+				Скачать прайс
+			</button>
 		</div>
 
 		<p class="typo-caption flex items-start gap-2 text-neutral-400">
@@ -69,8 +86,8 @@ const formattedPrice = computed(() =>
 				name="lucide:shield-check"
 				class="text-secondary-500 mt-0.5 size-3.5 shrink-0"
 			/>
-			Бронь бесплатна и ни к чему не обязывает: свяжитесь с нами, менеджер ответит на
-			вопросы и зафиксирует цену.
+			Бронь бесплатна и ни к чему не обязывает: свяжитесь с нами, менеджер
+			ответит на вопросы и зафиксирует цену.
 		</p>
 	</div>
 </template>

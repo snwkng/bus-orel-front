@@ -61,6 +61,7 @@ const linkTo = computed(() =>
 					:subtitle="item.subtitle"
 					:date="item.date"
 					:image-link="item.image"
+					:badge="item.badge"
 					class="w-[72vw] shrink-0 snap-start sm:w-[calc(50%_-_12px)] lg:w-[calc((100%_-_48px)/3)] xl:w-[calc((100%_-_72px)/4)]"
 				/>
 			</SharedSlidersCarouselSlider>

@@ -68,6 +68,12 @@ const accordionItems = ref([
 </script>
 <template>
 	<section class="mx-auto w-full max-w-[1200px] px-6 pt-10 pb-16">
+		<SharedBreadcrumbsBaseBreadcrumbs
+			:items="[
+				{ label: 'Главная', to: { name: 'index' } },
+				{ label: 'Памятка туристу' }
+			]"
+		/>
 		<h1 class="typo-h1 mb-8">Памятка туристу</h1>
 		<div class="max-w-[68ch] space-y-8">
 			<div
