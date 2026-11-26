@@ -2,14 +2,15 @@
 /dist
 /coverage
 /test
+/.nuxt
+/.output
+/.git
+/.github
+/.vscode
 
 # секреты
 .env
 .env.*
-
-# VCS и CI
-/.git
-/.github
 
 # docker-файлы
 /dockerfile
